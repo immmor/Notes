@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>定位测试</title>
+</head>
+<body>
+  <h1>定位测试</h1>
+  <p>您的定位信息：</p>
+  <div id="location"></div>
+  <script>
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var locationElement = document.getElementById('location');
+        locationElement.innerHTML = '纬度：' + latitude + '，经度：' + longitude;
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script> -->
+    <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script> -->
+    <!-- <script src="https://unpkg.com/d3@3/d3.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script> -->
+    <!-- <script src="{{url_for('static', filename ='randomTest.js')}}"></script> -->
+    <script src="randomTest.js"></script>
+    <script src="jquery.js"></script>
+    <script src="md5.js"></script>
+    <link rel="stylesheet" href="ai.css">
+    <title>2023国科大人工智能在职考研</title>
+</head>
+<style>
+    * {
+        font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+    }
+
+    .notes {
+        /* text-align: center; */
+        /* padding-top: 15px; */
+        /* font-size: x-large; */
+        padding-top: 10px;
+    }
+
+    .note {
+        font-size: medium;
+        padding-top: 0px;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+    
+    .exam {
+        /* margin-right: 16%; */
+        justify-content: center;
+        align-items: center;
+        display: inline-block;
+        /* display: none; */
+    }
+    
+    .exam1 {
+        /* margin-right: 16%; */
+        margin-right: 16%;
+        display: none;
+    }
+
+    /* @media screen and (min-width: 1200px) {
+        .choice,.trueOrFalse {margin-left: 15%;}
+        .exam {margin-right: 10%;}
+    } */
+
+    .logout {
+        position: fixed;
+        right: 80px;
+        top: 40px;
+        border: 1px solid;
+        padding: 1px;
+        background-color: rgb(255, 47, 71);
+        cursor: pointer;
+        display: none;
+    }
+    
+    .save {
+        position: fixed;
+        right: 80px;
+        bottom: 100px;
+        border: 1px solid;
+        padding: 1px;
+        background-color: greenyellow;
+        cursor: pointer;
+    }
+
+    .redo {
+        position: fixed;
+        right: 80px;
+        bottom: 70px;
+        border: 1px solid;
+        padding: 1px;
+        background-color: rgb(47, 255, 248);
+        cursor: pointer;
+    }
+    
+    .title {
+        font-weight: bold;
+        font-size: 38px;
+        text-align: center;
+        padding-top: 20px;
+    }
+    
+    .examTitle {
+        text-align: center;
+        font-weight: bold;
+        font-size: xx-large;
+        /* padding-left: 120px; */
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .subCheck {
+        text-align: center;
+    }
+    
+    .submitExam {
+        color: darkorange;
+        top: 30px;
+        /* margin-left: 50%; */
+        text-align: center;
+        /* justify-content: center; */
+        /* align-items: center; */
+        display: inline-block;
+        /* border: 1px solid #000;
+        padding: 1px; */
+        cursor: pointer;
+    }
+    
+    .checkResult {
+        top: 30px;
+        /* margin-left: 700px; */
+        margin-left: 3px;
+        /* text-align: center; */
+        display: inline-block;
+        color: green;
+        /* border: 1px solid #000;
+        padding: 1px; */
+        cursor: pointer;
+    }
+    
+    .problems {
+        padding-bottom: 20px;
+        margin-right: 23%;
+    }
+    
+    .choice {
+        padding-top: 20px;
+        padding-left: 150px
+    }
+    
+    .choiceQuestion {
+        display: inline-block;
+        display: contents;
+    }
+    
+    .mainTitle {
+        font-size: x-large;
+        padding-bottom: 10px;
+    }
+    
+    .myChoice {
+        display: inline-block;
+    }
+    
+    .myChoiceTitle {
+        display: inline-block;
+    }
+    
+    .result {
+        display: inline-block;
+    }
+    
+    .answer {
+        /* display: inline; */
+        color: green;
+        display: none;
+    }
+    
+    .question {
+        display: inline-block;
+    }
+    
+    .myAnswer {
+        display: inline-block;
+        font-weight: bold;
+    }
+    
+    .choiceChoices {
+        padding-top: 8px;
+        padding-left: 30px;
+        cursor: pointer;
+        display: inline-block;
+    }
+    
+    .trueOrFalse {
+        padding-top: 20px;
+        padding-left: 150px
+    }
+    
+    .trueOrFalseChoices {
+        /* padding-top: 10px; */
+        padding-top: 8px;
+        padding-left: 25px;
+    }
+    
+    .trueOrFalseQuestion {
+        display: inline-block;
+    }
+    
+    .true {
+        display: inline-block;
+        cursor: pointer;
+    }
+    
+    .false {
+        margin-left: 10px;
+        display: inline-block;
+        cursor: pointer;
+    }
+    
+    .fillInBlanks {
+        padding-top: 20px;
+        padding-left: 150px
+    }
+    
+    .blank {
+        display: inline-block;
+    }
+    
+    .xs-blank {
+        width: 20px;
+    }
+    
+    .answerBlanks {
+        display: none;
+        color: green;
+        padding-right: 20px;
+    }
+    
+    .essay {
+        padding-top: 20px;
+        padding-left: 150px
+    }
+
+    /* .essayQuestion {
+        padding-right: 20px;
+    } */
+    
+    .answerEssay {
+        display: none;
+        color: green;
+        padding-right: 19px;
+    }
+    
+    .essayResponse {
+        margin-top: 3px;
+    }
+
+    .login {
+        background-color: blanchedalmond;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        display: none;
+        /* display: block; */
+    }
+
+    .pay {
+        background-color: aquamarine;
+        position: fixed;
+        display: none;
+        /* width: 100px;
+        height: 100px; */
+        top: 250px;
+        left: 350px;
+    }
+
+    .payText {
+        text-align: center;
+    }
+
+    .points {
+        display: inline-block;
+    }
+
+    .me {
+        border-radius: 50%;
+        border: 20px solid rgb(200, 38, 181);
+        position: absolute;
+        right: 15px;
+        top: 80px;
+        display: none;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="title">
+        考研人工智能学习笔记
+    </div>
+
+    <div class="notes" id="notes">
+    </div>
+
+    <!-- <div class="login">
+        登录
+        <input type="text" placeholder="用户名" id="username">
+        <input type="text" placeholder="密码" id="password">
+        <button id="submit">submit</button>
+    </div> -->
+
+    <div class="me" id="me">
+
+    </div>
+    <div class="logout" id="logout" onclick="logout()">登出</div>
+
+    <!-- 登录 -->
+    <div class="log login" id="login">
+        <div class="login-box">
+            <h2>登  录</h2>
+            <form>
+                <div class="user-box">
+                    <input type="text" id="username">
+                    <label>用户名</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" id="passwordid">
+                    <label>密码</label>
+                </div>
+                <!-- <a id="register">
+                    register
+                </a> -->
+                <div class="register" id="registerInLogin" onclick="register()">新用户注册</div>
+                <a id="submit">
+                    <!-- Register -->
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    提 交
+                </a>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册 -->
+    <div class="login" id="register">
+        <div class="login-box">
+            <h2>新 用 户 注 册</h2>
+            <form>
+                <div class="user-box">
+                    <input type="text" id="newUser">
+                    <label>设置用户名</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" id="newUserPassword">
+                    <label>设置密码</label>
+                </div>
+                <!-- <a id="register">
+                    register
+                </a> -->
+                <div class="register" id="loginInRegister">已有账号直接登录</div>
+                <a id="registerSubmit">
+                    <!-- Register -->
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    提 交
+                </a>
+            </form>
+        </div>
+    </div>
+
+    <div class="pay" id="checkResultPay">
+        <div class="payText">
+            需要支付
+            <div class="points" id="points">5</div>
+            个积分
+        </div>
+        <input type="text" placeholder="请输入支付密码" id="payPassword">
+        <button onclick="payCancel()">取消</button>
+        <button onclick="payPoints()">支付</button>
+    </div>
+
+    <div class="exam">
+        <div class="save" onclick="save()">
+            保存
+        </div>
+        <div class="redo" onclick="redo()">
+            重做
+        </div>
+        <div class="examTitle">
+            2023国科大人工智能在职考研
+        </div>
+        <div class="subCheck">
+            <div class="submitExam" onclick="submitExam()">
+                提交答卷
+            </div>
+            <div class="checkResult" id="checkResult" onclick="checkResult()">
+                查看答案
+            </div>
+        </div>
+        <div class="choice">
+            <div class="mainTitle choiceTitle">
+                选择题
+            </div>
+
+            <div class="problems problem1">
+                <div class="choiceProblem">
+                    <div class="choiceQuestion">
+                        1、Python源程序执行的方式是什么？
+                    </div>
+                    <div class="myChoice">
+                        你的选择是：
+                        <div class="myAnswer myAnswer1"></div>
+                        <div class="result result1"></div>
+                        <div class="answer"> 正确答案是： B</div>
+                    </div>
+                </div>
+                <div class="choiceChoices">
+                    <div class="choicesA" onclick="choosed(this)">
+                        A、编译执行
+                    </div>
+                    <div class="choicesB" onclick="choosed(this)">
+                        B、解析执行
+                    </div>
+                    <div class="choicesC" onclick="choosed(this)">
+                        C、直接执行
+                    </div>
+                    <div class="choicesD" onclick="choosed(this)">
+                        D、边编译边执行
+                    </div>
+                </div>
+            </div>
+
+            <div class="problems problem2">
+                <div class="choiceProblem">
+                    <div class="choiceQuestion">
+                        2、以下哪个不是Python中的关键字？
+                    </div>
+                    <div class="myChoice">
+                        你的选择是：
+                        <div class="myAnswer myAnswer2"></div>
+                        <div class="result result2"></div>
+                        <div class="answer"> 正确答案是： D</div>
+                    </div>
+                </div>
+                <div class="choiceChoices">
+                    <div class="choicesA" onclick="choosed(this)">
+                        A、raise
+                    </div>
+                    <div class="choicesB" onclick="choosed(this)">
+                        B、with
+                    </div>
+                    <div class="choicesC" onclick="choosed(this)">
+                        C、import
+                    </div>
+                    <div class="choicesD" onclick="choosed(this)">
+                        D、final
+                    </div>
+                </div>
+            </div>
+
+            <div class="problems problem3">
+                <div class="choiceProblem">
+                    <div class="choiceQuestion">
+                        3、下面哪个不是Python合法的标识符？
+                    </div>
+                    <div class="myChoice">
+                        你的选择是：
+                        <div class="myAnswer myAnswer3"></div>
+                        <div class="result result3"></div>
+                        <div class="answer"> 正确答案是： B</div>
+                    </div>
+                </div>
+                <div class="choiceChoices">
+                    <div class="choicesA" onclick="choosed(this)">
+                        A、int32
+                    </div>
+                    <div class="choicesB" onclick="choosed(this)">
+                        B、40XL
+                    </div>
+                    <div class="choicesC" onclick="choosed(this)">
+                        C、self
+                    </div>
+                    <div class="choicesD" onclick="choosed(this)">
+                        D、name
+                    </div>
+                </div>
+            </div>
+
+            <div class="problems problem4">
+                <div class="choiceProblem">
+                    <div class="choiceQuestion">
+                        4、以下哪个类型不可以进行切片操作？
+                    </div>
+                    <div class="myChoice">
+                        你的选择是：
+                        <div class="myAnswer myAnswer4"></div>
+                        <div class="result result4"></div>
+                        <div class="answer"> 正确答案是： D</div>
+                    </div>
+                </div>
+                <div class="choiceChoices">
+                    <div class="choicesA" onclick="choosed(this)">
+                        A、str
+                    </div>
+                    <div class="choicesB" onclick="choosed(this)">
+                        B、list
+                    </div>
+                    <div class="choicesC" onclick="choosed(this)">
+                        C、tuple
+                    </div>
+                    <div class="choicesD" onclick="choosed(this)">
+                        D、dict
+                    </div>
+                </div>
+            </div>
+
+            <div class="problems problem5">
+                <div class="choiceProblem">
+                    <div class="choiceQuestion">
+                        5、命题是可以判断真假的什么句？
+                    </div>
+                    <div class="myChoice">
+                        你的选择是：
+                        <div class="myAnswer myAnswer5"></div>
+                        <div class="result result5"></div>
+                        <div class="answer"> 正确答案是： A</div>
+                    </div>
+                </div>
+                <div class="choiceChoices">
+                    <div class="choicesA" onclick="choosed(this)">
+                        A、陈述句
+                    </div>
+                    <div class="choicesB" onclick="choosed(this)">
+                        B、疑问句
+                    </div>
+                    <div class="choicesC" onclick="choosed(this)">
+                        C、感叹句
+                    </div>
+                    <div class="choicesD" onclick="choosed(this)">
+                        D、祈使句
+                    </div>
+                </div>
+            </div>
+
+            <div class="problems problem6">
+                <div class="choiceProblem">
+                    <div class="choiceQuestion">
+                        6、1997年5月，著名的“人机大战”，最终计算机以3.5比2.5的总比分将世界国际象棋棋王卡斯帕罗夫击败，这台计算机被称为？
+                    </div>
+                    <div class="myChoice">
+                        <!-- <div class="myChoiceTitle">
+                            你的选择是：
+                        </div> -->
+                        你的选择是：
+                        <div class="myAnswer myAnswer6"></div>
+                        <div class="result result6"></div>
+                        <div class="answer"> 正确答案是： C</div>
+                    </div>
+                </div>
+                <div class="choiceChoices">
+                    <div class="choicesA" onclick="choosed(this)">
+                        A、IBM
+                    </div>
+                    <div class="choicesB" onclick="choosed(this)">
+                        B、深思
+                    </div>
+                    <div class="choicesC" onclick="choosed(this)">
+                        C、深蓝
+                    </div>
+                    <div class="choicesD" onclick="choosed(this)">
+                        D、蓝天
+                    </div>
+                </div>
+            </div>
+
+            <div class="problems problem7">
+                <div class="choiceProblem">
+                    <div class="choiceQuestion">
+                        7、不属于人工智能学派的是？
+                    </div>
+                    <div class="myChoice">
+                        <!-- <div class="myChoiceTitle">
+                            你的选择是：
+                        </div> -->
+                        你的选择是：
+                        <div class="myAnswer myAnswer7"></div>
+                        <div class="result result7"></div>
+                        <div class="answer"> 正确答案是： A</div>
+                    </div>
+                </div>
+                <div class="choiceChoices">
+                    <div class="choicesA" onclick="choosed(this)">
+                        A、机会主义
+                    </div>
+                    <div class="choicesB" onclick="choosed(this)">
+                        B、符号主义
+                    </div>
+                    <div class="choicesC" onclick="choosed(this)">
+                        C、连接主义
+                    </div>
+                    <div class="choicesD" onclick="choosed(this)">
+                        D、行为主义
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="trueOrFalse">
+            <div class="mainTitle trueOrFalseTitle">
+                判断题
+            </div>
+            <div class="problems problem8">
+                <div class="trueOrFalseQuestion">
+                    1、Python 中的代码块使用缩进来表示。
+                </div>
+                <div class="myChoice">
+                    <!-- <div class="myChoiceTitle">
+                        你的选择是：
+                    </div> -->
+                    你的选择是：
+                    <div class="myAnswer myAnswer8"></div>
+                    <div class="result result8"></div>
+                    <div class="answer"> 正确答案是： 对</div>
+                </div>
+                <div class="trueOrFalseChoices">
+                    <div class="true" onclick="judged(this)">对</div>
+                    <div class="false" onclick="judged(this)">错</div>
+                </div>
+            </div>
+
+            <div class="problems problem9">
+                <div class="trueOrFalseQuestion">
+                    2、Python字典和集合属于无序序列。
+                </div>
+                <div class="myChoice">
+                    <!-- <div class="myChoiceTitle">
+                        你的选择是：
+                    </div> -->
+                    你的选择是：
+                    <div class="myAnswer myAnswer9"></div>
+                    <div class="result result9"></div>
+                    <div class="answer"> 正确答案是： 对</div>
+                </div>
+                <div class="trueOrFalseChoices">
+                    <div class="true" onclick="judged(this)">对</div>
+                    <div class="false" onclick="judged(this)">错</div>
+                </div>
+            </div>
+
+            <div class="problems problem10">
+                <div class="trueOrFalseQuestion">
+                    3、1+4j不是合法的Python表达方式。
+                </div>
+                <div class="myChoice">
+                    <!-- <div class="myChoiceTitle">
+                        你的选择是：
+                    </div> -->
+                    你的选择是：
+                    <div class="myAnswer myAnswer10"></div>
+                    <div class="result result10"></div>
+                    <div class="answer"> 正确答案是： 错</div>
+                </div>
+                <div class="trueOrFalseChoices">
+                    <div class="true" onclick="judged(this)">对</div>
+                    <div class="false" onclick="judged(this)">错</div>
+                </div>
+            </div>
+
+            <div class="problems problem11">
+                <div class="trueOrFalseQuestion">
+                    4、元组可以组为字典的"键"。
+                </div>
+                <div class="myChoice">
+                    <!-- <div class="myChoiceTitle">
+                        你的选择是：
+                    </div> -->
+                    你的选择是：
+                    <div class="myAnswer myAnswer11"></div>
+                    <div class="result result11"></div>
+                    <div class="answer"> 正确答案是： 对</div>
+                </div>
+                <div class="trueOrFalseChoices">
+                    <div class="true" onclick="judged(this)">对</div>
+                    <div class="false" onclick="judged(this)">错</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fillInBlanks">
+            <div class="mainTitle fillInBlanksTitle">
+                填空题
+            </div>
+            <div class="problems problem12">
+                <div class="question">
+                    1、计算机视觉可分为
+                    <div class="blank s-blank"><input type="text" class="blankResponse"></div>、
+                    <div class="blank s-blank"><input type="text" class="blankResponse"></div>、
+                    <div class="blank s-blank"><input type="text" class="blankResponse"></div>、
+                    <div class="blank s-blank"><input type="text" class="blankResponse"></div>和
+                    <div class="blank s-blank"><input type="text" class="blankResponse"></div>五大类。
+                </div>
+                <div class="answerBlanks">
+                    参考答案：计算机视觉可分为计算成像学、图像理解、三维视觉、动态视觉和视频编解码五大类。
+                </div>
+            </div>
+
+            <div class="problems problem13">
+                <div class="question">
+                    2、VR/AR/MR 从技术特征角度，按照不同处理阶段，可以分为
+                    <div class="blank s-blank"><input type="text"></div>、
+                    <div class="blank s-blank"><input type="text"></div>、
+                    <div class="blank s-blank"><input type="text"></div>、
+                    <div class="blank s-blank"><input type="text"></div>及
+                    <div class="blank s-blank"><input type="text"></div>5个方面。
+                </div>
+                <div class="answerBlanks">
+                    参考答案：VR/AR/MR 从技术特征角度，按照不同处理阶段，可以分为获取与建模技术、 分析与利用技术、交换与分发技术、展示与交互技术及技术标准与评价体系 5 个方面
+                </div>
+            </div>
+
+            <div class="problems problem14">
+                <div class="question">
+                    3、生物特征识别技术是指通过
+                    <div class="blank s-blank"><input type="text"></div>或
+                    <div class="blank s-blank"><input type="text"></div>对个体身份进行识别 认证的技术。
+                </div>
+                <div class="answerBlanks">
+                    参考答案：生物特征识别技术是指通过个体生理特征或行为特征对个体身份进行识别 认证的技术。
+                </div>
+            </div>
+
+            <div class="problems problem15">
+                <div class="question">
+                    4、执行循环语句 for i in range(1,6): pass后，变量i的值是
+                    <div class="blank s-blank"><input class="xs-blank" type="text"></div>。
+                </div>
+                <div class="answerBlanks">
+                    参考答案：执行循环语句 for i in range(1,6): pass后，变量i的值是5。
+                </div>
+            </div>
+        </div>
+
+        <div class="essay">
+            <div class="mainTitle essayTitle">
+                简答题
+            </div>
+            <div class="problems problem20">
+                <div class="essayQuestion">
+                    1、简述人工智能三个学派，并且说明三个学派之间的关系。
+                </div>
+                <div class="answerEssay">
+                    参考答案：在人工智能的整个发展过程中，不同学科背景的研究人员对人工 智能有不同的理解，因此也形成了人工智能的三大发展学派。传统的人工智能被称为符号主义(Symbolicism)学派，符号主义 主要研究的是基于逻辑推理的智能模拟方法。而一些人则认为可通过 模拟大脑的神经网络结构结合脑认知原理实现，逐步形成连接主义 (Connectionism)学派。此外还有人认为可以从仿生学及生物体与环 境互动的模式中寻找答案，进而形成行为主义(Actionism)学派。
+                </div>
+                <textarea class="essayResponse saveResponse" id="essayResponse1" cols=78% rows="10"></textarea>
+            </div>
+
+            <div class="problems problem21">
+                <div class="essayQuestion">
+                    2、lambda匿名函数好处，用lambda表达式实现两个数相加。
+                </div>
+                <div class="answerEssay">
+                    参考答案：lambda 函数比较轻便，即用即删除，很适合需要完成一项功能，但是此功能只在此一处使用， 连名字都很随意的情况下。
+                </div>
+                <textarea class="essayResponse saveResponse" id="essayResponse2" cols=78% rows="10"></textarea>
+            </div>
+
+            <div class="problems problem22">
+                <div class="essayQuestion">
+                    3、简述驱动新一代人工智能快速发展的数据、算法、算力等重要驱动因素。
+                </div>
+                <div class="answerEssay">
+                    参考答案：大数据(Big Data)的发展为深度学习注入了新的“燃料”，极大地提高了深度学习的智能水平。计算能力的提升促进了深度学习模型的训练效率，成为推动新一代人工智能发展的主要驱动力。移动互联网与智能手机的结合为新一代人工智能插上腾飞的翅膀，产生了全新的应用，如语音购物、人脸支付、视频 理解、自然语言处理、无人超市、自动驾驶等。
+                </div>
+                <textarea class="essayResponse saveResponse" id="essayResponse3" cols=78% rows="10">
+                </textarea>
+            </div>
+        </div>
+
+        <div class="essay">
+            <div class="mainTitle essayTitle">
+                解答题
+            </div>
+            <div class="problems problem23">
+                <div class="essayQuestion">
+                    1、某科研人员要去外地参加会议，他乘火车、汽车或者飞机的概率分别时 0.25、 0.4、0.35。乘坐火车、汽车、飞机迟到的概率时 0.25、0.4、0.1。现此人没有 迟到，问他乘坐飞机的概率。
+                </div>
+                <div class="answerEssay">
+                    参考答案：符号主义靠人工赋予机器智能，连接主义是靠机器自行习得智能，行为主义在与环境的作用和反馈中获得智能。
+                </div>
+                <textarea class="essayResponse saveResponse" cols=78% rows="10"></textarea>
+            </div>
+
+            <div class="problems problem24">
+                <div class="essayQuestion">
+                    2、简述以下五个python异常，IOError、AttributeError、ImportError、KeyError、SyntaxError。
+                </div>
+                <div class="answerEssay">
+                    参考答案：IOError异常是输入输出异常；AttributeError这个错误是对象的属性异常；ImportError是导入异常；KeyError是字典中的键不存在引发的错误；SyntaxError是指语法错误（包括版本问题、路径问题等）。
+                </div>
+                <textarea class="essayResponse saveResponse" cols=78% rows="10"></textarea>
+            </div>
+
+            <div class="problems problem25">
+                <div class="essayQuestion">
+                    3、简述以下五个python标准库，os、sys、re、math、datatime。
+                </div>
+                <div class="answerEssay">
+                    参考答案：os是用来控制操作系统的库；sys是用来访问解释器的库；re是一个正则表达式的库；math是一个数学库；datetime是一个时间日期库。
+                </div>
+                <textarea class="essayResponse saveResponse" cols=78% rows="10">
+                </textarea>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // test(300000);
+
+    var notesContent = ['1、人工智能三大学派：行为主义（）、连接主义（）、符号主义（）。',
+                        '2、图灵测试：测试者与被测试者（一个人和一台机器）隔开的情况下，通过一些装置向被测试者随意提问，进行多次测试后，如果机器让平均美国参与者做出超过30%的误判，那么这台机器就通过了测试，并被认为具有人类的智能。',
+                        '3、即使通过图灵测试也不能说明计算机有思维。',
+                        '4、1950年图灵首次提出人工智能这个概念，1956年正式提出。',
+                        '5、计算机视觉可以分为计算成像学、图像理解、三位视觉、动态视觉和视频编解码五大类。',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',];
+
+    // 根据笔记列表生成笔记
+    var notes = document.getElementById('notes');
+    for (let index = 0; index < notesContent.length; index++) {
+        var divNote = document.createElement('div');
+        notes.appendChild(divNote);
+        divNote.id = 'note' + index;
+        var note = document.getElementById('note' + index);
+        note.innerHTML = notesContent[index];
+        note.className = 'note';
+    }
+
+    function setCookie(cname, cvalue, exdays){
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 60 * 60 * 1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    function loginin() {
+        if (document.cookie == '') {
+            document.getElementById('logout').style.display = 'none';
+            document.getElementById('login').style.display = 'block';
+            $('#submit').click(function() { //点击按钮
+                var username = hex_md5(document.getElementById('username').value)
+                var password = hex_md5(document.getElementById('passwordid').value)
+                var subjectName = '人工智能'
+                // alert(username, password)
+                $.post('/login', {
+                    username: username,
+                    password: password,
+                    subjectName: subjectName
+                    }).then(function(response) {
+                        if (response == 'fail') {
+                            alert('用户名密码不存在')
+                        }else {
+                            setCookie(username, password, 10)
+                            // document.cookie = username + "=" + password + "; expires=Thu, 1 Dec 2022 03:30:00 GMT";
+                            // alert(document.cookie)
+                            document.getElementById('login').style.display = 'none';
+                            document.getElementById('logout').style.display = 'block';
+                        }
+                });
+            })
+        }else {
+            document.getElementById('logout').style.display = 'block';
+            cookie = document.cookie
+            cookieList = cookie.split('=')
+            $.post('/login', {
+                username: cookieList[0],
+                password: cookieList[1]
+            })
+        }
+    }
+
+    loginin()
+
+    // 删除cookie
+    function clearCookie(name) {
+        setCookie(name, "", -1);
+    }
+
+    function logout() {
+        clearCookie(document.cookie.split("=")[0]);
+        location.reload();
+    }
+
+    function register() {
+        document.getElementById('login').style.display = 'none';
+        document.getElementById('registerInLogin').style.display = 'block';
+    }
+
+    function choosed(obj) {
+        var myFinalAnswer = obj.className;
+        var answerNode = obj.parentNode.parentNode.children[0].children[1].children[0].className;
+        // alert(answerNode);
+        lastStr = myFinalAnswer.charAt(myFinalAnswer.length - 1);
+        // alert(myFinalAnswer);
+        document.getElementsByClassName(answerNode)[0].innerText = lastStr;
+    }
+
+    function judged(obj) {
+        var myFinalAnswer = document.getElementsByClassName(obj.className)[0].innerHTML;
+        var answerNode = obj.parentNode.parentNode.children[1].children[0].className;
+        document.getElementsByClassName(answerNode)[0].innerText = myFinalAnswer;
+    }
+
+    var correctResult = ['B', 'D', 'B', 'D', 'A', 'C',
+        'A', '对', '对', '错', '对'
+    ];
+
+    function judgeChoiceNJudge() {
+        var myAnswers = document.getElementsByClassName('myAnswer');
+
+        var correctAnswers = 0;
+        var incorrectAnswers = 0;
+
+        var notAnswered = 0;
+        for (var i = 0; i < correctResult.length; i++) {
+            if (myAnswers[i].innerHTML == '') {
+                notAnswered += 1
+            }
+        }
+
+        if (notAnswered > 0) {
+            alert('你还有' + notAnswered + '道题没有答！')
+        } else {
+            for (var i = 0; i < correctResult.length; i++) {
+                if (myAnswers[i].innerHTML == correctResult[i]) {
+                    correctAnswers += 1;
+                } else {
+                    incorrectAnswers += 1;
+                }
+            }
+            alert('你做对了' + correctAnswers + '个，做错了' + incorrectAnswers + '个')
+        }
+    }
+
+    function submitExam() {
+        judgeChoiceNJudge();
+        judgeEssay();
+    }
+
+    function payCancel() {
+        document.getElementById('checkResultPay').style.display = 'none';
+    }
+
+    function payPoints() {
+        cookie = document.cookie
+        // alert(typeof(cookie))
+        cookieList = cookie.split('=')
+        // for (let index = 0; index < cookieList.length; index++) {
+        //     allCookies = cookieList[index].split('=')
+        // }
+        // alert(allCookies)
+        var payPoints = document.getElementById('points').innerText
+        var payPassword = document.getElementById('payPassword').value
+        $.post('/pay', {
+            username: cookieList[0],
+            password: cookieList[1],
+            payPassword: payPassword,
+            payPoints: payPoints
+        }).then(function(response) {
+            if (response == 'fail') {
+                alert('余额不足')
+            } else {
+                document.getElementById('checkResultPay').style.display = 'none';
+                // setCookie("查看答案权限", "yes", 0.5)
+                showResult()
+            }
+        });
+    }
+
+    var checkResultCount = 0;
+
+    function checkResult() {
+        cookie = document.cookie
+        // alert(cookie)
+        cookieList = cookie.split('=')
+        if (cookie != '') {
+            if (checkResultCount == 0) {
+                    $.post('/checkResult', {
+                    username: cookieList[0],
+                    password: cookieList[1]
+                }).then(function(response) {
+                    // alert(response)
+                    if (response == 'fail') {
+                        // checkResultCount = 0;
+                        document.getElementById('checkResultPay').style.display = 'block';
+                        // alert(checkResultCount)
+                    } else if (response == 'success') {
+                        // checkResultCount = 1;
+                        // alert(checkResultCount)
+                        showResult()
+                    }
+                });
+            } else {
+                showResult()
+            }
+        } else {
+            loginin()
+        }
+        
+        
+        // if (checkResultCount == 0) {
+        //     document.getElementById('checkResultPay').style.display = 'block';
+        // } else {
+        //     showResult()
+        // }
+    }
+
+    function showResult() {
+        if (checkResultCount == 0) {
+            // alert('支付成功');
+            checkResultCount += 1;
+            document.getElementById('checkResult').innerHTML = '隐藏答案';
+
+            var answers = document.getElementsByClassName('answer')
+            for (var i = 0; i < correctResult.length; i++) {
+                answers[i].style.display = 'inline-block';
+            }
+
+            var answerEssay = document.getElementsByClassName('answerEssay')
+                // alert(answerEssay[2].innerHTML)
+            for (var i = 0; i < 6; i++) {
+                answerEssay[i].style.display = 'inline-block';
+            }
+
+            var answerBlanks = document.getElementsByClassName('answerBlanks')
+                // alert(answerBlanks[2].innerHTML)
+            for (var i = 0; i < 4; i++) {
+                answerBlanks[i].style.display = 'inline-block';
+            }
+
+            // alert(checkResultCount);
+        } else if (checkResultCount == 1) {
+            // alert(checkResultCount);
+            document.getElementById('checkResult').innerHTML = '查看答案';
+
+            var answers = document.getElementsByClassName('answer')
+            for (var i = 0; i < correctResult.length; i++) {
+                answers[i].style.display = 'none';
+            }
+
+            var answerEssay = document.getElementsByClassName('answerBlanks')
+            for (var i = 0; i < 4; i++) {
+                answerEssay[i].style.display = 'none';
+            }
+
+            var answerEssay = document.getElementsByClassName('answerEssay')
+                // alert(answerEssay[2].innerHTML)
+            for (var i = 0; i < 6; i++) {
+                answerEssay[i].style.display = 'none';
+            }
+            checkResultCount -= 1;
+        }
+        // alert(checkResultCount);
+    }
+
+    var punctuations = [' ', ',', '，', '.', '。', '?', '？', '\'', '‘', '\"', '“', '”', '\\', '。', '(', '（', ')', '）'];
+
+    function judgeEssay() {
+        var essayResponse3Keys = '大数据(Big Data)的发展为深度学习注入了新的“燃料”，极大地提高了深度学习的智能水平。计算能力的提升促进了深度学习模型的训练效率，成为推动新一代人工智能发展的主要驱动力。移动互联网与智能手机的结合为新一代人工智能插上腾飞的翅膀，产生了全新的应用，如语音购物、人脸支付、视频 理解、自然语言处理、无人超市、自动驾驶等。'
+        var essayResponse3 = document.getElementById('essayResponse3').value;
+        // alert(essayResponse3);
+        essayResponse3SplitArr = essayResponse3.split('');
+        alert(essayResponse3SplitArr.length)
+        var score = 0;
+        for (var i = 0; i < essayResponse3SplitArr.length; i++) {
+            for (var j = 0; j < punctuations.length; j++) {
+                // alert(punctuations.length)
+                if (essayResponse3SplitArr[i] == punctuations[j]) {
+                    essayResponse3SplitArr.splice(i, 1);
+                }
+            }
+            if (essayResponse3Keys.indexOf(essayResponse3SplitArr[i]) > 0) {
+                score += 1;
+            }
+        }
+        alert(essayResponse3SplitArr.length);
+        alert(score); // 相同的答案为什么score比essayResponse3SplitArr.length少两个？
+    }
+
+    var allChoiceResponse = []
+    var allBlankResponse = []
+    var allEssayResponse = []
+    
+    function save() {
+        allChoiceResponse = []
+        allBlankResponse = []
+        allEssayResponse = []
+        var choiceResponse = document.getElementsByClassName('myAnswer')
+        for (let index = 0; index < choiceResponse.length; index++) {
+            allChoiceResponse.push(choiceResponse[index].innerText)
+        }
+        var blankResponse = document.getElementsByClassName('blankResponse')
+        for (let index = 0; index < blankResponse.length; index++) {
+            allBlankResponse.push(blankResponse[index].value)
+        }
+        var essayResponse = document.getElementsByClassName('essayResponse')
+        for (let index = 0; index < essayResponse.length; index++) {
+            allEssayResponse.push(essayResponse[index].value)
+        }
+        
+		if (confirm('确定保存吗?')) {
+			// alert('已删除')
+            localStorage.setItem('allChoiceResponse', JSON.stringify(allChoiceResponse));
+            localStorage.setItem('allBlankResponse', JSON.stringify(allBlankResponse));
+            localStorage.setItem('allEssayResponse', JSON.stringify(allEssayResponse));
+		}
+    }
+
+    function redo() {
+        if (confirm('确定删除吗?')) {
+            localStorage.clear()
+            var choiceResponse = document.getElementsByClassName('myAnswer')
+            for (let index = 0; index < choiceResponse.length; index++) {
+                choiceResponse[index].innerText = ''
+            }
+            var blankResponse = document.getElementsByClassName('blankResponse')
+            for (let index = 0; index < blankResponse.length; index++) {
+                blankResponse[index].value = ''
+            }
+            var essayResponse = document.getElementsByClassName('essayResponse')
+            for (let index = 0; index < essayResponse.length; index++) {
+                essayResponse[index].value = ''
+            }
+        }
+    }
+
+    try {
+        var regetAllChoiceResponse = localStorage.getItem('allChoiceResponse');
+        for (let index = 0; index < JSON.parse(regetAllChoiceResponse).length; index++) {
+            document.getElementsByClassName('myAnswer')[index].innerText = JSON.parse(regetAllChoiceResponse)[index]
+        }
+        var regetAllBlankResponse = localStorage.getItem('allBlankResponse');
+        for (let index = 0; index < JSON.parse(regetAllBlankResponse).length; index++) {
+            document.getElementsByClassName('blankResponse')[index].value = JSON.parse(regetAllBlankResponse)[index]
+        }
+        var regetAllEssayResponse = localStorage.getItem('allEssayResponse');
+        for (let index = 0; index < JSON.parse(regetAllEssayResponse).length; index++) {
+            document.getElementsByClassName('essayResponse')[index].value = JSON.parse(regetAllEssayResponse)[index]
+        }
+    } catch (e) {
+
+    }
+</script>
+
+</html>

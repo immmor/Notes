@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/d3@3/d3.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script> -->
+    <!-- <script src="{{url_for('static', filename ='randomTest.js')}}"></script> -->
+    <script src="jquery.js"></script>
+    <script src="randomTest.js"></script>
+    <title>考研政治</title>
+</head>
+<style>
+    * {
+        font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+    }
+    
+    .title {
+        font-weight: bold;
+        font-size: xx-large;
+        text-align: center;
+        padding-top: 20px;
+    }
+    
+    .examTitle {
+        text-align: center;
+        padding-top: 15px;
+        font-size: x-large;
+    }
+    
+    .myAnswer {
+        padding-top: 10px;
+        margin-left: 20%;
+        margin-right: 20%;
+        /* display: none; */
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        /* padding: 10px; */
+    }
+    
+    .myAnswerTitle {
+        color: black;
+    }
+    
+    .writtenTime {
+        text-align: right;
+    }
+
+    /* .singleChoice {
+        display: block;
+    } */
+    
+    .choice-padding-top {
+        line-height: 22px;
+        /* display: flex; */
+    }
+
+    .score {
+        text-align: center;
+        color: firebrick;
+    }
+
+    .openClose {
+        display: inline-block;
+    }
+
+    .exam1,
+    .exam2,
+    .exam9 {
+        display: none;
+        color: black;
+    }
+
+    .er1 {
+        /* display: none; */
+        color: black;
+    }
+
+    .notes {
+        /* text-align: center; */
+        /* padding-top: 15px; */
+        /* font-size: x-large; */
+        padding-top: 10px;
+        display: none;
+    }
+
+    .note {
+        font-size: medium;
+        padding-top: 0px;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+</style>
+
+<body>
+    <div class="title">
+        2023考研政治学习笔记
+    </div>
+    <div class="notes" id="notes">
+    </div>
+    <div class="exam exam1">
+        <div class="examTitle">
+            肖八(一)
+            <!-- <div class="openClose">开关</div> -->
+        </div>
+        <div class="myAnswer yi1">
+            <div class="grid-container">
+                <div class="myAnswerTitle">
+                    我的答案第1遍：
+                </div>
+                <div class="writtenTime">
+                    答题时间：2022.11.13 10:00
+                </div>
+            </div>
+            <div class="choice-padding-top singleChoice" id="yi1Single">
+                单选：1.BX[C] 2.B 3.DX[A] 4.DX[B] 5.D 6.A 7.DX[C] 8.AX[D] 9.AX[C] 10.AX[B] 11.A 12.AX[D] 13.A 14.B 15.A 16.AX[D]
+            </div>
+            <div class="choice-padding-top multipleChoice" id="yi1Multiple">
+                多选：17.ABC 18.ADX[BD] 19.ADX[ACD] 20.ABC 21.ABCDX[BCD] 22.ABCD 23.ABCD 24.ABCD 25.ABCDX[ABD] 26.ABCD 27.ABCDX[ABC] 28.BCDX[ABC] 29.ABCDX[AB] 30.ABCDX[ACD] 31.ACDX[ABD] 32.ABCDX[ABC] 33.ABCDX[ACD]
+            </div>
+            <div class="score" id="yi1Score">
+            </div>
+        </div>
+
+        <div class="myAnswer yi2">
+            <div class="grid-container">
+                <div class="myAnswerTitle">
+                    我的答案第2遍：
+                </div>
+                <div class="writtenTime">
+                    答题时间：2022.12.04 07:36
+                </div>
+            </div>
+            <div class="choice-padding-top singleChoice" id="yi2Single">
+                单选：1.C 2.B 3.A 4.DX[B] 5.AX[D] 6.A 7.AX[C] 8.D 9.AX[C] 10.AX[B] 11.A 12.CX[D] 13.A 14.B 15.A 16.D
+            </div>
+            <div class="choice-padding-top multipleChoice" id="yi2Multiple">
+                多选：17.ABCDX[ABC] 18.ABDX[BD] 19.ABCX[ACD] 20.ABCDX[ABC] 21.BCD 22.ABCD 23.ABCD 24.ABCD 25.ABD 26.ABCD 27.ABC 28.ACX[ABC] 29.AB 30.ABCDX[ACD] 31.ABD 32.ABCDX[ABC] 33.ACX[ACD]
+            </div>
+            <div class="score" id="yi2Score">
+            </div>
+        </div>
+
+        <div class="myAnswer yi3">
+            <div class="grid-container">
+                <div class="myAnswerTitle">
+                    我的答案第3遍：
+                </div>
+                <div class="writtenTime">
+                    答题时间：2022.12.04 07:36
+                </div>
+            </div>
+            <div class="choice-padding-top singleChoice" id="yi3Single">
+                单选：1.C 2.B 3.A 4.B 5.D 6.A 7.C 8.D 9.C 10.B 11.A 12.D 13.A 14.B 15.A 16.D
+            </div>
+            <div class="choice-padding-top multipleChoice" id="yi3Multiple">
+                多选：17.ABC 18.BD 19.BCDX[ACD] 20.ABC 21.BCD 22.ABCD 23.ABCD 24.ABCD 25.ABD 26.ABCD 27.ABCDX[ABC] 28.ABC 29.AB 30.ACD 31.ABD 32.ABC 33.ACD
+            </div>
+            <div class="score" id="yi3Score">
+            </div>
+        </div>
+
+        <div class="myAnswer yi4">
+            <div class="grid-container">
+                <div class="myAnswerTitle">
+                    我的答案第4遍：
+                </div>
+                <div class="writtenTime">
+                    答题时间：2022.12.18 18:46
+                </div>
+            </div>
+            <div class="choice-padding-top singleChoice" id="yi4Single">
+                单选：1.C 2.B 3.A 4.B 5.AX[D] 6.A 7.C 8.D 9.C 10.B 11.A 12.D 13.A 14.B 15.A 16.D
+            </div>
+            <div class="choice-padding-top multipleChoice" id="yi4Multiple">
+                多选：17.ABC 18.ABDX[BD] 19.ACD 20.ABC 21.BCD 22.ABCD 23.ABCD 24.ABCX[ABCD] 25.ABD 26.ABCD 27.ABC 28.ABC 29.BDX[AB] 30.ACD 31.ABD 32.ACDX[ABC] 33.ACD
+            </div>
+            <div class="score" id="yi4Score">
+            </div>
+        </div>
+    </div>
+
+    <div class="exam exam2">
+        <div class="examTitle">
+            肖八(二)
+        </div>
+        <div class="myAnswer er1">
+            <div class="grid-container">
+                <div class="myAnswerTitle">
+                    我的答案第1遍：
+                </div>
+                <div class="writtenTime">
+                    答题时间：2022.11.22 16:00
+                </div>
+            </div>
+            <div class="choice-padding-top singleChoice" id="er1Single">
+                单选：1.CX[B] 2.D 3.C 4.D 5.A 6.C 7.BX[C] 8.B 9.CX[A] 10.CX[B] 11.A 12.AX[D] 13.D 14.AX[B] 15.A 16.B
+            </div>
+            <div class="choice-padding-top multipleChoice" id="er1Multiple">
+                多选：17.AB 18.ABCX[BC] 19.ACD 20.ABC 21.ABCDX[BCD] 22.ABCD 23.ABDX[ABCD] 24.ABCDX[ABC] 25.ABD 26.ADX[ABD] 27.ABCDX[ABC] 28.ACX[ABC] 29.ABCD 30.ABCD 31.ACD 32.AD 33.ABCDX[ACD]
+            </div>
+            <div class="score" id="er1Score">
+            </div>
+        </div>
+    </div>
+
+    <div class="exam exam9">
+        <div class="examTitle">
+            肖四(一)
+        </div>
+        <div class="myAnswer jiu1">
+            <div class="grid-container">
+                <div class="myAnswerTitle">
+                    我的答案第1遍：
+                </div>
+                <div class="writtenTime">
+                    答题时间：2022.12.18 18:00
+                </div>
+            </div>
+            <div class="choice-padding-top singleChoice" id="jiu1Single">
+                单选：1.D 2.B 3.B 4.C 5.B 6.B 7.A 8.D 9.C 10.A 11.D 12.A 13.D 14.A 15.B 16.C
+            </div>
+            <div class="choice-padding-top multipleChoice" id="jiu1Multiple">
+                多选：17.AD 18.ACD 19.ABCD 20.ABD 21.ABCD 22.ABCD 23.ABD 24.BCD 25.ABD 26.ABCD 27.ABC 28.ABC 29.ABC 30.ABC 31.BCD 32.ABCD 33.ABC
+            </div>
+            <div class="score" id="jiu1Score">
+            </div>
+        </div>
+
+        <div class="myAnswer jiu2">
+            <div class="grid-container">
+                <div class="myAnswerTitle">
+                    我的答案第2遍：
+                </div>
+                <div class="writtenTime">
+                    答题时间：2022.12.19 12:00
+                </div>
+            </div>
+            <div class="choice-padding-top singleChoice" id="jiu2Single">
+                单选：1.D 2.B 3.B 4.C 5.B 6.B 7.A 8.D 9.C 10.A 11.D 12.A 13.D 14.A 15.B 16.C
+            </div>
+            <div class="choice-padding-top multipleChoice" id="jiu2Multiple">
+                多选：17.AD 18.ACD 19.ABCD 20.ABD 21.ABCD 22.ABCD 23.ABD 24.BCD 25.ABCDX[ABD] 26.ABCD 27.ABC 28.ABC 29.ABC 30.ABC 31.BCD 32.ABCD 33.ABC
+            </div>
+            <div class="score" id="jiu2Score">
+            </div>
+        </div>
+
+        <div class="myAnswer jiu3">
+            <div class="grid-container">
+                <div class="myAnswerTitle">
+                    我的答案第3遍：
+                </div>
+                <div class="writtenTime">
+                    答题时间：2022.12.21 18:07
+                </div>
+            </div>
+            <div class="choice-padding-top singleChoice" id="jiu3Single">
+                单选：1.D 2.B 3.B 4.C 5.B 6.B 7.A 8.D 9.C 10.A 11.CX[D] 12.A 13.D 14.A 15.B 16.C
+            </div>
+            <div class="choice-padding-top multipleChoice" id="jiu3Multiple">
+                多选：17.AD 18.ACD 19.ABCD 20.ABD 21.ABCD 22.ACDX[ABCD] 23.ABD 24.BCD 25.ABD 26.ABCD 27.ABC 28.ABC 29.ABC 30.ABC 31.BCD 32.ABCD 33.ABC
+            </div>
+            <div class="score" id="jiu3Score">
+            </div>
+        </div>
+    </div>
+
+    <div class="exam exam10">
+        <div class="examTitle">
+            肖四(二)
+        </div>
+        <div class="myAnswer shi1">
+            <div class="grid-container">
+                <div class="myAnswerTitle">
+                    我的答案第1遍：
+                </div>
+                <div class="writtenTime">
+                    答题时间：2022.12.21 18:43
+                </div>
+            </div>
+            <div class="choice-padding-top singleChoice" id="shi1Single">
+                单选：1.BX[D] 2.DX[A] 3.BX[C] 4.D 5.CX[A] 6.B 7.B 8.DX[A] 9.B 10.BX[C] 11.B 12.DX[B] 13.BX[D] 14.AX[C] 15.A 16.BX[A]
+            </div>
+            <div class="choice-padding-top multipleChoice" id="shi1Multiple">
+                多选：17.ADX[BD] 18.ABCX[AD] 19.ABD 20.ACDX[BCD] 21.ABC 22.ABD 23.ABCD 24.ABCD 25.ABCD 26.ABCDX[ABD] 27.ABD 28.BCX[ABC] 29.ABCDX[ABD] 30.ABCD 31.ABD 32.ABDX[AD] 33.ABCX[ABCD]
+            </div>
+            <div class="score" id="shi1Score">
+            </div>
+        </div>
+    </div>
+
+    <div class="exam exam11">
+        <div class="examTitle">
+            肖四(三)
+        </div>
+        <div class="myAnswer shiyi1">
+            <div class="grid-container">
+                <div class="myAnswerTitle">
+                    我的答案第1遍：
+                </div>
+                <div class="writtenTime">
+                    答题时间：2022.12.23 09:07
+                </div>
+            </div>
+            <div class="choice-padding-top singleChoice" id="shiyi1Single">
+                单选：1.A 2.BX[D] 3.C 4.CX[B] 5.DX[A] 6.AX[B] 7.A 8.BX[D] 9.D 10.CX[A] 11.B 12.DX[C] 13.DX[C] 14.B 15.C 16.C
+            </div>
+            <div class="choice-padding-top multipleChoice" id="shiyi1Multiple">
+                还没完事 多选：17.ADX[BD] 18.ABCX[AD] 19.ABD 20.ACDX[BCD] 21.ABC 22.ABD 23.ABCD 24.ABCD 25.ABCD 26.ABCDX[ABD] 27.ABD 28.BCX[ABC] 29.ABCDX[ABD] 30.ABCD 31.ABD 32.ABDX[AD] 33.ABCX[ABCD]
+            </div>
+            <div class="score" id="shiyi1Score">
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    // test(300000);
+    var notesContent = ['1、马克思主义的鲜明特征是科学性与革命性的统一。',
+                        '2、时间离不开物质运动。',
+                        '3、马克思经济学说的核心内容和基石是剩余价值理论。',
+                        '4、社会再生产的核心问题是社会总产品的实现问题。',
+                        '5、毛泽东思想初步形成的标志是提出并阐述了农民包围城市、武装夺取政权的思想。',
+                        '6、习近平经济思想指出，我国经济发展的指导原则是坚持新发展理念。',
+                        '7、实现高质量发展的关键环节是推动经济发展绿色化、低碳化。',
+                        '8、实现祖国完全统一的关键因素是国家的发展进步。突出障碍是外部势力干涉。',
+                        '9、洋务运动失败的根本原因是洋务运动具有封建性。',
+                        '10、延安精神的精髓是坚持正确的政治方向、内容是自力更生，艰苦奋斗。',
+                        '11、抗日期间，为客服根据地面临的严重困难局面，毛泽东提出的经济工作和财政工作的总方针是发展经济，保障供给。“自己动手，丰衣足食”只是一个口号。土地政策是减租减息。',
+                        '12、我国从第一个五年计划到第十四个五年计划，一以贯之的主题是把我国建设成为社会主义现代化国家。',
+                        '13、提到根本目的要回到“人”。',
+                        '14、G20习近平发表主题《共迎时代挑战 共建美好未来》的讲话，建议的主要内容是我们要推动更加包容、更加普惠、更有韧性的全球发展。',
+                        '15、社会再矛盾运动中前进，有矛盾就会有斗争。',
+                        '16、影响劳动生产率的主要因素有劳动者的平均熟练程度、科学技术的发展水平及其在生产中的应用程度、生产过程的社会结合、生产资料的规模和效能及自然条件。',
+                        '17、人权是历史的、具体的、现实的。人名幸福生活是最大的人权。',
+                        '18、在社会主义市场经济体制下，资本不是非公有制经济的重要组成部分。民营经济和外资经济才是。资本不能单独划分为公有还是非公有。',
+                        '19、高质量发展是全面建设社会主义现代化国家的首要任务。',
+                        '20、协商民主是时间全过程人民民主的重要形式。',
+                        '21、《盛世危言》提出大力发展民族工商业、同西方国家进行“商战”、设立议院。',
+                        '22、有序的公共生活是社会文明的重要标志，社会生产活动的重要基础，提高社会成员生活质量的基本保障。',
+                        '23、习近平经济思想指出，我国经济发展的鲜明主题是推动高质量发展。',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',
+                        '',];
+
+    // 根据笔记列表生成笔记
+    var notes = document.getElementById('notes');
+    for (let index = 0; index < notesContent.length; index++) {
+        var divNote = document.createElement('div');
+        notes.appendChild(divNote);
+        divNote.id = 'note' + index;
+        var note = document.getElementById('note' + index);
+        note.innerHTML = notesContent[index];
+        note.className = 'note';
+    }
+
+    function countScore(idSingle, idMultiple, idScore) {
+        var single = document.getElementById(idSingle).innerText;
+        var multiple = document.getElementById(idMultiple).innerText;
+        try {
+            wrongNumSingle = single.match(/X/g).length;
+        } catch (e) {
+            wrongNumSingle = 0;
+        }
+
+        try {
+            wrongNumMultiple = multiple.match(/X/g).length;
+        } catch (e) {
+            wrongNumMultiple = 0;
+        }
+        
+        finalScore = "单选扣" + wrongNumSingle +
+            "分，多选扣" + wrongNumMultiple*2 + "分，最后选择总分: " + (50 - wrongNumSingle - 
+            wrongNumMultiple*2) + "/50";
+        if (single.search("NF") != -1 || multiple.search("NF") != -1) {
+            finalScore = ''
+        }
+        document.getElementById(idScore).innerText = finalScore;
+    }
+
+    countScore('er1Single', 'er1Multiple', 'er1Score');
+    countScore('yi1Single', 'yi1Multiple', 'yi1Score');
+    countScore('yi2Single', 'yi2Multiple', 'yi2Score');
+    countScore('yi3Single', 'yi3Multiple', 'yi3Score');
+    countScore('yi4Single', 'yi4Multiple', 'yi4Score');
+    countScore('jiu1Single', 'jiu1Multiple', 'jiu1Score');
+    countScore('jiu2Single', 'jiu2Multiple', 'jiu2Score');
+    countScore('jiu3Single', 'jiu3Multiple', 'jiu3Score');
+    countScore('shi1Single', 'shi1Multiple', 'shi1Score');
+    countScore('shiyi1Single', 'shiyi1Multiple', 'shiyi1Score');
+</script>
+
+</html>

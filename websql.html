@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebSQL Demo</title>
+</head>
+<body>
+    <div class="content">
+        <label for="name"></label>
+        <input id="name" type="text" name="name"> 
+        <input type="button" value="查询" onclick="query()">
+    </div>
+
+    <script type="text/javascript">
+        if(!window.openDatabase)
+        {
+            alert('您的浏览器不支持 WebSQL');
+        }
+        var db = openDatabase('wucai', '1.0', '王者荣耀数据库', 1024 * 1024);
+
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS heros (id unique, name, hp_max, mp_max, role_main)');
+            tx.executeSql('INSERT INTO heros (id, name, hp_max, mp_max, role_main) VALUES (10000, "夏侯惇", 7350, 1746, " 坦克 ")');
+            tx.executeSql('INSERT INTO heros (id, name, hp_max, mp_max, role_main) VALUES (10001, "钟无艳", 7000, 1760, " 战士 ")');
+            tx.executeSql('INSERT INTO heros (id, name, hp_max, mp_max, role_main) VALUES (10002, "张飞", 8341, 100, " 坦克 ")');
+            tx.executeSql('INSERT INTO heros (id, name, hp_max, mp_max, role_main) VALUES (10003, "牛魔", 8476, 1926, " 坦克 ")');
+            tx.executeSql('INSERT INTO heros (id, name, hp_max, mp_max, role_main) VALUES (10004, "吕布", 7344, 0, " 战士 ")');
+            msg = ' 数据表创建成功，一共插入 5 条数据';
+
+            console.log(msg);
+         });
+
+         function query(){
+            var name = document.getElementById('name').value;
+
+            var sql = 'SELECT * FROM heros where name like ?';
+             // 查询数据
+            db.transaction(function (tx) {
+                tx.executeSql(sql, ['%'+name+'%'], function (tx, data) {
+                var len = data.rows.length;
+                console.log('查找到：' +len +'条记录');
+                console.log(data.rows);
+                });
+
+            });
+         }
+    </script>
+</body>
+</html>

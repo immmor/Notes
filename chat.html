@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script> -->
+    <script src="jquery.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="聊天" id="inputContent">
+    <button id="submit">submit</button>
+    <div id="main">
+
+    </div>
+</body>
+<script>
+    function getJSON(fileLocation) {
+        a = $.ajax({
+            url: fileLocation, //json文件位置，文件名
+            type: "GET", //请求方式为get
+            dataType: "json", //返回数据格式为json
+            async: false,
+            success: function(data) { //请求成功完成后要执行的方法 
+            }
+        });
+        result = $.parseJSON(a["responseText"]);
+        return result
+    }
+
+    var i = 1;
+
+    $('#submit').click(function() { //点击按钮
+        var inputContent = document.getElementById('inputContent').value
+        // alert(username, password)
+        $.post('/chat', {
+            inputContent: inputContent
+        })
+        // inputContent = ''
+    })
+
+    function getChatContent() {
+        var chat = getJSON('chat.json')
+        chatContent = chat.聊天内容
+        // alert(chatContent.length)
+        var divChat = document.getElementById('main');
+        for (let index = 0; index < chatContent.length; index++) {
+            var divChatChild = document.createElement('div');
+            divChat.appendChild(divChatChild);
+            divChatChild.id = 'chatChild' + index;
+            var chatChild = document.getElementById('chatChild' + index);
+            chatChild.innerHTML = chatContent[index];
+            // popTest.style.width = '100%';
+            // popTest.style.height = '100%';
+        }
+        // console.log(i);
+        // i++;
+    }
+    
+    setInterval(getChatContent, 1000);
+    // var divChat = document.getElementById('main');
+    // var divChatChild = document.createElement('div');
+    // divChat.appendChild(divChatChild);
+    // divChatChild.id = 'chatChild';
+    // var chatChild = document.getElementById('chatChild');
+    // chatChild.innerHTML = chatContent[0]
+</script>
+</html>

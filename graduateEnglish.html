@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script> -->
+    <script src="jquery.js"></script>
+    <!-- <script src="https://unpkg.com/d3@3/d3.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script> -->
+    <!-- <script src="{{url_for('static', filename ='randomTest.js')}}"></script> -->
+    <script src="md5.js"></script>
+    <script src="randomTest.js"></script>
+    <!-- <script src="marked.js"></script> -->
+    <title>考研英语</title>
+</head>
+<style>
+    * {
+        font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+    }
+    
+    .title {
+        font-weight: bold;
+        font-size: xx-large;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .subtitle {
+        /* font-weight: bold; */
+        font-size: large;
+        text-align: center;
+        padding-top: 6px;
+    }
+
+    .login {
+        position: fixed;
+        right: 80px;
+        top: 40px;
+        border: 1px solid;
+        padding: 1px;
+        /* background-color: rgb(78, 226, 33); */
+        cursor: pointer;
+        transition: background-color .5s;
+        /* display: none; */
+    }
+
+    .login:hover {
+        background-color: rgb(78, 226, 33); 
+    }
+
+    .logout {
+        position: fixed;
+        right: 80px;
+        top: 40px;
+        border: 1px solid;
+        padding: 1px;
+        /* background-color: rgb(78, 226, 33); */
+        cursor: pointer;
+        transition: background-color .5s;
+        display: none;
+    }
+
+    .logout:hover {
+        background-color: rgb(208, 21, 21); 
+    }
+
+    .loginPage {
+        position: fixed;
+        right: 80px;
+        top: 90px;
+        border: 1px solid;
+        padding: 1px;
+        background-color: rgb(202, 209, 200);
+        display: inline-block;
+        /* cursor: pointer; */
+        display: none;
+    }
+
+    .logger {
+        /* display: inline-block; */
+        display: block;
+    }
+
+    .letsgo {
+        cursor: pointer;
+        /* float: right; */
+        /* margin-right: 0; */
+        /* right: 0; */
+        /* margin-left: 100%; */
+        /* left: 100%; */
+        /* border-left: 100%; */
+
+        font-size: 14px;
+        text-align: center;
+        /* display: inline-block; */
+        /* position: relative;
+        right: 0; */
+        /* position: absolute;
+        right: 0; */
+    }
+
+    /* .username {
+        display: inline-block;
+    }
+
+    .password {
+        display: inline-block;
+    } */
+    
+    .examTitle {
+        text-align: center;
+        padding-top: 15px;
+        font-size: x-large;
+    }
+    
+    .myAnswer {
+        padding-top: 10px;
+        margin-left: 20%;
+        margin-right: 20%;
+        /* display: none; */
+    }
+    
+    .myAnswerTitle {
+        padding-bottom: 4px;
+        display: inline-block;
+    }
+    
+    .writtenTime {
+        display: inline-block;
+        /* margin-right: 0; */
+        /* right: 0px; */
+        padding-left: 30%;
+    }
+    
+    .choice-padding-top {
+        line-height: 22px;
+    }
+
+    .score {
+        text-align: center;
+        color: firebrick;
+    }
+
+    .er1 {
+        /* display: none; */
+        color: black;
+    }
+
+    .notes {
+        /* text-align: center; */
+        /* padding-top: 15px; */
+        /* font-size: x-large; */
+        padding-top: 10px;
+    }
+
+    .note {
+        font-size: medium;
+        padding-top: 0px;
+        padding-bottom: 3px;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    .essayPara {
+        font-size: medium;
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    .transToChinese {
+        font-size: 14px;
+        padding-top: 0px;
+        padding-bottom: 5px;
+        margin-left: 20%;
+        margin-right: 20%;
+        color:rgb(114, 165, 32);
+    }
+
+    .essayTitle {
+        font-size: large;
+        padding-top: 15px;
+        text-align: center;
+        font-weight: bold;
+        padding-bottom: 18px;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+
+    .wordCount {
+        text-align: center;
+        padding-bottom: 5px;
+    }
+
+    .rewrite {
+        display: inline-block;
+        padding-right: 0;
+        cursor: pointer;
+        font-size: small;
+        transition: color .5s;
+        /* pointer-events: all; */
+        /* font-style: inherit; */
+    }
+
+    .rewrite:hover {
+        color: rgb(25, 198, 251);
+    }
+
+    .translate {
+        display: inline-block;
+        padding-right: 0;
+        cursor: pointer;
+        font-size: small;
+        transition: color .5s;
+        /* pointer-events: all; */
+        /* font-style: inherit; */
+    }
+
+    .translate:hover {
+        color: rgb(114, 165, 32);
+    }
+
+    /* .translate:active {
+        cursor: not-allowed;
+    } */
+    @media screen and (max-width: 700px){
+        .login {
+            position: fixed;
+            right: 1px;
+            top: 1px;
+            border: 1px solid;
+            padding: 1px;
+            /* background-color: rgb(78, 226, 33); */
+            cursor: pointer;
+            transition: background-color .5s;
+        }
+
+        .logout {
+            position: fixed;
+            right: 1px;
+            top: 1px;
+            border: 1px solid;
+            padding: 1px;
+            /* background-color: rgb(78, 226, 33); */
+            display: none;
+            cursor: pointer;
+            transition: background-color .5s;
+        }
+
+        /* body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    } */
+
+        .loginPage {
+            position: fixed;
+            border: 1px solid;
+            padding: 1px;
+            right: 1px;
+            background-color: rgb(202, 209, 200);
+        }
+    }
+</style>
+
+<body>
+    <div class="title">
+        2024考研英语学习笔记
+    </div>
+    <div class="subtitle">
+        2024 Graduate Entrance English Exam
+    </div>
+    <div class="login" id="login" onclick="login()">登录</div>
+    <div class="logout" id="logout" onclick="logout()">登出</div>
+    <div class="loginPage" id="loginPage">
+        <div class="logger">
+            <input type="text" placeholder="用户名" class="username" id="username">
+        </div>
+        <div class="logger">
+            <input type="password" placeholder="密码" class="password" id="password">
+        </div>
+        <div class="logger">
+            <!-- <input type="text" placeholder="进入" class="letsgo"> -->
+            <div class="letsgo" id="letsgo" onclick="letsgo()">进入</div>
+        </div>
+    </div>
+    
+    <div class="notes">
+        <!-- <img src="https://wx2.sinaimg.cn/large/666efa44ly1glt4jkcij6j212w0awjus.jpg" alt=""> -->
+        <div class="essayTitle">
+            University Students’ Different Online Shopping Interests
+        </div>
+        <div class="essayPara">
+            As we can see in the chart, there are some differences between male and female university students in terms of online shopping. Compared with the male students’ almost even interest in clothing, books, electronic products and game currency, female students prefer clothing and books to e-products and computer games.
+            <div class="rewrite" onclick="rewrite(this)">重写</div>
+            <div class="translate" onclick="trans(this)">译</div>
+        </div>
+        <div class="essayPara">
+            The data in the chart can be interpreted as follows: female students love reading and clothing far more than male students. As a matter of fact, there are great differences between men and women’s shopping preferences. First of all, regarding personal character, men like adventures, by which they enjoy excitement; while women tend to be quiet and enjoy peaceful time. This can partly explain the shopping interest differences between male and female students. Moreover, in the light of biological factor, the thinking patterns of men are logical, so electronic products and computer games can meet their needs. Women, however, are more sensitive and can easily be attracted by fashion. On the whole, the preferences in shopping express the basic differences between men and women in character.
+            <div class="rewrite" onclick="rewrite(this)">重写</div>
+            <div class="translate" onclick="trans(this)">译</div>
+        </div>
+        <div class="essayPara">
+            Taking into account all of these factors, university students’ online shopping preference varies greatly between male and female students. To solve the problem, I hope they can buy more things concerning their schooling. After all, they should make more efforts to study hard.
+            <div class="rewrite" onclick="rewrite(this)">重写</div>
+            <div class="translate" onclick="trans(this)">译</div>
+        </div>
+        <div class="wordCount" id="wordCountPara1">
+        </div>
+        <div class="essayTitle">
+            What Kind of Mobile Phones Do Students Want?
+        </div>
+        <div class="essayPara">
+            The chart provides some data regarding elements in decision making when students buy mobile phones. Stable signal and multi-function are the top two factors which affect the students’ choices.
+            <div class="rewrite" onclick="rewrite(this)">重写</div>
+            <div class="translate" onclick="trans(this)">译</div>
+        </div>
+        <div class="essayPara">
+            As we all know, students seldom care too much about power saving, practicability and durability of their mobile phones. There are mainly two reasons why they pay less attention to these factors. First, making calls is not the only function of a cellphone. Students want to surf the Internet, play games, chat with friends and watch videos with their phones. Therefore, it is really advantageous for a mobile phone to bear more functions. Second, a multi-functional mobile phone will be totally useless if it is not connected to the network. We often see people holding their phones high in the air to search for signals, some of them are even driven mad by bad signal. Therefore, students would like to consider function and signal first when they buy mobile phones.
+            <div class="rewrite" onclick="rewrite(this)">重写</div>
+            <div class="translate" onclick="trans(this)">译</div>
+        </div>
+        <div class="essayPara">
+            From what has been discussed above, students do establish a positive view of consumption. When they buy phones, they consider more about the functions of a cellphone as a communication tool.
+            <div class="rewrite" onclick="rewrite(this)">重写</div>
+            <div class="translate" onclick="trans(this)">译</div>
+        </div>
+        <div class="wordCount" id="wordCountPara2">
+        </div>
+        <div class="essayTitle">
+            How Do College Students Spend Their Spare Time?
+        </div>
+        <div class="essayPara">
+            The graph presents the general trend of how college students spend their spare time. More than half of college students spend their spare time listening to music. Watching TV series, going shopping and taking part in after-class activities are also the common choices. A small number of students choose to play computer games or go on a trip.
+            <div class="rewrite" onclick="rewrite(this)">重写</div>
+            <div class="translate" onclick="trans(this)">译</div>
+        </div>
+        <div class="essayPara">
+            As can be seen from the graph, students today have more ways to relax themselves, with music as the irreplaceable number one. To begin with, all people like music, college students are not exceptions. With the development of IT, music and video players are made smaller and smaller and it is easier for students to download the music and video they like from the Internet. Therefore, it is not strange to see young people wearing fancy headphones. Next, because of the improvement of living standard, students also try to find more chances to know the world and the society. Thus, they take part in more activities and travel more than ever before. In conclusion, they are pursuing more colorful life than before.
+            <div class="rewrite" onclick="rewrite(this)">重写</div>
+            <div class="translate" onclick="trans(this)">译</div>
+        </div>
+        <div class="essayPara">
+            It is by no means a good thing to listen to music or play mobile phones too much in one’s spare time. It needs the joint efforts of the school and the society to provide students with more opportunities to get involved in this world.
+            <div class="rewrite" onclick="rewrite(this)">重写</div>
+            <div class="translate" onclick="trans(this)">译</div>
+        </div>
+        <div class="wordCount" id="wordCountPara3">
+        </div>
+        <div class="essayTitle">
+            How Do College Students Spend Their Spare Time?
+        </div>
+        <div class="essayPara">
+            Given is the chart clearly illustrating the striking contrast in how students in certain college allocate spare time. Overall, time spent on learing has the largest proportion, accounting for 35%. The next is entertainment, with 32%. Final come part-time jobs, club activities and doing exercise, at 14%, 11% and 8%, respectively.
+            <div class="rewrite" onclick="rewrite(this)">重写</div>
+            <div class="translate" onclick="trans(this)">译</div>
+        </div>
+        <div class="essayPara">
+            Such statistics can be naturally assciated with college students' varied lifestyle. First, youngsters nowadays are categorized by great academic pressures, which causes them to spend large proportion of time doing homeword. In addition, everyone, including college students, needs entertainment. Finally, doing part-time job, participating club activities and doing physical exercise can help students ease financial pressures, improve their social skills and maintain their physical health.
+            <div class="rewrite" onclick="rewrite(this)">重写</div>
+            <div class="translate" onclick="trans(this)">译</div>
+        </div>
+        <div class="essayPara">
+            As a senior who is preparing for national entrance exam for postgraduate studies, i devote my spare time to attending online courses and doing exercise. It is attending courses that enables me accumulate adequate knowledge and skills to be fully prepared for the exam. And it is regular exercise that brings me lots of energe, arouses my passions for life and helps me enhance my learning efficiency.
+            <div class="rewrite" onclick="rewrite(this)">重写</div>
+            <div class="translate" onclick="trans(this)">译</div>
+        </div>
+        <div class="wordCount" id="wordCountPara4">
+        </div>
+    </div>
+</body>
+
+<script>
+    // test(300000);
+
+    var essayPara = document.getElementsByClassName('essayPara')  // 获取所有的essayPara元素
+    
+    // 定义一个函数，用于去除数组中的空格
+    function trimSpace(array){  
+        for (var i = 0; i < array.length; i++) {  
+        // 这里为过滤的值
+            if(array[i] == "" || array[i] == null || typeof(array[i]) == "undefined" || array[i] == '  ' ) {  
+                array.splice(i,1);
+                i= i-1;
+            }  
+        }  
+        return array;  
+    }
+
+    var wordCountList = []  // 创建一个空数组，用于存放每段文字的单词数量
+    for (let index = 0; index < essayPara.length; index++) {
+        var essayParaList = essayPara[index].innerHTML.split(' ')  // 将每段文字按空格分割成数组
+        trimSpace(essayParaList)  // 去除数组中的空格
+        var wordCount = essayParaList.length  // 计算每段文字的单词数量
+        wordCountList.push(wordCount)  // 将单词数量添加到数组中
+    }
+    // 计算每篇文章的单词数量，并显示在页面上
+    var essay1 = wordCountList[0] + wordCountList[1] + wordCountList[2]
+    document.getElementById('wordCountPara1').innerHTML = 'Word count: ' + essay1
+    var essay2 = wordCountList[3] + wordCountList[4] + wordCountList[5]
+    document.getElementById('wordCountPara2').innerHTML = 'Word count: ' + essay2
+    var essay3 = wordCountList[6] + wordCountList[7] + wordCountList[8]
+    document.getElementById('wordCountPara3').innerHTML = 'Word count: ' + essay3
+    var essay4 = wordCountList[9] + wordCountList[10] + wordCountList[11]
+    document.getElementById('wordCountPara4').innerHTML = 'Word count: ' + essay4
+
+    var loginCount = 0;  // 登录计数器
+    // 定义一个函数，用于处理登录操作
+    function login(){
+        if (loginCount == 0) {
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('login').innerText = '输入';
+            loginCount += 1;
+        } else if (loginCount == 1) {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('login').innerText = '登录';
+            loginCount -= 1;
+        }
+    }
+
+    // 定义一个函数，用于设置cookie
+    function setCookie(cname, cvalue, exdays){
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 60 * 60 * 1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    // 定义一个函数，用于删除cookie
+    function clearCookie(name) {
+        setCookie(name, "", -1);
+    }
+
+    // 定义一个函数，用于处理登录操作
+    function letsgo() {
+        if (document.cookie == '') {
+            var username = hex_md5(document.getElementById('username').value)
+            var password = hex_md5(document.getElementById('password').value)
+            var subjectName = '英语'
+            // alert(username, password)
+            $.post('/login', {
+                username: username,
+                password: password,
+                subjectName: subjectName
+                }).then(function(response) {
+                    if (response == 'fail') {
+                        // alert('用户名密码不存在')
+                    }else {
+                        setCookie(username, password, 10)
+                        // document.cookie = username + "=" + password + "; expires=Thu, 1 Dec 2022 03:30:00 GMT";
+                        // alert(document.cookie)
+                        document.getElementById('loginPage').style.display = 'none';
+                        document.getElementById('login').style.display = 'none';
+                        document.getElementById('logout').style.display = 'block';
+                    }
+            });
+        }else {
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('logout').style.display = 'block';
+            cookie = document.cookie
+            cookieList = cookie.split('=')
+            $.post('/login', {
+                username: cookieList[0],
+                password: cookieList[1]
+            });
+        }
+    }
+
+    letsgo()
+
+
+    // 定义一个函数，用于处理登出操作
+    function logout() {
+        clearCookie(document.cookie.split("=")[0]);
+        location.reload();
+    }
+
+
+    function rewrite(obj) {
+        const essayPara = obj.parentNode.innerText
+        const finalEssayPara = essayPara.slice(0, -5);
+
+        obj.innerText = "正在思考。。。"
+
+        var rewrites = document.getElementsByClassName('rewrite');
+        for (var i = 0; i < rewrites.length; i++) {
+            rewrites[i].style.pointerEvents = 'none';
+        }
+
+        // 发送post请求，获取翻译结果
+        $.post('/rewrite', {
+            rewriteContent: finalEssayPara
+        }).then(function(response) {
+            // alert(response)
+            // var divTrans = document.createElement('div');
+            // obj.parentNode.after(divTrans);
+            // divTrans.className = 'transToChinese'
+            // var finalResponse = response.replace(/,/g, '，');  // (/Hello/g, 'Goodbye')  没起作用
+            // divTrans.innerText = finalResponse.substring(0, finalResponse.length) + "(此翻译仅作参考)"
+            let finalEssayPara = response
+            // for (var i = 0; i < translates.length; i++) {
+            //     if (translates[i] !== obj) {  // Skip the clicked button
+            //         translates[i].style.pointerEvents = 'all';
+            //     }
+            // }
+            var newDiv = document.createElement('div');
+            newDiv.innerHTML = finalEssayPara;  // Set the new div's content to the rewritten content
+            newDiv.classList.add('essayPara');
+            newDiv.style.color = "rgb(25, 198, 251)";
+            newDiv.style.display = "inline-block";
+            // newDiv.onclick = function() { trans(this); }; 
+            obj.parentNode.parentNode.insertBefore(newDiv, obj.parentNode.nextSibling);
+            obj.innerText = "重写";
+            for (var i = 0; i < rewrites.length; i++) {
+                rewrites[i].style.pointerEvents = 'all';
+            }
+
+            var newTranslate = document.createElement('div');
+            newTranslate.classList.add('translate');
+            newTranslate.innerHTML = '译';
+
+            // obj.style.color = "rgb(25, 198, 251)";
+        });
+
+    }
+
+    // 定义一个函数，用于处理翻译操作
+    function trans(obj) {
+        obj.innerText = "正在思考。。。"
+
+        var translates = document.getElementsByClassName('translate');
+        for (var i = 0; i < translates.length; i++) {
+            translates[i].style.pointerEvents = 'none';
+        }
+
+        var essayPara = obj.parentNode.innerText
+        var finalEssayPara = essayPara.substring(0, essayPara.length - 1)
+
+        // 发送post请求，获取翻译结果
+        $.post('/trans', {
+            transContent: finalEssayPara
+        }).then(function(response) {
+            var divTrans = document.createElement('div');
+            obj.parentNode.after(divTrans);
+            divTrans.className = 'transToChinese'
+            var finalResponse = response.replace(/,/g, '，');  // (/Hello/g, 'Goodbye')  没起作用
+            divTrans.innerText = finalResponse.substring(0, finalResponse.length) + "(此翻译仅作参考)"
+            for (var i = 0; i < translates.length; i++) {
+                if (translates[i] !== obj) {  // Skip the clicked button
+                    translates[i].style.pointerEvents = 'all';
+                }
+            }
+            obj.innerText = "已翻译";
+            obj.style.color = "rgb(114, 165, 32)";
+        });
+    }
+</script>
+
+</html>
