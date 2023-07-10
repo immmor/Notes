@@ -242,7 +242,7 @@ def claudeAI(text):
 @app.route('/rewrite', methods=['POST', 'GET'])
 def rewrite():
     rewriteContent = request.form['rewriteContent']
-    content = claudeAI('用高级词汇换一种说法重写一遍（不要换行，不要空格，不要说别的）: ' + rewriteContent)
+    content = claudeAI('用英语高级词汇换一种说法重写一遍（不要换行，不要空格，不要说别的）: ' + rewriteContent)
     print(content)
     return content
 
@@ -279,11 +279,14 @@ def trans_youdao(transContent):
     return result
 
 
-# def trans_micro(transContent):
-#     from translate import Translator
-#     translator2=Translator(from_lang="english",to_lang="chinese")
-#     translation = translator2.translate(transContent)
-#     print(translation)
+def trans_micro(transContent):
+    from translate import Translator
+    # translator=Translator(from_lang="chinese",to_lang="english")
+    # translation = translator.translate("你吃了吗？")
+    # print(translation)
+    translator2=Translator(from_lang="english",to_lang="chinese")
+    translation = translator2.translate(transContent)
+    print(translation)
 
     
 # def trans_google():
@@ -369,11 +372,29 @@ def aiRobot(ask):
     finalData = json.loads(response.text)
     print(finalData)
 
-# aiRobot("把这个翻译成中文：University Students’ Different Online Shopping Interests")
-# trans_youdao("As we can see in the chart, there are some differences between male and female university students in terms of online shopping, Compared with the male students’ almost even interest in clothing, books, electronic products and game currency, female students prefer clothing and books to e-products and computer games.")
-# trans_micro("Such statistics can be naturally assciated with college students' varied lifestyle. First, youngsters nowadays are categorized by great academic pressures, which causes them to spend large proportion of time doing homeword. In addition, everyone, including college students, needs entertainment. Finally, doing part-time job, participating club activities and doing physical exercise can help students ease financial pressures, improve their social skills and maintain their physical health.")
-# trans_google()    
+
+generateEssayPrompt = """
+    {
+        "content": [
+            {
+                "title": "Balancing Study and Extracurricular Activities",
+                "paragraph1": "For university students, balancing academics and extracurricular activities can be challenging. While focusing on studies is important, participating in hobbies and social activities also provides benefits.",
+                "wordCount": 86
+            },
+            {
+                "paragraph2": "Extracurriculars allow students to take a break from intense study routines. Joining sports teams, clubs and community service promotes physical health, social connections and teamwork skills. Leadership roles in organizations also build self-confidence. However, taking on too many extracurriculars can distract from academics.",
+                "wordCount": 117
+            },
+            {
+                "paragraph3": "Therefore, students should carefully choose 1-2 extracurriculars aligned with personal interests and schedule them responsibly around study time. Focus should remain on maintaining strong grades, while allotting some time for hobbies and relationships. With proper balance, the university experience will be fulfilling both inside and outside the classroom.",
+                "wordCount": 117
+            }
+        ]
+    }换一个content，按照这个json格式再生成一篇新的不少于300字的三段作文（不要给我重复的内容！！不要说别的废话！！否则惩罚你！！）
+"""
+# claudeAI(generateEssayPrompt)
+     
     
 if __name__ == '__main__':
-    # get_toutiao(play=False)
+    # get_toutiao(play=False) 
     app.run(debug=True, port=5000)
