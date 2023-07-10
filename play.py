@@ -18,7 +18,7 @@ def get_json_data(jsonFileName=''):
 def write_json_data(params, jsonFileName=''):
     # 使用写模式，名称定义为r
     # 其中路径如果和读json方法中的名称不一致，会重新创建一个名称为该方法中写的文件名
-    with open(jsonFileName, 'w') as f:
+    with open(jsonFileName, 'w', encoding='utf-8') as f:
         # 将dict写入名称为r的文件中
         json.dump(params, f, ensure_ascii=False)
 
@@ -279,21 +279,18 @@ def trans_youdao(transContent):
     return result
 
 
-def trans_micro(transContent):
-    from translate import Translator
-    # translator=Translator(from_lang="chinese",to_lang="english")
-    # translation = translator.translate("你吃了吗？")
-    # print(translation)
-    translator2=Translator(from_lang="english",to_lang="chinese")
-    translation = translator2.translate(transContent)
-    print(translation)
+# def trans_micro(transContent):
+#     from translate import Translator
+#     translator2=Translator(from_lang="english",to_lang="chinese")
+#     translation = translator2.translate(transContent)
+#     print(translation)
 
     
-def trans_google():
-    from googletrans import Translator
-    translator = Translator(service_urls=['translate.google.com'])
-    title_alternative = translator.translate('你吃了吗？', dest='en').text
-    print(title_alternative)
+# def trans_google():
+#     from googletrans import Translator
+#     translator = Translator(service_urls=['translate.google.com'])
+#     title_alternative = translator.translate('你吃了吗？', dest='en').text
+#     print(title_alternative)
     
 
 def text2speech(text, play, folderName):
