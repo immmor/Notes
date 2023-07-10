@@ -1,0 +1,90 @@
+{
+    "name": "考研英语作文",
+    "essay": [
+        {
+            "title": "Campus Involvement",
+            "content": [
+                {
+                    "paragraph1": "Being active in campus life brings valuable experiences to college students. Joining student organizations builds leadership, teamwork and event planning skills. Taking on leadership roles looks impressive on resumes. Research shows students engaged on campus have higher retention and graduation rates.",
+                    "wordCount": 89
+                },
+                {
+                    "paragraph2": "Playing intramural sports improves fitness and health while facilitating friendships. Fit students perform better academically. Supporting university athletic teams fosters school spirit and unity. Attending performing arts productions supports student talent and enrich cultural lives.",
+                    "wordCount": 86
+                },
+                {
+                    "paragraph3": "In conclusion, students who fully engage in campus activities will gain more from their college years. Making the most of academic, athletic, cultural and social opportunities will lead to transformative personal growth.",
+                    "wordCount": 74
+                }
+            ]
+        },
+        {
+            "title": "Pros and Cons of Social Media",
+            "content": [
+                {
+                    "paragraph1": "Social media platforms like Facebook, Instagram and Twitter have transformed how people interact and share information. Through social networks, people stay connected with friends, express themselves and absorb news.",
+                    "wordCount": 88
+                },
+                {
+                    "paragraph2": "On the positive side, social media fosters relationships as old friends reconnect and new friendships form based on shared interests. It provides entertainment and stress relief for users. Businesses utilize platforms for affordable marketing. However, excessive use can distract from work and family time.",
+                    "wordCount": 101
+                },
+                {
+                    "paragraph3": "In addition, the spread of misinformation is a rising concern. Users must think critically about online content rather than accepting it at face value. Cyberbullying and internet addiction are other potential risks, especially for youth.",
+                    "wordCount": 89
+                }
+            ]
+        },
+        {
+            "content": [
+                {
+                    "title": "The Pros and Cons of Online Shopping",
+                    "paragraph1": "Online shopping has become increasingly popular due to its convenience and variety of choices. More and more people are turning to e-commerce sites to purchase everything from clothes to electronics without leaving home.",
+                    "wordCount": 86
+                },
+                {
+                    "paragraph2": "While online shopping offers benefits like saving time and effort spent going to physical stores, it also has some drawbacks. For example, unable to try on clothing and test products in person may lead to inaccurate fits or unsuitable purchases. There are also risks like fraudulent sellers and exposure of personal information.",
+                    "wordCount": 117
+                },
+                {
+                    "paragraph3": "In addition, excessive online shopping can promote spending beyond budget and clutter from impulse purchases. Lack of human interaction during shopping may negatively impact social skills. Furthermore, local physical retail businesses can suffer losses from diminished customer traffic.",
+                    "wordCount": 116
+                }
+            ]
+        },
+        {
+            "content": [
+                {
+                    "title": "Balancing Study and Extracurricular Activities",
+                    "paragraph1": "For university students, balancing academics and extracurricular activities can be challenging. While focusing on studies is important, participating in hobbies and social activities also provides benefits.",
+                    "wordCount": 86
+                },
+                {
+                    "paragraph2": "Extracurriculars allow students to take a break from intense study routines. Joining sports teams, clubs and community service promotes physical health, social connections and teamwork skills. Leadership roles in organizations also build self-confidence. However, taking on too many extracurriculars can distract from academics.",
+                    "wordCount": 117
+                },
+                {
+                    "paragraph3": "Therefore, students should carefully choose 1-2 extracurriculars aligned with personal interests and schedule them responsibly around study time. Focus should remain on maintaining strong grades, while allotting some time for hobbies and relationships. With proper balance, the university experience will be fulfilling both inside and outside the classroom.",
+                    "wordCount": 117
+                }
+            ]
+        },
+        {
+            "content": [
+              {
+                "title": "The Benefits and Challenges of Urban Life",
+                "paragraph1": "More and more people are moving to cities for greater access to jobs, education, healthcare and entertainment. Urban living can provide many advantages but also poses unique stressors.", 
+                "wordCount": 82
+              },
+              {
+                "paragraph2": "On the plus side, cities offer diverse career opportunities, vibrant nightlife and dining scenes, and exposure to different cultures. Public transit makes getting around efficient. However, the crowds, noise, traffic and high cost of living can be overwhelming. Finding affordable housing is often a struggle.",
+                "wordCount": 110
+              },
+              {
+                "paragraph3": "Maintaining good mental and physical health requires intention in an urban environment. Escaping to nature, finding community through local groups and taking time for self-care can help city dwellers thrive. With good coping strategies, the energy of urban areas can inspire rather than exhaust.",
+                "wordCount": 116
+              }
+            ]
+          } 
+    ]
+}

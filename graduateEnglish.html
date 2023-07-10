@@ -222,6 +222,7 @@
 
     .translate:hover {
         color: rgb(114, 165, 32);
+        /* color: ; */
     }
 
     /* .translate:active {
@@ -266,6 +267,19 @@
             padding: 1px;
             right: 1px;
             background-color: rgb(202, 209, 200);
+        }
+
+        @keyframes colorChange {
+            0%   {color: red;}
+            25%  {color: yellow;}
+            50%  {color: blue;}
+            100% {color: green;}
+        }
+
+        .colorChange {
+            animation-name: colorChange;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
         }
     }
 </style>
@@ -484,11 +498,24 @@
 
 
     function rewrite(obj) {
+        // Set the transition property on the body
+        document.body.style.transition = "background-color 2s";
+        // Change the background color of the entire webpage
+        document.body.style.backgroundColor = "yellow";
+
         const essayPara = obj.parentNode.innerText
         const finalEssayPara = essayPara.slice(0, -5);
 
         obj.innerText = "正在思考。。。"
 
+        if (obj.innerText == "正在思考。。。") {
+            obj.classList.add('colorChange');
+        }
+
+        var translates = document.getElementsByClassName('translate');
+        for (var i = 0; i < translates.length; i++) {
+            translates[i].style.pointerEvents = 'none';
+        }
         var rewrites = document.getElementsByClassName('rewrite');
         for (var i = 0; i < rewrites.length; i++) {
             rewrites[i].style.pointerEvents = 'none';
@@ -521,23 +548,41 @@
             for (var i = 0; i < rewrites.length; i++) {
                 rewrites[i].style.pointerEvents = 'all';
             }
+            for (var i = 0; i < translates.length; i++) {
+                translates[i].style.pointerEvents = 'all';
+            }
 
             var newTranslate = document.createElement('div');
             newTranslate.classList.add('translate');
             newTranslate.innerHTML = '译';
 
-            // obj.style.color = "rgb(25, 198, 251)";
+            // Set the transition property on the body
+            document.body.style.transition = "background-color 2s";
+            // Change the background color of the entire webpage
+            document.body.style.backgroundColor = "white";
         });
 
     }
 
     // 定义一个函数，用于处理翻译操作
     function trans(obj) {
+        // Set the transition property on the body
+        document.body.style.transition = "background-color 2s";
+        // Change the background color of the entire webpage
+        document.body.style.backgroundColor = "orange";
+
         obj.innerText = "正在思考。。。"
+        if (obj.innerText == "正在思考。。。") {
+            obj.classList.add('colorChange');
+        }
 
         var translates = document.getElementsByClassName('translate');
         for (var i = 0; i < translates.length; i++) {
             translates[i].style.pointerEvents = 'none';
+        }
+        var rewrites = document.getElementsByClassName('rewrite');
+        for (var i = 0; i < rewrites.length; i++) {
+            rewrites[i].style.pointerEvents = 'none';
         }
 
         var essayPara = obj.parentNode.innerText
@@ -557,8 +602,16 @@
                     translates[i].style.pointerEvents = 'all';
                 }
             }
+            for (var i = 0; i < rewrites.length; i++) {
+                rewrites[i].style.pointerEvents = 'all';
+            }
             obj.innerText = "已翻译";
             obj.style.color = "rgb(114, 165, 32)";
+
+            // Set the transition property on the body
+            document.body.style.transition = "background-color 2s";
+            // Change the background color of the entire webpage
+            document.body.style.backgroundColor = "white";
         });
     }
 </script>
