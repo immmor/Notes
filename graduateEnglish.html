@@ -306,9 +306,9 @@
         </div>
     </div>
     
-    <div class="notes">
+    <div class="notes" id="notes">
         <!-- <img src="https://wx2.sinaimg.cn/large/666efa44ly1glt4jkcij6j212w0awjus.jpg" alt=""> -->
-        <div class="essayTitle">
+        <!-- <div class="essayTitle">
             University Students’ Different Online Shopping Interests
         </div>
         <div class="essayPara">
@@ -387,7 +387,8 @@
             <div class="translate" onclick="trans(this)">译</div>
         </div>
         <div class="wordCount" id="wordCountPara4">
-        </div>
+        </div> -->
+        <!-- TODO: HTML -->
     </div>
 </body>
 
@@ -408,22 +409,26 @@
         return array;  
     }
 
-    var wordCountList = []  // 创建一个空数组，用于存放每段文字的单词数量
-    for (let index = 0; index < essayPara.length; index++) {
-        var essayParaList = essayPara[index].innerHTML.split(' ')  // 将每段文字按空格分割成数组
-        trimSpace(essayParaList)  // 去除数组中的空格
-        var wordCount = essayParaList.length  // 计算每段文字的单词数量
-        wordCountList.push(wordCount)  // 将单词数量添加到数组中
-    }
-    // 计算每篇文章的单词数量，并显示在页面上
-    var essay1 = wordCountList[0] + wordCountList[1] + wordCountList[2]
-    document.getElementById('wordCountPara1').innerHTML = 'Word count: ' + essay1
-    var essay2 = wordCountList[3] + wordCountList[4] + wordCountList[5]
-    document.getElementById('wordCountPara2').innerHTML = 'Word count: ' + essay2
-    var essay3 = wordCountList[6] + wordCountList[7] + wordCountList[8]
-    document.getElementById('wordCountPara3').innerHTML = 'Word count: ' + essay3
-    var essay4 = wordCountList[9] + wordCountList[10] + wordCountList[11]
-    document.getElementById('wordCountPara4').innerHTML = 'Word count: ' + essay4
+
+    
+    // var wordCountList = []  // 创建一个空数组，用于存放每段文字的单词数量
+    // for (let index = 0; index < essayPara.length; index++) {
+    //     var essayParaList = essayPara[index].innerHTML.split(' ')  // 将每段文字按空格分割成数组
+    //     trimSpace(essayParaList)  // 去除数组中的空格
+    //     var wordCount = essayParaList.length  // 计算每段文字的单词数量
+    //     wordCountList.push(wordCount)  // 将单词数量添加到数组中
+    // }
+    // // 计算每篇文章的单词数量，并显示在页面上
+    // var essay1 = wordCountList[0] + wordCountList[1] + wordCountList[2]
+    // document.getElementById('wordCountPara1').innerHTML = 'Word count: ' + essay1
+    // var essay2 = wordCountList[3] + wordCountList[4] + wordCountList[5]
+    // document.getElementById('wordCountPara2').innerHTML = 'Word count: ' + essay2
+    // var essay3 = wordCountList[6] + wordCountList[7] + wordCountList[8]
+    // document.getElementById('wordCountPara3').innerHTML = 'Word count: ' + essay3
+    // var essay4 = wordCountList[9] + wordCountList[10] + wordCountList[11]
+    // document.getElementById('wordCountPara4').innerHTML = 'Word count: ' + essay4
+
+
 
     var loginCount = 0;  // 登录计数器
     // 定义一个函数，用于处理登录操作
@@ -496,6 +501,88 @@
         location.reload();
     }
 
+    function getEssay() {
+        $.get('/essay', (data) => {
+            alert(data);
+            var notes = document.getElementById('notes');
+
+            // essayTitle = data['title']
+            // var essayTitleDiv = document.createElement('div');
+            // essayTitleDiv.innerHTML = essayTitle;
+            // essayTitleDiv.classList.add('essayTitle');
+            // notes.appendChild(essayTitleDiv);
+            // essayContent = data['content']
+            // for (let j = 0; j < essayContent.length; j++) {
+            //     // alert(essayContent[j]['paragraph1'])
+            //     // TODO: JS
+            //     var essayParaDiv = document.createElement('div');
+            //     essayParaDiv.innerHTML = essayContent[j]['paragraph'];
+            //     essayParaDiv.classList.add('essayPara');
+            //     essayTitleDiv.insertAdjacentElement('afterend', essayParaDiv);
+
+            //     var newRewrite = document.createElement('div');
+            //     newRewrite.classList.add('rewrite');
+            //     newRewrite.style.marginLeft = '4px';
+            //     newRewrite.innerHTML = '重写';
+            //     newRewrite.onclick = function() {
+            //         rewrite(this);
+            //     };
+            //     essayParaDiv.appendChild(newRewrite);
+
+            //     var newTranslate = document.createElement('div');
+            //     newTranslate.classList.add('translate');
+            //     newTranslate.style.marginLeft = '2px';
+            //     newTranslate.innerHTML = '译';
+            //     newTranslate.onclick = function() {
+            //         trans(this);
+            //     };
+            //     essayParaDiv.appendChild(newTranslate);
+
+            //     // var newWordCount = document.createElement('div');
+            //     // newWordCount.classList.add('wordCount');
+            //     // newWordCount.innerHTML = 'Word count: ' + essayContent[j]['wordCount'].toString();
+            //     // essayParaDiv.appendChild(newTranslate);
+            // }
+
+
+            for (let i = 0; i < data['essay'].length; i++) {
+                essayTitle = data['essay'][i]['title']
+                var essayTitleDiv = document.createElement('div');
+                essayTitleDiv.innerHTML = essayTitle;
+                essayTitleDiv.classList.add('essayTitle');
+                notes.appendChild(essayTitleDiv);
+                essayContent = data['essay'][i]['content']
+                for (let j = 0; j < essayContent.length; j++) {
+                    // alert(essayContent[j]['paragraph1'])
+                    // TODO: JS
+                    var essayParaDiv = document.createElement('div');
+                    essayParaDiv.innerHTML = essayContent[j]['paragraph'];
+                    essayParaDiv.classList.add('essayPara');
+                    essayTitleDiv.insertAdjacentElement('afterend', essayParaDiv);
+
+                    var newRewrite = document.createElement('div');
+                    newRewrite.classList.add('rewrite');
+                    newRewrite.style.marginLeft = '4px';
+                    newRewrite.innerHTML = '重写';
+                    newRewrite.onclick = function() {
+                        rewrite(this);
+                    };
+                    essayParaDiv.appendChild(newRewrite);
+
+                    var newTranslate = document.createElement('div');
+                    newTranslate.classList.add('translate');
+                    newTranslate.style.marginLeft = '2px';
+                    newTranslate.innerHTML = '译';
+                    newTranslate.onclick = function() {
+                        trans(this);
+                    };
+                    essayParaDiv.appendChild(newTranslate);
+                }
+            }
+        });
+    }
+    getEssay()
+
 
     function rewrite(obj) {
         // Set the transition property on the body
@@ -555,6 +642,9 @@
             var newTranslate = document.createElement('div');
             newTranslate.classList.add('translate');
             newTranslate.innerHTML = '译';
+            newTranslate.onclick = function() {
+                trans(this);
+            };
 
             // Set the transition property on the body
             document.body.style.transition = "background-color 2s";

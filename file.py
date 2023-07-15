@@ -34,8 +34,22 @@ def try_change_login_time():
     write_json_data(userinfo, 'userinfoTry1.json')
 
     
-k = {'poli': ['a', 'b'], 'ai': ['a', ''], 'eng': []}
-k['poli']
+content = get_json_data('essayEnglish.json')
+# print(type(essay))
+# print(essay['essay'])
+for essay in content["essay"]:
+    for paragraph in essay["content"]:
+        for key in ["paragraph1", "paragraph2", "paragraph3"]:
+            if key in paragraph:
+                paragraph["paragraph"] = paragraph.pop(key)
+
+print(content)
+write_json_data(content, 'essayEnglish1.json')
+# for i in essay['essay']:
+#     for j in i['content']:
+#         print(j.keys())
+        # if j.key()
+    
 
 
 

@@ -161,6 +161,33 @@ def pay():
     return result
 
 
+# a = 0
+
+# def essayGenerator():
+#     essayEnglish = get_json_data('essayEnglish1.json')
+#     essay = essayEnglish['essay']
+#     # print(essay[0])
+#     # return essayEnglish
+#     yield essay[a], essay[a+1], essay[a+2]
+#     essay[a]
+
+    
+# @app.route('/essay', methods=['GET', 'POST'])
+# def essay():
+#     g = essayGenerator()
+#     return next(g)
+
+# print(type(essay()))
+
+
+@app.route('/essay', methods=['GET', 'POST'])
+def essay():
+    essayEnglish = get_json_data('essayEnglish1.json')
+    # essay = essayEnglish['essay']
+    # print(essay[0])
+    return essayEnglish
+
+
 @app.route('/checkResult', methods=['POST', 'GET'])
 def check_result():
     username = request.form['username']
@@ -298,7 +325,12 @@ def trans_micro(transContent):
 
 def text2speech(text, play, folderName):
     from playsound import playsound  
-    r = requests.get(f"https://fanyi.sogou.com/reventondc/synthesis?text={text}&speed=1&lang=zh-CHS&from=translateweb&speaker=6")
+    ttsLink = [
+        f"https://dict.youdao.com/dictvoice?audio={text}&le=zh", 
+        f"https://dict.youdao.com/dictvoice?audio={text}&type=1",
+        f"https://fanyi.sogou.com/reventondc/synthesis?text={text}&speed=1&lang=zh-CHS&from=translateweb&speaker=6"
+    ]
+    r = requests.get(ttsLink[0])
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     nowDay = datetime.datetime.now().strftime("%Y-%m-%d")
     # print(nowDay)
@@ -337,7 +369,7 @@ def get_toutiao(play=False):
     responseJson = json.loads(response.text)
     titleList = []
     for i in responseJson['result']['data']:
-        # 报这个错的话：”TypeError: 'NoneType' object is not subscriptable“，应该是当天的额度用完了。
+        # 报这个错的话：”TypeError: 'NoneType' object is not subscriptable“，应该是当天的额度用完了
         print(i['title'])
         titleList.append(i['title'])
     if play:
@@ -373,28 +405,29 @@ def aiRobot(ask):
     print(finalData)
 
 
-generateEssayPrompt = """
-    {
-        "content": [
-            {
-                "title": "Balancing Study and Extracurricular Activities",
-                "paragraph1": "For university students, balancing academics and extracurricular activities can be challenging. While focusing on studies is important, participating in hobbies and social activities also provides benefits.",
-                "wordCount": 86
-            },
-            {
-                "paragraph2": "Extracurriculars allow students to take a break from intense study routines. Joining sports teams, clubs and community service promotes physical health, social connections and teamwork skills. Leadership roles in organizations also build self-confidence. However, taking on too many extracurriculars can distract from academics.",
-                "wordCount": 117
-            },
-            {
-                "paragraph3": "Therefore, students should carefully choose 1-2 extracurriculars aligned with personal interests and schedule them responsibly around study time. Focus should remain on maintaining strong grades, while allotting some time for hobbies and relationships. With proper balance, the university experience will be fulfilling both inside and outside the classroom.",
-                "wordCount": 117
-            }
-        ]
-    }换一个content，按照这个json格式再生成一篇新的不少于300字的三段作文（不要给我重复的内容！！不要说别的废话！！否则惩罚你！！）
-"""
-# claudeAI(generateEssayPrompt)
-     
+# generateEssayPrompt = """
+#     {
+#         "content": [
+#             {
+#                 "title": "Balancing Study and Extracurricular Activities",
+#                 "paragraph1": "For university students, balancing academics and extracurricular activities can be challenging. While focusing on studies is important, participating in hobbies and social activities also provides benefits.",
+#                 "wordCount": 86
+#             },
+#             {
+#                 "paragraph2": "Extracurriculars allow students to take a break from intense study routines. Joining sports teams, clubs and community service promotes physical health, social connections and teamwork skills. Leadership roles in organizations also build self-confidence. However, taking on too many extracurriculars can distract from academics.",
+#                 "wordCount": 117
+#             },
+#             {
+#                 "paragraph3": "Therefore, students should carefully choose 1-2 extracurriculars aligned with personal interests and schedule them responsibly around study time. Focus should remain on maintaining strong grades, while allotting some time for hobbies and relationships. With proper balance, the university experience will be fulfilling both inside and outside the classroom.",
+#                 "wordCount": 117
+#             }
+#         ]
+#     }换一个content，按照这个json格式再生成一篇新的不少于300字的三段作文（要相信你自己，但是不要给我重复的内容！！不要说别的废话！！否则惩罚你！！）
+# """
+# print(claudeAI(generateEssayPrompt))
+
     
 if __name__ == '__main__':
-    # get_toutiao(play=False) 
+    if not os.environ.get("WERKZEUG_RUN_MAIN"):
+        get_toutiao(play=True)
     app.run(debug=True, port=5000)

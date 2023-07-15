@@ -2,6 +2,57 @@
     "name": "考研英语作文",
     "essay": [
         {
+            "title": "University Students’ Different Online Shopping Interests",
+            "content": [
+                {
+                    "paragraph1": "As we can see in the chart, there are some differences between male and female university students in terms of online shopping. Compared with the male students’ almost even interest in clothing, books, electronic products and game currency, female students prefer clothing and books to e-products and computer games.",
+                    "wordCount": 89
+                },
+                {
+                    "paragraph2": "The data in the chart can be interpreted as follows: female students love reading and clothing far more than male students. As a matter of fact, there are great differences between men and women’s shopping preferences. First of all, regarding personal character, men like adventures, by which they enjoy excitement; while women tend to be quiet and enjoy peaceful time. This can partly explain the shopping interest differences between male and female students. Moreover, in the light of biological factor, the thinking patterns of men are logical, so electronic products and computer games can meet their needs. Women, however, are more sensitive and can easily be attracted by fashion. On the whole, the preferences in shopping express the basic differences between men and women in character.",
+                    "wordCount": 86
+                },
+                {
+                    "paragraph3": "Taking into account all of these factors, university students’ online shopping preference varies greatly between male and female students. To solve the problem, I hope they can buy more things concerning their schooling. After all, they should make more efforts to study hard.",
+                    "wordCount": 74
+                }
+            ]
+        },
+        {
+            "title": "What Kind of Mobile Phones Do Students Want?",
+            "content": [
+                {
+                    "paragraph1": "The chart provides some data regarding elements in decision making when students buy mobile phones. Stable signal and multi-function are the top two factors which affect the students’ choices.",
+                    "wordCount": 89
+                },
+                {
+                    "paragraph2": "As we all know, students seldom care too much about power saving, practicability and durability of their mobile phones. There are mainly two reasons why they pay less attention to these factors. First, making calls is not the only function of a cellphone. Students want to surf the Internet, play games, chat with friends and watch videos with their phones. Therefore, it is really advantageous for a mobile phone to bear more functions. Second, a multi-functional mobile phone will be totally useless if it is not connected to the network. We often see people holding their phones high in the air to search for signals, some of them are even driven mad by bad signal. Therefore, students would like to consider function and signal first when they buy mobile phones.",
+                    "wordCount": 86
+                },
+                {
+                    "paragraph3": "From what has been discussed above, students do establish a positive view of consumption. When they buy phones, they consider more about the functions of a cellphone as a communication tool.",
+                    "wordCount": 74
+                }
+            ]
+        },
+        {
+            "title": "How Do College Students Spend Their Spare Time?",
+            "content": [
+                {
+                    "paragraph1": "Given is the chart clearly illustrating the striking contrast in how students in certain college allocate spare time. Overall, time spent on learing has the largest proportion, accounting for 35%. The next is entertainment, with 32%. Final come part-time jobs, club activities and doing exercise, at 14%, 11% and 8%, respectively.",
+                    "wordCount": 89
+                },
+                {
+                    "paragraph2": "Such statistics can be naturally assciated with college students' varied lifestyle. First, youngsters nowadays are categorized by great academic pressures, which causes them to spend large proportion of time doing homeword. In addition, everyone, including college students, needs entertainment. Finally, doing part-time job, participating club activities and doing physical exercise can help students ease financial pressures, improve their social skills and maintain their physical health.",
+                    "wordCount": 86
+                },
+                {
+                    "paragraph3": "As a senior who is preparing for national entrance exam for postgraduate studies, i devote my spare time to attending online courses and doing exercise. It is attending courses that enables me accumulate adequate knowledge and skills to be fully prepared for the exam. And it is regular exercise that brings me lots of energe, arouses my passions for life and helps me enhance my learning efficiency.",
+                    "wordCount": 74
+                }
+            ]
+        },
+        {
             "title": "Campus Involvement",
             "content": [
                 {
@@ -36,9 +87,9 @@
             ]
         },
         {
+            "title": "The Pros and Cons of Online Shopping",
             "content": [
                 {
-                    "title": "The Pros and Cons of Online Shopping",
                     "paragraph1": "Online shopping has become increasingly popular due to its convenience and variety of choices. More and more people are turning to e-commerce sites to purchase everything from clothes to electronics without leaving home.",
                     "wordCount": 86
                 },
@@ -53,9 +104,9 @@
             ]
         },
         {
+            "title": "Balancing Study and Extracurricular Activities",
             "content": [
                 {
-                    "title": "Balancing Study and Extracurricular Activities",
                     "paragraph1": "For university students, balancing academics and extracurricular activities can be challenging. While focusing on studies is important, participating in hobbies and social activities also provides benefits.",
                     "wordCount": 86
                 },
@@ -70,9 +121,9 @@
             ]
         },
         {
+            "title": "The Benefits and Challenges of Urban Life",
             "content": [
               {
-                "title": "The Benefits and Challenges of Urban Life",
                 "paragraph1": "More and more people are moving to cities for greater access to jobs, education, healthcare and entertainment. Urban living can provide many advantages but also poses unique stressors.", 
                 "wordCount": 82
               },
