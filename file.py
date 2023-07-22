@@ -1,4 +1,5 @@
 import json
+import re
 
 
 def get_json_data(jsonFileName=''):
@@ -34,17 +35,19 @@ def try_change_login_time():
     write_json_data(userinfo, 'userinfoTry1.json')
 
     
-content = get_json_data('essayEnglish.json')
-# print(type(essay))
-# print(essay['essay'])
-for essay in content["essay"]:
-    for paragraph in essay["content"]:
-        for key in ["paragraph1", "paragraph2", "paragraph3"]:
-            if key in paragraph:
-                paragraph["paragraph"] = paragraph.pop(key)
+# content = get_json_data('essayEnglish.json')
+# print(content['essay'])
+# content['essay'].append('gan')
+# print(content['essay'])
+# write_json_data(content, 'essayEnglish.json')
 
-print(content)
-write_json_data(content, 'essayEnglish1.json')
+# for essay in content["essay"]:
+#     for paragraph in essay["content"]:
+#         for key in ["paragraph1", "paragraph2", "paragraph3"]:
+#             if key in paragraph:
+#                 paragraph["paragraph"] = paragraph.pop(key)
+
+# print(content)
 # for i in essay['essay']:
 #     for j in i['content']:
 #         print(j.keys())
@@ -55,3 +58,50 @@ write_json_data(content, 'essayEnglish1.json')
 
 # if __name__ == '__main__':
 #     try_change_login_time()
+
+
+generateEssayPrompt = """
+    {
+        "content": [
+            {
+                "title": "Balancing Study and Extracurricular Activities",
+                "paragraph1": "For university students, balancing academics and extracurricular activities can be challenging. While focusing on studies is important, participating in hobbies and social activities also provides benefits.",
+                "wordCount": 86
+            },
+            {
+                "paragraph2": "Extracurriculars allow students to take a break from intense study routines. Joining sports teams, clubs and community service promotes physical health, social connections and teamwork skills. Leadership roles in organizations also build self-confidence. However, taking on too many extracurriculars can distract from academics.",
+                "wordCount": 117
+            },
+            {
+                "paragraph3": "Therefore, students should carefully choose 1-2 extracurriculars aligned with personal interests and schedule them responsibly around study time. Focus should remain on maintaining strong grades, while allotting some time for hobbies and relationships. With proper balance, the university experience will be fulfilling both inside and outside the classroom.",
+                "wordCount": 117
+            }
+        ]
+    }换一个content，按照这个json格式再生成一篇新的不少于300字的三段作文（要相信你自己，但是不要回复我重复的内容！！不要说别的废话！！否则惩罚你！！）
+"""
+# print(result)
+# pattern = r"\{.*?\}"
+# a = re.findall(pattern, generateEssayPrompt)
+# print(a)
+
+# -*- coding:utf-8 -*-
+#! python2
+import json
+# string = 'abe(ac)ad)'
+# p1 = re.compile(r'[(](.*?)[)]', re.S) #最小匹配
+p2 = re.compile(r'[{](.*)[}]', re.S)  #贪婪匹配
+# print(re.findall(p1, string))
+result = re.findall(p2, generateEssayPrompt)
+# print(type(result[0]))
+# print(len(result))
+k = json.loads(result[0])
+print(k)
+print(k['worldCount'])
+
+# pattern = r'{"content": (.*)}'  
+# match = re.search(pattern, generateEssayPrompt)
+# if match:
+#     content = match.group(1)
+#     print(content)
+# match = re.search(pattern, generateEssayPrompt)
+# print(match)

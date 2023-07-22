@@ -47,7 +47,23 @@
         /* display: none; */
     }
 
+    .generateEssay {
+        position: fixed;
+        right: 80px;
+        top: 100px;
+        border: 1px solid;
+        padding: 1px;
+        /* background-color: rgb(78, 226, 33); */
+        cursor: pointer;
+        transition: background-color .5s;
+        /* display: none; */
+    }
+
     .login:hover {
+        background-color: rgb(219, 33, 226); 
+    }
+
+    .generateEssay:hover {
         background-color: rgb(78, 226, 33); 
     }
 
@@ -154,6 +170,8 @@
         /* padding-top: 15px; */
         /* font-size: x-large; */
         padding-top: 10px;
+        font-size: medium;
+        padding-bottom: 40px;
     }
 
     .note {
@@ -252,15 +270,6 @@
             transition: background-color .5s;
         }
 
-        /* body {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    } */
-
         .loginPage {
             position: fixed;
             border: 1px solid;
@@ -269,18 +278,39 @@
             background-color: rgb(202, 209, 200);
         }
 
-        @keyframes colorChange {
-            0%   {color: red;}
-            25%  {color: yellow;}
-            50%  {color: blue;}
-            100% {color: green;}
+        .generateEssay {
+            position: fixed;
+            right: 1px;
+            top: 50px;
+            border: 1px solid;
+            padding: 1px;
+            /* background-color: rgb(78, 226, 33); */
+            cursor: pointer;
+            transition: background-color .5s;
+            /* display: none; */
         }
 
-        .colorChange {
-            animation-name: colorChange;
-            animation-duration: 4s;
-            animation-iteration-count: infinite;
-        }
+        /* body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    } */
+    }
+
+    @keyframes colorChange {
+        0%   {color: red;}
+        50%  {color: yellow;}
+        /* 75%  {color: blue;} */
+        100% {color: red;}
+    }
+
+    .colorChange {
+        animation-name: colorChange;
+        animation-duration: 6s;
+        animation-iteration-count: infinite;
     }
 </style>
 
@@ -305,6 +335,8 @@
             <div class="letsgo" id="letsgo" onclick="letsgo()">进入</div>
         </div>
     </div>
+
+    <div class="generateEssay" id="generateEssay" onclick="aiGenerateEssay(this)">生成</div>
     
     <div class="notes" id="notes">
         <!-- <img src="https://wx2.sinaimg.cn/large/666efa44ly1glt4jkcij6j212w0awjus.jpg" alt=""> -->
@@ -327,68 +359,7 @@
             <div class="translate" onclick="trans(this)">译</div>
         </div>
         <div class="wordCount" id="wordCountPara1">
-        </div>
-        <div class="essayTitle">
-            What Kind of Mobile Phones Do Students Want?
-        </div>
-        <div class="essayPara">
-            The chart provides some data regarding elements in decision making when students buy mobile phones. Stable signal and multi-function are the top two factors which affect the students’ choices.
-            <div class="rewrite" onclick="rewrite(this)">重写</div>
-            <div class="translate" onclick="trans(this)">译</div>
-        </div>
-        <div class="essayPara">
-            As we all know, students seldom care too much about power saving, practicability and durability of their mobile phones. There are mainly two reasons why they pay less attention to these factors. First, making calls is not the only function of a cellphone. Students want to surf the Internet, play games, chat with friends and watch videos with their phones. Therefore, it is really advantageous for a mobile phone to bear more functions. Second, a multi-functional mobile phone will be totally useless if it is not connected to the network. We often see people holding their phones high in the air to search for signals, some of them are even driven mad by bad signal. Therefore, students would like to consider function and signal first when they buy mobile phones.
-            <div class="rewrite" onclick="rewrite(this)">重写</div>
-            <div class="translate" onclick="trans(this)">译</div>
-        </div>
-        <div class="essayPara">
-            From what has been discussed above, students do establish a positive view of consumption. When they buy phones, they consider more about the functions of a cellphone as a communication tool.
-            <div class="rewrite" onclick="rewrite(this)">重写</div>
-            <div class="translate" onclick="trans(this)">译</div>
-        </div>
-        <div class="wordCount" id="wordCountPara2">
-        </div>
-        <div class="essayTitle">
-            How Do College Students Spend Their Spare Time?
-        </div>
-        <div class="essayPara">
-            The graph presents the general trend of how college students spend their spare time. More than half of college students spend their spare time listening to music. Watching TV series, going shopping and taking part in after-class activities are also the common choices. A small number of students choose to play computer games or go on a trip.
-            <div class="rewrite" onclick="rewrite(this)">重写</div>
-            <div class="translate" onclick="trans(this)">译</div>
-        </div>
-        <div class="essayPara">
-            As can be seen from the graph, students today have more ways to relax themselves, with music as the irreplaceable number one. To begin with, all people like music, college students are not exceptions. With the development of IT, music and video players are made smaller and smaller and it is easier for students to download the music and video they like from the Internet. Therefore, it is not strange to see young people wearing fancy headphones. Next, because of the improvement of living standard, students also try to find more chances to know the world and the society. Thus, they take part in more activities and travel more than ever before. In conclusion, they are pursuing more colorful life than before.
-            <div class="rewrite" onclick="rewrite(this)">重写</div>
-            <div class="translate" onclick="trans(this)">译</div>
-        </div>
-        <div class="essayPara">
-            It is by no means a good thing to listen to music or play mobile phones too much in one’s spare time. It needs the joint efforts of the school and the society to provide students with more opportunities to get involved in this world.
-            <div class="rewrite" onclick="rewrite(this)">重写</div>
-            <div class="translate" onclick="trans(this)">译</div>
-        </div>
-        <div class="wordCount" id="wordCountPara3">
-        </div>
-        <div class="essayTitle">
-            How Do College Students Spend Their Spare Time?
-        </div>
-        <div class="essayPara">
-            Given is the chart clearly illustrating the striking contrast in how students in certain college allocate spare time. Overall, time spent on learing has the largest proportion, accounting for 35%. The next is entertainment, with 32%. Final come part-time jobs, club activities and doing exercise, at 14%, 11% and 8%, respectively.
-            <div class="rewrite" onclick="rewrite(this)">重写</div>
-            <div class="translate" onclick="trans(this)">译</div>
-        </div>
-        <div class="essayPara">
-            Such statistics can be naturally assciated with college students' varied lifestyle. First, youngsters nowadays are categorized by great academic pressures, which causes them to spend large proportion of time doing homeword. In addition, everyone, including college students, needs entertainment. Finally, doing part-time job, participating club activities and doing physical exercise can help students ease financial pressures, improve their social skills and maintain their physical health.
-            <div class="rewrite" onclick="rewrite(this)">重写</div>
-            <div class="translate" onclick="trans(this)">译</div>
-        </div>
-        <div class="essayPara">
-            As a senior who is preparing for national entrance exam for postgraduate studies, i devote my spare time to attending online courses and doing exercise. It is attending courses that enables me accumulate adequate knowledge and skills to be fully prepared for the exam. And it is regular exercise that brings me lots of energe, arouses my passions for life and helps me enhance my learning efficiency.
-            <div class="rewrite" onclick="rewrite(this)">重写</div>
-            <div class="translate" onclick="trans(this)">译</div>
-        </div>
-        <div class="wordCount" id="wordCountPara4">
         </div> -->
-        <!-- TODO: HTML -->
     </div>
 </body>
 
@@ -501,49 +472,63 @@
         location.reload();
     }
 
-    function getEssay() {
-        $.get('/essay', (data) => {
-            alert(data);
+
+    function aiGenerateEssay(obj) {
+        // Set the transition property on the body
+        document.body.style.transition = "background-color 2s";
+        // Change the background color of the entire webpage
+        document.body.style.backgroundColor = "rgb(88, 237, 19)";
+        obj.classList.add('colorChange');
+
+        $.get('/aiGenerateEssay', (result) => {
+            // alert(result)
+            var data = JSON.parse(result);
             var notes = document.getElementById('notes');
 
-            // essayTitle = data['title']
-            // var essayTitleDiv = document.createElement('div');
-            // essayTitleDiv.innerHTML = essayTitle;
-            // essayTitleDiv.classList.add('essayTitle');
-            // notes.appendChild(essayTitleDiv);
-            // essayContent = data['content']
-            // for (let j = 0; j < essayContent.length; j++) {
-            //     // alert(essayContent[j]['paragraph1'])
-            //     // TODO: JS
-            //     var essayParaDiv = document.createElement('div');
-            //     essayParaDiv.innerHTML = essayContent[j]['paragraph'];
-            //     essayParaDiv.classList.add('essayPara');
-            //     essayTitleDiv.insertAdjacentElement('afterend', essayParaDiv);
+            essayTitle = data['title']
+            var essayTitleDiv = document.createElement('div');
+            essayTitleDiv.innerHTML = essayTitle;
+            essayTitleDiv.classList.add('essayTitle');
+            notes.appendChild(essayTitleDiv);
 
-            //     var newRewrite = document.createElement('div');
-            //     newRewrite.classList.add('rewrite');
-            //     newRewrite.style.marginLeft = '4px';
-            //     newRewrite.innerHTML = '重写';
-            //     newRewrite.onclick = function() {
-            //         rewrite(this);
-            //     };
-            //     essayParaDiv.appendChild(newRewrite);
+            // essayContent = data['content']    
+            // alert(data['content'])
+            for (let j = 0; j < data['content'].length; j++) {
+                // alert(essayContent[j]['paragraph1'])
+                // TODO: JS
+                var essayParaDiv = document.createElement('div');
+                essayParaDiv.innerHTML = data['content'][j]['paragraph'];
+                essayParaDiv.classList.add('essayPara');
+                essayTitleDiv.insertAdjacentElement('afterend', essayParaDiv);
 
-            //     var newTranslate = document.createElement('div');
-            //     newTranslate.classList.add('translate');
-            //     newTranslate.style.marginLeft = '2px';
-            //     newTranslate.innerHTML = '译';
-            //     newTranslate.onclick = function() {
-            //         trans(this);
-            //     };
-            //     essayParaDiv.appendChild(newTranslate);
+                var newRewrite = document.createElement('div');
+                newRewrite.classList.add('rewrite');
+                newRewrite.style.marginLeft = '4px';
+                newRewrite.innerHTML = '重写';
+                newRewrite.onclick = function() {
+                    rewrite(this);
+                };
+                essayParaDiv.appendChild(newRewrite);
 
-            //     // var newWordCount = document.createElement('div');
-            //     // newWordCount.classList.add('wordCount');
-            //     // newWordCount.innerHTML = 'Word count: ' + essayContent[j]['wordCount'].toString();
-            //     // essayParaDiv.appendChild(newTranslate);
-            // }
+                var newTranslate = document.createElement('div');
+                newTranslate.classList.add('translate');
+                newTranslate.style.marginLeft = '2px';
+                newTranslate.innerHTML = '译';
+                newTranslate.onclick = function() {
+                    trans(this);
+                };
+                essayParaDiv.appendChild(newTranslate);
+            }
+            document.body.style.transition = "background-color 2s";
+            document.body.style.backgroundColor = "white";
+            obj.classList.remove('colorChange');
+        });
+    }
 
+
+    function getEssay() {
+        $.get('/essay', (data) => {
+            var notes = document.getElementById('notes');
 
             for (let i = 0; i < data['essay'].length; i++) {
                 essayTitle = data['essay'][i]['title']
@@ -553,8 +538,6 @@
                 notes.appendChild(essayTitleDiv);
                 essayContent = data['essay'][i]['content']
                 for (let j = 0; j < essayContent.length; j++) {
-                    // alert(essayContent[j]['paragraph1'])
-                    // TODO: JS
                     var essayParaDiv = document.createElement('div');
                     essayParaDiv.innerHTML = essayContent[j]['paragraph'];
                     essayParaDiv.classList.add('essayPara');
@@ -612,6 +595,7 @@
         $.post('/rewrite', {
             rewriteContent: finalEssayPara
         }).then(function(response) {
+            obj.classList.remove('colorChange');
             // alert(response)
             // var divTrans = document.createElement('div');
             // obj.parentNode.after(divTrans);
@@ -645,13 +629,12 @@
             newTranslate.onclick = function() {
                 trans(this);
             };
-
+            
             // Set the transition property on the body
             document.body.style.transition = "background-color 2s";
             // Change the background color of the entire webpage
             document.body.style.backgroundColor = "white";
         });
-
     }
 
     // 定义一个函数，用于处理翻译操作
@@ -682,6 +665,7 @@
         $.post('/trans', {
             transContent: finalEssayPara
         }).then(function(response) {
+            obj.classList.remove('colorChange');
             var divTrans = document.createElement('div');
             obj.parentNode.after(divTrans);
             divTrans.className = 'transToChinese'

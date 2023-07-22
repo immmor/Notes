@@ -1,4 +1,5 @@
 import json, os, sys, copy, datetime, csv, requests
+import re
 import time
 from flask import Flask, render_template, request, jsonify
 
@@ -164,6 +165,7 @@ def pay():
 # a = 0
 
 # def essayGenerator():
+#     print("essayGenerator")
 #     essayEnglish = get_json_data('essayEnglish1.json')
 #     essay = essayEnglish['essay']
 #     # print(essay[0])
@@ -174,18 +176,57 @@ def pay():
     
 # @app.route('/essay', methods=['GET', 'POST'])
 # def essay():
+#     print("essay")
 #     g = essayGenerator()
-#     return next(g)
+#     # print(str(list(next(g))))
+#     return str(list(next(g)))
 
-# print(type(essay()))
+# print(essay())
 
 
 @app.route('/essay', methods=['GET', 'POST'])
 def essay():
-    essayEnglish = get_json_data('essayEnglish1.json')
+    essayEnglish = get_json_data('essayEnglish.json')
     # essay = essayEnglish['essay']
     # print(essay[0])
     return essayEnglish
+
+
+@app.route('/aiGenerateEssay', methods=['GET', 'POST'])
+def ai_generate_essay():
+    generateEssayPrompt = """
+        换一个title和content，按照这个json格式再生成一篇新的不少于300字的三段作文（要相信你自己，但是不要回复我重复的内容！！不要说别的废话！！否则惩罚你！！）:
+        {
+            "whoCreated": "claudeAI",
+            "title": "Balancing Study and Extracurricular Activities",
+            "content": [
+                {
+                    "paragraph": "For university students, balancing academics and extracurricular activities can be challenging. While focusing on studies is important, participating in hobbies and social activities also provides benefits.",
+                    "wordCount": 86
+                },
+                {
+                    "paragraph": "Extracurriculars allow students to take a break from intense study routines. Joining sports teams, clubs and community service promotes physical health, social connections and teamwork skills. Leadership roles in organizations also build self-confidence. However, taking on too many extracurriculars can distract from academics.",
+                    "wordCount": 117
+                },
+                {
+                    "paragraph": "Therefore, students should carefully choose 1-2 extracurriculars aligned with personal interests and schedule them responsibly around study time. Focus should remain on maintaining strong grades, while allotting some time for hobbies and relationships. With proper balance, the university experience will be fulfilling both inside and outside the classroom.",
+                    "wordCount": 117
+                }
+            ]
+        }
+    """
+    result = claudeAI(generateEssayPrompt)
+    print(result)
+
+    # content = get_json_data('essayEnglish.json')
+    # content['essay'].append(result)
+    # print(content['essay'])
+    # write_json_data(content, 'essayEnglish.json')
+    # pattern = r"{(.*?)}"
+    # match = re.search(pattern, result)
+    # print(match.group())
+    # print(claudeAI(generateEssayPrompt))
+    return result
 
 
 @app.route('/checkResult', methods=['POST', 'GET'])
@@ -328,6 +369,7 @@ def text2speech(text, play, folderName):
     ttsLink = [
         f"https://dict.youdao.com/dictvoice?audio={text}&le=zh", 
         f"https://dict.youdao.com/dictvoice?audio={text}&type=1",
+        f"https://fanyi.baidu.com/gettts?lan=zh&text={text}&spd=5&source=web",
         f"https://fanyi.sogou.com/reventondc/synthesis?text={text}&speed=1&lang=zh-CHS&from=translateweb&speaker=6"
     ]
     r = requests.get(ttsLink[0])
@@ -405,26 +447,7 @@ def aiRobot(ask):
     print(finalData)
 
 
-# generateEssayPrompt = """
-#     {
-#         "content": [
-#             {
-#                 "title": "Balancing Study and Extracurricular Activities",
-#                 "paragraph1": "For university students, balancing academics and extracurricular activities can be challenging. While focusing on studies is important, participating in hobbies and social activities also provides benefits.",
-#                 "wordCount": 86
-#             },
-#             {
-#                 "paragraph2": "Extracurriculars allow students to take a break from intense study routines. Joining sports teams, clubs and community service promotes physical health, social connections and teamwork skills. Leadership roles in organizations also build self-confidence. However, taking on too many extracurriculars can distract from academics.",
-#                 "wordCount": 117
-#             },
-#             {
-#                 "paragraph3": "Therefore, students should carefully choose 1-2 extracurriculars aligned with personal interests and schedule them responsibly around study time. Focus should remain on maintaining strong grades, while allotting some time for hobbies and relationships. With proper balance, the university experience will be fulfilling both inside and outside the classroom.",
-#                 "wordCount": 117
-#             }
-#         ]
-#     }换一个content，按照这个json格式再生成一篇新的不少于300字的三段作文（要相信你自己，但是不要给我重复的内容！！不要说别的废话！！否则惩罚你！！）
-# """
-# print(claudeAI(generateEssayPrompt))
+
 
     
 if __name__ == '__main__':

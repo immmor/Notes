@@ -140,7 +140,6 @@ def run2():
     return receive_msg()
 
 
-print(run2())
 
 
 # while True:
