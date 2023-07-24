@@ -86,17 +86,22 @@ generateEssayPrompt = """
 
 # -*- coding:utf-8 -*-
 #! python2
-import json
 # string = 'abe(ac)ad)'
 # p1 = re.compile(r'[(](.*?)[)]', re.S) #最小匹配
-p2 = re.compile(r'[{](.*)[}]', re.S)  #贪婪匹配
-# print(re.findall(p1, string))
-result = re.findall(p2, generateEssayPrompt)
-# print(type(result[0]))
-# print(len(result))
-k = json.loads(result[0])
-print(k)
-print(k['worldCount'])
+# p2 = re.compile(r'[{](.*)[}]', re.S)  #贪婪匹配
+# result = re.findall(p2, generateEssayPrompt)
+# k = json.loads(result[0])
+# print(k)
+# print(k['worldCount'])
+
+import akshare as ak
+
+bond_zh_cov_df = ak.bond_zh_cov()
+code_map = bond_zh_cov_df.set_index("债券代码")
+code_map = code_map.to_dict()
+cb_stock_code = code_map["正股代码"]
+print(cb_stock_code)
+
 
 # pattern = r'{"content": (.*)}'  
 # match = re.search(pattern, generateEssayPrompt)

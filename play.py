@@ -86,15 +86,6 @@ def eng():
     return render_template('graduateEnglish.html')
 
 
-# probRawData = copy.deepcopy(get_json_data())
-# for i in range(len(probRawData)):
-#     k = {'题目出现次数': 0}
-#     probRawData[i].append(5)
-# print(probRawData)
-# write_json_data(probRawData)
-# print(get_json_data())
-
-
 @app.route('/changeFalseNumber', methods=['POST', 'GET'])
 def false_number():
 	# 传递的是读取的文件的字符串
@@ -194,8 +185,9 @@ def essay():
 
 @app.route('/aiGenerateEssay', methods=['GET', 'POST'])
 def ai_generate_essay():
+    # （要相信你自己，但是不要回复我重复的内容！！不要说别的废话！！否则惩罚你！！）
     generateEssayPrompt = """
-        换一个title和content，按照这个json格式再生成一篇新的不少于300字的三段作文（要相信你自己，但是不要回复我重复的内容！！不要说别的废话！！否则惩罚你！！）:
+        换一个title和content，并且计算每一个paragraph的字数输出为wordCount的值，按照这个json格式再生成一篇新的不少于300字的三段作文(不要说除了json格式以外的内容～):
         {
             "whoCreated": "claudeAI",
             "title": "Balancing Study and Extracurricular Activities",
@@ -216,12 +208,17 @@ def ai_generate_essay():
         }
     """
     result = claudeAI(generateEssayPrompt)
-    print(result)
+    # pattern = re.compile(r'[{](.*)[}]', re.S)  #贪婪匹配
+    # afterREResult = re.findall(pattern, result)
 
-    # content = get_json_data('essayEnglish.json')
-    # content['essay'].append(result)
-    # print(content['essay'])
-    # write_json_data(content, 'essayEnglish.json')
+    jsonResult = json.loads(result)
+    print(jsonResult)
+
+    content = get_json_data('essayEnglish.json')
+    content['essay'].append(jsonResult)
+    print(content['essay'])
+    write_json_data(content, 'essayEnglish.json')
+
     # pattern = r"{(.*?)}"
     # match = re.search(pattern, result)
     # print(match.group())
@@ -451,6 +448,6 @@ def aiRobot(ask):
 
     
 if __name__ == '__main__':
-    if not os.environ.get("WERKZEUG_RUN_MAIN"):
-        get_toutiao(play=True)
+    # if not os.environ.get("WERKZEUG_RUN_MAIN"):
+    #     get_toutiao(play=True)
     app.run(debug=True, port=5000)

@@ -493,7 +493,7 @@
 
             // essayContent = data['content']    
             // alert(data['content'])
-            for (let j = 0; j < data['content'].length; j++) {
+            for (let j = data['content'].length - 1; j >= 0; j--) {
                 // alert(essayContent[j]['paragraph1'])
                 // TODO: JS
                 var essayParaDiv = document.createElement('div');
@@ -522,6 +522,7 @@
             document.body.style.transition = "background-color 2s";
             document.body.style.backgroundColor = "white";
             obj.classList.remove('colorChange');
+            obj.nextElementSibling.lastElementChild.scrollIntoView({ behavior: 'smooth' });
         });
     }
 
@@ -537,7 +538,7 @@
                 essayTitleDiv.classList.add('essayTitle');
                 notes.appendChild(essayTitleDiv);
                 essayContent = data['essay'][i]['content']
-                for (let j = 0; j < essayContent.length; j++) {
+                for (let j = essayContent.length - 1; j >= 0; j--) {
                     var essayParaDiv = document.createElement('div');
                     essayParaDiv.innerHTML = essayContent[j]['paragraph'];
                     essayParaDiv.classList.add('essayPara');
