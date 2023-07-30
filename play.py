@@ -1,3 +1,4 @@
+from itertools import islice
 import json, os, sys, copy, datetime, csv, requests
 import re
 import time
@@ -153,41 +154,37 @@ def pay():
     return result
 
 
-# a = 0
+def essayGenerator():
+    print("essayGenerator")
+    essayEnglish = get_json_data('essayEnglish.json')
+    essay = essayEnglish['essay']
+    a = 0
+    while a + 3 <= len(essay) - 2:
+        yield essay[a], essay[a+1], essay[a+2]
+        a += 3
+    yield essay[a:]
 
-# def essayGenerator():
-#     print("essayGenerator")
-#     essayEnglish = get_json_data('essayEnglish1.json')
-#     essay = essayEnglish['essay']
-#     # print(essay[0])
-#     # return essayEnglish
-#     yield essay[a], essay[a+1], essay[a+2]
-#     essay[a]
-
+g = essayGenerator()
     
-# @app.route('/essay', methods=['GET', 'POST'])
-# def essay():
-#     print("essay")
-#     g = essayGenerator()
-#     # print(str(list(next(g))))
-#     return str(list(next(g)))
-
-# print(essay())
-
-
 @app.route('/essay', methods=['GET', 'POST'])
 def essay():
-    essayEnglish = get_json_data('essayEnglish.json')
-    # essay = essayEnglish['essay']
-    # print(essay[0])
-    return essayEnglish
+    global g
+    reset = request.args.get('reset', default = False, type = bool)
+    if reset:
+        g = essayGenerator()
+    try:
+        k = list(next(g))
+        return jsonify(k)
+    except StopIteration:
+        # del g
+        return '已没有内容'
 
 
 @app.route('/aiGenerateEssay', methods=['GET', 'POST'])
 def ai_generate_essay():
     # （要相信你自己，但是不要回复我重复的内容！！不要说别的废话！！否则惩罚你！！）
     generateEssayPrompt = """
-        换一个title和content，并且计算每一个paragraph的字数输出为wordCount的值，按照这个json格式再生成一篇新的不少于300字的三段作文(不要说除了json格式以外的内容～):
+        换一个title和content，并且计算每一个paragraph的字数输出为wordCount的值，按照这个json格式再生成一篇新的不少于300字的三段作文(不要说除了json格式以外的内容):
         {
             "whoCreated": "claudeAI",
             "title": "Balancing Study and Extracurricular Activities",
@@ -344,21 +341,24 @@ def trans_youdao(transContent):
     return result
 
 
-def trans_micro(transContent):
-    from translate import Translator
+# def trans_micro(transContent):
+    # from translate import Translator
     # translator=Translator(from_lang="chinese",to_lang="english")
     # translation = translator.translate("你吃了吗？")
     # print(translation)
-    translator2=Translator(from_lang="english",to_lang="chinese")
-    translation = translator2.translate(transContent)
-    print(translation)
+    # translator2=Translator(from_lang="english",to_lang="chinese")
+    # translation = translator2.translate(transContent)
+    # print(translation)
 
     
-# def trans_google():
-#     from googletrans import Translator
-#     translator = Translator(service_urls=['translate.google.com'])
-#     title_alternative = translator.translate('你吃了吗？', dest='en').text
-#     print(title_alternative)
+def trans_google(text, dest='zh-cn'):
+    from httpcore import SyncHTTPProxy
+    from googletrans import Translator
+    http_proxy = SyncHTTPProxy((b'http', b'127.0.0.1', 1082, b''))
+    proxies = {'http': http_proxy, 'https': http_proxy }
+    translator = Translator(proxies=proxies)
+    trans = translator.translate(text, dest=dest)
+    print(trans.text)
     
 
 def text2speech(text, play, folderName):
@@ -376,6 +376,8 @@ def text2speech(text, play, folderName):
     if not os.path.exists('MP3Files/'+ nowDay + '/' + folderName):
         os.makedirs('MP3Files/' + nowDay + '/' + folderName)
     mp3FileName = 'MP3Files/' + nowDay + '/' + folderName + '/' + now + text[:2] + '.mp3'
+    # mp3FileName = 'a.mp3'
+    # TODO: text2speech
     with open (mp3FileName, 'wb+') as f:
         f.write(r.content)
     if play:
@@ -383,7 +385,7 @@ def text2speech(text, play, folderName):
     
         
 def get_toutiao(play=False):
-    import requests, datetime, concurrent
+    import requests, datetime, concurrent.futures
     from playsound import playsound 
     url = 'http://v.juhe.cn/toutiao/index'
     # categoryList = ['top', 'shehui', 'guonei', 'guoji', 'yule', 'tiyu', 'junshi', 'keji', 'caijing', 'shishang']
@@ -443,11 +445,10 @@ def aiRobot(ask):
     finalData = json.loads(response.text)
     print(finalData)
 
-
-
-
     
 if __name__ == '__main__':
     # if not os.environ.get("WERKZEUG_RUN_MAIN"):
     #     get_toutiao(play=True)
+    # text2speech('干一下', True, '22')
     app.run(debug=True, port=5000)
+    # trans_google('fuck')
