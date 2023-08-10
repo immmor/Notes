@@ -124,6 +124,34 @@
     .password {
         display: inline-block;
     } */
+
+    .comment {
+        position: fixed;
+        left: -300px;
+        width: 300px;
+        top: 20%;
+        height: 60%; /* 70% - 30% = 40% */
+        overflow: auto;
+        background-color: #1c47d5; /* Optional: for visibility */
+        /* animation: slideIn 2s forwards;  */
+        transition: left 2s;
+    }
+
+    .closeComment {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        background-color: #ccc;
+        border: none;
+        /* padding: 5px 10px; */
+        cursor: pointer;
+    }
+
+    /* Add this block */
+    /* @keyframes slideIn {
+        from { left: -100px; }
+        to { left: 0; }
+    } */
     
     .examTitle {
         text-align: center;
@@ -302,15 +330,6 @@
             transition: background-color .5s;
             /* display: none; */
         }
-
-        /* body {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    } */
     }
 
     @keyframes colorChange {
@@ -325,6 +344,26 @@
         animation-duration: 6s;
         animation-iteration-count: infinite;
     }
+
+    /* 定义成功动画 */
+    /* @keyframes successAnimation {
+        0% {
+            background-color: rgb(88, 237, 19);
+        }
+        50% {
+            background-color: rgb(88, 237, 19);
+            transform: scaleX(1);
+        }
+        100% {
+            background-color: white;
+            transform: scaleX(1);
+        }
+    } */
+
+    /* 添加成功动画到成功类名 */
+    /* body.success {
+        animation: successAnimation 2s;
+    } */
 </style>
 
 <body>
@@ -375,6 +414,9 @@
         </div> -->
     </div>
     <div class="seeMore" onclick="getEssay()">Load More Essay</div>
+    <div class="comment">评论
+        <button class="closeComment">关闭</button>
+    </div>
     <!-- TODO: seeMore -->
 </body>
 
@@ -394,6 +436,10 @@
         }  
         return array;  
     }
+
+    document.querySelector('.closeComment').addEventListener('click', function() {
+        document.querySelector('.comment').style.left = '-300px'; // 将 .comment 元素隐藏在视图之外
+    });
 
     
     // var wordCountList = []  // 创建一个空数组，用于存放每段文字的单词数量
@@ -504,8 +550,6 @@
             essayTitleDiv.classList.add('essayTitle');
             notes.appendChild(essayTitleDiv);
 
-            // essayContent = data['content']    
-            // alert(data['content'])
             for (let j = data['content'].length - 1; j >= 0; j--) {
                 // alert(essayContent[j]['paragraph1'])
                 // TODO: JS
@@ -534,28 +578,24 @@
             }
             document.body.style.transition = "background-color 2s";
             document.body.style.backgroundColor = "white";
+            // document.body.classList.add('success');
             obj.classList.remove('colorChange');
             obj.nextElementSibling.lastElementChild.scrollIntoView({ behavior: 'smooth' });
         });
     }
 
-    // if (window.performance.navigation.type == 0 || 1 || 2) {
-    //     var whetherRefreshed = "refreshed"
-    // } else {
-    //     var whetherRefreshed = "notRefreshed"
-    // }
 
-
+    var reset = 'yes';
     window.onload = function() {
-        $.get('/essay', { reset: true });
+        reset = 'no';
     };
 
 
     function getEssay() {
-        // $.post('/essay', {
-        //     whetherRefreshed: whetherRefreshed
-        // }).then(function(data) {
-        $.get('/essay', (data) => {
+        $.post('/essay', {
+            reset: reset
+        }).then(function(data) {
+        // $.get('/essay', (data) => {
             // TODO: getEssay
             if (data == '已没有内容') {
                 alert('已没有内容');
@@ -594,44 +634,19 @@
                         essayParaDiv.appendChild(newTranslate);
                     }
                 }
-
-                // for (let i = 0; i < data['essay'].length; i++) {
-                //     essayTitle = data['essay'][i]['title']
-                //     var essayTitleDiv = document.createElement('div');
-                //     essayTitleDiv.innerHTML = essayTitle;
-                //     essayTitleDiv.classList.add('essayTitle');
-                //     notes.appendChild(essayTitleDiv);
-                //     essayContent = data['essay'][i]['content']
-                //     for (let j = essayContent.length - 1; j >= 0; j--) {
-                //         var essayParaDiv = document.createElement('div');
-                //         essayParaDiv.innerHTML = essayContent[j]['paragraph'];
-                //         essayParaDiv.classList.add('essayPara');
-                //         essayTitleDiv.insertAdjacentElement('afterend', essayParaDiv);
-
-                //         var newRewrite = document.createElement('div');
-                //         newRewrite.classList.add('rewrite');
-                //         newRewrite.style.marginLeft = '4px';
-                //         newRewrite.innerHTML = '重写';
-                //         newRewrite.onclick = function() {
-                //             rewrite(this);
-                //         };
-                //         essayParaDiv.appendChild(newRewrite);
-
-                //         var newTranslate = document.createElement('div');
-                //         newTranslate.classList.add('translate');
-                //         newTranslate.style.marginLeft = '2px';
-                //         newTranslate.innerHTML = '译';
-                //         newTranslate.onclick = function() {
-                //             trans(this);
-                //         };
-                //         essayParaDiv.appendChild(newTranslate);
-                //     }
-                // }
             }
-            
         });
     }
     getEssay()
+
+    document.addEventListener('mousemove', function(event) {
+        let mouseX = event.clientX;
+        let mouseY = event.clientY;
+        let windowHeight = window.innerHeight;
+        if (mouseX <= 10 && mouseY >= windowHeight * 0.3 && mouseY <= windowHeight * 0.7) {
+            document.querySelector('.comment').style.left = '0';
+        }
+    });
 
 
     function rewrite(obj) {

@@ -1,39 +1,9 @@
-from itertools import islice
-import json, os, sys, copy, datetime, csv, requests
-import re
-import time
+import json, os, sys, copy, datetime, requests
 from flask import Flask, render_template, request, jsonify
+from tools import claude_ai, get_json_data, write_json_data, trans_youdao
 
 # os.chdir(sys.path[0])  # 把现在的工作路径切换到当前文件夹
 app = Flask(__name__, template_folder='./', static_folder='')
-
-
-# 获取json里面数据
-def get_json_data(jsonFileName=''):
-    with open(jsonFileName, 'rb') as f:  # 使用只读模型，并定义名称为f
-        params = json.load(f)  # 加载json文件
-        # params["code"] = "404"  # code字段对应的值修改为404
-        # print(params)  # 打印
-    return params  # 返回修改后的内容
-
-
-def write_json_data(params, jsonFileName=''):
-    # 使用写模式，名称定义为r
-    # 其中路径如果和读json方法中的名称不一致，会重新创建一个名称为该方法中写的文件名
-    with open(jsonFileName, 'w', encoding='utf-8') as f:
-        # 将dict写入名称为r的文件中
-        json.dump(params, f, ensure_ascii=False)
-
-
-def get_csv():
-    with open('try.csv',encoding='utf-8')as fp:
-        reader = csv.reader(fp)
-        # 获取标题
-        header = next(reader)
-        print(header)
-        # 遍历数据
-        for i in reader:
-            print(i)
 
 
 @app.route('/ai', methods=['GET'])
@@ -155,7 +125,6 @@ def pay():
 
 
 def essayGenerator():
-    print("essayGenerator")
     essayEnglish = get_json_data('essayEnglish.json')
     essay = essayEnglish['essay']
     a = 0
@@ -164,13 +133,13 @@ def essayGenerator():
         a += 3
     yield essay[a:]
 
-g = essayGenerator()
+g = essayGenerator() #TODO: g
     
 @app.route('/essay', methods=['GET', 'POST'])
 def essay():
     global g
-    reset = request.args.get('reset', default = False, type = bool)
-    if reset:
+    reset = request.form['reset']
+    if reset == 'yes':
         g = essayGenerator()
     try:
         k = list(next(g))
@@ -204,7 +173,7 @@ def ai_generate_essay():
             ]
         }
     """
-    result = claudeAI(generateEssayPrompt)
+    result = claude_ai(generateEssayPrompt)
     # pattern = re.compile(r'[{](.*)[}]', re.S)  #贪婪匹配
     # afterREResult = re.findall(pattern, result)
 
@@ -253,58 +222,10 @@ def chatContent():
     return render_template('chat.html')
 
 
-def write_file(content):
-    with open('claudeAI.txt', 'a+') as f:
-        f.write(content + '\n')
-        
-
-def claudeAI(text):
-    slackToken = 'xoxp-415445285921-416003551682-5356031879952-e553f10d7af397d89db28fe1865ee985'
-    def send_msg():
-        sendURL = "https://slack.com/api/chat.postMessage"
-        data = {
-            "token": slackToken,
-            "channel": "@Claude",
-            "text": text
-        }
-        response = requests.post(sendURL, data=data)
-        print(text)
-        time.sleep(2)
-        return response.text
-
-    msgSent = json.loads(send_msg())
-
-    def receive_msg():
-        receiveURL = "https://slack.com/api/conversations.history"
-        data = {
-            "token": slackToken,
-            "channel": "D052WQCP84D",
-            "oldest": msgSent['ts']
-        }
-        response = requests.post(receiveURL, data=data)
-        result = json.loads(response.text)
-        try:
-            if 'Typing' in result['messages'][1]['text']:
-                time.sleep(2)
-                return receive_msg()
-            elif 'Typing' not in result['messages'][1]['text']:
-                resultMessage = result['messages'][1]['text']
-                return resultMessage
-        except:
-            if 'Typing' in result['messages'][0]['text']:
-                time.sleep(2)
-                return receive_msg()
-            elif 'Typing' not in result['messages'][0]['text']:
-                resultMessage = result['messages'][0]['text']
-                return resultMessage
-            
-    return receive_msg()
-
-
 @app.route('/rewrite', methods=['POST', 'GET'])
 def rewrite():
     rewriteContent = request.form['rewriteContent']
-    content = claudeAI('用英语高级词汇换一种说法重写一遍（不要换行，不要空格，不要说别的）: ' + rewriteContent)
+    content = claude_ai('用英语高级词汇换一种说法重写一遍（不要换行，不要空格，不要说别的）: ' + rewriteContent)
     print(content)
     return content
 
@@ -313,7 +234,7 @@ def rewrite():
 def trans():
     transContent = request.form['transContent']
     try:
-        content = claudeAI('直接把这个翻译成中文（不要换行，不要空格，不要说别的）: ' + transContent)
+        content = claude_ai('直接把这个翻译成中文（不要换行，不要空格，不要说别的）: ' + transContent)
         print(content)
         return content
     except:
@@ -328,17 +249,7 @@ def trans():
         return content
 
 
-def trans_youdao(transContent):
-    import requests
-    data = {
-        'doctype': 'json', 
-        'type': 'auto',
-        'i': transContent
-    }
-    r = requests.get("http://fanyi.youdao.com/translate",params=data)
-    result = r.json()['translateResult'][0][0]['tgt']
-    print(result)
-    return result
+
 
 
 # def trans_micro(transContent):
@@ -351,17 +262,10 @@ def trans_youdao(transContent):
     # print(translation)
 
     
-def trans_google(text, dest='zh-cn'):
-    from httpcore import SyncHTTPProxy
-    from googletrans import Translator
-    http_proxy = SyncHTTPProxy((b'http', b'127.0.0.1', 1082, b''))
-    proxies = {'http': http_proxy, 'https': http_proxy }
-    translator = Translator(proxies=proxies)
-    trans = translator.translate(text, dest=dest)
-    print(trans.text)
-    
-
 def text2speech(text, play, folderName):
+    import platform
+    # from pydub import AudioSegment
+    # from pydub.playback import play
     from playsound import playsound  
     ttsLink = [
         f"https://dict.youdao.com/dictvoice?audio={text}&le=zh", 
@@ -369,7 +273,8 @@ def text2speech(text, play, folderName):
         f"https://fanyi.baidu.com/gettts?lan=zh&text={text}&spd=5&source=web",
         f"https://fanyi.sogou.com/reventondc/synthesis?text={text}&speed=1&lang=zh-CHS&from=translateweb&speaker=6"
     ]
-    r = requests.get(ttsLink[0])
+    r = requests.get(ttsLink[2])
+    print(r.content)
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     nowDay = datetime.datetime.now().strftime("%Y-%m-%d")
     # print(nowDay)
@@ -382,6 +287,13 @@ def text2speech(text, play, folderName):
         f.write(r.content)
     if play:
         playsound(mp3FileName)
+        # if platform.system() == 'Darwin':  # macOS
+        #     playsound(mp3FileName)
+        # elif platform.system() == 'Windows':  # Windows
+        #     audio = AudioSegment.from_file(mp3FileName, format="mp3")
+        #     play(audio)
+        # else:
+        #     print("Unsupported operating system.")
     
         
 def get_toutiao(play=False):
@@ -447,8 +359,8 @@ def aiRobot(ask):
 
     
 if __name__ == '__main__':
-    # if not os.environ.get("WERKZEUG_RUN_MAIN"):
-    #     get_toutiao(play=True)
+    if not os.environ.get("WERKZEUG_RUN_MAIN"):
+        get_toutiao(play=True)
     # text2speech('干一下', True, '22')
-    app.run(debug=True, port=5000)
+    app.run(host="0.0.0.0", debug=True, port=5000)
     # trans_google('fuck')
