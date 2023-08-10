@@ -33,7 +33,7 @@ def write_file(content):
         f.write(content + '\n')
         
 
-def claudeAI(text):
+def claude_ai(text):
     slackToken = 'xoxp-415445285921-416003551682-5356031879952-e553f10d7af397d89db28fe1865ee985'
     def send_msg():
         sendURL = "https://slack.com/api/chat.postMessage"
@@ -76,7 +76,7 @@ def claudeAI(text):
     return receive_msg()
 
 
-def trans_youdao(transContent):
+def trans_youdao(transContent: str):
     import requests
     data = {
         'doctype': 'json', 
@@ -87,3 +87,49 @@ def trans_youdao(transContent):
     result = r.json()['translateResult'][0][0]['tgt']
     print(result)
     return result
+
+
+def trans_baidu(transContent: str):
+    import requests
+    data = {
+        'from': 'en',
+        'to': 'zh',
+        'query': transContent,
+        'transtype': 'realtime',
+        'simple_means_flag': '3',
+        'sign': '114200.614200',
+        'token': '4085722948',
+        'domain': 'common'
+    }
+    r = requests.post('https://fanyi.baidu.com/translate?aldtype=16047&query=%E5%A4%AA%E7%BE%8E%E4%BA%86&keyfrom=baidu&smartresult=dict&lang=auto2jp#zh', data=data)
+
+
+def trans_google(text, dest='zh-cn'):
+    from httpcore import SyncHTTPProxy
+    from googletrans import Translator
+    http_proxy = SyncHTTPProxy((b'http', b'127.0.0.1', 1082, b''))
+    proxies = {'http': http_proxy, 'https': http_proxy }
+    translator = Translator(proxies=proxies)
+    trans = translator.translate(text, dest=dest)
+    print(trans.text)
+
+    
+def fan(showIP=False):
+    proxy = '127.0.0.1:1082'
+    proxies = {
+        'http': 'http://' + proxy,
+        'https': 'https://' + proxy,
+    }
+    # headers = {
+    #     'User-Agent': ua.chrome
+    # }
+    try:
+        response = requests.get('http://www.bing.com', proxies=proxies)
+        print(response.status_code, ' 可以连外网，但不一定是美国服务器')
+        if showIP:
+            resp = requests.get('http://httpbin.org/ip', proxies=proxies)
+            print(resp.json()['origin'])
+        return True
+    except:
+        print('有问题，没法翻')
+        return False

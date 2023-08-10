@@ -1,6 +1,6 @@
 import json, os, sys, copy, datetime, requests
 from flask import Flask, render_template, request, jsonify
-from tools import claudeAI, get_json_data, write_json_data
+from tools import claude_ai, get_json_data, write_json_data, trans_youdao
 
 # os.chdir(sys.path[0])  # 把现在的工作路径切换到当前文件夹
 app = Flask(__name__, template_folder='./', static_folder='')
@@ -173,7 +173,7 @@ def ai_generate_essay():
             ]
         }
     """
-    result = claudeAI(generateEssayPrompt)
+    result = claude_ai(generateEssayPrompt)
     # pattern = re.compile(r'[{](.*)[}]', re.S)  #贪婪匹配
     # afterREResult = re.findall(pattern, result)
 
@@ -225,7 +225,7 @@ def chatContent():
 @app.route('/rewrite', methods=['POST', 'GET'])
 def rewrite():
     rewriteContent = request.form['rewriteContent']
-    content = claudeAI('用英语高级词汇换一种说法重写一遍（不要换行，不要空格，不要说别的）: ' + rewriteContent)
+    content = claude_ai('用英语高级词汇换一种说法重写一遍（不要换行，不要空格，不要说别的）: ' + rewriteContent)
     print(content)
     return content
 
@@ -234,7 +234,7 @@ def rewrite():
 def trans():
     transContent = request.form['transContent']
     try:
-        content = claudeAI('直接把这个翻译成中文（不要换行，不要空格，不要说别的）: ' + transContent)
+        content = claude_ai('直接把这个翻译成中文（不要换行，不要空格，不要说别的）: ' + transContent)
         print(content)
         return content
     except:
@@ -262,17 +262,10 @@ def trans():
     # print(translation)
 
     
-def trans_google(text, dest='zh-cn'):
-    from httpcore import SyncHTTPProxy
-    from googletrans import Translator
-    http_proxy = SyncHTTPProxy((b'http', b'127.0.0.1', 1082, b''))
-    proxies = {'http': http_proxy, 'https': http_proxy }
-    translator = Translator(proxies=proxies)
-    trans = translator.translate(text, dest=dest)
-    print(trans.text)
-    
-
 def text2speech(text, play, folderName):
+    import platform
+    # from pydub import AudioSegment
+    # from pydub.playback import play
     from playsound import playsound  
     ttsLink = [
         f"https://dict.youdao.com/dictvoice?audio={text}&le=zh", 
@@ -280,7 +273,8 @@ def text2speech(text, play, folderName):
         f"https://fanyi.baidu.com/gettts?lan=zh&text={text}&spd=5&source=web",
         f"https://fanyi.sogou.com/reventondc/synthesis?text={text}&speed=1&lang=zh-CHS&from=translateweb&speaker=6"
     ]
-    r = requests.get(ttsLink[0])
+    r = requests.get(ttsLink[2])
+    print(r.content)
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     nowDay = datetime.datetime.now().strftime("%Y-%m-%d")
     # print(nowDay)
@@ -293,6 +287,13 @@ def text2speech(text, play, folderName):
         f.write(r.content)
     if play:
         playsound(mp3FileName)
+        # if platform.system() == 'Darwin':  # macOS
+        #     playsound(mp3FileName)
+        # elif platform.system() == 'Windows':  # Windows
+        #     audio = AudioSegment.from_file(mp3FileName, format="mp3")
+        #     play(audio)
+        # else:
+        #     print("Unsupported operating system.")
     
         
 def get_toutiao(play=False):
@@ -358,8 +359,8 @@ def aiRobot(ask):
 
     
 if __name__ == '__main__':
-    # if not os.environ.get("WERKZEUG_RUN_MAIN"):
-    #     get_toutiao(play=True)
+    if not os.environ.get("WERKZEUG_RUN_MAIN"):
+        get_toutiao(play=True)
     # text2speech('干一下', True, '22')
     app.run(host="0.0.0.0", debug=True, port=5000)
     # trans_google('fuck')

@@ -1,1 +1,0 @@
-"with open('bb.txt', 'w') as f:    pass"
