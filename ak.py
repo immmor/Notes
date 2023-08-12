@@ -79,15 +79,88 @@
 
 
 
-import requests
-from bs4 import BeautifulSoup
+# import requests
+# from bs4 import BeautifulSoup
 
-url = 'https://finance.eastmoney.com/a/czqyw.html'
-response = requests.get(url)
-soup = BeautifulSoup(response.text, 'lxml')
+# url = 'https://finance.eastmoney.com/a/czqyw.html'
+# response = requests.get(url)
+# soup = BeautifulSoup(response.text, 'lxml')
 
-news_list = soup.find('div', class_='newsList')
-a_tags = news_list.find_all('a')
+# news_list = soup.find('div', class_='newsList')
+# a_tags = news_list.find_all('a')
 
-for a in a_tags:
-    print(a.text)
+# for a in a_tags:
+#     print(a.text)
+
+
+
+# import akshare as ak
+# stock_zh_a_alerts_cls_df = ak.stock_zh_a_alerts_cls()
+# print(stock_zh_a_alerts_cls_df)
+# stock_telegraph_cls = ak.stock_telegraph_cls()
+# print(stock_telegraph_cls)
+
+
+
+# import akshare as ak
+# news_economic_baidu = ak.news_economic_baidu('20230802')
+# print(news_economic_baidu)
+
+
+
+# import akshare as ak
+
+# symbol = "sh000300"
+# # start_date = "2022-01-01"
+# # end_date = "2022-12-31"
+
+# data = ak.stock_zh_a_minute(symbol=symbol)
+# print(data)
+# # 将数据输出到CSV文件
+# data.to_csv("sh000300_1min.csv", index=False)
+
+
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# 读取数据
+df = pd.read_csv('sh000300_1min.csv')  
+
+# 绘制开盘收盘最高最低价折线图
+plt.plot(df['open'], label='Open')
+plt.plot(df['close'], label='Close')
+plt.plot(df['high'], label='High')
+plt.plot(df['low'], label='Low')
+plt.legend(loc='best')
+
+# 绘制交易量柱状图  
+plt.figure()
+plt.bar(df.index, df['volume'])
+
+# 计算并绘制MACD
+exp1 = df['close'].ewm(span=12, adjust=False).mean()
+exp2 = df['close'].ewm(span=26, adjust=False).mean() 
+macd = exp1-exp2
+exp3 = macd.ewm(span=9, adjust=False).mean()
+plt.figure()
+plt.plot(macd, label='MACD')  
+plt.plot(exp3, label='Signal Line')
+plt.legend(loc='best')
+
+# 计算并绘制RSI
+delta = df['close'].diff()
+up = delta.clip(lower=0)
+down = -1*delta.clip(upper=0)  
+ema_up = up.ewm(com=13, adjust=False).mean()
+ema_down = down.ewm(com=13, adjust=False).mean()  
+rs = ema_up/ema_down
+df['RSI'] = 100 - (100/(1 + rs))
+plt.figure()
+plt.plot(df['RSI'], label='RSI')
+plt.legend(loc='best')
+
+# 显示所有图表
+plt.show()

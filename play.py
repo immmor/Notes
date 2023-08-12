@@ -273,8 +273,8 @@ def text2speech(text, play, folderName):
         f"https://fanyi.baidu.com/gettts?lan=zh&text={text}&spd=5&source=web",
         f"https://fanyi.sogou.com/reventondc/synthesis?text={text}&speed=1&lang=zh-CHS&from=translateweb&speaker=6"
     ]
-    r = requests.get(ttsLink[2])
-    print(r.content)
+    r = requests.get(ttsLink[0])
+    # print(r.content)
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     nowDay = datetime.datetime.now().strftime("%Y-%m-%d")
     # print(nowDay)
