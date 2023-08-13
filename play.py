@@ -252,14 +252,7 @@ def trans():
 
 
 
-# def trans_micro(transContent):
-    # from translate import Translator
-    # translator=Translator(from_lang="chinese",to_lang="english")
-    # translation = translator.translate("你吃了吗？")
-    # print(translation)
-    # translator2=Translator(from_lang="english",to_lang="chinese")
-    # translation = translator2.translate(transContent)
-    # print(translation)
+
 
     
 def text2speech(text, play, folderName):
@@ -341,23 +334,6 @@ def get_toutiao(play=False):
             [playsound('MP3Files/' + nowDay + '/' + newsType + '/' + i) for i in mp3List if i.endswith('.mp3')]
 
 
-def aiRobot(ask):
-    url = 'https://api.dify.ai/v1/completion-messages'
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer app-JPWdrBbT7GNtJM6VRc2wbNcZ',
-    }
-    payload = json.dumps({
-        "inputs": {},
-        "query": ask,
-        "response_mode": "blocking",
-        "user": "kkbb2"
-    })
-    response = requests.request("POST", url, headers=headers, data=payload)
-    finalData = json.loads(response.text)
-    print(finalData)
-
-    
 if __name__ == '__main__':
     if not os.environ.get("WERKZEUG_RUN_MAIN"):
         get_toutiao(play=True)

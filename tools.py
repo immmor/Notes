@@ -76,6 +76,23 @@ def claude_ai(text):
     return receive_msg()
 
 
+def dify_ai(ask):
+    url = 'https://api.dify.ai/v1/completion-messages'
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer app-JPWdrBbT7GNtJM6VRc2wbNcZ',
+    }
+    payload = json.dumps({
+        "inputs": {},
+        "query": ask,
+        "response_mode": "blocking",
+        "user": "kkbb2"
+    })
+    response = requests.request("POST", url, headers=headers, data=payload)
+    finalData = json.loads(response.text)
+    print(finalData)
+
+
 def trans_youdao(transContent: str):
     import requests
     data = {
@@ -112,6 +129,16 @@ def trans_google(text, dest='zh-cn'):
     translator = Translator(proxies=proxies)
     trans = translator.translate(text, dest=dest)
     print(trans.text)
+
+
+def trans_micro(transContent):
+    from translate import Translator
+    translator=Translator(from_lang="chinese",to_lang="english")
+    translation = translator.translate("你吃了吗？")
+    print(translation)
+    translator2=Translator(from_lang="english",to_lang="chinese")
+    translation = translator2.translate(transContent)
+    print(translation)
 
     
 def fan(showIP=False):

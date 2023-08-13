@@ -1,4 +1,4 @@
-import json, os
+import json, os, requests
 from tools import claude_ai, get_json_data, write_json_data, trans_youdao
 
 # prompt = """
@@ -21,4 +21,22 @@ from tools import claude_ai, get_json_data, write_json_data, trans_youdao
 #     f.write('\n\n\n' + result)
 # os.system('python k.py')
 
-trans_youdao('what the fuck')
+# trans_youdao('what the fuck')
+# resp = requests.get('http://127.0.0.1:3456')
+# print(resp.text)
+
+import openai
+
+MODEL = "gpt-3.5-turbo"
+# "sk-1234567890ULScvLPEHbT3B3bkFJ34mOSRJSVf9fMWP8UXyw"
+openai.api_key = "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"
+openai.api_base = "http://127.0.0.1:3456/v1/chat/completions"
+
+completion = openai.ChatCompletion.create(
+  model="gpt-3.5-turbo",
+  messages=[
+    {"role": "user", "content": "Hello!"}
+  ]
+)
+
+print(completion.choices[0].message)
