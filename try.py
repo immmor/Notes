@@ -20,7 +20,11 @@ def win_winxray_fan(showIP=True):
         print(response.status_code, ' 可以连外网，但不一定是美国服务器')
         if showIP:
             resp = requests.get('http://httpbin.org/ip', proxies=proxies)
-            print(resp.json()['origin'])
+            ip = resp.json()['origin']
+            print(ip)
+            r = requests.get(f'http://ip-api.com/json/{ip}?lang=zh-CN', proxies=proxies)
+            print(r.text)
+            # check_ip(ip)
         return True
     except:
         print('有问题，没法翻')
@@ -67,5 +71,5 @@ def check_ip(ip):
 
 import timeit
 
-print('函数执行时间：', timeit.timeit(mac_clash_fan, number=1), '秒')
+print('函数执行时间：', timeit.timeit(win_winxray_fan, number=1), '秒')
 # check_ip('221.222.20.13')

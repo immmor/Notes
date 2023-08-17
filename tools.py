@@ -34,7 +34,8 @@ def write_file(content):
         
 
 def claude_ai(text):
-    slackToken = 'xoxp-415445285921-416003551682-5356031879952-e553f10d7af397d89db28fe1865ee985'
+    slackToken = 'xoxp-5188530118690-5188398037171-5733621356819-a30475dd9a71f0346814dc13f1a0465e'  # tzbg
+    # slackToken = 'xoxp-415445285921-416003551682-5356031879952-e553f10d7af397d89db28fe1865ee985'
     def send_msg():
         sendURL = "https://slack.com/api/chat.postMessage"
         data = {
@@ -53,7 +54,8 @@ def claude_ai(text):
         receiveURL = "https://slack.com/api/conversations.history"
         data = {
             "token": slackToken,
-            "channel": "D052WQCP84D",
+            "channel": "D055M0TE4MA",  # tzbg
+            # "channel": "D052WQCP84D",
             "oldest": msgSent['ts']
         }
         response = requests.post(receiveURL, data=data)
@@ -63,14 +65,14 @@ def claude_ai(text):
                 time.sleep(2)
                 return receive_msg()
             elif 'Typing' not in result['messages'][1]['text']:
-                resultMessage = result['messages'][1]['text']
+                resultMessage = result['messages'][1]['text'].strip()
                 return resultMessage
         except:
             if 'Typing' in result['messages'][0]['text']:
                 time.sleep(2)
                 return receive_msg()
             elif 'Typing' not in result['messages'][0]['text']:
-                resultMessage = result['messages'][0]['text']
+                resultMessage = result['messages'][0]['text'].strip()
                 return resultMessage
             
     return receive_msg()
@@ -160,3 +162,4 @@ def fan(showIP=False):
     except:
         print('有问题，没法翻')
         return False
+    

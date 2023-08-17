@@ -248,12 +248,6 @@ def trans():
                 content += con + '。'
         return content
 
-
-
-
-
-
-
     
 def text2speech(text, play, folderName):
     import platform

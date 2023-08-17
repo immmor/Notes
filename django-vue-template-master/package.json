@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "serve1": "vue-cli-service serve",
-    "serve": "vue-cli-service serve --openssl-legacy-provider",
-    "build": "vue-cli-service build",
+    "servecopy": "vue-cli-service serve --openssl-legacy-provider",
+    "buildcopy": "vue-cli-service build",
+    "serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
