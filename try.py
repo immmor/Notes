@@ -70,6 +70,17 @@ def check_ip(ip):
 
 
 import timeit
+import sys
 
-print('函数执行时间：', timeit.timeit(win_winxray_fan, number=1), '秒')
+if sys.platform.startswith('win'):
+    print('Windows')
+    print('函数执行时间：', timeit.timeit(win_winxray_fan, number=1), '秒')
+elif sys.platform.startswith('darwin'):
+    print('mac')
+    print('函数执行时间：', timeit.timeit(mac_clash_fan, number=1), '秒')
+elif sys.platform.startswith('linux'):
+    print('Linux system')
+else:
+    print('Other system')
+
 # check_ip('221.222.20.13')

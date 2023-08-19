@@ -1,0 +1,71 @@
+{
+    ".DS_Store": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/.DS_Store",
+    "DTSV_China_C": {
+        ".DS_Store": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_C/.DS_Store",
+        "G068": {
+            "LH81514": {
+                "20230817_1636": {
+                    "LH81514_20230817_1636_CheckOut.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_C/G068/LH81514/20230817_1636/LH81514_20230817_1636_CheckOut.txt"
+                },
+                "20230817_1731": {
+                    "LH81514_20230817_1731_CheckIn.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_C/G068/LH81514/20230817_1731/LH81514_20230817_1731_CheckIn.txt"
+                }
+            },
+            "S603606": {
+                "20230818_1412": {
+                    "S603606_20230818_1412_CheckIn.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_C/G068/S603606/20230818_1412/S603606_20230818_1412_CheckIn.txt"
+                },
+                "20230818_1426": {
+                    "S603606_20230818_1426_CheckOut.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_C/G068/S603606/20230818_1426/S603606_20230818_1426_CheckOut.txt"
+                }
+            }
+        },
+        "U012": {},
+        "U025": {},
+        "G048": {
+            ".DS_Store": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_C/G048/.DS_Store",
+            "9D27145": {
+                "20230816_1606": {
+                    "9D27145_20230816_1606_CheckIn.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/20230816_1606/9D27145_20230816_1606_CheckIn.txt"
+                },
+                ".DS_Store": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/.DS_Store",
+                "20230818_0915": {
+                    "9D27145_20230818_0915_CheckIn.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/20230818_0915/9D27145_20230818_0915_CheckIn.txt"
+                },
+                "20230816_1445": {
+                    "9D27145_20230816_1445_CheckIn.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/20230816_1445/9D27145_20230816_1445_CheckIn.txt"
+                },
+                "20230814_1655": {
+                    "9D27145_20230814_1655_CheckIn.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/20230814_1655/9D27145_20230814_1655_CheckIn.txt"
+                }
+            }
+        },
+        "G070": {}
+    },
+    "DTSV_China_R": {
+        "G068": {
+            "HY07492": {
+                "20230818_1523": {
+                    "HY07492_20230818_1523_CheckOut.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_R/G068/HY07492/20230818_1523/HY07492_20230818_1523_CheckOut.txt"
+                },
+                "20230818_1513": {
+                    "HY07492_20230818_1513_CheckIn.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_R/G068/HY07492/20230818_1513/HY07492_20230818_1513_CheckIn.txt"
+                }
+            }
+        },
+        "G048": {
+            "HY20900": {
+                "20230818_1301": {
+                    "HY20900_20230818_1301_CheckIn.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_R/G048/HY20900/20230818_1301/HY20900_20230818_1301_CheckIn.txt"
+                },
+                "20230814_1414": {
+                    "HY20900_20230814_1414_CheckIn.json": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_R/G048/HY20900/20230814_1414/HY20900_20230814_1414_CheckIn.json",
+                    "HY20900_20230814_1414_CheckIn.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_R/G048/HY20900/20230814_1414/HY20900_20230814_1414_CheckIn.txt"
+                },
+                "20230818_1313": {
+                    "HY20900_20230818_1313_CheckOut.txt": "/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/DTSV_China_R/G048/HY20900/20230818_1313/HY20900_20230818_1313_CheckOut.txt"
+                }
+            }
+        }
+    }
+}

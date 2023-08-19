@@ -1,0 +1,292 @@
+{
+  "EXECUTION RUN CONFIGURATION HW SW" :
+  {
+    "GeneralInformation" :
+    {
+      "ExecutionSeries" : "G048",
+      "ExecutionModelSeries" : "G48",
+      "ExecutionSET" : "24-07",
+      "PCName" : "LSCN1013544"
+    },
+    "TestPlatform" :
+    {
+      "VIN7" : "HY20900",
+      "VIN21" : "WBA21GT020HY20900",
+      "V-Number" : "DAXING",
+      "Y-Number" : "Y451AB ",
+      "EngineType" : "Unbekannt",
+      "Battery" : "80Ah"
+    },
+    "VehicleOrder" :
+    {
+      "SeriesGroup" : "G048",
+      "TimeCriterion" : "1124",
+      "TypeCode" : "21GT",
+      "UpholsteryCode" : "AEAT",
+      "PaintCode" : "WC1N",
+      "SAs" :
+      [
+        "1DD",
+        "2TE",
+        "2VB",
+        "2Y8",
+        "33C",
+        "43Y",
+        "494",
+        "4NR",
+        "4UR",
+        "4VE",
+        "534",
+        "548",
+        "5AS",
+        "5AT",
+        "5DW",
+        "6AC",
+        "6AE",
+        "6AK",
+        "6AX",
+        "6C4",
+        "6NX",
+        "6PA",
+        "6U3",
+        "710",
+        "866",
+        "8AA",
+        "8AS",
+        "8KA",
+        "8SM",
+        "8TF",
+        "9T1",
+        "9TA"
+      ],
+      "E-Words" :
+      [
+        "E080",
+        "HUDM",
+        "MIRS",
+        "SCRY",
+        "TINT"
+      ]
+    },
+    "ECU" :
+    {
+      "0x03" :
+      {
+        "EcuLongname" : "Electronic Toll Collection China",
+        "EcuName" : "ETC",
+        "SgbdName" : "ETC_CN01",
+        "EcuGroup" : "G_ETC",
+        "EcuSerialNumber" : "9999999999",
+        "SgbdRevision" : "4.001",
+        "EcuSwName" : null,
+        "EcuHWversion" :
+        [
+          "HWEL-0000A935-001.004.000"
+        ],
+        "EcuSWversion" :
+        [
+          "BTLD-0000AA7D-001.009.000",
+          "CAFD-0000A9AA-001.004.000",
+          "SWFL-0000AA7E-001.009.000"
+        ]
+      },
+      "0x10" :
+      {
+        "EcuLongname" : "Basis Central Platform ab SP2021",
+        "EcuName" : "ZGW",
+        "SgbdName" : "BCP_SP21",
+        "EcuGroup" : "G_ZGW",
+        "EcuSerialNumber" : "6239101146",
+        "SgbdRevision" : "38.001",
+        "EcuSwName" : null,
+        "EcuHWversion" :
+        [
+          "HWAP-00006D74-255.255.255",
+          "HWAP-00006D75-255.255.255",
+          "HWAP-00006D76-255.255.255",
+          "HWAP-00006D77-255.255.255",
+          "HWAP-00006D78-255.255.255",
+          "HWAP-00006D79-255.255.255",
+          "HWAP-00006D7A-255.255.255",
+          "HWAP-00006D7B-255.255.255",
+          "HWAP-00006D7C-255.255.255",
+          "HWAP-00006D7E-255.255.255",
+          "HWAP-00006D7F-255.255.255",
+          "HWAP-00006D80-255.255.255",
+          "HWAP-00006D81-255.255.255",
+          "HWAP-00006D82-255.255.255",
+          "HWAP-00006D83-255.255.255",
+          "HWAP-00006D84-255.255.255",
+          "HWAP-00006D85-255.255.255",
+          "HWAP-00006D86-255.255.255",
+          "HWAP-00006D87-255.255.255",
+          "HWAP-00006D88-255.255.255",
+          "HWAP-000092AD-255.255.255",
+          "HWEL-00006D2F-112.001.000"
+        ],
+        "EcuSWversion" :
+        [
+          "BTLD-0000AB7E-010.063.020",
+          "CAFD-0000AD62-110.063.018",
+          "CAFD-0000AD63-053.063.002",
+          "CAFD-0000AD64-012.063.002",
+          "CAFD-0000AD65-010.045.047",
+          "CAFD-0000AD66-058.063.001",
+          "CAFD-0000AD67-057.063.001",
+          "CAFD-0000AD68-036.010.001",
+          "GWTB-0000913E-015.054.020",
+          "SWFK-0000ABA0-032.185.001",
+          "SWFK-0000ADBB-032.186.002",
+          "SWFK-0000ADBD-119.002.002",
+          "SWFK-0000AF77-032.010.006",
+          "SWFK-0000B78A-000.000.001",
+          "SWFL-0000AB84-010.063.020"
+        ]
+      },
+      "0x37" :
+      {
+        "EcuLongname" : "MARS (Modulares Audio Receiver System)",
+        "EcuName" : "AMP",
+        "SgbdName" : "MARS01",
+        "EcuGroup" : "G_AMP",
+        "EcuSerialNumber" : "5291220098",
+        "SgbdRevision" : "1.000",
+        "EcuSwName" : null,
+        "EcuHWversion" :
+        [
+          "HWEL-0000A4C5-001.001.004"
+        ],
+        "EcuSWversion" :
+        [
+          "BTLD-0000BBD1-001.050.001",
+          "CAFD-0000A565-001.006.001",
+          "CAFD-0000AE4A-001.002.002",
+          "SWFK-0000BD97-001.000.001",
+          "SWFK-0000BD99-001.000.001",
+          "SWFK-0000BD9C-003.000.001",
+          "SWFK-0000BDAA-003.000.001",
+          "SWFK-0000BDB1-003.000.000",
+          "SWFK-0000BDB5-003.000.000",
+          "SWFL-0000BD8B-001.050.005",
+          "SWFL-0000BD91-001.050.050",
+          "SWFL-0000BD92-001.050.011"
+        ]
+      },
+      "0x46" :
+      {
+        "EcuLongname" : "Wireless charging shelf 2.0 NFC front",
+        "EcuName" : "GZAL/WCA_V/WCM_FA",
+        "SgbdName" : "WCA_V",
+        "EcuGroup" : "G_WCA_V",
+        "EcuSerialNumber" : "0000051818",
+        "SgbdRevision" : "2.014",
+        "EcuSwName" : null,
+        "EcuHWversion" :
+        [
+          "HWEL-00006CF0-006.000.001"
+        ],
+        "EcuSWversion" :
+        [
+          "BTLD-00008FCF-007.003.003",
+          "CAFD-00006CF2-009.000.000",
+          "SWFL-00008FE8-010.005.000"
+        ]
+      },
+      "0x61" :
+      {
+        "EcuLongname" : "Telematic ECU Wave",
+        "EcuName" : "ECALL",
+        "SgbdName" : "WAVE_01",
+        "EcuGroup" : "G_ECALL",
+        "EcuSerialNumber" : "2204600342",
+        "SgbdRevision" : "11.007",
+        "EcuSwName" : null,
+        "EcuHWversion" :
+        [
+          "HWEL-00006CA3-103.021.011"
+        ],
+        "EcuSWversion" :
+        [
+          "BTLD-00008FE1-008.151.042",
+          "CAFD-00006D1D-008.001.012",
+          "FLSL-0000912B-008.151.042",
+          "SWFL-0000912C-008.151.042",
+          "SWFL-0000912D-008.151.042",
+          "SWFL-0000912E-008.151.042",
+          "SWFL-0000912F-004.143.189",
+          "SWFL-00009130-004.143.190",
+          "SWFL-00009131-008.151.042",
+          "SWFL-00009132-008.151.042",
+          "SWFL-00009133-008.151.042",
+          "SWFL-00009134-008.151.042"
+        ]
+      },
+      "0x63" :
+      {
+        "EcuLongname" : "Head Unit - Media Graphics Unit HU-MGU_02_A",
+        "EcuName" : "HEADUNIT",
+        "SgbdName" : "MGU_02_A",
+        "EcuGroup" : "G_MMI",
+        "EcuSerialNumber" : "0001000054",
+        "SgbdRevision" : "10.000",
+        "EcuSwName" : "BMW IDC23;mainline-23w31.2-3-nodex_IDC23_23w31.2-1-3;idc23",
+        "EcuHWversion" :
+        [
+          "HWEL-0000A129-005.001.006"
+        ],
+        "EcuSWversion" :
+        [
+          "BTLD-00009F72-005.001.001",
+          "CAFD-00007D8D-000.082.001",
+          "CAFD-0000945E-000.045.002",
+          "CAFD-000095AF-000.006.004",
+          "SWFK-0000A4FF-004.002.011",
+          "SWFK-0000AA69-004.002.011",
+          "SWFL-00009FC2-004.002.011",
+          "SWFL-00009FC3-004.002.011",
+          "SWFL-0000A319-004.002.011",
+          "SWFL-0000A322-030.008.000",
+          "SWFL-0000ABCF-004.002.011",
+          "SWFL-0000ABD0-004.002.011",
+          "SWFL-0000ABD1-004.001.003",
+          "SWFL-0000ABD2-004.002.011",
+          "SWFL-0000ABD3-004.002.011"
+        ]
+      },
+      "0x66" :
+      {
+        "EcuLongname" : "Vehicle to everything box 1",
+        "EcuName" : "V2X",
+        "SgbdName" : "V2X_01",
+        "EcuGroup" : "G_V2X",
+        "EcuSerialNumber" : "1234567890",
+        "SgbdRevision" : "0.008",
+        "EcuSwName" : null,
+        "EcuHWversion" :
+        [
+          "HWEL-0000B143-002.000.000"
+        ],
+        "EcuSWversion" :
+        [
+          "BTLD-0000BBE6-004.000.005",
+          "CAFD-0000B124-001.000.000",
+          "SWFL-0000BBF7-004.000.005",
+          "SWFL-0000BBF8-004.000.005"
+        ]
+      }
+    },
+    "IStep" :
+    {
+      "I_STEP_WERK" : "G045-24-11-250",
+      "I_STEP_HO" : "G045-24-07-410",
+      "I_STEP_HP_BACKUP" : "G045-24-11-250"
+    },
+    "EnBnSpecifics" :
+    {
+      "IbsHWversion" : "255.255",
+      "IbsSWversion" : "255.255",
+      "IbsSerialnumber" : "FFFFFFFFFF",
+      "IbsBuildnumber" : "FFFFFFFF"
+    }
+  }
+}

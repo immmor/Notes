@@ -65,6 +65,7 @@ def claude_ai(text):
                 time.sleep(2)
                 return receive_msg()
             elif 'Typing' not in result['messages'][1]['text']:
+                # print(result)  # TODO
                 resultMessage = result['messages'][1]['text'].strip()
                 return resultMessage
         except:
@@ -72,6 +73,7 @@ def claude_ai(text):
                 time.sleep(2)
                 return receive_msg()
             elif 'Typing' not in result['messages'][0]['text']:
+                # print(result)
                 resultMessage = result['messages'][0]['text'].strip()
                 return resultMessage
             
@@ -162,4 +164,12 @@ def fan(showIP=False):
     except:
         print('有问题，没法翻')
         return False
+
+
+def which_system():
+    pass
+
+
+if __name__ == '__main__':
+    claude_ai('用python写一个装饰器')
     

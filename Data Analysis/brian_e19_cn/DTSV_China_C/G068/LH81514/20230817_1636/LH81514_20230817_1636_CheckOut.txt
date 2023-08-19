@@ -1,0 +1,1295 @@
+Result: Read Vehicle Data
+-------------------------
+
+Date         : 17.08.2023 16:39:06,951
+FB-Name      : FZG_DATA_LESEN
+System time  : 60098792,0
+PC-Name      : WSCN1063440
+User-Name    : qqat010
+Series       : G068
+Battery      : --- ---
+Charge state : --- ---
+Q SoC        : --- ---
+----------------------------------------------------------------------------------------------
+Adr Rudename   Job State  State
+XX  G068       OKAY       VIN              : LH81514
+XX  G068       OKAY       VIN (long)       : WBACR6102KLH81514
+XX  G068       OKAY       state            : PRUEFEN_ANALYSE_DIAGNOSE
+XX  G068       OKAY       I-Level Plant    : I020-21-07-370
+XX  G068       OKAY       I-Level HO       : G070-24-07-430
+XX  G068       OKAY       I-Level HO Backup: G070-23-11-490
+XX  G068       OKAY       FA-order         : 0724 31FM
+XX  G068       OKAY       Paint code       : 0A96
+XX  G068       OKAY       Cushion code     : MCHF
+XX  G068       OKAY       Engine Type      : Unbekannt
+XX  G068       OKAY       KM-State Display : 80404
+XX  G068       OKAY       KM-State Absolut : 80404
+XX  G068       OKAY       KM-Stand Backup  :                  !! 
+XX  G068       OKAY       Charge strategy  : E-Fzg oder TSP, kein iGR iGR
+XX  G068       OKAY       Operating hours  :                 
+XX  G068       OKAY       System time      : 60098792,0
+XX  G068       OKAY       Options          : 1CB  212  230  2VB  302  33B  3DN  3M1  407  416
+XX  G068       OKAY       Options          : 420  428  453  4NR  548  5AU  5DN  5DW  6AC  6AE
+XX  G068       OKAY       Options          : 6AK  6C4  6CP  6F4  6NX  6PA  6U3  6U7  710  760
+XX  G068       OKAY       Options          : 775  825  845  866  892  8AA  8SM  8TF  8TN  8TT
+XX  G068       OKAY       Options          : 993  9AE  9T1  9T2                              
+XX  G068       OKAY       E_Words          : A090  HUDM  SCRY  TINT  
+
+
+Result: Read ID Data  ( BN2010 )
+--------------------------------
+
+Date      : 17.08.2023 16:39:07,183
+FB-Name   : ID_DATEN_LESEN
+Duration  : 3,329 s
+Amount    : 6
+----------------------------------------------------------------------------------------------
+Adr Rude name            SGBD       Revision     GROUPE    Serial-Nr       Processclass                           SGBM ID   Version      Date        Device                                                                  
+10  ZGW                  BCP_SP21   38.001       G_ZGW     0200814053      1   Hardware (Elektronik)              00006D2F  001.004.011  02.06.2023  BASIS CENTRAL PLATFORM AB SP2021                                        
+10  ZGW                                                                    6   Bootloader                         00007986  021.005.217                                                                                      
+10  ZGW                                                                    8   Software ECU Speicherimage         00007A92  021.005.217                                                                                      
+10  ZGW                                                                    4   Gateway-Tabelle                    00007CD5  022.033.001                                                                                      
+10  ZGW                                                                    13  BEGU: Detaillierung auf SWE-Ebene  00007D15  000.000.041                                                                                      
+37  AMP                  RAM01      4.014        G_AMP     2158000264      6   Bootloader                         00007C2A  016.135.005  21.07.2023  RECEIVER AUDIO MODULE                                                   
+37  AMP                                                                    13  BEGU: Detaillierung auf SWE-Ebene  000099CA  015.005.061                                                                                      
+37  AMP                                                                    8   Software ECU Speicherimage         00005EE8  016.100.040                                                                                      
+37  AMP                                                                    8   Software ECU Speicherimage         00005EDD  016.135.005                                                                                      
+37  AMP                                                                    8   Software ECU Speicherimage         0000A9BB  016.135.005                                                                                      
+37  AMP                                                                    8   Software ECU Speicherimage         00007C33  016.135.005                                                                                      
+37  AMP                                                                    8   Software ECU Speicherimage         00005EE0  016.135.005                                                                                      
+37  AMP                                                                    8   Software ECU Speicherimage         00005EDC  016.135.005                                                                                      
+37  AMP                                                                    1   Hardware (Elektronik)              0000A941  000.009.000                                                                                      
+37  AMP                                                                    5   Codierdaten                        00004224  018.003.007                                                                                      
+46  GZAL/WCA_V/WCM_FA    WCA_V      2.014        G_WCA_V   2014051434      1   Hardware (Elektronik)              00006CF0  006.000.000  01.08.2022  WIRELESS CHARGING SHELF 2.0 NFC FRONT                                   
+46  GZAL/WCA_V/WCM_FA                                                      6   Bootloader                         00008FCF  007.003.003                                                                                      
+46  GZAL/WCA_V/WCM_FA                                                      8   Software ECU Speicherimage         00008FE8  010.004.000                                                                                      
+46  GZAL/WCA_V/WCM_FA                                                      5   Codierdaten                        00006CF2  009.000.000                                                                                      
+60  KOMBI                KOMBSP21   16.001       G_KOMBI   0000305254      1   Hardware (Elektronik)              00007587  002.000.000  26.06.2023  INSTRUMENTENKOMBI GEN 5 BOX                                             
+60  KOMBI                                                                  7   Flashloader Slave                  000084EB  010.001.050                                                                                      
+60  KOMBI                                                                  6   Bootloader                         000082FA  010.001.050                                                                                      
+60  KOMBI                                                                  8   Software ECU Speicherimage         000084EC  010.001.050                                                                                      
+60  KOMBI                                                                  8   Software ECU Speicherimage         000084EE  010.001.050                                                                                      
+60  KOMBI                                                                  5   Codierdaten                        00006D4E  006.001.003                                                                                      
+61  ECALL                WAVE_01    11.007       G_ECALL   2135900118      1   Hardware (Elektronik)              00006CA3  103.021.011  11.08.2023  TELEMATIC ECU WAVE                                                      
+61  ECALL                                                                  6   Bootloader                         00008FE1  008.151.042                                                                                      
+61  ECALL                                                                  8   Software ECU Speicherimage         00009132  008.151.042                                                                                      
+61  ECALL                                                                  8   Software ECU Speicherimage         0000912C  008.151.042                                                                                      
+61  ECALL                                                                  8   Software ECU Speicherimage         0000912D  008.151.042                                                                                      
+61  ECALL                                                                  8   Software ECU Speicherimage         0000912E  008.151.042                                                                                      
+61  ECALL                                                                  8   Software ECU Speicherimage         0000912F  004.143.189                                                                                      
+61  ECALL                                                                  8   Software ECU Speicherimage         00009130  004.143.190                                                                                      
+61  ECALL                                                                  8   Software ECU Speicherimage         00009131  008.151.042                                                                                      
+61  ECALL                                                                  8   Software ECU Speicherimage         00009133  008.151.042                                                                                      
+61  ECALL                                                                  8   Software ECU Speicherimage         00009134  008.151.042                                                                                      
+61  ECALL                                                                  7   Flashloader Slave                  0000912B  008.151.042                                                                                      
+61  ECALL                                                                  5   Codierdaten                        00006D1D  008.001.012                                                                                      
+63  HEADUNIT             MGU_02_L   15.000       G_MMI     0054900005      1   Hardware (Elektronik)              00009740  005.001.005  11.08.2023  HEAD UNIT - MEDIA GRAPHICS UNIT HU-MGU_02_L                             
+63  HEADUNIT                                                               6   Bootloader                         00009F71  004.004.001                                                                                      
+63  HEADUNIT                                                               8   Software ECU Speicherimage         00009FC9  004.001.003                                                                                      
+63  HEADUNIT                                                               8   Software ECU Speicherimage         00009FC4  004.002.004                                                                                      
+63  HEADUNIT                                                               8   Software ECU Speicherimage         00009FC5  004.002.004                                                                                      
+63  HEADUNIT                                                               8   Software ECU Speicherimage         00009FC6  004.002.004                                                                                      
+63  HEADUNIT                                                               8   Software ECU Speicherimage         00009FC7  004.002.004                                                                                      
+63  HEADUNIT                                                               8   Software ECU Speicherimage         00009FC8  030.009.000                                                                                      
+63  HEADUNIT                                                               8   Software ECU Speicherimage         00009FF7  004.002.004                                                                                      
+63  HEADUNIT                                                               8   Software ECU Speicherimage         00009FF9  004.002.004                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  00009FCD  000.000.039                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  00009FD1  000.000.039                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  00009FD4  004.002.001                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  00009FD5  004.002.001                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  00009FDA  004.002.001                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  00009FF5  004.002.001                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  00009FF6  004.002.001                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  0000A690  004.002.004                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  0000A6A5  004.002.004                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  0000A6B0  004.002.004                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  0000A6B1  004.002.004                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  0000A6B2  004.002.004                                                                                      
+63  HEADUNIT                                                               13  BEGU: Detaillierung auf SWE-Ebene  0000A7E6  000.000.039                                                                                      
+63  HEADUNIT                                                               5   Codierdaten                        00007D8D  000.082.001                                                                                      
+63  HEADUNIT                                                               5   Codierdaten                        000095AF  000.006.004                                                                                      
+63  HEADUNIT                                                               5   Codierdaten                        0000BD38  000.000.001                                                                                      
+63  HEADUNIT                                                               5   Codierdaten                        0000B579  000.000.001                                                                                      
+
+
+Result: SVK Data in QC-View
+---------------------------
+
+Date      : 17.08.2023 16:39:10,809
+FB-Name   : SVK_DATEN_ALM
+Duration  : 0,029 s
+----------------------------------------------------------------------------------------------
+0x10 - ZGW - BCP_SP21 - BASIS CENTRAL PLATFORM AB SP2021
+HWEL:6D2F-001.004.011
+SWFL:7A92-021.005.217_BTLD:7986-021.005.217_GWTB:7CD5-022.033.001
+
+0x37 - AMP - RAM01 - RECEIVER AUDIO MODULE
+HWEL:A941-000.009.000
+23174A.016_135_005
+
+0x46 - GZAL/WCA_V/WCM_FA - WCA_V - WIRELESS CHARGING SHELF 2.0 NFC FRONT
+HWEL:6CF0-006.000.000
+CAFD:6CF2-009.000.000_BTLD:8FCF-007.003.003_SWFL:8FE8-010.004.000
+
+0x60 - KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+HWEL:7587-002.000.000
+CAFD:6D4E-006.001.003_BTLD:82FA-010.001.050_FLSL:84EB-010.001.050_SWFL:84EC-010.001.050_84EE-010.001.050
+
+0x61 - ECALL - WAVE_01 - TELEMATIC ECU WAVE
+HWEL:6CA3-103.021.011
+CAFD:6D1D-008.001.012_BTLD:8FE1-008.151.042_FLSL:912B-008.151.042_SWFL:9132-008.151.042_912C-008.151.042_912D-008.151.042_912E-008.151.042_912F-004.143.189_9130-004.143.190_9131-008.151.042_9133-008.151.042_9134-008.151.042
+
+0x63 - HEADUNIT - MGU_02_L - HEAD UNIT - MEDIA GRAPHICS UNIT HU-MGU_02_L
+HWEL:9740-005.001.005
+BMW MGU22;MGU22_23w32.2-1-2;mgu22
+
+
+
+Result: Delete central error memory
+-----------------------------------
+
+Date      : 17.08.2023 16:39:11,055
+FB-Name   : ZFS_LOESCHEN
+Duration  : 9,132 s
+-----------------------------------                                   
+Successfully deleted fall asleep mo                                   
+
+
+Result: Clear error memory
+--------------------------
+
+Date      : 17.08.2023 16:39:20,309
+FB-Name   : FS_LÖSCHEN
+Duration  : 3,450 s
+Amount    : 6
+----------------------------------------------------------------------------------------------
+Adr Rude name            JobStatus  Status   
+10  ZGW                  OKAY       Clear Error Memory
+37  AMP                  OKAY       Clear Error Memory
+46  GZAL/WCA_V/WCM_FA    OKAY       Clear Error Memory
+60  KOMBI                OKAY       Clear Error Memory
+61  ECALL                OKAY       Clear Error Memory
+63  HEADUNIT             OKAY       Clear Error Memory
+
+
+Result: Read error memory
+-------------------------
+
+Date      : 17.08.2023 16:39:23,773
+FB-Name   : FS_LESEN
+Duration  : 3,012 s
+Amount    : 6
+----------------------------------------------------------------------------------------------
+Adr Rude name            JobStatus  Status   
+10  ZGW                  OKAY       5 Entries
+37  AMP                  OKAY       4 Entries
+46  GZAL/WCA_V/WCM_FA    OKAY       No Entry 
+60  KOMBI                OKAY       12 Entries
+61  ECALL                OKAY       2 Entries
+63  HEADUNIT             OKAY       6 Entries
+
+
+Result: Read error memory details
+---------------------------------
+
+Date      : 17.08.2023 16:39:23,773
+FB-Name   : FS_LESEN
+Duration  : 3,026 s
+Amount    : 29
+----------------------------------------------------------------------------------------------
+Controller         :           10  ZGW - BCP_SP21 - BASIS CENTRAL PLATFORM AB SP2021
+Job State          :               OKAY
+Failure Place      :       135281  0x021071 - IPSEC_NOT_LOCKED
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           32  Configuration Error
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                0
+Environment KM          :            80405
+Environment Meter       :        80405.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098806  ERROR: Implausible Error Time
+Environment Time ms     :                0
+Environment Time Supreme:     60098806.000  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+----------------------------------------------------------------------------------------------
+Controller         :           10  ZGW - BCP_SP21 - BASIS CENTRAL PLATFORM AB SP2021
+Job State          :               OKAY
+Failure Place      :       135301  0x021085 - Secure ECU Modes: ECU not in field mode.
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           16  State Indicators
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80405
+Environment Meter       :        80405.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098806  ERROR: Implausible Error Time
+Environment Time ms     :                0
+Environment Time Supreme:     60098806.000  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :            32771 ECU_MODE: Engineering Mode 1
+
+----------------------------------------------------------------------------------------------
+Controller         :           10  ZGW - BCP_SP21 - BASIS CENTRAL PLATFORM AB SP2021
+Job State          :               OKAY
+Failure Place      :       135313  0x021091 - SecOC: Bypass aktiv - Sichere Onboard Kommunikation deaktivert
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           16  State Indicators
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                0
+Environment KM          :            80405
+Environment Meter       :        80405.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098806  ERROR: Implausible Error Time
+Environment Time ms     :                0
+Environment Time Supreme:     60098806.000  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+----------------------------------------------------------------------------------------------
+Controller         :           10  ZGW - BCP_SP21 - BASIS CENTRAL PLATFORM AB SP2021
+Job State          :               OKAY
+Failure Place      :      8395872  0x801C60 - Unknown error location
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :            0  FEHLERKLASSE unknown
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                0
+Environment KM          :            80405
+Environment Meter       :        80405.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098806  ERROR: Implausible Error Time
+Environment Time ms     :                0
+Environment Time Supreme:     60098806.000  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+----------------------------------------------------------------------------------------------
+Controller         :           10  ZGW - BCP_SP21 - BASIS CENTRAL PLATFORM AB SP2021
+Job State          :               OKAY
+Failure Place      :      8405239  0x8040F7 - JTAG, BDC-Body: Not locked
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           77  Error stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :         1024  ECU Software Error
+Occurence Counter  :            1
+Healing counter    :           41
+Statusbyte         :          06D
+1. Data Set
+Environment Amount      :                5
+Environment KM          :               -1
+Environment Meter       :               -1
+Environment Km insync   :                0
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :                0  ERROR: Implausible Error Time
+Environment Time ms     :                0
+Environment Time Supreme:                0  ERROR: Implausible Error Time
+Environment Time Insync :                0
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     out of sync, no time available
+Environment c.   1      :            16788 Main_Chorus_JTAG_Lock 1
+Environment c.   2      :            16789 Main_HSM_JTAG_Lock 1
+Environment c.   3      :            16790 Slave_Chorus_JTAG_Lock 1
+Environment c.   4      :            16791 Slave_HSM_JTAG_Lock 1
+Environment c.   5      :            16792 Safety_JTAG_Lock 1
+
+----------------------------------------------------------------------------------------------
+Controller         :           37  AMP - RAM01 - RECEIVER AUDIO MODULE
+Job State          :               OKAY
+Failure Place      :       204338  0x031E32 - Debug Ports Open
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           16  State Indicators
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80404
+Environment Meter       :            80404
+Environment Km insync   :                1
+Environment c.  BN      :              119  HEX: 077
+Environment c.  TN      :          1679119  BIN: 00011001 10011111 00001111
+Environment Time        :         60098806  ERROR: Implausible Error Time
+Environment Time ms     :               -1
+Environment Time Supreme:         60098806  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :            16389 ResponseString 3031613065386563393466636365626530663739386363633639303461313934
+
+----------------------------------------------------------------------------------------------
+Controller         :           37  AMP - RAM01 - RECEIVER AUDIO MODULE
+Job State          :               OKAY
+Failure Place      :       204425  0x031E89 - Connection to microphone 4: open circuit
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :          128  Electrical Diagnosis and Voltage Supply
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                0
+Environment KM          :            80404
+Environment Meter       :            80404
+Environment Km insync   :                1
+Environment c.  BN      :              119  HEX: 077
+Environment c.  TN      :          1679119  BIN: 00011001 10011111 00001111
+Environment Time        :         60098806  ERROR: Implausible Error Time
+Environment Time ms     :               -1
+Environment Time Supreme:         60098806  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+----------------------------------------------------------------------------------------------
+Controller         :           37  AMP - RAM01 - RECEIVER AUDIO MODULE
+Job State          :               OKAY
+Failure Place      :       204428  0x031E8C - Connection to microphone 5: open circuit
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :          128  Electrical Diagnosis and Voltage Supply
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                0
+Environment KM          :            80404
+Environment Meter       :            80404
+Environment Km insync   :                1
+Environment c.  BN      :              119  HEX: 077
+Environment c.  TN      :          1679119  BIN: 00011001 10011111 00001111
+Environment Time        :         60098806  ERROR: Implausible Error Time
+Environment Time ms     :               -1
+Environment Time Supreme:         60098806  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+----------------------------------------------------------------------------------------------
+Controller         :           37  AMP - RAM01 - RECEIVER AUDIO MODULE
+Job State          :               OKAY
+Failure Place      :     12055760  0xB7F4D0 - Mode Tracing active
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           16  State Indicators
+Occurence Counter  :          255
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                0
+Environment KM          :                0
+Environment Meter       :                0
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :               -1  ERROR: Implausible Error Time
+Environment Time ms     :               -1
+Environment Time Supreme:               -1  ERROR: Implausible Error Time
+Environment Time Insync :                0
+Time Sync Method        :                1
+Sync method info        :     RelativeTime
+Time user info          :     out of sync, no time available
+2. Data Set
+Environment Amount      :                0
+Environment KM          :                0
+Environment Meter       :                0
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :               -1  ERROR: Implausible Error Time
+Environment Time ms     :               -1
+Environment Time Supreme:               -1  ERROR: Implausible Error Time
+Environment Time Insync :                0
+Time Sync Method        :                1
+Sync method info        :     RelativeTime
+Time user info          :     out of sync, no time available
+3. Data Set
+Environment Amount      :                0
+Environment KM          :            80404
+Environment Meter       :            80404
+Environment Km insync   :                1
+Environment c.  BN      :              119  HEX: 077
+Environment c.  TN      :          1679119  BIN: 00011001 10011111 00001111
+Environment Time        :         60098806  ERROR: Implausible Error Time
+Environment Time ms     :               -1
+Environment Time Supreme:         60098806  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+----------------------------------------------------------------------------------------------
+Controller         :           60  KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+Job State          :               OKAY
+Failure Place      :       155761  0x026071 - IPSEC_NOT_LOCKED
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           77  Error stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           32  Configuration Error
+Occurence Counter  :            1
+Healing counter    :           -1
+Statusbyte         :          06D
+1. Data Set
+Environment Amount      :                0
+Environment KM          :            63433
+Environment Meter       :        63433.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         34739951  28.10.2022 04:31:45
+Environment Time ms     :              685
+Environment Time Supreme:     34739951.685  28.10.2022 04:31:46,636
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+----------------------------------------------------------------------------------------------
+Controller         :           60  KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+Job State          :               OKAY
+Failure Place      :     12056533  0xB7F7D5 - Log and Trace enabled
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           16  State Indicators
+Occurence Counter  :            1
+Healing counter    :           -1
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60093402  17.08.2023 15:09:16
+Environment Time ms     :              580
+Environment Time Supreme:     60093402.580  17.08.2023 15:09:17,531
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5900 Battery Voltage 12000 mV
+
+----------------------------------------------------------------------------------------------
+Controller         :           60  KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+Job State          :               OKAY
+Failure Place      :     12057531  0xB7FBBB - Function Instrument cluster and/or HeadUpDisplay function available to a limited extent
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :         2048  Function State Error
+Occurence Counter  :            2
+Healing counter    :           -1
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                3
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098806  ERROR: Implausible Error Time
+Environment Time ms     :              440
+Environment Time Supreme:     60098806.440  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5900 Battery Voltage 13347 mV
+Environment c.   2      :               50 ROOTCAUSE_ERROR_TRIGGER: root cause unknown 0
+Environment c.   3      :               51 FUNCTION_STATUS: Function status unknown 0
+2. Data Set
+Environment Amount      :                3
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098807  ERROR: Implausible Error Time
+Environment Time ms     :              300
+Environment Time Supreme:     60098807.300  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5900 Battery Voltage 13286 mV
+Environment c.   2      :               50 ROOTCAUSE_ERROR_TRIGGER: root cause unknown 0
+Environment c.   3      :               51 FUNCTION_STATUS: Function status unknown 0
+
+----------------------------------------------------------------------------------------------
+Controller         :           60  KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+Job State          :               OKAY
+Failure Place      :     14750842  0xE1147A - Message (Status fuel consumption engine, 0x2C4) missing, receiver instrument cluster, sender DME  DDE
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :        16384  Message Timeout
+Occurence Counter  :            1
+Healing counter    :           -1
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098807  ERROR: Implausible Error Time
+Environment Time ms     :              280
+Environment Time Supreme:     60098807.280  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5900 Battery Voltage 13327 mV
+
+----------------------------------------------------------------------------------------------
+Controller         :           60  KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+Job State          :               OKAY
+Failure Place      :     14751199  0xE115DF - Message (Field displayHooSymbol, 0x3509) missing, receiver instrument cluster, sender BCP21_GW
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :        16384  Message Timeout
+Occurence Counter  :            1
+Healing counter    :           -1
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098807  ERROR: Implausible Error Time
+Environment Time ms     :              690
+Environment Time Supreme:     60098807.690  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5900 Battery Voltage 13327 mV
+
+----------------------------------------------------------------------------------------------
+Controller         :           60  KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+Job State          :               OKAY
+Failure Place      :     14751200  0xE115E0 - Message (Field displayArrows, 0x3509) missing, receiver instrument cluster, sender BCP21_GW
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :        16384  Message Timeout
+Occurence Counter  :            1
+Healing counter    :           -1
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098807  ERROR: Implausible Error Time
+Environment Time ms     :              555
+Environment Time Supreme:     60098807.555  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5900 Battery Voltage 13367 mV
+
+----------------------------------------------------------------------------------------------
+Controller         :           60  KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+Job State          :               OKAY
+Failure Place      :     14751203  0xE115E3 - Message (Field displayLaneMarkings, 0x3509) missing, receiver instrument cluster, sender BCP21_GW
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :        16384  Message Timeout
+Occurence Counter  :            1
+Healing counter    :           -1
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098807  ERROR: Implausible Error Time
+Environment Time ms     :              635
+Environment Time Supreme:     60098807.635  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5900 Battery Voltage 13306 mV
+
+----------------------------------------------------------------------------------------------
+Controller         :           60  KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+Job State          :               OKAY
+Failure Place      :     14751206  0xE115E6 - Message (Field displayStoppingFunction, 0x3509) missing, receiver instrument cluster, sender BCP21_GW
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :        16384  Message Timeout
+Occurence Counter  :            1
+Healing counter    :           -1
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098807  ERROR: Implausible Error Time
+Environment Time ms     :              670
+Environment Time Supreme:     60098807.670  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5900 Battery Voltage 13306 mV
+
+----------------------------------------------------------------------------------------------
+Controller         :           60  KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+Job State          :               OKAY
+Failure Place      :     14751209  0xE115E9 - Message (Field displaySteeringWheel, 0x3509) missing, receiver instrument cluster, sender BCP21_GW
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :        16384  Message Timeout
+Occurence Counter  :            1
+Healing counter    :           -1
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098807  ERROR: Implausible Error Time
+Environment Time ms     :              655
+Environment Time Supreme:     60098807.655  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5900 Battery Voltage 13245 mV
+
+----------------------------------------------------------------------------------------------
+Controller         :           60  KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+Job State          :               OKAY
+Failure Place      :     14751213  0xE115ED - Message (Field StatusParkingFunctions, 0x3077) missing, receiver instrument cluster, sender hPAD/mPAD/ADCAM_low
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :        16384  Message Timeout
+Occurence Counter  :            1
+Healing counter    :           -1
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098807  ERROR: Implausible Error Time
+Environment Time ms     :              595
+Environment Time Supreme:     60098807.595  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5900 Battery Voltage 13265 mV
+
+----------------------------------------------------------------------------------------------
+Controller         :           60  KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+Job State          :               OKAY
+Failure Place      :     14751218  0xE115F2 - Message (Field displayNHA, 0x3509) missing, receiver instrument cluster, sender BCP21_GW
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :        16384  Message Timeout
+Occurence Counter  :            1
+Healing counter    :           -1
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098807  ERROR: Implausible Error Time
+Environment Time ms     :              575
+Environment Time Supreme:     60098807.575  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5900 Battery Voltage 13286 mV
+
+----------------------------------------------------------------------------------------------
+Controller         :           60  KOMBI - KOMBSP21 - INSTRUMENTENKOMBI GEN 5 BOX
+Job State          :               OKAY
+Failure Place      :     14757115  0xE12CFB - Interface DME1 (Display output power unit 2, 0x126): invalid signal
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :        32768  Signal Invalid or Undefined
+Occurence Counter  :            1
+Healing counter    :           -1
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098807  ERROR: Implausible Error Time
+Environment Time ms     :              435
+Environment Time Supreme:     60098807.435  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5900 Battery Voltage 13224 mV
+
+----------------------------------------------------------------------------------------------
+Controller         :           61  ECALL - WAVE_01 - TELEMATIC ECU WAVE
+Job State          :               OKAY
+Failure Place      :       156017  0x026171 - IPSEC_NOT_LOCKED
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           32  Configuration Error
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                0
+Environment KM          :            80405
+Environment Meter       :        80405.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098807  ERROR: Implausible Error Time
+Environment Time ms     :              835
+Environment Time Supreme:     60098807.835  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+----------------------------------------------------------------------------------------------
+Controller         :           61  ECALL - WAVE_01 - TELEMATIC ECU WAVE
+Job State          :               OKAY
+Failure Place      :     12055377  0xB7F351 - Modus: Tracing active
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :          128  Electrical Diagnosis and Voltage Supply
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                0
+Environment KM          :            80405
+Environment Meter       :        80405.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098807  ERROR: Implausible Error Time
+Environment Time ms     :              875
+Environment Time Supreme:     60098807.875  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+----------------------------------------------------------------------------------------------
+Controller         :           63  HEADUNIT - MGU_02_L - HEAD UNIT - MEDIA GRAPHICS UNIT HU-MGU_02_L
+Job State          :               OKAY
+Failure Place      :       156529  0x026371 - IPSEC_NOT_LOCKED
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           32  Configuration Error
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                0
+Environment KM          :                0
+Environment Meter       :                0
+Environment Km insync   :                0
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         52136029  17.05.2023 12:46:23
+Environment Time ms     :               10
+Environment Time Supreme:     52136029.010  17.05.2023 12:46:23,961
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+----------------------------------------------------------------------------------------------
+Controller         :           63  HEADUNIT - MGU_02_L - HEAD UNIT - MEDIA GRAPHICS UNIT HU-MGU_02_L
+Job State          :               OKAY
+Failure Place      :       156549  0x026385 - Secure ECU Modes: ECU not in field mode.
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           16  State Indicators
+Occurence Counter  :           73
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                1
+Environment KM          :            80049
+Environment Meter       :        80049.000
+Environment Km insync   :                0
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :                0  ERROR: Implausible Error Time
+Environment Time ms     :                0
+Environment Time Supreme:                0  ERROR: Implausible Error Time
+Environment Time Insync :                0
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     out of sync, no time available
+Environment c.   1      :            32771 ECU_MODE: Engineering Mode 1
+2. Data Set
+Environment Amount      :                1
+Environment KM          :            80404
+Environment Meter       :        80404.000
+Environment Km insync   :                0
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60094034  17.08.2023 15:19:48
+Environment Time ms     :              485
+Environment Time Supreme:     60094034.485  17.08.2023 15:19:49,436
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :            32771 ECU_MODE: Engineering Mode 1
+
+----------------------------------------------------------------------------------------------
+Controller         :           63  HEADUNIT - MGU_02_L - HEAD UNIT - MEDIA GRAPHICS UNIT HU-MGU_02_L
+Job State          :               OKAY
+Failure Place      :       156592  0x0263B0 - KDS: Component protection not initialized.
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           64  Commissioning and Calibration Error
+Occurence Counter  :          255
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                4
+Environment KM          :                0
+Environment Meter       :                0
+Environment Km insync   :                0
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         52136029  17.05.2023 12:46:23
+Environment Time ms     :               10
+Environment Time Supreme:     52136029.010  17.05.2023 12:46:23,961
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5989 KDS_LAST_ERR_CODE 00000000 HEX
+Environment c.   2      :             5988 KDS_OPERATION_MODE 00 HEX
+Environment c.   3      :             5987 KDS_STATES 02000000 HEX
+Environment c.   4      :             5986 KDS_ID 0101 HEX
+2. Data Set
+Environment Amount      :                4
+Environment KM          :            80405
+Environment Meter       :        80405.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60094334  17.08.2023 15:24:48
+Environment Time ms     :              475
+Environment Time Supreme:     60094334.475  17.08.2023 15:24:49,426
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :             5989 KDS_LAST_ERR_CODE 00000000 HEX
+Environment c.   2      :             5988 KDS_OPERATION_MODE 00 HEX
+Environment c.   3      :             5987 KDS_STATES 02000000 HEX
+Environment c.   4      :             5986 KDS_ID 0101 HEX
+
+----------------------------------------------------------------------------------------------
+Controller         :           63  HEADUNIT - MGU_02_L - HEAD UNIT - MEDIA GRAPHICS UNIT HU-MGU_02_L
+Job State          :               OKAY
+Failure Place      :     10969878  0xA76316 - Mode: SecureBoot Debug Keys aktiv
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           16  State Indicators
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                0
+Environment KM          :                0
+Environment Meter       :                0
+Environment Km insync   :                0
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         52136029  17.05.2023 12:46:23
+Environment Time ms     :               10
+Environment Time Supreme:     52136029.010  17.05.2023 12:46:23,961
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+----------------------------------------------------------------------------------------------
+Controller         :           63  HEADUNIT - MGU_02_L - HEAD UNIT - MEDIA GRAPHICS UNIT HU-MGU_02_L
+Job State          :               OKAY
+Failure Place      :     10969882  0xA7631A - Mode: External tracing active
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           16  State Indicators
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                0
+Environment KM          :            55807
+Environment Meter       :        55807.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         21093525  23.05.2022 05:51:19
+Environment Time ms     :              390
+Environment Time Supreme:     21093525.390  23.05.2022 05:51:20,341
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+----------------------------------------------------------------------------------------------
+Controller         :           63  HEADUNIT - MGU_02_L - HEAD UNIT - MEDIA GRAPHICS UNIT HU-MGU_02_L
+Job State          :               OKAY
+Failure Place      :     12056819  0xB7F8F3 - Mode: Internal tracing active
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :           16  State Indicators
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                0
+Environment KM          :            77799
+Environment Meter       :        77799.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         56311557  04.07.2023 20:38:31
+Environment Time ms     :              400
+Environment Time Supreme:     56311557.400  04.07.2023 20:38:32,351
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+
+
+
+Result: Clear information memory
+--------------------------------
+
+Date      : 17.08.2023 16:39:27,123
+FB-Name   : IS_LÖSCHEN
+Duration  : 2,416 s
+Amount    : 6
+----------------------------------------------------------------------------------------------
+Adr Rude name            JobStatus  Status   
+10  ZGW                  OKAY       Clear Info Memory
+37  AMP                  OKAY       Clear Info Memory
+46  GZAL/WCA_V/WCM_FA    OKAY       Clear Info Memory
+60  KOMBI                OKAY       Clear Info Memory
+61  ECALL                OKAY       Clear Info Memory
+63  HEADUNIT             OKAY       Clear Info Memory
+
+
+Result: Read information memory
+-------------------------------
+
+Date      : 17.08.2023 16:39:29,552
+FB-Name   : IS_LESEN
+Duration  : 2,718 s
+Amount    : 6
+----------------------------------------------------------------------------------------------
+Adr Rude name            JobStatus  Status   
+10  ZGW                  OKAY       1 Entry  
+37  AMP                  OKAY       No Entry 
+46  GZAL/WCA_V/WCM_FA    OKAY       No Entry 
+60  KOMBI                OKAY       No Entry 
+61  ECALL                OKAY       No Entry 
+63  HEADUNIT             OKAY       No Entry 
+
+
+Result: Read information memory details
+---------------------------------------
+
+Date      : 17.08.2023 16:39:29,552
+FB-Name   : IS_LESEN
+Duration  : 2,740 s
+Amount    : 1
+----------------------------------------------------------------------------------------------
+Controller         :           10  ZGW - BCP_SP21 - BASIS CENTRAL PLATFORM AB SP2021
+Job State          :               OKAY
+Failure Place      :      1052680  0x101008 - non-resolvable ambiguous routing - SG not in the SVT Set table
+Readyness Flag     :           16  Test conditions fulfilled
+Error present      :           13  Error present now and already stored
+Warning Flag       :          128  Error would not cause a warning lamp to light up
+F Overflow         :            0
+Errorclass         :          ---  No error class available
+Occurence Counter  :            1
+Healing counter    :            0
+Statusbyte         :           2F
+1. Data Set
+Environment Amount      :                4
+Environment KM          :            80405
+Environment Meter       :        80405.000
+Environment Km insync   :                1
+Environment c.  BN      :               -1
+Environment c.  TN      :               -1
+Environment Time        :         60098813  ERROR: Implausible Error Time
+Environment Time ms     :                0
+Environment Time Supreme:     60098813.000  ERROR: Implausible Error Time
+Environment Time Insync :                1
+Time Sync Method        :                0
+Sync method info        :     RelativeTime
+Time user info          :     insync, ms ECU overall, not comparable
+Environment c.   1      :            17156 Uneindeutigkeit_1: SG Diagnostic Address 33
+Environment c.   2      :            17157 Uneindeutigkeit_1: equivalent buses: ETHERNET 128
+Environment c.   3      :            17158 Uneindeutigkeit_2: SG Diagnostic Address 73
+Environment c.   4      :            17159 Uneindeutigkeit_2: equivalent buses: K-CAN 4
+
+
+
+Result: Read CBS Data
+---------------------
+
+Date      : 17.08.2023 16:39:32,483
+FB-Name   : CBS_DATEN_LESEN
+Duration  : 0,073 s
+Amount    : 3
+----------------------------------------------------------------------------------------------
+Adr Rude name            JobStatus  Percent Month Year Value    Unit     CBSUnit  Counter  ID  CBS                                      
+60  KOMBI                OKAY       0       12    2022 -32768   ---      1        0        3   Bremsfluessigkeit                        
+60  KOMBI                OKAY       100     1     0    -32768   ---      1        255      33  Abgasuntersuchung                        
+60  KOMBI                OKAY       0       2     2020 -4277    ---      1        0        100 Sichtpruefung/Fahrzeugcheck verknuepft   
+
+
+Result: Energy saving mode reset
+--------------------------------
+
+Date      : 17.08.2023 16:39:32,590
+FB-Name   : ENERGY_SAVE_OFF
+Duration  : 6,505 s
+----------------------------------------------------------------------------------------------
+1.  BK2010-->  OKAY
+
+
+Result: Read headunit data:
+---------------------------
+
+Date      : 17.08.2023 16:39:39,321
+FB-Name   : HU_DATEN_LESEN
+Duration  : 0,702 s
+----------------------------------------------------------------------------------------------
+Notation                                                                             Value
+Build Nummer:                                                                        BMW MGU22;MGU22_23w32.2-1-2;mgu22 
+----------------------------------------------------------------------------------------------
+Status Hardwarevariante                                                              Value
+STAT_HWVARIANTE_NAME                                                                 MGU22 HIGH-F B438 LC CN, (SoC QC8155P, 12 GB RAM, 256 GB UFS Micron, BT/WLAN, USB2, AR-CAM) 
+STAT_SGBM_IDENTIFIER                                                                 00009740 
+STAT_VERSION                                                                         005.001.005 
+STAT_VERSION_INFO                                                                    22-07 D MGU22 HW 
+----------------------------------------------------------------------------------------------
+Seriennummer DOM:                                                                    Value
+STAT_SER_NR_DOM_TEXT                                                                 HBB438N9172TC1 
+----------------------------------------------------------------------------------------------
+Map data                                                                             Value
+Mapversion text:                                                                     Road Map CHINA Joy evo 2022-10F (014082242.7.07) 
+----------------------------------------------------------------------------------------------
+MGU_02_L | HERSTELLINFO_LESEN                                                        Value
+ID_LIEF_NR                                                                           73   
+ID_LIEF_TEXT                                                                         Harman Becker Automotive Systems GmbH 
+ID_DATUM                                                                             21.02.22 
+----------------------------------------------------------------------------------------------
+MGU_02_L | STATUS_LESEN | ARG;LESEN_SYSTEMAUDIO                                      Value
+STAT_AUDIO_SYSTEM_INFO                                                               Refers to the speaker system 
+STAT_AUDIO_SYSTEM                                                                    2    
+STAT_AUDIO_SYSTEM_TEXT                                                               ALEV3 Top-HiFi 
+STAT_AUDIO_SYSTEM_RAM_INFO                                                           Audio system value sent by RAM 
+STAT_AUDIO_SYSTEM_RAM                                                                255  
+STAT_AUDIO_SYSTEM_RAM_TEXT                                                           Invalid value 
+----------------------------------------------------------------------------------------------
+MGU_02_L | STATUS_OAP                                                                Value
+STAT_OAP_TEXT_1                                                                      bª&INSTALLATION:
+succeeded: mpp_shaddow_oap_plus@3.8.32(8-17-23 7:21:3) not-running false-entries(NOT_CORRUPTED)
+planned: no entries
+failed: trigger_service(installed version 4.18.17)(8-17-23 7:20:27), ts_battery_guard(installed version 9.30.8)(8-17-23 7:12:49), ts_diagnostic_service(installed version 9.26.8)(8-17-23 7:12:49), ts_rsu_report(installed version 9.27.4)(8-17-23 7:12:49), x_call(installed version 9.82.13)(8-17-23 7:12:50), privacy_manager(installed version 10.59.0)(8-17-23 7:12:50), message_handling(installed version 9.54.19)(8-17-23 7:12:50), oap-debug-app(installed version 10.4.0)(8-17-23 7:12:50), ts_servicecall(installed version 9.27.8)(8-17-23 7:12:50), oap-cdc-2018(installed version 3.43.70)(8-17-23 7:12:50), weathercn(installed version 6.2.3)(8-17-23 7:12:50), data-collection(installed version 5.11.17)(8-17-23 7:12:51), cm_qq(installed version 9.1.8)(8-17-23 7:12:51), parking_payment(installed version 5.0.14)(8-17-23 7:20:27), intelligent_reminder(installed version 7 
+STAT_OAP_TEXT_2                                                                      .3.14)(8-17-23 7:12:51), ts_debugging(installed version 9.28.3)(8-17-23 7:12:51), smartinterior(installed version 11.0.10)(8-17-23 7:12:51), si_festival_mode(installed version 8.2.8)(8-17-23 7:12:51), oap-shop(installed version 9.7.1)(8-17-23 7:12:51), oap-driverecorder-next(installed version 10.73.0)(8-17-23 7:12:52), qlocktwo(installed version 2.0.4)(8-17-23 7:12:52), oap-license-app(installed version 10.113.1)(8-17-23 7:12:52), oap-snapshot(installed version 4.56.4)(8-17-23 7:12:52), rsu_tutorial(installed version 4.1.2)(8-17-23 7:12:52), oap_mpp_poi(installed version 2.0.9)(8-17-23 7:12:52), preactivation_homeaddress(installed version 1.1.2)(8-17-23 7:12:53), pothole-warning-china(installed version 4.0.10)(8-17-23 7:12:53), wechat-sharing-lbs-oap(installed version 3.0.0)(8-17-23 7:12:53)
+paused: no entries
+unknown: no entries
+CRASHED:
+running: mpp_shaddow_oap_plus@3.8.32 CRASH(8-17-23 7:21:7), mpp_shaddow_oap_plus@3.8.32 CRASH(8-17-23 7:21:5), mpp_shaddow_oap_plus@3.8.32 CRASH(8-17 
+STAT_OAP_TEXT_3                                                                      -23 7:20:34), mpp_shaddow_oap_plus@3.8.32 CRASH(8-17-23 7:20:33), mpp_shaddow_oap_plus@3.8.32 CRASH(8-17-23 7:20:31)
+starting: mpp_shaddow_oap_plus@3.8.32(8-17-23 7:21:7), mpp_shaddow_oap_plus@3.8.32(8-17-23 7:21:4), mpp_shaddow_oap_plus@3.8.32(8-17-23 7:20:33), mpp_shaddow_oap_plus@3.8.32(8-17-23 7:20:32), mpp_shaddow_oap_plus@3.8.32(8-17-23 7:20:31)
+DOWNLOAD:
+succeeded: mpp_shaddow_oap_plus@3.8.32(8-17-23 7:21:3), mpp_shaddow_oap_plus@3.8.32(8-17-23 7:20:34), mpp_shaddow_oap_plus@3.8.32(8-17-23 7:13:18), mpp_shaddow_oap_plus@3.8.32(8-17-23 7:12:53), mpp_shaddow_oap_plus@3.8.32(8-17-23 7:12:49)
+ 
+STAT_OAP_TEXT_4                                                                           
+----------------------------------------------------------------------------------------------
+MGU_02_L | STATUS_LESEN | ARG;DISPLAY_DETAIL_INFORMATION_EXTENDED                    Value
+STAT_DISPLAY_LOCATION_INFO                                                           Value of the location in the car 
+STAT_DISPLAY_LOCATION_WERT                                                           23360 
+STAT_PART_NR_TEXT                                                                    5A3DF03 
+STAT_SUPPLIER_NR_INFO                                                                Value of the supplier part number 
+STAT_SUPPLIER_NR_WERT                                                                4    
+STAT_SERIAL_NUMBER_INFO                                                              Value of the serial number. 
+STAT_SERIAL_NUMBER                                                                   109211092 
+STAT_PRODUCTION_YEAR_INFO                                                            Year of production of the display 
+STAT_PRODUCTION_YEAR_WERT                                                            0x21 
+STAT_PRODUCTION_MONTH_INFO                                                           Month of production of the display 
+STAT_PRODUCTION_MONTH_WERT                                                           0x09 
+STAT_PRODUCTION_DAY_INFO                                                             Day of production of the display 
+STAT_PRODUCTION_DAY_WERT                                                             0x01 
+STAT_HARDWARE_VERSION_INFO                                                           Hardware version of the display 
+STAT_HARDWARE_VERSION_WERT                                                           208  
+STAT_DISPLAY_VERSION_INFO                                                            Display version of the display 
+STAT_DISPLAY_VERSION_WERT                                                            2    
+STAT_MECHANICAL_VERSION_INFO                                                         Mechanical version of the display 
+STAT_MECHANICAL_VERSION_WERT                                                         11   
+STAT_FLASH_DATA_VERSION_INFO                                                         Flash data version of the display 
+STAT_FLASH_DATA_VERSION_WERT                                                         33040 
+STAT_SCALER_FIRMWARE_VERSION_INFO                                                    Scaler firmware version 
+STAT_SCALER_FIRMWARE_VERSION_WERT                                                    0    
+STAT_SCALER_CONFIGURATION_DATA_VERSION_INFO                                          Scaler configuration data 
+STAT_SCALER_CONFIGURATION_DATA_VERSION_WERT                                          0    
+STAT_TOUCH_FIRMWARE_VERSION_INFO                                                     Touch firmware version 
+STAT_TOUCH_FIRMWARE_VERSION_WERT                                                     53   
+STAT_TOUCH_CONFIGURATION_VERSION_INFO                                                Touch configuration version 
+STAT_TOUCH_CONFIGURATION_VERSION_WERT                                                53   
+STAT_PROXIMITY_FIRMWARE_VERSION_INFO                                                 Proximity firmware version 
+STAT_PROXIMITY_FIRMWARE_VERSION_WERT                                                 0    
+STAT_PROXIMITY_CONFIGURATION_VERSION_INFO                                            Proximity configuration version 
+STAT_PROXIMITY_CONFIGURATION_VERSION_WERT                                            0    
+_RESPONSE von Datensatz 1                                                                 
+  0000 : 62 40 11 5B 40 35 41 33   44 46 30 33 04 06 82 6D
+  0010 : D4 21 09 01 00 D0 00 02   00 0B 81 10 00 00 00 00
+  0020 : 00 00 00 00 00 00 00 35   00 00 00 35 00 00 00 00
+  0030 : 00 00 00 00                     
+----------------------------------------------------------------------------------------------
+MGU_02_L | STEUERN_ROUTINE | ARG;ARC_KALIB;RRR                                       Value
+STAT_STATUS_KALIBRIERUNG                                                             8    
+STAT_POS_X_WERT                                                                      1913 mm
+STAT_POS_Y_WERT                                                                      42 mm
+STAT_POS_Z_WERT                                                                      1335 mm
+STAT_PITCH_WERT                                                                      0 °  
+STAT_ROLL_WERT                                                                       0 °  
+STAT_YAW_WERT                                                                        0 °  
+----------------------------------------------------------------------------------------------
+MGU_02_L | DIAGTUNNELLING_UDS | 3101A1B9                                             Value
+STAT_UDS_TEXT_1                                                                           
+  0000 : 71 01 A1 B9                     
+STAT_UDS_TEXT_2                                                                      00   
+STAT_UDS_TEXT_3                                                                      00   
+STAT_UDS_TEXT_4                                                                      00   
+_RESPONSE von Datensatz 1                                                                 
+  0000 : 71 01 A1 B9                     
+
+
