@@ -72,22 +72,25 @@
 
 
 
-import itertools
-import os
-from pprint import pprint
+# import itertools
+# import os
+# from pprint import pprint
 
 
-def get_all_txt_files(directory):
-    all_txt_files = []
-    for entry in os.scandir(directory):
-        if entry.is_dir():
-            all_txt_files.extend(get_all_txt_files(entry.path))
-        elif entry.is_file() and entry.name.endswith('.txt'):
-            all_txt_files.append(entry.path)
-    return all_txt_files
+# def get_all_txt_files(directory):
+#     all_txt_files = []
+#     for entry in os.scandir(directory):
+#         if entry.is_dir():
+#             all_txt_files.extend(get_all_txt_files(entry.path))
+#         elif entry.is_file() and entry.name.endswith('.txt'):
+#             all_txt_files.append(entry.path)
+#     return all_txt_files
 
-macFilePath = '/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e19_cn/'
-# allTXTFiles = get_all_txt_files(macFilePath)
+# filePath = 'F:\\'
+# allTXTFiles = get_all_txt_files(filePath)
+
+
+
 # allTXTFiles = sorted(allTXTFiles, key=lambda x: (x.split('_')[-3], x.split('_')[-2]), reverse=True)
 
 # pprint(allTXTFiles)
@@ -102,33 +105,71 @@ macFilePath = '/Users/mrok/Documents/coder/funtext/Python/Data Analysis/brian_e1
 #     sorted_group = sorted(group, key=lambda x: (x.split('_')[-3], x.split('_')[-2]), reverse=True)
 #     result.extend(sorted_group)
 
-li = ['/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/20230818_0915/9D27145_20230818_0915_CheckIn.txt',
- '/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_R/G048/HY20900/20230818_1301/HY20900_20230818_1301_CheckIn.txt',
- '/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_R/G048/HY20900/20230818_1313/HY20900_20230818_1313_CheckOut.txt',
- '/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_C/G068/S603606/20230818_1412/S603606_20230818_1412_CheckIn.txt',
- '/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_R/G048/HY20900/20230814_1414/HY20900_20230814_1414_CheckIn.txt',
- '/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_C/G068/S603606/20230818_1426/S603606_20230818_1426_CheckOut.txt',
- '/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/20230816_1445/9D27145_20230816_1445_CheckIn.txt',
- '/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_R/G068/HY07492/20230818_1513/HY07492_20230818_1513_CheckIn.txt',
- '/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_R/G068/HY07492/20230818_1523/HY07492_20230818_1523_CheckOut.txt',
- '/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/20230816_1606/9D27145_20230816_1606_CheckIn.txt',
- '/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_C/G068/LH81514/20230817_1636/LH81514_20230817_1636_CheckOut.txt',
- '/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/20230814_1655/9D27145_20230814_1655_CheckIn.txt',
- '/Users/mrok/Documents/coder/funtext/Python/Data '
- 'Analysis/brian_e19_cn/DTSV_China_C/G068/LH81514/20230817_1731/LH81514_20230817_1731_CheckIn.txt']
+# li = ['/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/20230818_0915/9D27145_20230818_0915_CheckIn.txt',
+#  '/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_R/G048/HY20900/20230818_1301/HY20900_20230818_1301_CheckIn.txt',
+#  '/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_R/G048/HY20900/20230818_1313/HY20900_20230818_1313_CheckOut.txt',
+#  '/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_C/G068/S603606/20230818_1412/S603606_20230818_1412_CheckIn.txt',
+#  '/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_R/G048/HY20900/20230814_1414/HY20900_20230814_1414_CheckIn.txt',
+#  '/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_C/G068/S603606/20230818_1426/S603606_20230818_1426_CheckOut.txt',
+#  '/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/20230816_1445/9D27145_20230816_1445_CheckIn.txt',
+#  '/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_R/G068/HY07492/20230818_1513/HY07492_20230818_1513_CheckIn.txt',
+#  '/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_R/G068/HY07492/20230818_1523/HY07492_20230818_1523_CheckOut.txt',
+#  '/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/20230816_1606/9D27145_20230816_1606_CheckIn.txt',
+#  '/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_C/G068/LH81514/20230817_1636/LH81514_20230817_1636_CheckOut.txt',
+#  '/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_C/G048/9D27145/20230814_1655/9D27145_20230814_1655_CheckIn.txt',
+#  '/Users/mrok/Documents/coder/funtext/Python/Data '
+#  'Analysis/brian_e19_cn/DTSV_China_C/G068/LH81514/20230817_1731/LH81514_20230817_1731_CheckIn.txt']
 # pprint(result)
 
-sorted_li = sorted(li, key=lambda x: (x.split('/')[-1].split('_')[-4], x.split('_')[-3], x.split('_')[-2]), reverse=True)
-pprint(sorted_li)
+# sorted_li = sorted(allTXTFiles, key=lambda x: (x.split('\\')[-1].split('_')[-4], x.split('_')[-3], x.split('_')[-2]), reverse=True)
+# pprint(sorted_li)
+# pprint(allTXTFiles)
+
+
+
+# import os
+# import timeit
+
+# # li = []
+# def print_txt_files(directory=r'C:\\'):
+#     for subdir, dirs, files in os.walk(directory):
+#         for filename in files:
+#             if filename.endswith('.txt'):
+#                 print(os.path.join(subdir, filename))
+#                 # li.append(os.path.join(subdir, filename))
+# print(timeit.timeit(print_txt_files, number=1))
+                
+
+# # 打印C盘下的所有txt文件名
+# print_txt_files('C:\\')
+# print(li)
+
+
+# import timeit
+# from pathlib import Path
+# def k():
+#     for path in Path(r'C:\\').rglob('*.txt'):
+#         print(path.as_posix())
+
+# print(timeit.timeit(k, number=1))
+
+
+
+import timeit
+import os
+def bb():
+    os.system('dir /s /b C:\\*.txt > C:\\all_txt.txt')
+
+print(timeit.timeit(bb, number=1))
