@@ -32,13 +32,13 @@ void getTXTFiles(const char *path, FILE *fp) {
 }
 
 int main() {
-    FILE *fp = fopen("2.txt", "w");
+    FILE *fp = fopen("brianTXTFiles.txt", "w");
     if (fp == NULL) {
         perror("fopen");
         return 1;
     }
 
-    getTXTFiles("c:\\", fp);
+    getTXTFiles("\\n1920301a016.bmwgroup.net\\brian_e19_cn", fp);
 
     fclose(fp);
     return 0;
