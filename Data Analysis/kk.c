@@ -38,7 +38,8 @@ int main() {
         return 1;
     }
 
-    getTXTFiles("\\n1920301a016.bmwgroup.net\\brian_e19_cn", fp);
+    // getTXTFiles("\\\\n1920301a016.bmwgroup.net\\\\brian_e19_cn\\\\DTSV_China_C", fp);
+    getTXTFiles("F:\\VSCode Files\\Web\\notes\\Data Analysis\\brian_e19_cn", fp);
 
     fclose(fp);
     return 0;

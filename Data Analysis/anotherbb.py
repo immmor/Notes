@@ -167,9 +167,209 @@
 
 
 
-import timeit
-import os
-def bb():
-    os.system('dir /s /b C:\\*.txt > C:\\all_txt.txt')
+# import timeit
+# import os
+# def bb():
+#     os.system('dir /s /b C:\\*.txt > C:\\all_txt.txt')
 
-print(timeit.timeit(bb, number=1))
+# print(timeit.timeit(bb, number=1))
+
+
+import os
+from pprint import pprint
+# os.system('kk.exe')
+# current_dir = os.path.dirname(os.path.abspath(__file__))
+# file_path = os.path.join(current_dir, 'brianTXTFiles.txt')
+
+
+# a_file = open('car_txt.txt', 'r')
+# b_file = open('rack_txt.txt', 'r') 
+# c_file = open('c.txt', 'w')
+
+# c_file.write(a_file.read())
+# c_file.write(b_file.read())
+# c_file = open('c.txt', 'r')
+
+# data = [line.strip() for line in c_file]
+# a_file.close()
+# b_file.close()
+# c_file.close()
+
+
+
+with open('brianTXTFiles.txt') as f:
+    data = [line.strip() for line in f]
+
+
+# print(data)
+# sortedData = sorted(data, key=lambda x: (x.split('\\')[-1].split('_')[-4], x.split('_')[-3], x.split('_')[-2]), reverse=True)
+# pprint(sortedData)
+# kk = ['F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_C\\G068\\S603606\\20230818_1426\\S603606_20230818_1426_CheckOut.txt',     
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_C\\G068\\S603606\\20230818_1412\\S603606_20230818_1412_CheckIn.txt',      
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_C\\G068\\LH81514\\20230817_1731\\LH81514_20230817_1731_CheckIn.txt',      
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_C\\G068\\LH81514\\20230817_1636\\LH81514_20230817_1636_CheckOut.txt',     
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_R\\G048\\HY20900\\20230818_1313\\HY20900_20230818_1313_CheckOut.txt',     
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_R\\G048\\HY20900\\20230818_1301\\HY20900_20230818_1301_CheckIn.txt',      
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_R\\G048\\HY20900\\20230814_1414\\HY20900_20230814_1414_CheckIn.txt',      
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_R\\G068\\HY07492\\20230818_1523\\HY07492_20230818_1523_CheckOut.txt',     
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_R\\G068\\HY07492\\20230818_1513\\HY07492_20230818_1513_CheckIn.txt',      
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_C\\G048\\9D27145\\20230818_0915\\9D27145_20230818_0915_CheckIn.txt',      
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_C\\G048\\9D27145\\20230816_1606\\9D27145_20230816_1606_CheckIn.txt',      
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_C\\G048\\9D27145\\20230816_1445\\9D27145_20230816_1445_CheckIn.txt',      
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_C\\G048\\9D27145\\20230814_1655\\9D27145_20230814_1655_CheckIn.txt'] 
+# pprint(kk)
+# G048 = []
+# for i in kk:
+#     if i.split('\\')[-4] == 'G048':
+#         G048.append(i)
+
+# pprint(G048)
+
+# result = {}
+# for i in data:
+#     model = i.split('\\')[-4]
+#     if model not in result:
+#         result[model] = {}
+#     series = i.split('\\')[-5]
+#     if series not in result[model]:
+#         result[model][series] = []
+#     result[model][series].append(i)
+
+# pprint(result)
+
+
+
+
+
+# result = {}
+# for i in sorted(data, key=lambda x: (x.split('\\')[-1].split('_')[-4], x.split('_')[-3], x.split('_')[-2]), reverse=True):
+#     model = i.split('\\')[-4]
+#     if model not in result:
+#         result[model] = {}
+#     series = i.split('\\')[-5]
+#     if series not in result[model]:
+#         result[model][series] = []
+#     result[model][series].append(i)
+
+# pprint(result)
+
+# result = {}
+# for i in sorted(data, key=lambda x: (x.split('\\')[-1].split('_')[-4], x.split('_')[-3], x.split('_')[-2]), reverse=True):
+#     model, series, vin, timestamp, _ = i.split('\\')[-5:]
+#     result.setdefault(model, {}).setdefault(series, {}).setdefault(vin, {}).setdefault(timestamp, []).append(i)
+
+# pprint(result)
+
+
+
+
+result = {}
+for i in sorted(data, key=lambda x: (x.split('\\')[-1].split('_')[-4], x.split('_')[-3], x.split('_')[-2]), reverse=True):
+    model, series, vin, timestamp, _ = i.split('\\')[-5:]
+    result.setdefault(series, {}).setdefault(model, {}).setdefault(vin, []).append(i)
+
+formatted_result = {}
+for model, series_dict in result.items():
+    formatted_result[model] = {}
+    for series, vin_dict in series_dict.items():
+        formatted_result[model][series] = {}
+        for vin, files in vin_dict.items():
+            formatted_result[model][series][vin] = files
+
+# pprint(formatted_result)
+li = formatted_result['G068']['DTSV_China_R']['HY07492']
+count = 0
+
+# def kkd():
+#     for i in li:
+#         if i.split('\\')[-1].split('_')[-1] == 'CheckIn.txt':
+#             yield i.split('\\')[-2]
+#             count += 1
+#         elif i.split('\\')[-1].split('_')[-1] == 'CheckOut.txt':
+#             if li[count-1].split('\\')[-1].split('_')[-1] == 'CheckOut.txt':
+
+# pprint()
+
+nice = {
+ 'G048': {
+          'DTSV_China_C': {'9D27145':['F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_C\\G048\\9D27145\\20230818_0915\\9D27145_20230818_0915_CheckIn.txt',
+                           'F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_C\\G048\\9D27145\\20230816_1606\\9D27145_20230816_1606_CheckIn.txt',
+                           'F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_C\\G048\\9D27145\\20230816_1445\\9D27145_20230816_1445_CheckIn.txt',
+                           'F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_C\\G048\\9D27145\\20230814_1655\\9D27145_20230814_1655_CheckIn.txt']},
+          'DTSV_China_R': {'HY20900': ['F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_R\\G048\\HY20900\\20230818_1313\\HY20900_20230818_1313_CheckOut.txt',
+                           'F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_R\\G048\\HY20900\\20230818_1301\\HY20900_20230818_1301_CheckIn.txt',
+                           'F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_R\\G048\\HY20900\\20230814_1414\\HY20900_20230814_1414_CheckIn.txt']}},
+ 'G068': {
+          'DTSV_China_C': {'S603606': ['F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_C\\G068\\S603606\\20230818_1426\\S603606_20230818_1426_CheckOut.txt',
+                           'F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_C\\G068\\S603606\\20230818_1412\\S603606_20230818_1412_CheckIn.txt',
+                           'F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_C\\G068\\LH81514\\20230817_1731\\LH81514_20230817_1731_CheckIn.txt',
+                           'F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_C\\G068\\LH81514\\20230817_1636\\LH81514_20230817_1636_CheckOut.txt']},
+          'DTSV_China_R': {'HY07492': ['F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_R\\G068\\HY07492\\20230818_1523\\HY07492_20230818_1523_CheckOut.txt',
+                           'F:\\VSCode Files\\Web\\notes\\Data '
+                           'Analysis\\brian_e19_cn\\DTSV_China_R\\G068\\HY07492\\20230818_1513\\HY07492_20230818_1513_CheckIn.txt']}}
+}
+
+
+
+
+# count = result['G068']['DTSV_China_C']
+# for i in count:
+#     i.strip('\\')[-1].strip('_')[-1]
+
+# pprint(result['G068']['DTSV_China_C'])
+
+
+
+
+# sortedData = sorted(data, key=lambda x: (x.split('\\')[-1].split('_')[-4], x.split('_')[-3], x.split('_')[-2]), reverse=True)
+
+
+# {
+#     'G048': {
+#  'DTSV_China_R':[
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_R\\G048\\HY20900\\20230818_1313\\HY20900_20230818_1313_CheckOut.txt',     
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_R\\G048\\HY20900\\20230818_1301\\HY20900_20230818_1301_CheckIn.txt',      
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_R\\G048\\HY20900\\20230814_1414\\HY20900_20230814_1414_CheckIn.txt'
+#  ], 
+#  'DTSV_China_C':[
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_C\\G048\\9D27145\\20230818_0915\\9D27145_20230818_0915_CheckIn.txt',      
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_C\\G048\\9D27145\\20230816_1606\\9D27145_20230816_1606_CheckIn.txt',      
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_C\\G048\\9D27145\\20230816_1445\\9D27145_20230816_1445_CheckIn.txt',      
+#  'F:\\VSCode Files\\Web\\notes\\Data '
+#  'Analysis\\brian_e19_cn\\DTSV_China_C\\G048\\9D27145\\20230814_1655\\9D27145_20230814_1655_CheckIn.txt'
+#  ]} 
+# }
+
+
+
