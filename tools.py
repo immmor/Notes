@@ -170,6 +170,17 @@ def which_system():
     pass
 
 
+def play_audio():
+    from pydub import AudioSegment
+
+    # Load the WAV file
+    audio = AudioSegment.from_wav('F:\\VSCode Files\\Web\\notes\\1.wav')
+
+    # Play the audio in a loop
+    play(audio, loop=True)
+
+
 if __name__ == '__main__':
     claude_ai('用python写一个装饰器')
+    # play_audio()
     

@@ -249,7 +249,7 @@ def trans():
         return content
 
     
-def text2speech(text, play, folderName):
+def text2speech(text, playf, folderName):
     import platform
     # from pydub import AudioSegment
     # from pydub.playback import play
@@ -272,18 +272,23 @@ def text2speech(text, play, folderName):
     # TODO: text2speech
     with open (mp3FileName, 'wb+') as f:
         f.write(r.content)
-    if play:
+    if playf and sys.platform.startswith('darwin'):
         playsound(mp3FileName)
+    elif playf and sys.platform.startswith('win'):
+        from pydub import AudioSegment
+        from pydub.playback import play
+        audio = AudioSegment.from_file(mp3FileName)
+        playf(audio)
         # if platform.system() == 'Darwin':  # macOS
         #     playsound(mp3FileName)
         # elif platform.system() == 'Windows':  # Windows
         #     audio = AudioSegment.from_file(mp3FileName, format="mp3")
-        #     play(audio)
+        #     playf(audio)
         # else:
         #     print("Unsupported operating system.")
     
         
-def get_toutiao(play=False):
+def get_toutiao(playf=False):
     import requests, datetime, concurrent.futures
     from playsound import playsound 
     url = 'http://v.juhe.cn/toutiao/index'
@@ -312,25 +317,36 @@ def get_toutiao(play=False):
         # 报这个错的话：”TypeError: 'NoneType' object is not subscriptable“，应该是当天的额度用完了
         print(i['title'])
         titleList.append(i['title'])
-    if play:
+    if playf:
         with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
             # 将任务添加到线程池中
             for i in titleList:
-                executor.submit(text2speech, i, play=False, folderName=newsType)
+                executor.submit(text2speech, i, playf=False, folderName=newsType)
     dataInFile['result']['data'] += responseJson['result']['data']
     write_json_data(dataInFile, jsonFileName='news.json')
-    if play:
+    if playf and sys.platform.startswith('darwin'):
         nowDay = datetime.datetime.now().strftime("%Y-%m-%d")
         if os.path.exists('MP3Files/' + nowDay + '/' + newsType):
             mp3List = os.listdir('MP3Files/' + nowDay + '/' + newsType)
             print(mp3List)
             print("本文件夹共有" + str(len(mp3List)) + "个文件")
             [playsound('MP3Files/' + nowDay + '/' + newsType + '/' + i) for i in mp3List if i.endswith('.mp3')]
+    elif playf and sys.platform.startswith('win'):
+        from pydub import AudioSegment
+        from pydub.playback import play
+        # audio = AudioSegment.from_file()
+        nowDay = datetime.datetime.now().strftime("%Y-%m-%d")
+        if os.path.exists('MP3Files/' + nowDay + '/' + newsType):
+            mp3List = os.listdir('MP3Files/' + nowDay + '/' + newsType)
+            print(mp3List)
+            print("本文件夹共有" + str(len(mp3List)) + "个文件")
+            [playf(AudioSegment.from_file('MP3Files/' + nowDay + '/' + newsType + '/' + i)) for i in mp3List if i.endswith('.mp3')]
+        # playf(audio)
 
 
 if __name__ == '__main__':
-    if not os.environ.get("WERKZEUG_RUN_MAIN"):
-        get_toutiao(play=True)
+    # if not os.environ.get("WERKZEUG_RUN_MAIN"):
+    #     get_toutiao(playf=True)
     # text2speech('干一下', True, '22')
     app.run(host="0.0.0.0", debug=True, port=5000)
     # trans_google('fuck')
