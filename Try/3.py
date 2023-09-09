@@ -1,10 +1,9 @@
-import random
-
-
-with open('data.txt', 'w') as f:
-    # 循环生成10万条数据
-    for i in range(100000000):
-        # 生成随机字符串作为数据
-        data = ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5))
-        # 将数据写入文件
-        f.write(data + '\n')
+from rich.console import Console
+console = Console()
+from rich.table import Table
+table = Table()
+table.add_column('[red]test')
+table.add_column('[red]test2')
+table.add_row('[red]this is a table', '[yellow]this is a table')
+table.add_row('[red]hello', '[yellow]world')
+console.print(table)

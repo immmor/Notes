@@ -6,8 +6,10 @@
     "serve1": "vue-cli-service serve",
     "servecopy": "vue-cli-service serve --openssl-legacy-provider",
     "buildcopy": "vue-cli-service build",
-    "serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
+    "winserve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+    "winbuild": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
+    "macserve": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+    "macbuild": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
