@@ -2,105 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-<script>
-    var db;//保存数据库
-    var transaction//事务，为了保证保存失败的时候可以回滚，或者其他操作
-    var objectStore//从事务里面获取表，暂时保存表，这个生命周期很快
-    var request = window.indexedDB.open("MyTestDatabase");//开启indexedDB事件
-    const datas={
-        mydata:'keyOnly',
-        obj:{
-            a:1,
-            b:{
-                c:2,
-                d:[3,4,5]
-            }
-        }
-    }
-    const datas2={
-        mydata:'keyOnly2',
-        obj:{
-            a:1,
-            b:{
-                c:2,
-                d:[3,4,5]
-            }
-        }
-    }
-
-    request.onsuccess = function(event) {
-        // Do something with request.result!
-        db = event.target.result;
-        console.log(this.result)
-        console.log("openDb DONE");
-
-    };
-    // 该事件仅在较新的浏览器中实现了
-    request.onupgradeneeded = function(event) {
-        // 保存 IDBDataBase 接口
-        db = event.target.result;
-
-           // 为该数据库创建一个对象仓库，只有在这个生命周期中才可以创建数据表
-             var objStore =db.createObjectStore("table", { keyPath: "mydata" });
-
-             objStore.add(datas);
-
-    };
-    function add(){
-        var transaction = db.transaction(["table"], "readwrite");
-        // 在所有数据添加完毕后的处理
-        transaction.oncomplete = function(event) {
-            alert("All done!");
-        };
-
-        transaction.onerror = function(event) {
-            // 不要忘记错误处理！
-        };
-
-         objectStore = transaction.objectStore("table");
-
-        var request = objectStore.add(datas2);//事务生命周期快的很，写好的才能不报错。
-        request.onsuccess = function(event) {
-            console.log(event.target.result)
-        };
-    }
-    function search(key,table='table'){
-        db.transaction("table").objectStore("table").get(key).onsuccess = function(event) {
-            console.log( event.target.result);
-        };
-    }
-    function update(value){
-         objectStore = db.transaction(["table"], "readwrite").objectStore("table");
-        var rqt = objectStore.get("keyOnly2");
-        rqt.onsuccess = function(event) {
-            // 获取我们想要更新的数据
-            var data = event.target.result;
-
-            // 更新你想修改的数据
-            data.obj.a = value;
-
-            // 把更新过的对象放回数据库
-            var requestUpdate = objectStore.put(data);
-            requestUpdate.onerror = function(event) {
-                // 错误处理
-            };
-            requestUpdate.onsuccess = function(event) {
-                // 完成，数据已更新！
-                console.log('successs')
-            };
-        };
-    }
-    function del(key){
-        var objectStore = db.transaction(["table"], "readwrite").objectStore("table")
-        var rqt = objectStore.delete(key);
-        rqt.onsuccess = function(event) {
-           console.log('删除成功')
-        };
-
-    }
-</script>
+    
 </body>
 </html>
