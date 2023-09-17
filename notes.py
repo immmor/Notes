@@ -347,6 +347,4 @@ def get_toutiao(playf=False):
 if __name__ == '__main__':
     # if not os.environ.get("WERKZEUG_RUN_MAIN"):
     #     get_toutiao(playf=True)
-    # text2speech('干一下', True, '22')
     app.run(host="0.0.0.0", debug=True, port=5000)
-    # trans_google('fuck')
