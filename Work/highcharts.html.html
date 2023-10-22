@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href="https://www.highcharts.com/highslide/highslide.css" rel="stylesheet" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://code.highcharts.com/6/highcharts.js"></script>
+        <script type="text/javascript" src="https://code.highcharts.com/6/highcharts-more.js"></script>
+        <script type="text/javascript" src="https://code.highcharts.com/6/modules/heatmap.js"></script>
+        <script type="text/javascript" src="https://code.highcharts.com/6/modules/exporting.js"></script>
+    </head>
+    <body style="margin:0;padding:0">
+                <div id="container" style="width:750px;height:600px;">Loading....</div>
+
+
+    <script>
+        $(function(){
+
+
+
+
+
+            Highcharts.setOptions({"global": {}, "lang": {}});
+            var option = {"chart": {"renderTo": "container", "width": 750, "height": 600}, "colors": {}, "credits": {"enabled": false}, "drilldown": {}, "exporting": {}, "labels": {}, "legend": {"layout": "vertical", "align": "right", "verticalAlign": "top", "x": -40, "y": 80, "floating": true, "borderWidth": 1, "backgroundColor": ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'), "shadow": true}, "loading": {}, "navigation": {}, "pane": {}, "plotOptions": {"bar": {"dataLabels": {"enabled": true}}}, "series": {}, "subtitle": {"text": "Source: <a href=\"https://en.wikipedia.org/wiki/World_population\">Wikipedia.org</a>"}, "title": {"text": "Stacked bar chart"}, "tooltip": {"valueSuffix": " millions"}, "xAxis": {"categories": ["Africa", "America", "Asia", "Europe", "Oceania"], "title": {"text": null}}, "yAxis": {"min": 0, "title": {"text": "Population (millions)", "align": "high"}, "labels": {"overflow": "justify"}}};
+
+
+ 
+
+            var chart = new Highcharts.Chart(option);
+
+            var data = [{"data": [107, 31, 635, 203, 2], "type": "bar", "name": "Year 1800"}, {"data": [133, 156, 947, 408, 6], "type": "bar", "name": "Year 1900"}, {"data": [973, 914, 4054, 732, 34], "type": "bar", "name": "Year 2008"}, {"data": [1052, 954, 4250, 740, 38], "type": "bar", "name": "Year 2012"}];
+            var dataLen = data.length;
+            for (var ix = 0; ix < dataLen; ix++) {
+                chart.addSeries(data[ix]);
+            }
+ 
+
+
+
+
+
+
+
+        
+    });
+        </script>
+
+    </body>
+</html>
