@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+  <script src="tex-chtml.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> -->
+  <script src="marked.js"></script>
+</head>
+<body>
+    <p>
+        When $a \ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are
+        $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+    </p>
+    <hr>
+    <div id="content" ></div>
+    <script>
+        MathJax = {
+            tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+        };
+        // 1. 调用 parse 方法，将对应的 markdown 文本内容转译为 html 页面；
+  	    let parsedHtml = marked.parse(`When $a \\ne 0$, there are two solutions to $ax^2 + bx + c = 0$ and they are
+        $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$`);
+        document.getElementById('content').innerHTML = parsedHtml; // 新增页面
+        // 2. 执行 mathjax 渲染
+        MathJax.typeset();
+    </script>
+</body>
+</html>

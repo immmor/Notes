@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Marked in the browser</title>
+  <script src="marked.js"></script>
+</head>
+<body>
+    <div id="content"></div>
+    <script>
+        // 1. 调用 parse 方法，将对应的 markdown 文本内容转译为 html 页面；
+        let parsedHtml = marked.parse('# Marked in browser\n\nRendered by **marked**.');
+        document.getElementById('content').innerHTML = parsedHtml;
+    </script>
+</body>
+</html>
