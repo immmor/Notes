@@ -2,7 +2,7 @@
     <div class="pg-header"></div>
     <div class="pg-body">
         <div class="left-menu">
-            <router-link v-for="item in routerList" :to="{name: 'basic'}">{{item.title}}</router-link>
+            <router-link :key="item.name" v-for="item in routerList" :to="{name: item.name}">{{item.meta.title}}</router-link>
         </div>
         <div class="right-content" style="flex-grow:1">
             <router-view></router-view>
@@ -13,17 +13,18 @@
 <script setup>
 import {computed} from "vue";
 import {useRouter} from "vue-router";
+import {useStore} from "vuex";
 
 const router = useRouter();
+const store = useStore();
 const routerList = computed(() => {
     // let role = store.state.role;
-    // let routerData = router.getRoutes().filter(item => {
-    //     if (item.meta.title && item.meta.role.indexOf(role) !== -1) {
-    //         return item;
-    //     }
-    // })
-    console.log(router);
-    return [];
+    let totalRouteList = router.getRoutes();
+    return totalRouteList.filter(item => {
+        if (item.meta.is_menu && item.meta.role.indexOf(store.state.role) !== -1) {
+            return true;
+        }
+    })
 })
 </script>
 
