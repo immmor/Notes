@@ -19,12 +19,19 @@
     * {
         font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
     }
+
+    .title:hover {
+        background: linear-gradient(to right, red, blue);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
     
     .title {
         font-weight: bold;
         font-size: xx-large;
         text-align: center;
         padding-top: 20px;
+        transition: background-color 0.5s;
     }
 
     .subtitle {

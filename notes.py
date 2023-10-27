@@ -6,6 +6,11 @@ from tools import claude_ai, get_json_data, write_json_data, trans_youdao
 app = Flask(__name__, template_folder='./', static_folder='')
 
 
+@app.route('/', methods=['GET'])
+def hello():
+    return render_template('HTML/hello.html')
+
+
 @app.route('/ai', methods=['GET'])
 def ai():
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -345,6 +350,8 @@ def get_toutiao(playf=False):
 
 
 if __name__ == '__main__':
-    # if not os.environ.get("WERKZEUG_RUN_MAIN"):
-    #     get_toutiao(playf=True)
+    import webbrowser
+    if not os.environ.get("WERKZEUG_RUN_MAIN"):
+        webbrowser.open("http://127.0.0.1:5000/")
+        # get_toutiao(playf=True)
     app.run(host="0.0.0.0", debug=True, port=5000)
