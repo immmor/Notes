@@ -28,7 +28,7 @@ function test(interval=3000){
     function startTest(){
         // document.write('<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>');
         // document.write('<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>');
-        var problems = getJSON('gradProb.json');
+        var problems = getJSON('../../Others/gradProb.json');
         var probLength = problems.length;
         // alert(probLength)
         var indexList = [];

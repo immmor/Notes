@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, jsonify
 from tools import claude_ai, get_json_data, write_json_data, trans_youdao
 
 # os.chdir(sys.path[0])  # 把现在的工作路径切换到当前文件夹
-app = Flask(__name__, template_folder='./', static_folder='')
+app = Flask(__name__, template_folder='./', static_folder='Statics')
 
 
 @app.route('/', methods=['GET'])
@@ -15,51 +15,51 @@ def hello():
 def ai():
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(now)
-    visitRawData = get_json_data('visit.json')
+    visitRawData = get_json_data('Statics/Others/visit.json')
     # print(visitRawData)
     visitRawData['人工智能'][1]['访问时间'].append(now)
     visitRawData['人工智能'][0] = len(visitRawData['人工智能'][1]['访问时间'])
-    write_json_data(visitRawData, jsonFileName='visit.json')
+    write_json_data(visitRawData, jsonFileName='Statics/Others/visit.json')
     # print(visitRawData)
 	# 传递的是读取的文件的字符串
-    return render_template('graduateAI.html')
+    return render_template('Statics/Html/graduateAI.html')
 
 
 @app.route('/math', methods=['GET'])
 def math():
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    visitRawData = get_json_data('visit.json')
+    visitRawData = get_json_data('Statics/Others/visit.json')
     # print(visitRawData)
     visitRawData['数学'][1]['访问时间'].append(now)
     visitRawData['数学'][0] = len(visitRawData['数学'][1]['访问时间'])
-    write_json_data(visitRawData, jsonFileName='visit.json')
+    write_json_data(visitRawData, jsonFileName='Statics/Others/visit.json')
     # print(visitRawData)
-    return render_template('graduateMath.html')
+    return render_template('Statics/Html/graduateMath.html')
 
 
 @app.route('/poli', methods=['GET'])
 def poli():
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    visitRawData = get_json_data('visit.json')
+    visitRawData = get_json_data('Statics/Others/visit.json')
     # print(visitRawData)
     visitRawData['政治'][1]['访问时间'].append(now)
     visitRawData['政治'][0] = len(visitRawData['政治'][1]['访问时间'])
-    write_json_data(visitRawData, jsonFileName='visit.json')
+    write_json_data(visitRawData, jsonFileName='Statics/Others/visit.json')
     # print(visitRawData)
-    return render_template('graduatePolitics.html')
+    return render_template('Statics/Html/graduatePolitics.html')
 
 
 @app.route('/eng', methods=['GET'])
 def eng():
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    visitRawData = get_json_data('visit.json')
+    visitRawData = get_json_data('Statics/Others/visit.json')
     # visitRawData = copy.deepcopy(get_json_data('visit.json'))
     # print(visitRawData)
     visitRawData['英语'][1]['访问时间'].append(now)
     visitRawData['英语'][0] = len(visitRawData['英语'][1]['访问时间'])
-    write_json_data(visitRawData, jsonFileName='visit.json')
+    write_json_data(visitRawData, jsonFileName='Statics/Others/visit.json')
     # print(visitRawData)
-    return render_template('graduateEnglish.html')
+    return render_template('Statics/Html/graduateEnglish.html')
 
 
 @app.route('/changeFalseNumber', methods=['POST', 'GET'])
@@ -91,7 +91,7 @@ def login():
     username = request.form['username']
     password = request.form['password']
     subjectName = request.form['subjectName']
-    userRawData = get_json_data('userinfo.json')
+    userRawData = get_json_data('Statics/Others/userinfo.json')
     print("登录" + subjectName, username, password)
     for i in userRawData['家庭信息']:
         if (username == i['登录名'] and password == i['密码']):
@@ -99,7 +99,7 @@ def login():
             result = 'success'
             print(result)
             i["登陆时间"].append(now + ' ' + subjectName)
-            write_json_data(userRawData, jsonFileName='userinfo.json')
+            write_json_data(userRawData, jsonFileName='Statics/Others/userinfo.json')
             break
         else:
             result = 'fail'
@@ -113,7 +113,7 @@ def pay():
     payPassword = request.form['payPassword']
     payPoints = request.form['payPoints']
     print(payPassword)
-    userRawData = get_json_data('userinfo.json')
+    userRawData = get_json_data('Statics/Others/userinfo.json')
     for i in userRawData['家庭信息']:
         if (username == i['登录名'] and password == i['密码']):
             print(i['余额'])
@@ -124,13 +124,13 @@ def pay():
                     i['余额'] -= int(payPoints)
                     print(i['余额'])
                     i['可查看答案'] = '是'
-                    write_json_data(userRawData, jsonFileName='userinfo.json')
+                    write_json_data(userRawData, jsonFileName='Statics/Others/userinfo.json')
                     result = 'success'
     return result
 
 
 def essayGenerator():
-    essayEnglish = get_json_data('essayEnglish.json')
+    essayEnglish = get_json_data('Statics/Others/essayEnglish.json')
     essay = essayEnglish['essay']
     a = 0
     while a + 3 <= len(essay) - 2:
@@ -185,10 +185,10 @@ def ai_generate_essay():
     jsonResult = json.loads(result)
     print(jsonResult)
 
-    content = get_json_data('essayEnglish.json')
+    content = get_json_data('Statics/Others/essayEnglish.json')
     content['essay'].append(jsonResult)
     print(content['essay'])
-    write_json_data(content, 'essayEnglish.json')
+    write_json_data(content, 'Statics/Others/essayEnglish.json')
 
     # pattern = r"{(.*?)}"
     # match = re.search(pattern, result)
@@ -201,7 +201,7 @@ def ai_generate_essay():
 def check_result():
     username = request.form['username']
     password = request.form['password']
-    userRawData = get_json_data('userinfo.json')
+    userRawData = get_json_data('Statics/Others/userinfo.json')
     for i in userRawData['家庭信息']:
         if (username == i['登录名'] and password == i['密码']):
             if i['可查看答案'] == '是':
@@ -216,9 +216,9 @@ def check_result():
 @app.route('/chat', methods=['POST', 'GET'])
 def chat():
     inputContent = request.form['inputContent']
-    chatRawData = get_json_data('chat.json')
+    chatRawData = get_json_data('Statics/Others/chat.json')
     chatRawData['聊天内容'].append(inputContent)
-    write_json_data(chatRawData, jsonFileName='chat.json')
+    write_json_data(chatRawData, jsonFileName='Statics/Others/chat.json')
     return inputContent
 
 
@@ -302,7 +302,7 @@ def get_toutiao(playf=False):
     # myInterestsCategoryList = ['top', 'guoji', 'junshi', 'keji']
     # categoryGen = (i for i in categoryList)
     # category = next(categoryGen)
-    dataInFile = get_json_data('news.json')
+    dataInFile = get_json_data('Statics/Others/news.json')
     today = str(datetime.datetime.now()).split(' ')[0]
     if today not in dataInFile['usedIndex']:
         dataInFile['usedIndex'][today] = 0
@@ -328,7 +328,7 @@ def get_toutiao(playf=False):
             for i in titleList:
                 executor.submit(text2speech, i, playf=False, folderName=newsType)
     dataInFile['result']['data'] += responseJson['result']['data']
-    write_json_data(dataInFile, jsonFileName='news.json')
+    write_json_data(dataInFile, jsonFileName='Statics/Others/news.json')
     if playf and sys.platform.startswith('darwin'):
         nowDay = datetime.datetime.now().strftime("%Y-%m-%d")
         if os.path.exists('MP3Files/' + nowDay + '/' + newsType):
