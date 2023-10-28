@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <title>2023考研数二学习笔记</title>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+    <!-- <script type="text/javascript" src="Statics/JavaScripts/Others/tex-mml-chtml.js"></script> -->
     <!-- <script src="mathJax.js"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script> -->
-    <script src="https://unpkg.com/d3@3/d3.min.js"></script>
-    <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script>
-    <script src="sylvester.js"></script>
+    <!-- <script src="https://unpkg.com/d3@3/d3.min.js"></script>
+    <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script> -->
+    <!-- <script src="sylvester.js"></script> -->
     <!-- <script src="{{url_for('static', filename ='randomTest.js')}}"></script> -->
     <script src="randomTest.js"></script>
 </head>
@@ -60,6 +61,11 @@
             2023考研数二学习笔记
         </div>
         <!-- <div class="fuck">fuck</div> -->
+
+        <!-- <p>
+            When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+            \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
+        </p> -->
     
         <!--    `公式的内容`  ，这个是这个 js 中默认的 公式的开始和结束方式-->
         <div class="advancedMath formula">
@@ -162,10 +168,12 @@
 
     $(document).ready(function() {
         plot();
+        // matr();
     });
 
     $(window).resize(function() {
         plot();
+        // matr();
     });
 </script>
 

@@ -8,7 +8,7 @@ app = Flask(__name__, template_folder='./', static_folder='')
 
 @app.route('/', methods=['GET'])
 def hello():
-    return render_template('HTML/hello.html')
+    return render_template('Statics/Html/hello.html')
 
 
 @app.route('/ai', methods=['GET'])
