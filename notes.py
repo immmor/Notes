@@ -352,6 +352,6 @@ def get_toutiao(playf=False):
 if __name__ == '__main__':
     import webbrowser
     if not os.environ.get("WERKZEUG_RUN_MAIN"):
-        webbrowser.open("http://127.0.0.1:5000/")
+        webbrowser.open("http://127.0.0.1:250/")
         # get_toutiao(playf=True)
-    app.run(host="0.0.0.0", debug=True, port=5000)
+    app.run(host="0.0.0.0", debug=True, port=250)
