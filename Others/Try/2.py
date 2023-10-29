@@ -1,24 +1,20 @@
-from concurrent.futures import ThreadPoolExecutor
-from Web.Notes.tools import claude_ai
+import pytesseract, pyautogui
+from PIL import ImageGrab
+import os
 
-def execute_code(code):
-    result = claude_ai(code)
-    return result
 
-# 定义要执行的代码列表
-code_list = [
-    '1+1等于几',
-    '3+1等于几',
-    '2+1等于几',
-    '1+5等于几'
-]
-
-# 创建线程池
-with ThreadPoolExecutor() as executor:
-    # 提交任务给线程池并获取Future对象
-    futures = [executor.submit(execute_code, code) for code in code_list]
-
-    # 获取并打印执行结果
-    for future in futures:
-        result = future.result()
-        print(result)
+while True:
+    # 获取屏幕截图
+    # print(pyautogui.position())
+    screenshot = ImageGrab.grab(bbox=(922, 413, 1226, 693))
+    # 将截图转换为灰度图像
+    screenshot = screenshot.convert("L")
+    # 使用 PyTesseract 进行文字识别
+    text = pytesseract.image_to_string(screenshot, lang='chi_sim')
+    # 输出识别结果
+    print(text)
+    
+    # 删除截图文件
+    # screenshot_path = 'screenshot.png'  # 截图文件保存路径
+    # if os.path.exists(screenshot_path):
+    #     os.remove(screenshot_path)
