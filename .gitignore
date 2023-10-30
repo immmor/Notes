@@ -2,6 +2,6 @@
 /MP3Files
 /KKIV
 /.buildozer
-/Try
+*Try
 /TryDjango
 .DS_Store

@@ -10,8 +10,14 @@
     <!-- <script src="https://unpkg.com/d3@3/d3.min.js"></script> -->
     <!-- <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script> -->
     <!-- <script src="{{url_for('static', filename ='randomTest.js')}}"></script> -->
-    <script src="{{url_for('static', filename ='JavaScripts/Mine/randomTest.js')}}"></script>
     <script src="{{url_for('static', filename ='JavaScripts/Others/jquery.js')}}"></script>
+    <script src="{{url_for('static', filename ='JavaScripts/Mine/randomTest.js')}}"></script>
+    <script src="{{url_for('static', filename ='JavaScripts/Mine/tools.js')}}"></script>
+    <script src="{{url_for('static', filename ='JavaScripts/Others/marked.js')}}"></script>
+    <script src="{{url_for('static', filename ='JavaScripts/Others/md5.js')}}"></script>
+
+    <link rel="stylesheet" href="{{url_for('static', filename ='CSS/login.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename ='CSS/tools.css')}}">
     <!-- <script src="jquery.js"></script>
     <script src="randomTest.js"></script> -->
     <title>考研政治</title>
@@ -86,9 +92,6 @@
     }
 
     .notes {
-        /* text-align: center; */
-        /* padding-top: 15px; */
-        /* font-size: x-large; */
         padding-top: 10px;
         display: none;
     }
@@ -102,6 +105,32 @@
 </style>
 
 <body>
+    <div class="logout" id="logout" onclick="logout()">登出</div>
+
+    <!-- 登录 -->
+    <div class="log login" id="login">
+        <!-- <div class="login-box">
+            <h2>登  录</h2>
+            <form>
+                <div class="user-box">
+                    <input type="text" id="username">
+                    <label>用户名</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" id="passwordid">
+                    <label>密码</label>
+                </div>
+                <div class="register" id="registerInLogin" onclick="register()">新用户注册</div>
+                <a id="submit">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    提 交
+                </a>
+            </form>
+        </div> -->
+    </div>
     <div class="title">
         2023考研政治学习笔记
     </div>
@@ -110,7 +139,6 @@
     <div class="exam exam1">
         <div class="examTitle">
             肖八(一)
-            <!-- <div class="openClose">开关</div> -->
         </div>
         <div class="myAnswer yi1">
             <div class="grid-container">
@@ -326,6 +354,9 @@
 
 <script>
     // test(300000);
+    var subjectName = '政治'
+    loginin()
+
     var notesContent = ['1、马克思主义的鲜明特征是科学性与革命性的统一。',
                         '2、时间离不开物质运动。',
                         '3、马克思经济学说的核心内容和基石是剩余价值理论。',

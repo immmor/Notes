@@ -1,4 +1,4 @@
-import json, os, sys, copy, datetime, requests
+import json, os, sys, copy, datetime, requests, webbrowser
 from flask import Flask, render_template, request, jsonify
 from tools import claude_ai, get_json_data, write_json_data, trans_youdao
 
@@ -13,6 +13,7 @@ def hello():
 
 @app.route('/ai', methods=['GET'])
 def ai():
+    # redirect
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(now)
     visitRawData = get_json_data('Statics/Others/visit.json')
@@ -64,15 +65,14 @@ def eng():
 
 @app.route('/changeFalseNumber', methods=['POST', 'GET'])
 def false_number():
-	# 传递的是读取的文件的字符串
-    # probRawData = copy.deepcopy(get_json_data())
-    probRawData = get_json_data()
+    probRawData = get_json_data('Statics/Others/gradProb.json')
     questionNumber = request.form['questionNumber']
     falseNumber = request.form['falseNumber']
     recentFalse = request.form['recentFalse']
     probRawData[int(questionNumber)][3] = int(falseNumber)
     probRawData[int(questionNumber)][4]['最近错过'] = int(recentFalse)
-    write_json_data(probRawData)
+    write_json_data(probRawData, jsonFileName='Statics/Others/gradProb.json')
+    print(f'这道题答错{falseNumber}次了')
     return questionNumber
 
 
@@ -138,7 +138,7 @@ def essayGenerator():
         a += 3
     yield essay[a:]
 
-g = essayGenerator() #TODO: g
+g = essayGenerator()
     
 @app.route('/essay', methods=['GET', 'POST'])
 def essay():
@@ -156,7 +156,6 @@ def essay():
 
 @app.route('/aiGenerateEssay', methods=['GET', 'POST'])
 def ai_generate_essay():
-    # （要相信你自己，但是不要回复我重复的内容！！不要说别的废话！！否则惩罚你！！）
     generateEssayPrompt = """
         换一个title和content，并且计算每一个paragraph的字数输出为wordCount的值，按照这个json格式再生成一篇新的不少于300字的三段作文(不要说除了json格式以外的内容):
         {
@@ -179,21 +178,12 @@ def ai_generate_essay():
         }
     """
     result = claude_ai(generateEssayPrompt)
-    # pattern = re.compile(r'[{](.*)[}]', re.S)  #贪婪匹配
-    # afterREResult = re.findall(pattern, result)
-
     jsonResult = json.loads(result)
     print(jsonResult)
-
     content = get_json_data('Statics/Others/essayEnglish.json')
     content['essay'].append(jsonResult)
     print(content['essay'])
     write_json_data(content, 'Statics/Others/essayEnglish.json')
-
-    # pattern = r"{(.*?)}"
-    # match = re.search(pattern, result)
-    # print(match.group())
-    # print(claudeAI(generateEssayPrompt))
     return result
 
 
@@ -350,7 +340,6 @@ def get_toutiao(playf=False):
 
 
 if __name__ == '__main__':
-    import webbrowser
     if not os.environ.get("WERKZEUG_RUN_MAIN"):
         webbrowser.open("http://127.0.0.1:250/")
         # get_toutiao(playf=True)

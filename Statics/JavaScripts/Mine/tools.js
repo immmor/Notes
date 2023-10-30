@@ -1,9 +1,6 @@
-// document.write('<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>');
-document.write('<script src="../Others/jquery.js"></script>');
-
-// document.write('<script src="tools.js"></script>');
-// document.write('<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>');
-// document.write('<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>');
+// document.write('<script src="{{url_for("static", filename ="JavaScripts/Others/jquery.js")}}"></script>');
+document.write('<script src="Statics/JavaScripts/Others/jquery.js"></script>');
+document.write('<script src="Statics/JavaScripts/Others/tex-mml-chtml.js"></script>');
 
 /**
  * @type {string} fileLocation - 文件路径
@@ -27,18 +24,13 @@ function getJSON(fileLocation) {
 function test(interval=3000){
     startTest();
     setInterval(startTest, interval);
-    // alert(problems[0][0]);
     function startTest(){
-        // document.write('<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script>');
-        // document.write('<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>');
-        var problems = getJSON('../../Others/gradProb.json');
+        var problems = getJSON('/Statics/Others/gradProb.json');
         var probLength = problems.length;
-        // alert(probLength)
         var indexList = [];
 
         // 推荐算法 根据之前的错误率来推荐，还没算上最近的错误率
         for (var i = 0; i < probLength; i++){
-            // indexList.push(i);
             if (problems[i][3] == 0) {
                 for (var j = 0; j < problems[i][3] + 1; j++){
                     indexList.push(i);
@@ -50,15 +42,12 @@ function test(interval=3000){
             }
         }
 
-        // alert(indexList)
         randomIndexListIndex = Math.round(Math.random()*(indexList.length));
         var randomProblemsIndex = indexList[randomIndexListIndex]
-        // alert(randomProblemsIndex)
         var oneProblem = problems[randomProblemsIndex]
         var correctAnswer = oneProblem[2];
         var falseNumber = oneProblem[3];
         var recentFalse = oneProblem[4].最近错过;
-        // alert(typeof(recentFalse))
 
         var divTest = document.createElement('div');
         document.body.appendChild(divTest);
@@ -74,7 +63,7 @@ function test(interval=3000){
         popTest.style.display = 'inline-block';
 
         var beginDate = new Date();
-        var endDate = new Date('2022/12/24 0:0:1');
+        var endDate = new Date('2023/12/24 0:0:1');
         var days = (endDate - beginDate) / (1000 * 60 * 60 * 24);
         var divCountDown = document.createElement('div');
         popTest.appendChild(divCountDown);
@@ -94,8 +83,8 @@ function test(interval=3000){
         question.innerHTML = oneProblem[0];
         question.style.textAlign = 'center';
         question.style.fontSize = '20px';
-        // question.style.paddingTop = '39%';
-        question.style.marginTop = '39%';
+        question.style.marginTop = '25%';
+        // question.style.marginBottom = '29%';
 
         var divFalseTimes = document.createElement('div');
         divFalseTimes.id = 'idFalseTimes';
@@ -199,6 +188,57 @@ function getJSON(fileLocation) {
     return result
 }
 
+function loginin() {
+    document.getElementById("login").innerHTML = '<div class="login-box"><h2>登  录</h2><form><div class="user-box"><input type="text" id="username"><label>用户名</label></div><div class="user-box"><input type="password" id="passwordid"><label>密码</label></div><div class="register" id="registerInLogin" onclick="register()">新用户注册</div><a id="submit"><span></span><span></span><span></span><span></span>提 交</a></form></div>'
+    if (document.cookie == '') {
+        document.getElementById('logout').style.display = 'none';
+        document.getElementById('login').style.display = 'block';
+        $('#submit').click(function() { //点击按钮
+            var username = hex_md5(document.getElementById('username').value)
+            var password = hex_md5(document.getElementById('passwordid').value)
+            $.post('/login', {
+                username: username,
+                password: password,
+                subjectName: subjectName
+            }).then(function(response) {
+                    if (response == 'fail') {
+                        alert('用户名密码不存在')
+                    }else {
+                        setCookie(username, password, 10)
+                        document.getElementById('login').style.display = 'none';
+                        document.getElementById('logout').style.display = 'block';
+                    }
+            });
+        })
+    }else {
+        document.getElementById('logout').style.display = 'block';
+        cookie = document.cookie
+        cookieList = cookie.split('=')
+        $.post('/login', {
+            username: cookieList[0],
+            password: cookieList[1],
+            subjectName: subjectName
+        })
+    }
+}
+
+function logout() {
+    clearCookie(document.cookie.split("=")[0]);
+    location.reload();
+}
+
+function setCookie(cname, cvalue, exdays){
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 60 * 60 * 1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+// 删除cookie
+function clearCookie(name) {
+    setCookie(name, "", -1);
+}
+
 function notify() {
     var divNotify = document.createElement('div');
     document.body.appendChild(divNotify);
@@ -209,10 +249,8 @@ function notify() {
     notify.style.width = '300px';
     notify.style.height = '80px';
     notify.style.display = 'flex';
-    // notify.style.placeItems = 'center';
     notify.style.justifyContent = 'center';
     notify.style.alignItems = 'center';
-    // notify.style.
     notify.style.textAlign = 'center';
     notify.style.backgroundColor = 'red';
     notify.style.top = '2%';

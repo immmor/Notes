@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.0/dist/jquery.min.js"></script> -->
-    <!-- <script src="../JavaScripts/Others/jquery.js"></script> -->
-    <!-- <script src="https://unpkg.com/d3@3/d3.min.js"></script> -->
-    <!-- <script src="https://unpkg.com/function-plot@1/dist/function-plot.js"></script> -->
+
     <script src="{{url_for('static', filename ='JavaScripts/Others/jquery.js')}}"></script>
     <script src="{{url_for('static', filename ='JavaScripts/Mine/randomTest.js')}}"></script>
+    <script src="{{url_for('static', filename ='JavaScripts/Mine/tools.js')}}"></script>
     <script src="{{url_for('static', filename ='JavaScripts/Others/marked.js')}}"></script>
-    <!-- <script src="../JavaScripts/Others/md5.js"></script>
-    <script src="../JavaScripts/Mine/randomTest.js"></script> -->
-    <!-- <script src="marked.js"></script> -->
+    <script src="{{url_for('static', filename ='JavaScripts/Others/md5.js')}}"></script>
+
+    <link rel="stylesheet" href="{{url_for('static', filename ='CSS/login.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename ='CSS/tools.css')}}">
     <title>考研英语</title>
 </head>
 <style>
@@ -37,22 +35,9 @@
     }
 
     .subtitle {
-        /* font-weight: bold; */
         font-size: large;
         text-align: center;
         padding-top: 6px;
-    }
-
-    .login {
-        position: fixed;
-        right: 80px;
-        top: 40px;
-        border: 1px solid;
-        padding: 1px;
-        /* background-color: rgb(78, 226, 33); */
-        cursor: pointer;
-        transition: background-color .5s;
-        /* display: none; */
     }
 
     .generateEssay {
@@ -61,78 +46,13 @@
         top: 100px;
         border: 1px solid;
         padding: 1px;
-        /* background-color: rgb(78, 226, 33); */
         cursor: pointer;
         transition: background-color .5s;
-        /* display: none; */
-    }
-
-    .login:hover {
-        background-color: rgb(219, 33, 226); 
     }
 
     .generateEssay:hover {
         background-color: rgb(78, 226, 33); 
     }
-
-    .logout {
-        position: fixed;
-        right: 80px;
-        top: 40px;
-        border: 1px solid;
-        padding: 1px;
-        /* background-color: rgb(78, 226, 33); */
-        cursor: pointer;
-        transition: background-color .5s;
-        display: none;
-    }
-
-    .logout:hover {
-        background-color: rgb(208, 21, 21); 
-    }
-
-    .loginPage {
-        position: fixed;
-        right: 80px;
-        top: 90px;
-        border: 1px solid;
-        padding: 1px;
-        background-color: rgb(202, 209, 200);
-        display: inline-block;
-        /* cursor: pointer; */
-        display: none;
-    }
-
-    .logger {
-        /* display: inline-block; */
-        display: block;
-    }
-
-    .letsgo {
-        cursor: pointer;
-        /* float: right; */
-        /* margin-right: 0; */
-        /* right: 0; */
-        /* margin-left: 100%; */
-        /* left: 100%; */
-        /* border-left: 100%; */
-
-        font-size: 14px;
-        text-align: center;
-        /* display: inline-block; */
-        /* position: relative;
-        right: 0; */
-        /* position: absolute;
-        right: 0; */
-    }
-
-    /* .username {
-        display: inline-block;
-    }
-
-    .password {
-        display: inline-block;
-    } */
 
     .comment {
         position: fixed;
@@ -142,7 +62,6 @@
         height: 60%; /* 70% - 30% = 40% */
         overflow: auto;
         background-color: #1c47d5; /* Optional: for visibility */
-        /* animation: slideIn 2s forwards;  */
         transition: left 2s;
     }
 
@@ -152,15 +71,8 @@
         right: 0px;
         background-color: #ccc;
         border: none;
-        /* padding: 5px 10px; */
         cursor: pointer;
     }
-
-    /* Add this block */
-    /* @keyframes slideIn {
-        from { left: -100px; }
-        to { left: 0; }
-    } */
     
     .examTitle {
         text-align: center;
@@ -172,7 +84,6 @@
         padding-top: 10px;
         margin-left: 20%;
         margin-right: 20%;
-        /* display: none; */
     }
     
     .myAnswerTitle {
@@ -182,8 +93,6 @@
     
     .writtenTime {
         display: inline-block;
-        /* margin-right: 0; */
-        /* right: 0px; */
         padding-left: 30%;
     }
     
@@ -197,14 +106,10 @@
     }
 
     .er1 {
-        /* display: none; */
         color: black;
     }
 
     .notes {
-        /* text-align: center; */
-        /* padding-top: 15px; */
-        /* font-size: x-large; */
         padding-top: 10px;
         font-size: medium;
         padding-bottom: 40px;
@@ -217,15 +122,12 @@
         margin-left: 20%;
         margin-right: 20%;
     }
-    /* TODO: .notes */
 
     .seeMore {
         text-align: center;
         cursor: pointer;
         margin-bottom: 15px;
         transition: color .5s;
-        /* pointer-events: all; */
-        /* font-style: inherit; */
     }
 
     .seeMore:hover {
@@ -270,8 +172,6 @@
         cursor: pointer;
         font-size: small;
         transition: color .5s;
-        /* pointer-events: all; */
-        /* font-style: inherit; */
     }
 
     .rewrite:hover {
@@ -284,8 +184,6 @@
         cursor: pointer;
         font-size: small;
         transition: color .5s;
-        /* pointer-events: all; */
-        /* font-style: inherit; */
     }
 
     .translate:hover {
@@ -293,9 +191,6 @@
         /* color: ; */
     }
 
-    /* .translate:active {
-        cursor: not-allowed;
-    } */
     @media screen and (max-width: 700px){
         .login {
             position: fixed;
@@ -353,84 +248,32 @@
         animation-duration: 6s;
         animation-iteration-count: infinite;
     }
-
-    /* 定义成功动画 */
-    /* @keyframes successAnimation {
-        0% {
-            background-color: rgb(88, 237, 19);
-        }
-        50% {
-            background-color: rgb(88, 237, 19);
-            transform: scaleX(1);
-        }
-        100% {
-            background-color: white;
-            transform: scaleX(1);
-        }
-    } */
-
-    /* 添加成功动画到成功类名 */
-    /* body.success {
-        animation: successAnimation 2s;
-    } */
 </style>
 
 <body>
+    <div class="log login" id="login">
+    </div>
+    <div class="logout" id="logout" onclick="logout()">登出</div>
     <div class="title">
         2024考研英语学习笔记
     </div>
     <div class="subtitle">
         2024 Graduate Entrance English Exam
     </div>
-    <div class="login" id="login" onclick="login()">登录</div>
-    <div class="logout" id="logout" onclick="logout()">登出</div>
-    <div class="loginPage" id="loginPage">
-        <div class="logger">
-            <input type="text" placeholder="用户名" class="username" id="username">
-        </div>
-        <div class="logger">
-            <input type="password" placeholder="密码" class="password" id="password">
-        </div>
-        <div class="logger">
-            <!-- <input type="text" placeholder="进入" class="letsgo"> -->
-            <div class="letsgo" id="letsgo" onclick="letsgo()">进入</div>
-        </div>
-    </div>
-
     <div class="generateEssay" id="generateEssay" onclick="aiGenerateEssay(this)">生成</div>
-    
     <div class="notes" id="notes">
-        <!-- <img src="https://wx2.sinaimg.cn/large/666efa44ly1glt4jkcij6j212w0awjus.jpg" alt=""> -->
-        <!-- <div class="essayTitle">
-            University Students’ Different Online Shopping Interests
-        </div>
-        <div class="essayPara">
-            As we can see in the chart, there are some differences between male and female university students in terms of online shopping. Compared with the male students’ almost even interest in clothing, books, electronic products and game currency, female students prefer clothing and books to e-products and computer games.
-            <div class="rewrite" onclick="rewrite(this)">重写</div>
-            <div class="translate" onclick="trans(this)">译</div>
-        </div>
-        <div class="essayPara">
-            The data in the chart can be interpreted as follows: female students love reading and clothing far more than male students. As a matter of fact, there are great differences between men and women’s shopping preferences. First of all, regarding personal character, men like adventures, by which they enjoy excitement; while women tend to be quiet and enjoy peaceful time. This can partly explain the shopping interest differences between male and female students. Moreover, in the light of biological factor, the thinking patterns of men are logical, so electronic products and computer games can meet their needs. Women, however, are more sensitive and can easily be attracted by fashion. On the whole, the preferences in shopping express the basic differences between men and women in character.
-            <div class="rewrite" onclick="rewrite(this)">重写</div>
-            <div class="translate" onclick="trans(this)">译</div>
-        </div>
-        <div class="essayPara">
-            Taking into account all of these factors, university students’ online shopping preference varies greatly between male and female students. To solve the problem, I hope they can buy more things concerning their schooling. After all, they should make more efforts to study hard.
-            <div class="rewrite" onclick="rewrite(this)">重写</div>
-            <div class="translate" onclick="trans(this)">译</div>
-        </div>
-        <div class="wordCount" id="wordCountPara1">
-        </div> -->
     </div>
     <div class="seeMore" onclick="getEssay()">Load More Essay</div>
     <div class="comment">评论
         <button class="closeComment">关闭</button>
     </div>
-    <!-- TODO: seeMore -->
 </body>
 
 <script>
     // test(300000);
+    var subjectName = '英语'
+
+    loginin()
 
     var essayPara = document.getElementsByClassName('essayPara')  // 获取所有的essayPara元素
     
@@ -449,25 +292,6 @@
     document.querySelector('.closeComment').addEventListener('click', function() {
         document.querySelector('.comment').style.left = '-300px'; // 将 .comment 元素隐藏在视图之外
     });
-
-    
-    // var wordCountList = []  // 创建一个空数组，用于存放每段文字的单词数量
-    // for (let index = 0; index < essayPara.length; index++) {
-    //     var essayParaList = essayPara[index].innerHTML.split(' ')  // 将每段文字按空格分割成数组
-    //     trimSpace(essayParaList)  // 去除数组中的空格
-    //     var wordCount = essayParaList.length  // 计算每段文字的单词数量
-    //     wordCountList.push(wordCount)  // 将单词数量添加到数组中
-    // }
-    // // 计算每篇文章的单词数量，并显示在页面上
-    // var essay1 = wordCountList[0] + wordCountList[1] + wordCountList[2]
-    // document.getElementById('wordCountPara1').innerHTML = 'Word count: ' + essay1
-    // var essay2 = wordCountList[3] + wordCountList[4] + wordCountList[5]
-    // document.getElementById('wordCountPara2').innerHTML = 'Word count: ' + essay2
-    // var essay3 = wordCountList[6] + wordCountList[7] + wordCountList[8]
-    // document.getElementById('wordCountPara3').innerHTML = 'Word count: ' + essay3
-    // var essay4 = wordCountList[9] + wordCountList[10] + wordCountList[11]
-    // document.getElementById('wordCountPara4').innerHTML = 'Word count: ' + essay4
-
 
     var loginCount = 0;  // 登录计数器
     // 定义一个函数，用于处理登录操作
@@ -496,51 +320,6 @@
         setCookie(name, "", -1);
     }
 
-    // 定义一个函数，用于处理登录操作
-    function letsgo() {
-        if (document.cookie == '') {
-            var username = hex_md5(document.getElementById('username').value)
-            var password = hex_md5(document.getElementById('password').value)
-            var subjectName = '英语'
-            // alert(username, password)
-            $.post('/login', {
-                username: username,
-                password: password,
-                subjectName: subjectName
-                }).then(function(response) {
-                    if (response == 'fail') {
-                        // alert('用户名密码不存在')
-                    }else {
-                        setCookie(username, password, 10)
-                        // document.cookie = username + "=" + password + "; expires=Thu, 1 Dec 2022 03:30:00 GMT";
-                        // alert(document.cookie)
-                        document.getElementById('loginPage').style.display = 'none';
-                        document.getElementById('login').style.display = 'none';
-                        document.getElementById('logout').style.display = 'block';
-                    }
-            });
-        }else {
-            document.getElementById('login').style.display = 'none';
-            document.getElementById('logout').style.display = 'block';
-            cookie = document.cookie
-            cookieList = cookie.split('=')
-            $.post('/login', {
-                username: cookieList[0],
-                password: cookieList[1]
-            });
-        }
-    }
-
-    letsgo()
-
-
-    // 定义一个函数，用于处理登出操作
-    function logout() {
-        clearCookie(document.cookie.split("=")[0]);
-        location.reload();
-    }
-
-
     function aiGenerateEssay(obj) {
         // Set the transition property on the body
         document.body.style.transition = "background-color 2s";
@@ -560,8 +339,6 @@
             notes.appendChild(essayTitleDiv);
 
             for (let j = data['content'].length - 1; j >= 0; j--) {
-                // alert(essayContent[j]['paragraph1'])
-                // TODO: JS
                 var essayParaDiv = document.createElement('div');
                 essayParaDiv.innerHTML = data['content'][j]['paragraph'];
                 essayParaDiv.classList.add('essayPara');
@@ -587,7 +364,6 @@
             }
             document.body.style.transition = "background-color 2s";
             document.body.style.backgroundColor = "white";
-            // document.body.classList.add('success');
             obj.classList.remove('colorChange');
             obj.nextElementSibling.lastElementChild.scrollIntoView({ behavior: 'smooth' });
         });
@@ -604,8 +380,6 @@
         $.post('/essay', {
             reset: reset
         }).then(function(data) {
-        // $.get('/essay', (data) => {
-            // TODO: getEssay
             if (data == '已没有内容') {
                 alert('已没有内容');
             } else {
@@ -682,29 +456,16 @@
             rewrites[i].style.pointerEvents = 'none';
         }
 
-        // 发送post请求，获取翻译结果
         $.post('/rewrite', {
             rewriteContent: finalEssayPara
         }).then(function(response) {
             obj.classList.remove('colorChange');
-            // alert(response)
-            // var divTrans = document.createElement('div');
-            // obj.parentNode.after(divTrans);
-            // divTrans.className = 'transToChinese'
-            // var finalResponse = response.replace(/,/g, '，');  // (/Hello/g, 'Goodbye')  没起作用
-            // divTrans.innerText = finalResponse.substring(0, finalResponse.length) + "(此翻译仅作参考)"
             let finalEssayPara = response
-            // for (var i = 0; i < translates.length; i++) {
-            //     if (translates[i] !== obj) {  // Skip the clicked button
-            //         translates[i].style.pointerEvents = 'all';
-            //     }
-            // }
             var newDiv = document.createElement('div');
             newDiv.innerHTML = finalEssayPara;  // Set the new div's content to the rewritten content
             newDiv.classList.add('essayPara');
             newDiv.style.color = "rgb(25, 198, 251)";
             newDiv.style.display = "inline-block";
-            // newDiv.onclick = function() { trans(this); }; 
             obj.parentNode.parentNode.insertBefore(newDiv, obj.parentNode.nextSibling);
             obj.innerText = "重写";
             for (var i = 0; i < rewrites.length; i++) {
@@ -713,7 +474,6 @@
             for (var i = 0; i < translates.length; i++) {
                 translates[i].style.pointerEvents = 'all';
             }
-
             var newTranslate = document.createElement('div');
             newTranslate.classList.add('translate');
             newTranslate.innerHTML = '译';

@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 如果不是跟运行文件放到一起就需要用这种形式导入外部文件 -->
     <script src="{{url_for('static', filename ='JavaScripts/Mine/randomTest.js')}}"></script>
+    <script src="{{url_for('static', filename ='JavaScripts/Mine/tools.js')}}"></script>
     <script src="{{url_for('static', filename ='JavaScripts/Others/jquery.js')}}"></script>
     <script src="{{url_for('static', filename ='JavaScripts/Others/md5.js')}}"></script>
-    <link rel="stylesheet" href="{{url_for('static', filename ='CSS/ai.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename ='CSS/login.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename ='CSS/tools.css')}}">
     <title>2023国科大人工智能在职考研</title>
 </head>
 <style>
@@ -18,9 +20,6 @@
     }
 
     .notes {
-        /* text-align: center; */
-        /* padding-top: 15px; */
-        /* font-size: x-large; */
         padding-top: 10px;
     }
 
@@ -50,16 +49,7 @@
         .exam {margin-right: 10%;}
     } */
 
-    .logout {
-        position: fixed;
-        right: 80px;
-        top: 40px;
-        border: 1px solid;
-        padding: 1px;
-        background-color: rgb(255, 47, 71);
-        cursor: pointer;
-        display: none;
-    }
+    
     
     .save {
         position: fixed;
@@ -244,17 +234,7 @@
         margin-top: 3px;
     }
 
-    .login {
-        background-color: blanchedalmond;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1;
-        display: none;
-        /* display: block; */
-    }
+    
 
     .pay {
         background-color: aquamarine;
@@ -318,12 +298,8 @@
                     <input type="password" id="passwordid">
                     <label>密码</label>
                 </div>
-                <!-- <a id="register">
-                    register
-                </a> -->
                 <div class="register" id="registerInLogin" onclick="register()">新用户注册</div>
                 <a id="submit">
-                    <!-- Register -->
                     <span></span>
                     <span></span>
                     <span></span>
@@ -335,7 +311,7 @@
     </div>
 
     <!-- 注册 -->
-    <div class="login" id="register">
+    <!-- <div class="login" id="register">
         <div class="login-box">
             <h2>新 用 户 注 册</h2>
             <form>
@@ -347,12 +323,8 @@
                     <input type="password" id="newUserPassword">
                     <label>设置密码</label>
                 </div>
-                <!-- <a id="register">
-                    register
-                </a> -->
                 <div class="register" id="loginInRegister">已有账号直接登录</div>
                 <a id="registerSubmit">
-                    <!-- Register -->
                     <span></span>
                     <span></span>
                     <span></span>
@@ -361,7 +333,7 @@
                 </a>
             </form>
         </div>
-    </div>
+    </div> -->
 
     <div class="pay" id="checkResultPay">
         <div class="payText">
@@ -811,6 +783,9 @@
 <script>
     // test(300000);
 
+    var subjectName = '人工智能'
+    loginin()
+
     var notesContent = ['1、人工智能三大学派：行为主义（）、连接主义（）、符号主义（）。',
                         '2、图灵测试：测试者与被测试者（一个人和一台机器）隔开的情况下，通过一些装置向被测试者随意提问，进行多次测试后，如果机器让平均美国参与者做出超过30%的误判，那么这台机器就通过了测试，并被认为具有人类的智能。',
                         '3、即使通过图灵测试也不能说明计算机有思维。',
@@ -836,60 +811,7 @@
         note.className = 'note';
     }
 
-    function setCookie(cname, cvalue, exdays){
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays * 60 * 60 * 1000));
-        var expires = "expires=" + d.toGMTString();
-        document.cookie = cname + "=" + cvalue + "; " + expires;
-    }
-
-    function loginin() {
-        if (document.cookie == '') {
-            document.getElementById('logout').style.display = 'none';
-            document.getElementById('login').style.display = 'block';
-            $('#submit').click(function() { //点击按钮
-                var username = hex_md5(document.getElementById('username').value)
-                var password = hex_md5(document.getElementById('passwordid').value)
-                var subjectName = '人工智能'
-                // alert(username, password)
-                $.post('/login', {
-                    username: username,
-                    password: password,
-                    subjectName: subjectName
-                    }).then(function(response) {
-                        if (response == 'fail') {
-                            alert('用户名密码不存在')
-                        }else {
-                            setCookie(username, password, 10)
-                            // document.cookie = username + "=" + password + "; expires=Thu, 1 Dec 2022 03:30:00 GMT";
-                            // alert(document.cookie)
-                            document.getElementById('login').style.display = 'none';
-                            document.getElementById('logout').style.display = 'block';
-                        }
-                });
-            })
-        }else {
-            document.getElementById('logout').style.display = 'block';
-            cookie = document.cookie
-            cookieList = cookie.split('=')
-            $.post('/login', {
-                username: cookieList[0],
-                password: cookieList[1]
-            })
-        }
-    }
-
-    loginin()
-
-    // 删除cookie
-    function clearCookie(name) {
-        setCookie(name, "", -1);
-    }
-
-    function logout() {
-        clearCookie(document.cookie.split("=")[0]);
-        location.reload();
-    }
+    
 
     function register() {
         document.getElementById('login').style.display = 'none';
