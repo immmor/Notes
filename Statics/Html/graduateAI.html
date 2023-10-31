@@ -286,7 +286,7 @@
     <div class="logout" id="logout" onclick="logout()">登出</div>
 
     <!-- 登录 -->
-    <div class="log login" id="login">
+    <!-- <div class="log login" id="login">
         <div class="login-box">
             <h2>登  录</h2>
             <form>
@@ -308,7 +308,7 @@
                 </a>
             </form>
         </div>
-    </div>
+    </div> -->
 
     <!-- 注册 -->
     <!-- <div class="login" id="register">
@@ -786,19 +786,21 @@
     var subjectName = '人工智能'
     loginin()
 
-    var notesContent = ['1、人工智能三大学派：行为主义（）、连接主义（）、符号主义（）。',
-                        '2、图灵测试：测试者与被测试者（一个人和一台机器）隔开的情况下，通过一些装置向被测试者随意提问，进行多次测试后，如果机器让平均美国参与者做出超过30%的误判，那么这台机器就通过了测试，并被认为具有人类的智能。',
-                        '3、即使通过图灵测试也不能说明计算机有思维。',
-                        '4、1950年图灵首次提出人工智能这个概念，1956年正式提出。',
-                        '5、计算机视觉可以分为计算成像学、图像理解、三位视觉、动态视觉和视频编解码五大类。',
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',
-                        '',];
+    var notesContent = [
+        '1、人工智能三大学派：行为主义（）、连接主义（）、符号主义（）。',
+        '2、图灵测试：测试者与被测试者（一个人和一台机器）隔开的情况下，通过一些装置向被测试者随意提问，进行多次测试后，如果机器让平均美国参与者做出超过30%的误判，那么这台机器就通过了测试，并被认为具有人类的智能。',
+        '3、即使通过图灵测试也不能说明计算机有思维。',
+        '4、1950年图灵首次提出人工智能这个概念，1956年正式提出。',
+        '5、计算机视觉可以分为计算成像学、图像理解、三位视觉、动态视觉和视频编解码五大类。',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+    ];
 
     // 根据笔记列表生成笔记
     var notes = document.getElementById('notes');
@@ -810,8 +812,6 @@
         note.innerHTML = notesContent[index];
         note.className = 'note';
     }
-
-    
 
     function register() {
         document.getElementById('login').style.display = 'none';
@@ -877,6 +877,7 @@
         cookie = document.cookie
         // alert(typeof(cookie))
         cookieList = cookie.split('=')
+        cookieNamePass = cookieList[1].split('|')
         // for (let index = 0; index < cookieList.length; index++) {
         //     allCookies = cookieList[index].split('=')
         // }
@@ -884,8 +885,8 @@
         var payPoints = document.getElementById('points').innerText
         var payPassword = document.getElementById('payPassword').value
         $.post('/pay', {
-            username: cookieList[0],
-            password: cookieList[1],
+            username: cookieNamePass[0],
+            password: cookieNamePass[1],
             payPassword: payPassword,
             payPoints: payPoints
         }).then(function(response) {
@@ -905,11 +906,12 @@
         cookie = document.cookie
         // alert(cookie)
         cookieList = cookie.split('=')
+        cookieNamePass = cookieList[1].split('|')
         if (cookie != '') {
             if (checkResultCount == 0) {
                     $.post('/checkResult', {
-                    username: cookieList[0],
-                    password: cookieList[1]
+                    username: cookieNamePass[0],
+                    password: cookieNamePass[1]
                 }).then(function(response) {
                     // alert(response)
                     if (response == 'fail') {
@@ -982,7 +984,6 @@
             }
             checkResultCount -= 1;
         }
-        // alert(checkResultCount);
     }
 
     var punctuations = [' ', ',', '，', '.', '。', '?', '？', '\'', '‘', '\"', '“', '”', '\\', '。', '(', '（', ')', '）'];

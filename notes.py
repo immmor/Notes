@@ -129,6 +129,21 @@ def pay():
     return result
 
 
+@app.route('/listen', methods=['POST', 'GET'])
+def listen():
+    clickedElement = request.form['clickedElement']
+    title = request.form['title']
+    currentUrl = request.form['currentUrl']
+    data = title + currentUrl + ' ' + clickedElement
+    print(data)
+    ok = True
+    if ok:
+        import pandas as pd
+        df = pd.DataFrame([data])
+        df.to_csv('Statics/Others/bigData.csv', mode='a', header=False, index=False)
+    return clickedElement
+
+
 def essayGenerator():
     essayEnglish = get_json_data('Statics/Others/essayEnglish.json')
     essay = essayEnglish['essay']

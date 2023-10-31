@@ -174,6 +174,7 @@ function test(interval=3000){
         }
     }
 }
+// test(300000);
 
 function getJSON(fileLocation) {
     a = $.ajax({
@@ -189,8 +190,16 @@ function getJSON(fileLocation) {
 }
 
 function loginin() {
+    var divLogin = document.createElement('div');
+    document.body.appendChild(divLogin);
+    divLogin.id = 'login';
+    document.getElementById("login").classList.add("log");
+    document.getElementById("login").classList.add("login");
     document.getElementById("login").innerHTML = '<div class="login-box"><h2>登  录</h2><form><div class="user-box"><input type="text" id="username"><label>用户名</label></div><div class="user-box"><input type="password" id="passwordid"><label>密码</label></div><div class="register" id="registerInLogin" onclick="register()">新用户注册</div><a id="submit"><span></span><span></span><span></span><span></span>提 交</a></form></div>'
-    if (document.cookie == '') {
+    let cookieKeys = document.cookie.match(/[^ =;]+(?=\=)/g); 
+    // alert(cookieKeys)
+    // let hasUserInfo = cookieKeys.indexOf('userInfo')
+    if (!cookieKeys) {
         document.getElementById('logout').style.display = 'none';
         document.getElementById('login').style.display = 'block';
         $('#submit').click(function() { //点击按钮
@@ -204,7 +213,7 @@ function loginin() {
                     if (response == 'fail') {
                         alert('用户名密码不存在')
                     }else {
-                        setCookie(username, password, 10)
+                        setCookie('userInfo', username + "|" + password, 10)
                         document.getElementById('login').style.display = 'none';
                         document.getElementById('logout').style.display = 'block';
                     }
@@ -259,3 +268,100 @@ function notify() {
     notify.style.position = 'absolute';
     notify.innerText = '干大法师大法师的'
 }
+
+// TODO
+function hotkey_search() {
+    document.addEventListener("keydown", function(event) {
+        if (event.ctrlKey && (event.key === "k" || event.key === "K")) {
+            event.preventDefault(); // 阻止默认行为
+            let searchQuery = prompt("搜点什么？");
+            if (searchQuery) {
+                if (searchQuery.startsWith('百度：')) {
+                    let searchUrl = `https://www.baidu.com/s?wd=${encodeURIComponent(searchQuery)}`;
+                    window.open(searchUrl, "_blank");
+                } else if (searchQuery.startsWith('谷歌：')) {
+                    let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`;
+                    window.open(searchUrl, '_blank');
+                } else if (searchQuery.startsWith('翻译：')) {
+                    let content = searchQuery.split('：').pop();
+                    let searchUrl = `https://fanyi.baidu.com/translate?aldtype=16047&query=${encodeURIComponent(content)}&keyfrom=baidu&smartresult=dict&lang=auto2zh#en/zh/${encodeURIComponent(content)}`
+                    window.open(searchUrl, '_blank');
+                } else {
+                    let searchUrl = `https://www.baidu.com/s?wd=${encodeURIComponent(searchQuery)}`;
+                    window.open(searchUrl, "_blank");
+                }
+            } else {}
+        }
+    });
+}
+hotkey_search()
+
+function dot() {
+    // Create div for dot 
+    const dot = document.getElementById("dot");
+    dot.style.width = "100px";
+    dot.style.height = "100px";
+    dot.style.backgroundColor = "red";
+    dot.style.borderRadius = "50%"; 
+    dot.style.position = "relative";
+
+    // Add to body
+    document.body.appendChild(dot); 
+
+    // Track position
+    let x = 0;
+    let y = 0;
+
+    // Handle keydown
+    document.addEventListener("keydown", (e) => {
+        switch (e.key) {
+            case "ArrowUp":
+            y -= 10;
+            break;
+            case "ArrowDown":
+            y += 10;
+            break;
+            case "ArrowLeft":
+            x -= 10;
+            break;
+            case "ArrowRight": 
+            x += 10;
+            break;
+        }
+        
+        // Update position
+        dot.style.left = x + "px";
+        dot.style.top = y + "px";
+    });
+}
+
+/**
+ * 监听整个文档的点击事件。
+ * 当某个元素被选中，则给服务器返回它的id和class
+ */
+function listen() {
+    // 监听整个文档的点击事件
+    document.addEventListener('click', event => {
+        // 获取被点击的元素
+        const target = event.target;
+        const title = document.title;
+        const currentUrl = window.location.href;
+        // 检查 id 和 class
+        if(target.id || target.className) {
+            // 构造弹出内容
+            let clickedElement = '';
+            if (target.id) {
+                clickedElement += `id:${target.id} `;
+            }
+            if (target.className) {
+                clickedElement += `class:${target.className}`; 
+            }
+            $.post('/listen', {
+                clickedElement: clickedElement,
+                title: title,
+                currentUrl: currentUrl
+            });
+        }
+    });
+}
+listen()
