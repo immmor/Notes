@@ -17,8 +17,8 @@ def write_json_data(params, jsonFileName=''):
         json.dump(params, f, ensure_ascii=False)
 
 
-def get_csv():
-    with open('try.csv',encoding='utf-8')as fp:
+def get_csv(fileName):
+    with open(fileName, encoding='utf-8')as fp:
         reader = csv.reader(fp)
         # 获取标题
         header = next(reader)

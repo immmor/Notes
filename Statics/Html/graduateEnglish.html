@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="{{url_for('static', filename ='JavaScripts/Others/jquery.js')}}"></script>
-    <script src="{{url_for('static', filename ='JavaScripts/Mine/randomTest.js')}}"></script>
+    <!-- <script src="{{url_for('static', filename ='JavaScripts/Mine/randomTest.js')}}"></script> -->
     <script src="{{url_for('static', filename ='JavaScripts/Mine/tools.js')}}"></script>
     <script src="{{url_for('static', filename ='JavaScripts/Others/marked.js')}}"></script>
     <script src="{{url_for('static', filename ='JavaScripts/Others/md5.js')}}"></script>
@@ -52,26 +52,6 @@
 
     .generateEssay:hover {
         background-color: rgb(78, 226, 33); 
-    }
-
-    .comment {
-        position: fixed;
-        left: -300px;
-        width: 300px;
-        top: 20%;
-        height: 60%; /* 70% - 30% = 40% */
-        overflow: auto;
-        background-color: #1c47d5; /* Optional: for visibility */
-        transition: left 2s;
-    }
-
-    .closeComment {
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        background-color: #ccc;
-        border: none;
-        cursor: pointer;
     }
     
     .examTitle {
@@ -263,9 +243,9 @@
     <div class="notes" id="notes">
     </div>
     <div class="seeMore" onclick="getEssay()">Load More Essay</div>
-    <div class="comment">评论
+    <!-- <div class="comment">评论
         <button class="closeComment">关闭</button>
-    </div>
+    </div> -->
 </body>
 
 <script>
@@ -315,9 +295,9 @@
         return array;  
     }
 
-    document.querySelector('.closeComment').addEventListener('click', function() {
-        document.querySelector('.comment').style.left = '-300px'; // 将 .comment 元素隐藏在视图之外
-    });
+    // document.querySelector('.closeComment').addEventListener('click', function() {
+    //     document.querySelector('.comment').style.left = '-300px'; // 将 .comment 元素隐藏在视图之外
+    // });
 
     var loginCount = 0;  // 登录计数器
     // 定义一个函数，用于处理登录操作
@@ -448,14 +428,14 @@
     }
     getEssay()
 
-    document.addEventListener('mousemove', function(event) {
-        let mouseX = event.clientX;
-        let mouseY = event.clientY;
-        let windowHeight = window.innerHeight;
-        if (mouseX <= 10 && mouseY >= windowHeight * 0.3 && mouseY <= windowHeight * 0.7) {
-            document.querySelector('.comment').style.left = '0';
-        }
-    });
+    // document.addEventListener('mousemove', function(event) {
+    //     let mouseX = event.clientX;
+    //     let mouseY = event.clientY;
+    //     let windowHeight = window.innerHeight;
+    //     if (mouseX <= 10 && mouseY >= windowHeight * 0.3 && mouseY <= windowHeight * 0.7) {
+    //         document.querySelector('.comment').style.left = '0';
+    //     }
+    // });
 
 
     function rewrite(obj) {
@@ -506,10 +486,9 @@
             newTranslate.onclick = function() {
                 trans(this);
             };
+            newDiv.appendChild(newTranslate);   // essayParaDiv
             
-            // Set the transition property on the body
             document.body.style.transition = "background-color 2s";
-            // Change the background color of the entire webpage
             document.body.style.backgroundColor = "white";
         });
     }

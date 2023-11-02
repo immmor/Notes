@@ -35,7 +35,7 @@ function test(interval=3000){
                 for (var j = 0; j < problems[i][3] + 1; j++){
                     indexList.push(i);
                 }
-            }else {
+            } else {
                 for (var j = 0; j < problems[i][3]; j++){
                     indexList.push(i);
                 }
@@ -175,6 +175,186 @@ function test(interval=3000){
     }
 }
 // test(300000);
+
+function new_test(interval=300000){
+    document.addEventListener('DOMContentLoaded', function() {
+        // 在这里执行你的脚本代码
+        startTest();
+        setInterval(startTest, interval);
+        function startTest(){
+            var rawProblems = getJSON('/Statics/Others/gradProb.json');  //TODO 得改地址
+            var problems = rawProblems['考研题目']
+            var probLength = problems.length;
+            var indexList = [];
+
+            // 推荐算法 根据之前的错误率来推荐，还没算上最近的错误率
+            for (var i = 0; i < probLength; i++){
+                if (problems[i]["错误次数"] == 0) {
+                    for (var j = 0; j < problems[i]["错误次数"] + 1; j++){
+                        indexList.push(i);
+                    }
+                } else {
+                    for (var j = 0; j < problems[i]["错误次数"]; j++){
+                        indexList.push(i);
+                    }
+                }
+            }
+
+            randomIndexListIndex = Math.round(Math.random()*(indexList.length));
+            var randomProblemsIndex = indexList[randomIndexListIndex]
+            var oneProblem = problems[randomProblemsIndex]
+            var correctAnswer = oneProblem["答案"];
+            var falseNumber = oneProblem["错误次数"];
+            var recentFalse = oneProblem["最近错过"];
+
+            var divTest = document.createElement('div');
+            document.body.appendChild(divTest);
+            divTest.id = 'popTest';
+            var popTest = document.getElementById('popTest');
+            popTest.style.width = '100%';
+            popTest.style.height = '100%';
+            popTest.style.color = 'black';
+            popTest.style.position = 'fixed';
+            popTest.style.top = '0';
+            popTest.style.left = '0';
+            popTest.style.backgroundColor = 'cadetblue';
+            popTest.style.display = 'inline-block';
+
+            var beginDate = new Date();
+            var endDate = new Date('2023/12/24 0:0:1');
+            var days = (endDate - beginDate) / (1000 * 60 * 60 * 24);
+            var divCountDown = document.createElement('div');
+            popTest.appendChild(divCountDown);
+            divCountDown.id = 'countDown';
+            var countDown = document.getElementById('countDown');
+            countDown.innerHTML = '考研倒计时：' + days + '天';
+            countDown.style.width = '100%';
+            countDown.style.textAlign = 'center';
+            countDown.style.fontSize = '40px';
+            countDown.style.color = 'pink';
+            countDown.style.position = 'fixed';
+
+            var divQuestion = document.createElement('div');
+            divQuestion.id = 'idQuestion';
+            popTest.appendChild(divQuestion);
+            var question = document.getElementById('idQuestion');
+            question.innerHTML = oneProblem["问题"];
+            question.style.textAlign = 'center';
+            question.style.fontSize = '20px';
+            question.style.marginTop = '25%';
+            // question.style.marginBottom = '29%';
+
+            var divFalseTimes = document.createElement('div');
+            divFalseTimes.id = 'idFalseTimes';
+            popTest.appendChild(divFalseTimes);
+            var falseTimes = document.getElementById('idFalseTimes');
+            falseTimes.innerHTML = '此题答错过' + falseNumber + '次';
+            falseTimes.style.right = '5%';
+            falseTimes.style.top = '20%';
+            falseTimes.style.position = 'fixed';
+
+            var divRecentFalse = document.createElement('div');
+            divRecentFalse.id = 'idRecentFalse';
+            popTest.appendChild(divRecentFalse);
+            var recentFalseTimes = document.getElementById('idRecentFalse');
+            recentFalseTimes.innerHTML = '最近错过' + recentFalse + '次';
+            recentFalseTimes.style.right = '5%';
+            recentFalseTimes.style.top = '25%';
+            recentFalseTimes.style.position = 'fixed';
+            
+            var divChoices = document.createElement('div');
+            divChoices.id = 'idChoices';
+            popTest.appendChild(divChoices);
+            var choices = document.getElementById('idChoices');
+            choices.style.textAlign = 'center';
+            choices.style.fontSize = '20px';
+            choices.style.paddingTop = '20px';
+
+            // 4个数里随机挑一个，被选的数字下一次不可被选
+            var availableNumbers = [0, 1, 2, 3];
+            function getRandomNumber() {
+                if (availableNumbers.length === 0) {
+                    return null; // 所有数字都已经获取完毕
+                }
+                var randomIndex = Math.floor(Math.random() * availableNumbers.length);
+                var randomNumber = availableNumbers[randomIndex];
+                availableNumbers.splice(randomIndex, 1); // 从可用数字列表中移除已获取的数字
+                return randomNumber;
+            }
+
+            var divChoice1 = document.createElement('div');
+            divChoice1.id = 'idChoice1';
+            divChoices.appendChild(divChoice1);
+            var choice1 = document.getElementById('idChoice1');
+            choice1.innerHTML = 'A、' + oneProblem["选项"][getRandomNumber()].slice(2);
+
+            var divChoice2 = document.createElement('div');
+            divChoice2.id = 'idChoice2';
+            divChoices.appendChild(divChoice2);
+            var choice2 = document.getElementById('idChoice2');
+            choice2.innerHTML = 'B、' + oneProblem["选项"][getRandomNumber()].slice(2);
+
+            var divChoice3 = document.createElement('div');
+            divChoice3.id = 'idChoice3';
+            divChoices.appendChild(divChoice3);
+            var choice3 = document.getElementById('idChoice3');
+            choice3.innerHTML = 'C、' + oneProblem["选项"][getRandomNumber()].slice(2);
+
+            var divChoice4 = document.createElement('div');
+            divChoice4.id = 'idChoice4';
+            divChoices.appendChild(divChoice4);
+            var choice4 = document.getElementById('idChoice4');
+            choice4.innerHTML = 'D、' + oneProblem["选项"][getRandomNumber()].slice(2);
+
+            var choiceList = [choice1, choice2, choice3, choice4]
+
+            $.post('/showTimes', {
+                questionNumber: randomProblemsIndex,
+            });
+
+            for (var index in choiceList) {
+                if (choiceList[index].innerHTML.slice(2) == correctAnswer.slice(2)) {
+                    choiceList[index].onclick = function(){
+                        alert('答对了！');
+                        if (recentFalse > 0) {
+                            recentFalse -= 1;
+                            $.post('/changeFalseNumber', {
+                                questionNumber: randomProblemsIndex,
+                                falseNumber: falseNumber,
+                                recentFalse: recentFalse
+                            });
+                        }
+                        document.getElementById('popTest').remove();
+                    }
+                }else {
+                    choiceList[index].onclick = function(){
+                        falseNumber += 1;
+                        falseTimes.innerHTML = '此题答错过' + falseNumber + '次';
+                        recentFalse += 1;
+                        recentFalseTimes.innerHTML = '最近错过' + recentFalse + '次';
+                        setTimeout(function() {
+                            alert('你答错❌' + falseNumber + '次了！');
+                        }, 1);
+                        $.post('/changeFalseNumber', {
+                            questionNumber: randomProblemsIndex,
+                            falseNumber: falseNumber,
+                            recentFalse: recentFalse
+                        });
+                    }
+                }
+                if (choiceList[index] == choice4) {
+                    choiceList[index].style.marginRight = '0px';
+                }else {
+                    choiceList[index].style.marginRight = '20px';
+                }
+                choiceList[index].style.cursor = 'pointer';
+                choiceList[index].style.display = 'inline-block';
+            }
+        }
+    });
+    
+}
+new_test();
 
 function getJSON(fileLocation) {
     a = $.ajax({
@@ -365,3 +545,27 @@ function listen() {
     });
 }
 listen()
+
+function comment() {
+    document.addEventListener('DOMContentLoaded', function() {
+        var divComment = document.createElement('div');
+        document.body.appendChild(divComment);
+        // divComment.id = 'comment';
+        divComment.classList.add('comment');
+        divComment.innerHTML = '评论<div class="closeComment">关闭</div>';
+
+        document.querySelector('.closeComment').addEventListener('click', function() {
+            document.querySelector('.comment').style.left = '-300px'; // 将 .comment 元素隐藏在视图之外
+        });
+
+        document.addEventListener('mousemove', function(event) {
+            let mouseX = event.clientX;
+            let mouseY = event.clientY;
+            let windowHeight = window.innerHeight;
+            if (mouseX <= 10 && mouseY >= windowHeight * 0.3 && mouseY <= windowHeight * 0.7) {
+                document.querySelector('.comment').style.left = '0';
+            }
+        });
+    });
+}
+comment()

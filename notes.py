@@ -1,17 +1,36 @@
 import json, os, sys, copy, datetime, requests, webbrowser
 from flask import Flask, render_template, request, jsonify
-from tools import claude_ai, get_json_data, write_json_data, trans_youdao
+from flasgger import Swagger, swag_from
+from tools import claude_ai, get_json_data, write_json_data, trans_youdao, get_csv
 
 # os.chdir(sys.path[0])  # 把现在的工作路径切换到当前文件夹
 app = Flask(__name__, template_folder='./', static_folder='Statics')
-
+Swagger(app)
 
 @app.route('/', methods=['GET'])
+@swag_from({
+    'tags': ['index'],
+    'description': 'Returns details of a user', 
+    'responses': {
+        '200': {
+            'description': 'Success' 
+        }
+    }
+})
 def hello():
     return render_template('Statics/Html/hello.html')
 
 
 @app.route('/ai', methods=['GET'])
+@swag_from({
+    'tags': ['Notes for AI'],
+    'description': 'Returns details of a user', 
+    'responses': {
+        '200': {
+            'description': 'Success' 
+        }
+    }
+})
 def ai():
     # redirect
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -52,15 +71,23 @@ def poli():
 
 @app.route('/eng', methods=['GET'])
 def eng():
+    g = essayGenerator()
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     visitRawData = get_json_data('Statics/Others/visit.json')
-    # visitRawData = copy.deepcopy(get_json_data('visit.json'))
-    # print(visitRawData)
     visitRawData['英语'][1]['访问时间'].append(now)
     visitRawData['英语'][0] = len(visitRawData['英语'][1]['访问时间'])
     write_json_data(visitRawData, jsonFileName='Statics/Others/visit.json')
-    # print(visitRawData)
     return render_template('Statics/Html/graduateEnglish.html')
+
+
+@app.route('/problems', methods=['POST', 'GET'])  #TODO
+def problems():
+    return render_template('Statics/Html/problems.html')
+
+
+@app.route('/addProblem', methods=['POST', 'GET'])  #TODO
+def add_roblem():
+    return None
 
 
 @app.route('/changeFalseNumber', methods=['POST', 'GET'])
@@ -69,10 +96,19 @@ def false_number():
     questionNumber = request.form['questionNumber']
     falseNumber = request.form['falseNumber']
     recentFalse = request.form['recentFalse']
-    probRawData[int(questionNumber)][3] = int(falseNumber)
-    probRawData[int(questionNumber)][4]['最近错过'] = int(recentFalse)
+    probRawData["考研题目"][int(questionNumber)]["错误次数"] = int(falseNumber)
+    probRawData["考研题目"][int(questionNumber)]['最近错过'] = int(recentFalse)
     write_json_data(probRawData, jsonFileName='Statics/Others/gradProb.json')
-    print(f'这道题答错{falseNumber}次了')
+    # print(f'这道题答错{falseNumber}次了')
+    return questionNumber
+
+
+@app.route('/showTimes', methods=['POST', 'GET'])
+def show_times():
+    probRawData = get_json_data('Statics/Others/gradProb.json')
+    questionNumber = request.form['questionNumber']
+    probRawData["考研题目"][int(questionNumber)]['题目出现次数'] += 1
+    write_json_data(probRawData, jsonFileName='Statics/Others/gradProb.json')
     return questionNumber
 
 
@@ -131,10 +167,11 @@ def pay():
 
 @app.route('/listen', methods=['POST', 'GET'])
 def listen():
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     clickedElement = request.form['clickedElement']
     title = request.form['title']
     currentUrl = request.form['currentUrl']
-    data = title + currentUrl + ' ' + clickedElement
+    data = now + ' ' + title + ' ' + currentUrl + ' ' + clickedElement
     print(data)
     ok = True
     if ok:
@@ -142,6 +179,16 @@ def listen():
         df = pd.DataFrame([data])
         df.to_csv('Statics/Others/bigData.csv', mode='a', header=False, index=False)
     return clickedElement
+
+
+@app.route('/graph', methods=['POST', 'GET'])
+def graph():
+    import pandas as pd
+    result = pd.read_csv('Statics/Others/bigData.csv')
+    # result = get_csv('Statics/Others/bigData.csv')
+    print(result, type(result))
+    # result = '112'
+    return render_template('Statics/Html/graph.html', result=result)
 
 
 def essayGenerator():
@@ -153,7 +200,7 @@ def essayGenerator():
         a += 3
     yield essay[a:]
 
-g = essayGenerator()
+# g = essayGenerator()
     
 @app.route('/essay', methods=['GET', 'POST'])
 def essay():
@@ -165,11 +212,27 @@ def essay():
         k = list(next(g))
         return jsonify(k)
     except StopIteration:
-        # del g
         return '已没有内容'
 
 
 @app.route('/aiGenerateEssay', methods=['GET', 'POST'])
+@swag_from({
+    'tags': ['AI Generate Essay'],
+    'summary': 'AI Generate Essay',
+    'description': 'AI Generate Essay', 
+    # 'parameters': [
+    #     {
+    #         'name': 'user_id',
+    #         'in': 'query',
+    #         'type': 'integer'
+    #     }
+    # ],
+    'responses': {
+        '200': {
+            'description': 'Success' 
+        }
+    }
+})
 def ai_generate_essay():
     generateEssayPrompt = """
         换一个title和content，并且计算每一个paragraph的字数输出为wordCount的值，按照这个json格式再生成一篇新的不少于300字的三段作文(不要说除了json格式以外的内容):
@@ -197,7 +260,7 @@ def ai_generate_essay():
     print(jsonResult)
     content = get_json_data('Statics/Others/essayEnglish.json')
     content['essay'].append(jsonResult)
-    print(content['essay'])
+    # print(content['essay'])
     write_json_data(content, 'Statics/Others/essayEnglish.json')
     return result
 
@@ -240,7 +303,7 @@ def rewrite():
     return content
 
 
-@app.route('/trans', methods=['POST', 'GET'])
+@app.route('/trans', methods=['POST', 'GET'])  # AI translate
 def trans():
     transContent = request.form['transContent']
     try:
