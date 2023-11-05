@@ -80,6 +80,16 @@ def eng():
     return render_template('Statics/Html/graduateEnglish.html')
 
 
+@app.route('/testInterview', methods=['GET'])
+def test_interview():
+    return render_template('Statics/Html/testInterview.html')
+
+
+@app.route('/python', methods=['GET'])
+def python_full_stack():
+    return render_template('Statics/Html/pythonFullStack.html')
+
+
 @app.route('/problems', methods=['POST', 'GET'])  #TODO
 def problems():
     return render_template('Statics/Html/problems.html')
