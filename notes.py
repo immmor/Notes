@@ -85,7 +85,7 @@ def test_interview():
     return render_template('Statics/Html/testInterview.html')
 
 
-@app.route('/python', methods=['GET'])
+@app.route('/潘森', methods=['GET'])
 def python_full_stack():
     return render_template('Statics/Html/pythonFullStack.html')
 

@@ -310,8 +310,8 @@ function hotkey_search() {
                 } else if (searchQuery.startsWith('谷歌：')) {
                     let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`;
                     window.open(searchUrl, '_blank');
-                } else if (searchQuery.startsWith('翻译：')) {
-                    let content = searchQuery.split('：').pop();
+                } else if (searchQuery.startsWith('翻译:') || searchQuery.startsWith('trans:') || searchQuery.startsWith('fanyi:')) {
+                    let content = searchQuery.split(':').pop();
                     let searchUrl = `https://fanyi.baidu.com/translate?aldtype=16047&query=${encodeURIComponent(content)}&keyfrom=baidu&smartresult=dict&lang=auto2zh#en/zh/${encodeURIComponent(content)}`
                     window.open(searchUrl, '_blank');
                 } else {
