@@ -2,9 +2,12 @@ import json, os, sys, copy, datetime, requests, webbrowser
 from flask import Flask, render_template, request, jsonify
 from flasgger import Swagger, swag_from
 from tools import claude_ai, get_json_data, write_json_data, trans_youdao, get_csv
+from Modules.wrapBlueprints import blueList
 
 # os.chdir(sys.path[0])  # 把现在的工作路径切换到当前文件夹
 app = Flask(__name__, template_folder='./', static_folder='Statics')
+for i in blueList:
+    app.register_blueprint(i)
 Swagger(app)
 
 @app.route('/', methods=['GET'])
@@ -80,12 +83,10 @@ def eng():
     return render_template('Statics/Html/graduateEnglish.html')
 
 
-@app.route('/testInterview', methods=['GET'])
-def test_interview():
-    return render_template('Statics/Html/testInterview.html')
 
 
-@app.route('/潘森', methods=['GET'])
+
+@app.route('/派森', methods=['GET'])
 def python_full_stack():
     return render_template('Statics/Html/pythonFullStack.html')
 
