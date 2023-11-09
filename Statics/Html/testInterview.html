@@ -11,6 +11,7 @@
     <script src="{{url_for('static', filename ='JavaScripts/Mine/tools.js')}}"></script>
     <script src="{{url_for('static', filename ='JavaScripts/Others/jquery.js')}}"></script>
     <script src="{{url_for('static', filename ='JavaScripts/Others/md5.js')}}"></script>
+    <script src="{{url_for('static', filename ='JavaScripts/Others/marked.js')}}"></script>
     <script src="{{url_for('static', filename ='JavaScripts/Others/bootstrap5.1.1.js')}}"></script>
     <!-- <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script> -->
     <!-- <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script> -->
@@ -307,11 +308,22 @@
         .dropdown-menu {
             min-width: 1rem !important;
         }
+
+        .generateTest {
+            position: fixed;
+            right: 80px;
+            top: 100px;
+            border: 1px solid;
+            padding: 1px;
+            cursor: pointer;
+            transition: background-color .5s;
+        }
     </style>
 </head>
 
 <body>
     <div class="logout" id="logout" onclick="logout()">登出</div>
+    <div class="generateTest" id="generateTest" onclick="aiGenerateTest(this)">生成</div>
     <input id="postern" type="button" value="" />
     <div class="container mt-3">
         <h2 class="text-center display-1 animate__animated animate__flash">测试宝典</h2>
@@ -323,6 +335,7 @@
                 </div>
                 <div id="collapseOne" class="collapse">
                     <div class="card-body">
+                        
 
                         {% for i in basicWList %}
                         <div class="card">
@@ -465,6 +478,7 @@
                 <div id="collapseSix" class="collapse">
                     <div class="card-body">
 
+                        <div id="kk"></div>
 
                         {% for i in webUIWList %}
                         <div class="card">
@@ -828,6 +842,13 @@
     let bon = document.getElementById('postern')
     bon.ondblclick = function() {
         prompt("请输入暗号", "");
+    }
+
+    function aiGenerateTest(obj) {
+        $.get('/test/generate', (result) => {
+            alert(result);
+            document.getElementById('kk').innerHTML = marked.parse(result);
+        });
     }
 </script>
 </html>

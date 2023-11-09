@@ -1,3 +1,3 @@
-from Modules import test
+from Modules import testInterview
 
-blueList = [test.bp]
+blueList = [testInterview.bp]

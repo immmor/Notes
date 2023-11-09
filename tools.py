@@ -180,7 +180,7 @@ def play_audio():
     play(audio, loop=True)
 
 
-if __name__ == '__main__':
+def judge_answer():
     question = "[简述以下五个python标准库，os、sys、re、math、datatime。]"
     standardAnswer = """
     [当谈到Python编程时，以下五个标准库是非常重要且常用的：os、sys、re、math和datetime。以下是对每个标准库的简要描述：
@@ -207,5 +207,10 @@ if __name__ == '__main__':
     """ + myAnswer + """
     10分为满分，请问依据标准答案我的回答能拿多少分？
     """
+    return claude_ai(prompt)
+
+
+if __name__ == '__main__':
+    prompt = "给我3个Web UI自动化测试面试题并给出相应的答案(请用markdown格式输出)。"
     print(claude_ai(prompt))
     # play_audio()

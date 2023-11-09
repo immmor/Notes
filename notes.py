@@ -83,9 +83,6 @@ def eng():
     return render_template('Statics/Html/graduateEnglish.html')
 
 
-
-
-
 @app.route('/派森', methods=['GET'])
 def python_full_stack():
     return render_template('Statics/Html/pythonFullStack.html')
