@@ -34,8 +34,8 @@ def write_file(content):
         
 
 def claude_ai(text):
-    slackToken = 'xoxp-5188530118690-5188398037171-5733621356819-a30475dd9a71f0346814dc13f1a0465e'  # tzbg
-    # slackToken = 'xoxp-415445285921-416003551682-5356031879952-e553f10d7af397d89db28fe1865ee985'
+    # slackToken = 'xoxp-5188530118690-5188398037171-5733621356819-a30475dd9a71f0346814dc13f1a0465e'  # tzbg
+    slackToken = 'xoxp-415445285921-416003551682-5356031879952-e553f10d7af397d89db28fe1865ee985'
     def send_msg():
         sendURL = "https://slack.com/api/chat.postMessage"
         data = {
@@ -54,8 +54,8 @@ def claude_ai(text):
         receiveURL = "https://slack.com/api/conversations.history"
         data = {
             "token": slackToken,
-            "channel": "D055M0TE4MA",  # tzbg
-            # "channel": "D052WQCP84D",
+            # "channel": "D055M0TE4MA",  # tzbg
+            "channel": "D052WQCP84D",
             "oldest": msgSent['ts']
         }
         response = requests.post(receiveURL, data=data)
@@ -257,6 +257,7 @@ def judge_answer():
 
 
 if __name__ == '__main__':
-    prompt = "给我3个Web UI自动化测试面试题并给出相应的答案(请用markdown格式输出)。"
-    print(claude_ai(prompt))
-    # play_audio()
+    # prompt = "给我3个Web UI自动化测试面试题并给出相应的答案(请用markdown格式输出)。"
+    # print(claude_ai(prompt))
+    # ai('夫妻之间最重要的是什么')
+    trans_youdao('fuck shit')

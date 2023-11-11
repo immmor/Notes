@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 from flasgger import swag_from
-from Web.Notes.tools import claude_ai
+from tools import claude_ai
 
 bp = Blueprint('test', __name__)
 
