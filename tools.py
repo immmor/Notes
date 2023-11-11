@@ -97,15 +97,61 @@ def dify_ai(ask):
     print(finalData)
 
 
+def chatanywhere_ai(ask, stream=False):
+    # 调用的openai的api
+    # https://github.com/chatanywhere/GPT_API_free
+    import openai
+    openai.api_key = "sk-O7hjZCtWA6saoobUYBleIdG2b1UIdDsOJzW0HsW21qnFCMrU"
+    openai.api_base = "https://api.chatanywhere.com.cn/v1"
+    if stream is False:
+        # 非流式响应
+        completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": ask}])
+        result = completion.choices[0].message.content
+        print(result)
+        return result
+    else:
+        # 流式响应
+        try:
+            response = openai.ChatCompletion.create(
+                model='gpt-3.5-turbo',
+                messages=[{'role': 'user','content': ask},],
+                stream=True,
+            )
+            completion = {'role': '', 'content': ''}
+            for event in response:
+                if event['choices'][0]['finish_reason'] == 'stop':
+                    print(f'收到的完成数据: {completion}')
+                    break
+                for delta_k, delta_v in event['choices'][0]['delta'].items():
+                    print(f'流响应数据: {delta_k} = {delta_v}')
+                    completion[delta_k] += delta_v
+            # messages.append(completion)  # 直接在传入参数 messages 中追加消息
+            return (True, '')
+        except Exception as err:
+            return (False, f'OpenAI API 异常: {err}')
+
+
+def ai(ask):
+    funcs = [chatanywhere_ai, dify_ai, claude_ai]
+    for func in funcs:
+        try:
+            func(ask)
+            break
+        except Exception as e:
+            print(f"函数 {func.__name__} 报错: {str(e)}")
+
+
 def trans_youdao(transContent: str):
+    # 不可用 not available
     import requests
     data = {
         'doctype': 'json', 
         'type': 'auto',
         'i': transContent
     }
-    r = requests.get("http://fanyi.youdao.com/translate",params=data)
-    result = r.json()['translateResult'][0][0]['tgt']
+    r = requests.get("https://dict.youdao.com/webtranslate",params=data)
+    # result = r.json()['translateResult'][0][0]['tgt']
+    result = r.json()
     print(result)
     return result
 
