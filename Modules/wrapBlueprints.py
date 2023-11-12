@@ -1,3 +1,4 @@
-from Modules import testInterview
+from Modules import interviewTesting
+from Modules.Graduate import graduateEnglish
 
-blueList = [testInterview.bp]
+blueList = [interviewTesting.bp, graduateEnglish.bp]

@@ -142,6 +142,8 @@
     }
 
     .wordCount {
+        font-size: 13px;
+        /* color: grey; */
         text-align: center;
         padding-bottom: 5px;
     }
@@ -368,6 +370,13 @@
                 };
                 essayParaDiv.appendChild(newTranslate);
             }
+
+            essayTotalWordCount = data['totalWordCount']
+            var essayTotalWordCountDiv = document.createElement('div');
+            essayTotalWordCountDiv.innerHTML = 'Word Count: ' + essayTotalWordCount;
+            essayTotalWordCountDiv.classList.add('wordCount');
+            notes.appendChild(essayTotalWordCountDiv);
+
             document.body.style.transition = "background-color 2s";
             document.body.style.backgroundColor = "white";
             obj.classList.remove('colorChange');
@@ -375,12 +384,10 @@
         });
     }
 
-
     var reset = 'yes';
     window.onload = function() {
         reset = 'no';
     };
-
 
     function getEssay() {
         $.post('/essay', {
@@ -397,6 +404,7 @@
                     essayTitleDiv.innerHTML = essayTitle;
                     essayTitleDiv.classList.add('essayTitle');
                     notes.appendChild(essayTitleDiv);
+
                     essayContent = data[i]['content']
                     for (let j = essayContent.length - 1; j >= 0; j--) {
                         var essayParaDiv = document.createElement('div');
@@ -422,6 +430,12 @@
                         };
                         essayParaDiv.appendChild(newTranslate);
                     }
+
+                    essayTotalWordCount = data[i]['totalWordCount']
+                    var essayTotalWordCountDiv = document.createElement('div');
+                    essayTotalWordCountDiv.innerHTML = 'Word Count: ' + essayTotalWordCount;
+                    essayTotalWordCountDiv.classList.add('wordCount');
+                    notes.appendChild(essayTotalWordCountDiv);
                 }
             }
         });

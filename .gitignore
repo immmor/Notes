@@ -1,7 +1,7 @@
-# 忽略MP3Files
 /MP3Files
 /KKIV
 /.buildozer
 *Try
 /TryDjango
 .DS_Store
+*__pycache__

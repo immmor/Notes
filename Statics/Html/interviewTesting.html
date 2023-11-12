@@ -311,12 +311,18 @@
 
         .generateTest {
             position: fixed;
-            right: 80px;
-            top: 100px;
+            right: 40px;
+            top: 75px;
             border: 1px solid;
             padding: 1px;
+            /* background-color: rgb(255, 47, 71); */
             cursor: pointer;
-            transition: background-color .5s;
+        }
+
+        .generateTest:hover {
+            transition: 1s;
+            border: 1px solid;
+            background-color: rgb(47, 255, 47);
         }
     </style>
 </head>
@@ -331,8 +337,13 @@
             <div class="card">
                 <div class="card-header text-start" data-bs-toggle="collapse" href="#collapseOne">
                     <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseOne">测试基础</a>
+                    <!-- <a class="btn text-end">生成</a> -->
+                    <div class="float-end">
+                        <a class="btn">生成</a>
+                    </div>
                     <span class="badge bg-danger">{{ basicCount }}</span>
                 </div>
+                
                 <div id="collapseOne" class="collapse">
                     <div class="card-body">
                         
@@ -845,7 +856,7 @@
     }
 
     function aiGenerateTest(obj) {
-        $.get('/test/generate', (result) => {
+        $.get('/interview/generate', (result) => {
             alert(result);
             document.getElementById('kk').innerHTML = marked.parse(result);
         });

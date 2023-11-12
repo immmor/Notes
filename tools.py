@@ -256,8 +256,135 @@ def judge_answer():
     return claude_ai(prompt)
 
 
+def ipQuery(ip):
+    # 淘宝api接口
+    url = "http://ip.taobao.com/outGetIpInfo?ip={}&accessKey=alibaba-inc".format(ip)
+    req = requests.get(url).text
+    json1 = json.loads(req)
+    country = json1["data"]["country"]  # 国
+    isp_id = json1["data"]["isp_id"]
+    province = json1["data"]["region"]  # 省
+    city = json1["data"]["city"]  # 市
+    county = json1["data"]["county"]
+    region = json1["data"]["region"]
+    area = json1["data"]["county"]
+    # return "{}-{}-{}-{}-{}-{}".format(country, province, city, county, region, area)
+    return "{}-{}-{}".format(country, province, city)
+
+
+def get_toutiao(playf=False):
+    import requests, datetime, concurrent.futures
+    from playsound import playsound 
+    url = 'http://v.juhe.cn/toutiao/index'
+    # categoryList = ['top', 'shehui', 'guonei', 'guoji', 'yule', 'tiyu', 'junshi', 'keji', 'caijing', 'shishang']
+    categoryList = ['top', 'guoji', 'junshi', 'keji']
+    # myInterestsCategoryList = ['top', 'guoji', 'junshi', 'keji']
+    # categoryGen = (i for i in categoryList)
+    # category = next(categoryGen)
+    dataInFile = get_json_data('Statics/Others/news.json')
+    today = str(datetime.datetime.now()).split(' ')[0]
+    if today not in dataInFile['usedIndex']:
+        dataInFile['usedIndex'][today] = 0
+    elif dataInFile['usedIndex'][today] == len(categoryList) - 1:
+        dataInFile['usedIndex'][today] = 0
+    else:
+        dataInFile['usedIndex'][today] += 1
+    newsType = categoryList[dataInFile['usedIndex'][today]]
+    params = {
+        "type": newsType,  # 头条类型,top(头条，默认),shehui(社会),guonei(国内),guoji(国际),yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
+        "key": "7d523054ec118517fc2b4647f883f44e",  # 您申请的接口API接口请求Key
+    }
+    response = requests.post(url, params)
+    responseJson = json.loads(response.text)
+    titleList = []
+    for i in responseJson['result']['data']:
+        # 报这个错的话：”TypeError: 'NoneType' object is not subscriptable“，应该是当天的额度用完了
+        print(i['title'])
+        titleList.append(i['title'])
+    if playf:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+            # 将任务添加到线程池中
+            for i in titleList:
+                executor.submit(text2speech, i, playf=False, folderName=newsType)
+    dataInFile['result']['data'] += responseJson['result']['data']
+    write_json_data(dataInFile, jsonFileName='Statics/Others/news.json')
+    if playf and sys.platform.startswith('darwin'):
+        nowDay = datetime.datetime.now().strftime("%Y-%m-%d")
+        if os.path.exists('MP3Files/' + nowDay + '/' + newsType):
+            mp3List = os.listdir('MP3Files/' + nowDay + '/' + newsType)
+            print(mp3List)
+            print("本文件夹共有" + str(len(mp3List)) + "个文件")
+            [playsound('MP3Files/' + nowDay + '/' + newsType + '/' + i) for i in mp3List if i.endswith('.mp3')]
+    elif playf and sys.platform.startswith('win'):
+        from pydub import AudioSegment
+        from pydub.playback import play
+        # audio = AudioSegment.from_file()
+        nowDay = datetime.datetime.now().strftime("%Y-%m-%d")
+        if os.path.exists('MP3Files/' + nowDay + '/' + newsType):
+            mp3List = os.listdir('MP3Files/' + nowDay + '/' + newsType)
+            print(mp3List)
+            print("本文件夹共有" + str(len(mp3List)) + "个文件")
+            [playf(AudioSegment.from_file('MP3Files/' + nowDay + '/' + newsType + '/' + i)) for i in mp3List if i.endswith('.mp3')]
+        # playf(audio)
+
+
+def text2speech(text, playf, folderName):
+    import platform
+    # from pydub import AudioSegment
+    # from pydub.playback import play
+    from playsound import playsound  
+    ttsLink = [
+        f"https://dict.youdao.com/dictvoice?audio={text}&le=zh", 
+        f"https://dict.youdao.com/dictvoice?audio={text}&type=1",
+        f"https://fanyi.baidu.com/gettts?lan=zh&text={text}&spd=5&source=web",
+        f"https://fanyi.sogou.com/reventondc/synthesis?text={text}&speed=1&lang=zh-CHS&from=translateweb&speaker=6"
+    ]
+    r = requests.get(ttsLink[0])
+    # print(r.content)
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    nowDay = datetime.datetime.now().strftime("%Y-%m-%d")
+    # print(nowDay)
+    if not os.path.exists('MP3Files/'+ nowDay + '/' + folderName):
+        os.makedirs('MP3Files/' + nowDay + '/' + folderName)
+    mp3FileName = 'MP3Files/' + nowDay + '/' + folderName + '/' + now + text[:2] + '.mp3'
+    # mp3FileName = 'a.mp3'
+    # TODO: text2speech
+    with open (mp3FileName, 'wb+') as f:
+        f.write(r.content)
+    if playf and sys.platform.startswith('darwin'):
+        playsound(mp3FileName)
+    elif playf and sys.platform.startswith('win'):
+        from pydub import AudioSegment
+        from pydub.playback import play
+        audio = AudioSegment.from_file(mp3FileName)
+        playf(audio)
+        # if platform.system() == 'Darwin':  # macOS
+        #     playsound(mp3FileName)
+        # elif platform.system() == 'Windows':  # Windows
+        #     audio = AudioSegment.from_file(mp3FileName, format="mp3")
+        #     playf(audio)
+        # else:
+        #     print("Unsupported operating system.")
+
+
+def word_count(text):
+    num = len(text.split(' '))
+    print(num)
+    return num
+
+
 if __name__ == '__main__':
     # prompt = "给我3个Web UI自动化测试面试题并给出相应的答案(请用markdown格式输出)。"
     # print(claude_ai(prompt))
-    # ai('夫妻之间最重要的是什么')
-    trans_youdao('fuck shit')
+    # ai('今天北京天气怎么样')
+    # print(ipQuery("137.2.23.1"))
+    # trans_youdao('fuck shit')
+    # word_count("To fully reap the benefits of outdoor exercise, it's important to find activities that align with personal interests and fitness goals.")
+    content = get_json_data('Statics/Others/essayEnglish.json')
+    for i in content['essay']:
+        i['totalWordCount'] = 0
+        for j in i['content']:
+            num = int(word_count(j["paragraph"]))
+            j["wordCount"] = num
+            i['totalWordCount'] += num
+    write_json_data(content, 'Statics/Others/essayEnglish.json')

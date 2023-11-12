@@ -299,10 +299,29 @@ function notify() {
 
 // TODO
 function hotkey_search() {
+    // 模拟按下 Ctrl 键
+    function pressCtrlKey() {
+        const event = new KeyboardEvent('keydown', { key: 'Control', code: 'ControlLeft', ctrlKey: true });
+        document.dispatchEvent(event);
+    }
+    function releaseCtrlKey() {
+        const event = new KeyboardEvent('keyup', { key: 'Control', code: 'ControlLeft', ctrlKey: true });
+        document.dispatchEvent(event);
+    }
+    function simulateDoubleCtrl() {
+        pressCtrlKey();
+        releaseCtrlKey();
+        pressCtrlKey();
+        releaseCtrlKey();
+    }
+    
     document.addEventListener("keydown", function(event) {
         if (event.ctrlKey && (event.key === "k" || event.key === "K")) {
             event.preventDefault(); // 阻止默认行为
             let searchQuery = prompt("搜点什么？");
+
+            simulateDoubleCtrl();
+            
             if (searchQuery) {
                 if (searchQuery.startsWith('百度：')) {
                     let searchUrl = `https://www.baidu.com/s?wd=${encodeURIComponent(searchQuery)}`;
