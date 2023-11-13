@@ -101,7 +101,8 @@ def chatanywhere_ai(ask, stream=False):
     # 调用的openai的api
     # https://github.com/chatanywhere/GPT_API_free
     import openai
-    openai.api_key = "sk-O7hjZCtWA6saoobUYBleIdG2b1UIdDsOJzW0HsW21qnFCMrU"
+    # openai.api_key = "sk-O7hjZCtWA6saoobUYBleIdG2b1UIdDsOJzW0HsW21qnFCMrU" 
+    openai.api_key = "sk-bCnBAlsepSdqg8DaM6RCGKAk4DrF46rq9tNy6tv32xJvJk6S"
     openai.api_base = "https://api.chatanywhere.com.cn/v1"
     if stream is False:
         # 非流式响应
