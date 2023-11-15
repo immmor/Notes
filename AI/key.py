@@ -1,2 +1,0 @@
-openaikey = "sk-O7hjZCtWA6saoobUYBleIdG2b1UIdDsOJzW0HsW21qnFCMrU"
-# "sk-bCnBAlsepSdqg8DaM6RCGKAk4DrF46rq9tNy6tv32xJvJk6S"
