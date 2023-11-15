@@ -5,3 +5,4 @@ MP3Files/*
 /TryDjango
 .DS_Store
 *__pycache__
+key.py
