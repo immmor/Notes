@@ -82,6 +82,7 @@ def ai_generate_essay():
             "totalWordCount": 259
         }
     """
+    print(generateEssayPrompt)
     result = chatanywhere_ai(generateEssayPrompt)
     jsonResult = json.loads(result)
     print(jsonResult)
@@ -109,9 +110,9 @@ def rewrite():
 @bp.route('/trans', methods=['POST', 'GET'])  # AI translate
 def trans():
     transContent = request.form['transContent']
+    print(transContent)
     try:
         content = chatanywhere_ai('直接把这个翻译成中文（不要换行，不要空格，不要说别的）: ' + transContent)
-        print(content)
         return content
     except:
         transContentList = transContent.split('.')

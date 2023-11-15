@@ -146,20 +146,20 @@ def pay():
     password = request.form['password']
     payPassword = request.form['payPassword']
     payPoints = request.form['payPoints']
-    print(payPassword)
     userRawData = get_json_data('Statics/Others/userinfo.json')
     for i in userRawData['家庭信息']:
         if (username == i['登录名'] and password == i['密码']):
             print(i['余额'])
             if str(payPassword) == str(i['支付密码']):
                 if i['余额'] < int(payPoints):
-                    result = 'fail'
+                    result = 'pass fail'
                 else:
                     i['余额'] -= int(payPoints)
                     print(i['余额'])
-                    i['可查看答案'] = '是'  
                     write_json_data(userRawData, jsonFileName='Statics/Others/userinfo.json')
                     result = 'success'
+            else:
+                result = 'balance fail'
     return result
 
 

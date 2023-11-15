@@ -334,7 +334,6 @@
     <div class="container mt-3">
         <h2 class="text-center display-1 animate__animated animate__flash">测试宝典</h2>
         <div id="accordion">
-
             <div class="card">
                 <div class="card-header text-start" data-bs-toggle="collapse" href="#collapseOne">
                     <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseOne">测试基础</a>
@@ -348,12 +347,6 @@
                 <div id="collapseOne" class="collapse">
                     <div class="card-body">
                         
-                        {% for i in interviewTestData %}
-                            {% if i['模块']=='测试基础' %}
-                                {{ i['问题'] }}
-                                {{ i['答案'] }}
-                            {% endif %}
-                        {% endfor %}
 
                         {% for i in basicWList %}
                         <div class="card">
@@ -382,13 +375,6 @@
                 <div id="collapseTwo" class="collapse">
                     <div class="card-body">
 
-                        {% for i in interviewTestData %}
-                            {% if i['模块']=='WEB功能测试' %}
-                                {{ i['问题'] }}
-                                {{ i['答案'] }}
-                            {% endif %}
-                        {% endfor %}
-
                         {% for i in webWList %}
                         <div class="card">
                             <div class="card-header text-start" data-bs-toggle="collapse" href="#collapseTwo{{ i[3] }}">
@@ -416,12 +402,6 @@
                 <div id="collapseThree" class="collapse">
                     <div class="card-body">
 
-                        {% for i in interviewTestData %}
-                            {% if i['模块']=='MySQL数据库' %}
-                                {{ i['问题'] }}
-                                {{ i['答案'] }}
-                            {% endif %}
-                        {% endfor %}
 
                         {% for i in mysqlWList %}
                         <div class="card">
@@ -451,12 +431,6 @@
                 <div id="collapseFour" class="collapse">
                     <div class="card-body">
 
-                        {% for i in interviewTestData %}
-                            {% if i['模块']=='Python编程' %}
-                                {{ i['问题'] }}
-                                {{ i['答案'] }}
-                            {% endif %}
-                        {% endfor %}
 
                         {% for i in pythonWList %}
                         <div class="card">
@@ -486,12 +460,6 @@
                 <div id="collapseFive" class="collapse">
                     <div class="card-body">
 
-                        {% for i in interviewTestData %}
-                            {% if i['模块']=='接口测试' %}
-                                {{ i['问题'] }}
-                                {{ i['答案'] }}
-                            {% endif %}
-                        {% endfor %}
 
                         {% for i in apiWList %}
                         <div class="card">
@@ -521,16 +489,9 @@
                 <div id="collapseSix" class="collapse">
                     <div class="card-body">
 
-                        <!-- <div id="kk"></div> -->
+                        <div id="kk"></div>
 
                         <!-- <div>interviewTestRawData</div> -->
-
-                        {% for i in interviewTestData %}
-                            {% if i['模块']=='WebUI自动化' %}
-                                {{ i['问题'] }}
-                                {{ i['答案'] }}
-                            {% endif %}
-                        {% endfor %}
 
                         {% for i in webUIWList %}
                         <div class="card">
@@ -560,13 +521,6 @@
                 <div id="collapseSeven" class="collapse">
                     <div class="card-body">
 
-                        {% for i in interviewTestData %}
-                            {% if i['模块']=='安卓自动化' %}
-                                {{ i['问题'] }}
-                                {{ i['答案'] }}
-                            {% endif %}
-                        {% endfor %}
-
                         {% for i in androidWList %}
                         <div class="card">
                             <div class="card-header text-start" data-bs-toggle="collapse" href="#collapseSeven{{ i[3] }}">
@@ -593,13 +547,6 @@
                 </div>
                 <div id="collapseEight" class="collapse">
                     <div class="card-body">
-
-                        {% for i in interviewTestData %}
-                            {% if i['模块']=='Jmeter' %}
-                                {{ i['问题'] }}
-                                {{ i['答案'] }}
-                            {% endif %}
-                        {% endfor %}
 
                         {% for i in jmeterWList %}
                         <div class="card">

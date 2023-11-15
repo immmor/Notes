@@ -329,59 +329,81 @@
     }
 
     function aiGenerateEssay(obj) {
-        // Set the transition property on the body
-        document.body.style.transition = "background-color 2s";
-        // Change the background color of the entire webpage
-        document.body.style.backgroundColor = "rgb(88, 237, 19)";
-        obj.classList.add('colorChange');
+        cookie = document.cookie.split('=')[1]
+        username = cookie.split('|')[0]
+        password = cookie.split('|')[1]
+        if (confirm('你将支付5个积分，确认支付吗？')) {
+            var payPassword = prompt("请输入支付密码")
+            var payPoints = 5
+            if (payPassword) {
+                $.post('/pay', {
+                    username: username,
+                    password: password,
+                    payPassword: payPassword,
+                    payPoints: payPoints
+                }).then(function(data) {
+                    if (data == 'success') {
+                        // Set the transition property on the body
+                        document.body.style.transition = "background-color 2s";
+                        // Change the background color of the entire webpage
+                        document.body.style.backgroundColor = "rgb(88, 237, 19)";
+                        obj.classList.add('colorChange');
 
-        $.get('/aiGenerateEssay', (result) => {
-            // alert(result)
-            var data = JSON.parse(result);
-            var notes = document.getElementById('notes');
+                        $.get('/aiGenerateEssay', (result) => {
+                            // alert(result)
+                            var data = JSON.parse(result);
+                            var notes = document.getElementById('notes');
 
-            essayTitle = data['title']
-            var essayTitleDiv = document.createElement('div');
-            essayTitleDiv.innerHTML = essayTitle;
-            essayTitleDiv.classList.add('essayTitle');
-            notes.appendChild(essayTitleDiv);
+                            essayTitle = data['title']
+                            var essayTitleDiv = document.createElement('div');
+                            essayTitleDiv.innerHTML = essayTitle;
+                            essayTitleDiv.classList.add('essayTitle');
+                            notes.appendChild(essayTitleDiv);
 
-            for (let j = data['content'].length - 1; j >= 0; j--) {
-                var essayParaDiv = document.createElement('div');
-                essayParaDiv.innerHTML = data['content'][j]['paragraph'];
-                essayParaDiv.classList.add('essayPara');
-                essayTitleDiv.insertAdjacentElement('afterend', essayParaDiv);
+                            for (let j = data['content'].length - 1; j >= 0; j--) {
+                                var essayParaDiv = document.createElement('div');
+                                essayParaDiv.innerHTML = data['content'][j]['paragraph'];
+                                essayParaDiv.classList.add('essayPara');
+                                essayTitleDiv.insertAdjacentElement('afterend', essayParaDiv);
 
-                var newRewrite = document.createElement('div');
-                newRewrite.classList.add('rewrite');
-                newRewrite.style.marginLeft = '4px';
-                newRewrite.innerHTML = '重写';
-                newRewrite.onclick = function() {
-                    rewrite(this);
-                };
-                essayParaDiv.appendChild(newRewrite);
+                                var newRewrite = document.createElement('div');
+                                newRewrite.classList.add('rewrite');
+                                newRewrite.style.marginLeft = '4px';
+                                newRewrite.innerHTML = '重写';
+                                newRewrite.onclick = function() {
+                                    rewrite(this);
+                                };
+                                essayParaDiv.appendChild(newRewrite);
 
-                var newTranslate = document.createElement('div');
-                newTranslate.classList.add('translate');
-                newTranslate.style.marginLeft = '2px';
-                newTranslate.innerHTML = '译';
-                newTranslate.onclick = function() {
-                    trans(this);
-                };
-                essayParaDiv.appendChild(newTranslate);
+                                var newTranslate = document.createElement('div');
+                                newTranslate.classList.add('translate');
+                                newTranslate.style.marginLeft = '2px';
+                                newTranslate.innerHTML = '译';
+                                newTranslate.onclick = function() {
+                                    trans(this);
+                                };
+                                essayParaDiv.appendChild(newTranslate);
+                            }
+
+                            essayTotalWordCount = data['totalWordCount']
+                            var essayTotalWordCountDiv = document.createElement('div');
+                            essayTotalWordCountDiv.innerHTML = 'Word Count: ' + essayTotalWordCount;
+                            essayTotalWordCountDiv.classList.add('wordCount');
+                            notes.appendChild(essayTotalWordCountDiv);
+
+                            document.body.style.transition = "background-color 2s";
+                            document.body.style.backgroundColor = "white";
+                            obj.classList.remove('colorChange');
+                            obj.nextElementSibling.lastElementChild.scrollIntoView({ behavior: 'smooth' });
+                        });
+                    } else if (data == 'balance fail') {
+                        alert('余额不足请充值')
+                    } else if (data == 'pass fail') {
+                        alert('密码错误')
+                    }
+                });
             }
-
-            essayTotalWordCount = data['totalWordCount']
-            var essayTotalWordCountDiv = document.createElement('div');
-            essayTotalWordCountDiv.innerHTML = 'Word Count: ' + essayTotalWordCount;
-            essayTotalWordCountDiv.classList.add('wordCount');
-            notes.appendChild(essayTotalWordCountDiv);
-
-            document.body.style.transition = "background-color 2s";
-            document.body.style.backgroundColor = "white";
-            obj.classList.remove('colorChange');
-            obj.nextElementSibling.lastElementChild.scrollIntoView({ behavior: 'smooth' });
-        });
+        }
     }
 
     var reset = 'yes';
@@ -453,110 +475,153 @@
 
 
     function rewrite(obj) {
-        // Set the transition property on the body
-        document.body.style.transition = "background-color 2s";
-        // Change the background color of the entire webpage
-        document.body.style.backgroundColor = "yellow";
+        cookie = document.cookie.split('=')[1]
+        username = cookie.split('|')[0]
+        password = cookie.split('|')[1]
+        if (confirm('你将支付5个积分，确认支付吗？')) {
+            var payPassword = prompt("请输入支付密码")
+            var payPoints = 5
+            if (payPassword) {
+                $.post('/pay', {
+                    username: username,
+                    password: password,
+                    payPassword: payPassword,
+                    payPoints: payPoints
+                }).then(function(data) {
+                    if (data == 'success') {
+                        // Set the transition property on the body
+                        document.body.style.transition = "background-color 2s";
+                        // Change the background color of the entire webpage
+                        document.body.style.backgroundColor = "yellow";
 
-        const essayPara = obj.parentNode.innerText
-        const finalEssayPara = essayPara.slice(0, -5);
+                        const essayPara = obj.parentNode.innerText
+                        const finalEssayPara = essayPara.slice(0, -5);
 
-        obj.innerText = "正在思考。。。"
+                        obj.innerText = "正在思考。。。"
 
-        if (obj.innerText == "正在思考。。。") {
-            obj.classList.add('colorChange');
-        }
+                        if (obj.innerText == "正在思考。。。") {
+                            obj.classList.add('colorChange');
+                        }
 
-        var translates = document.getElementsByClassName('translate');
-        for (var i = 0; i < translates.length; i++) {
-            translates[i].style.pointerEvents = 'none';
-        }
-        var rewrites = document.getElementsByClassName('rewrite');
-        for (var i = 0; i < rewrites.length; i++) {
-            rewrites[i].style.pointerEvents = 'none';
-        }
+                        var translates = document.getElementsByClassName('translate');
+                        for (var i = 0; i < translates.length; i++) {
+                            translates[i].style.pointerEvents = 'none';
+                        }
+                        var rewrites = document.getElementsByClassName('rewrite');
+                        for (var i = 0; i < rewrites.length; i++) {
+                            rewrites[i].style.pointerEvents = 'none';
+                        }
 
-        $.post('/rewrite', {
-            rewriteContent: finalEssayPara
-        }).then(function(response) {
-            obj.classList.remove('colorChange');
-            let finalEssayPara = response
-            var newDiv = document.createElement('div');
-            newDiv.innerHTML = finalEssayPara;  // Set the new div's content to the rewritten content
-            newDiv.classList.add('essayPara');
-            newDiv.style.color = "rgb(25, 198, 251)";
-            newDiv.style.display = "inline-block";
-            obj.parentNode.parentNode.insertBefore(newDiv, obj.parentNode.nextSibling);
-            obj.innerText = "重写";
-            for (var i = 0; i < rewrites.length; i++) {
-                rewrites[i].style.pointerEvents = 'all';
+                        $.post('/rewrite', {
+                            rewriteContent: finalEssayPara
+                        }).then(function(response) {
+                            obj.classList.remove('colorChange');
+                            let finalEssayPara = response
+                            var newDiv = document.createElement('div');
+                            newDiv.innerHTML = finalEssayPara;  // Set the new div's content to the rewritten content
+                            newDiv.classList.add('essayPara');
+                            newDiv.style.color = "rgb(25, 198, 251)";
+                            newDiv.style.display = "inline-block";
+                            obj.parentNode.parentNode.insertBefore(newDiv, obj.parentNode.nextSibling);
+                            obj.innerText = "重写";
+                            for (var i = 0; i < rewrites.length; i++) {
+                                rewrites[i].style.pointerEvents = 'all';
+                            }
+                            for (var i = 0; i < translates.length; i++) {
+                                translates[i].style.pointerEvents = 'all';
+                            }
+                            var newTranslate = document.createElement('div');
+                            newTranslate.classList.add('translate');
+                            newTranslate.innerHTML = '译';
+                            newTranslate.onclick = function() {
+                                trans(this);
+                            };
+                            newDiv.appendChild(newTranslate);   // essayParaDiv
+                            
+                            document.body.style.transition = "background-color 2s";
+                            document.body.style.backgroundColor = "white";
+                        });
+                    } else if (data == 'balance fail') {
+                        alert('余额不足请充值')
+                    } else if (data == 'pass fail') {
+                        alert('密码错误')
+                    }
+                });
             }
-            for (var i = 0; i < translates.length; i++) {
-                translates[i].style.pointerEvents = 'all';
-            }
-            var newTranslate = document.createElement('div');
-            newTranslate.classList.add('translate');
-            newTranslate.innerHTML = '译';
-            newTranslate.onclick = function() {
-                trans(this);
-            };
-            newDiv.appendChild(newTranslate);   // essayParaDiv
-            
-            document.body.style.transition = "background-color 2s";
-            document.body.style.backgroundColor = "white";
-        });
+        }
     }
 
     // 定义一个函数，用于处理翻译操作
     function trans(obj) {
-        // Set the transition property on the body
-        document.body.style.transition = "background-color 2s";
-        // Change the background color of the entire webpage
-        document.body.style.backgroundColor = "orange";
+        cookie = document.cookie.split('=')[1]
+        username = cookie.split('|')[0]
+        password = cookie.split('|')[1]
+        if (confirm('你将支付5个积分，确认支付吗？')) {
+            var payPassword = prompt("请输入支付密码")
+            var payPoints = 5
+            if (payPassword) {
+                $.post('/pay', {
+                    username: username,
+                    password: password,
+                    payPassword: payPassword,
+                    payPoints: payPoints
+                }).then(function(data) {
+                    if (data == 'success') {
+                        // Set the transition property on the body
+                        document.body.style.transition = "background-color 2s";
+                        // Change the background color of the entire webpage
+                        document.body.style.backgroundColor = "orange";
 
-        obj.innerText = "正在思考。。。"
-        if (obj.innerText == "正在思考。。。") {
-            obj.classList.add('colorChange');
-        }
+                        obj.innerText = "正在思考。。。"
+                        if (obj.innerText == "正在思考。。。") {
+                            obj.classList.add('colorChange');
+                        }
 
-        var translates = document.getElementsByClassName('translate');
-        for (var i = 0; i < translates.length; i++) {
-            translates[i].style.pointerEvents = 'none';
-        }
-        var rewrites = document.getElementsByClassName('rewrite');
-        for (var i = 0; i < rewrites.length; i++) {
-            rewrites[i].style.pointerEvents = 'none';
-        }
+                        var translates = document.getElementsByClassName('translate');
+                        for (var i = 0; i < translates.length; i++) {
+                            translates[i].style.pointerEvents = 'none';
+                        }
+                        var rewrites = document.getElementsByClassName('rewrite');
+                        for (var i = 0; i < rewrites.length; i++) {
+                            rewrites[i].style.pointerEvents = 'none';
+                        }
 
-        var essayPara = obj.parentNode.innerText
-        var finalEssayPara = essayPara.substring(0, essayPara.length - 1)
+                        var essayPara = obj.parentNode.innerText
 
-        // 发送post请求，获取翻译结果
-        $.post('/trans', {
-            transContent: finalEssayPara
-        }).then(function(response) {
-            obj.classList.remove('colorChange');
-            var divTrans = document.createElement('div');
-            obj.parentNode.after(divTrans);
-            divTrans.className = 'transToChinese'
-            var finalResponse = response.replace(/,/g, '，');  // (/Hello/g, 'Goodbye')  没起作用
-            divTrans.innerText = finalResponse.substring(0, finalResponse.length) + "(此翻译仅作参考)"
-            for (var i = 0; i < translates.length; i++) {
-                if (translates[i] !== obj) {  // Skip the clicked button
-                    translates[i].style.pointerEvents = 'all';
-                }
+                        // 发送post请求，获取翻译结果
+                        $.post('/trans', {
+                            transContent: essayPara
+                        }).then(function(response) {
+                            obj.classList.remove('colorChange');
+                            var divTrans = document.createElement('div');
+                            obj.parentNode.after(divTrans);
+                            divTrans.className = 'transToChinese'
+                            var finalResponse = response.replace(/,/g, '，');  // (/Hello/g, 'Goodbye')  没起作用
+                            divTrans.innerText = finalResponse.substring(0, finalResponse.length) + "(此翻译仅作参考)"
+                            for (var i = 0; i < translates.length; i++) {
+                                if (translates[i] !== obj) {  // Skip the clicked button
+                                    translates[i].style.pointerEvents = 'all';
+                                }
+                            }
+                            for (var i = 0; i < rewrites.length; i++) {
+                                rewrites[i].style.pointerEvents = 'all';
+                            }
+                            obj.innerText = "已翻译";
+                            obj.style.color = "rgb(114, 165, 32)";
+
+                            // Set the transition property on the body
+                            document.body.style.transition = "background-color 2s";
+                            // Change the background color of the entire webpage
+                            document.body.style.backgroundColor = "white";
+                        });
+                    } else if (data == 'balance fail') {
+                        alert('余额不足请充值')
+                    } else if (data == 'pass fail') {
+                        alert('密码错误')
+                    }
+                });
             }
-            for (var i = 0; i < rewrites.length; i++) {
-                rewrites[i].style.pointerEvents = 'all';
-            }
-            obj.innerText = "已翻译";
-            obj.style.color = "rgb(114, 165, 32)";
-
-            // Set the transition property on the body
-            document.body.style.transition = "background-color 2s";
-            // Change the background color of the entire webpage
-            document.body.style.backgroundColor = "white";
-        });
+        }
     }
 </script>
 
