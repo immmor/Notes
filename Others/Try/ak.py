@@ -1,11 +1,11 @@
-# import akshare as ak
-# import pandas as pd
+import akshare as ak
+import pandas as pd
 
-# # 获取2023年沪深300的日K线数据
-# df = ak.stock_zh_index_daily_em(symbol="sh000300", start_date="20200101", end_date="20230810") 
+# 获取2023年沪深300的日K线数据
+df = ak.stock_zh_index_daily_em(symbol="sh000300", start_date="20200101", end_date="20230810") 
 
-# # 将数据输出到CSV文件
-# df.to_csv("sh000300_2023.csv", index=False)
+# 将数据输出到CSV文件
+df.to_csv("sh000300_2023.csv", index=False)
 
 
 
@@ -60,22 +60,22 @@
 
 
 
-import akshare as ak
-stock_news_em_df = ak.stock_news_em("000300")
-print(stock_news_em_df)
+# import akshare as ak
+# stock_news_em_df = ak.stock_news_em("000300")
+# print(stock_news_em_df)
 
 
 
 
-# import requests
-# from bs4 import BeautifulSoup
+import requests
+from bs4 import BeautifulSoup
 
 
-# resp = requests.get('https://finance.eastmoney.com/a/202308102809157722.html')
-# soup = BeautifulSoup(resp.text, 'html.parser')
+resp = requests.get('https://finance.eastmoney.com/a/202308102809157722.html')
+soup = BeautifulSoup(resp.text, 'html.parser')
 
-# title = soup.title
-# print(title.text)
+title = soup.title
+print(title.text)
 
 
 
