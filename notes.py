@@ -84,7 +84,7 @@ def problems():
 
 
 @app.route('/addProblem', methods=['POST', 'GET'])  #TODO
-def add_roblem():
+def add_problem():
     return None
 
 

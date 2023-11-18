@@ -16,7 +16,7 @@ vectorizer = TfidfVectorizer()
 document_vectors = vectorizer.fit_transform(documents)
 
 # 用户查询
-query = "我想吃水果"
+query = "橙是一种水果"
 
 # 将查询向量化
 query_vector = vectorizer.transform([query])

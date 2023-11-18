@@ -8,7 +8,7 @@ chrome_options.add_experimental_option('useAutomationExtension', False)
 broswer = webdriver.Chrome(options=chrome_options)
 
 def test_notes():
-    broswer.get("http://127.0.0.1:250/eng")#访问百度页面
+    broswer.get("http://127.0.0.1:666/eng")#访问百度页面
     # time.sleep(3)
     # broswer.find_element(By.ID, 'username').send_keys('wangdian') 
     # broswer.find_element(By.ID, 'passwordid').send_keys('wangdian123')
