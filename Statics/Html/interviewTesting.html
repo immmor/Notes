@@ -340,7 +340,7 @@
                     <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseOne">测试基础</a>
                     <!-- <a class="btn text-end">生成</a> -->
                     <div class="float-end">
-                        <a class="btn">生成</a>
+                        <!-- <a class="btn" onclick="aiGenerateTest(this)">生成1</a> -->
                     </div>
                     <span class="badge bg-danger">{{ basicCount }}</span>
                 </div>
@@ -453,8 +453,8 @@
 
                         {% for i in interviewTestData %}
                             {% if i['模块']=='Python编程' %}
-                                {{ i['问题'] }}
-                                {{ i['答案'] }}
+                                <div><b>{{ i['问题'] }}</b></div>
+                                <div><b>{{ i['答案'] }}</b></div>
                             {% endif %}
                         {% endfor %}
 
@@ -918,6 +918,8 @@
     }
 
     function aiGenerateTest(obj) {
+        // const text = obj.innerText;
+        // alert(text);
         $.get('/interview/generate', (result) => {
             alert(result);
             document.getElementById('kk').innerHTML = marked.parse(result);

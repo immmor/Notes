@@ -36,6 +36,16 @@ def interview_testing():
     }
 })
 def generate_interview_testing():
+    # prompt = """
+    # [
+    #     {
+    #         "模块": "Python编程",
+    #         "问题": "什么是Python中的列表推导式？",
+    #         "答案": "列表推导式是一种简洁的方式来创建列表，它允许用户通过一个表达式来创建一个列表，即通过一个已有的列表快速生成另一个列表。"
+    #     }
+    # ]
+    # 按照这个json格式给这些模块[测试基础, WEB功能测试, MySQL数据库, Python编程, 接口测试, WebUI自动化, 安卓自动化, Jmeter, 性能测试, 车载测试]各输出一个面试题并给出相应的答案(把他们都放到一个列表里，保留"模块"这个键。不要生成同样的内容，不要说别的，直接用json格式输出)。"
+    # """
     prompt = """
     [
         {
@@ -44,10 +54,9 @@ def generate_interview_testing():
             "答案": "列表推导式是一种简洁的方式来创建列表，它允许用户通过一个表达式来创建一个列表，即通过一个已有的列表快速生成另一个列表。"
         }
     ]
-    按照这个json格式给这些模块[测试基础, WEB功能测试, MySQL数据库, Python编程, 接口测试, WebUI自动化, 安卓自动化, Jmeter, 性能测试, 车载测试]各输出一个面试题并给出相应的答案(把他们都放到一个列表里，保留"模块"这个键。不要生成同样的内容，不要说别的，直接用json格式输出)。"
+    按照这个json格式给[Python编程]模块输出十个面试题并给出相应的答案(把他们都放到一个列表里，保留"模块"这个键。不要生成同样的内容，不要说别的，直接用json格式输出)。"
     """
     print(prompt)
-    
     result = chatanywhere_ai(prompt)
     print(result)
     jsonResult = json.loads(result)

@@ -26,23 +26,23 @@
 > >
 > > > api.py
 > >
-> > Database
+> > Database - 数据库
 > >
 > > > testInterview.sqlite3
 > >
 > > Modules - Python代码
 > >
-> > > Graduate
+> > > Graduate - 研究生
 > > >
 > > > > graduateAI.py
 > > >
-> > > Interview
+> > > Interview - 面试
 > > >
 > > > > interviewTesting.py
 > > > >
 > > > > resume.py
 > >
-> > Statics
+> > Statics - 静态文件
 > >
 > > > CSS
 > > >
@@ -54,11 +54,11 @@
 > > >
 > > > Others
 > >
-> > Test
+> > Test - 测试
 > >
-> > > APITest
+> > > APITest - 接口自动化测试
 > > >
-> > > UITest
+> > > UITest - UI自动化测试
 > >
 > > LICENSE
 > >
