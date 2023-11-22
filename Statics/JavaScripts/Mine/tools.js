@@ -1,6 +1,6 @@
 // document.write('<script src="{{url_for("static", filename ="JavaScripts/Others/jquery.js")}}"></script>');
-document.write('<script src="Statics/JavaScripts/Others/jquery.js"></script>');
-document.write('<script src="Statics/JavaScripts/Others/tex-mml-chtml.js"></script>');
+document.write('<script src="/Statics/JavaScripts/Others/jquery.js"></script>');
+document.write('<script src="/Statics/JavaScripts/Others/tex-mml-chtml.js"></script>');
 
 /**
  * @type {string} fileLocation - 文件路径
