@@ -526,8 +526,8 @@
 
                         {% for i in interviewTestData %}
                             {% if i['模块']=='WebUI自动化' %}
-                                {{ i['问题'] }}
-                                {{ i['答案'] }}
+                            <div style="font-size: large;"><b>{{ i['问题'] }}</b></div>
+                            <div>{{ i['答案'] }}</div>
                             {% endif %}
                         {% endfor %}
 
@@ -630,8 +630,8 @@
 
                         {% for i in interviewTestData %}
                             {% if i['模块']=='性能测试' %}
-                                {{ i['问题'] }}
-                                {{ i['答案'] }}
+                                <div style="font-size: large;"><b>{{ i['问题'] }}</b></div>
+                                <div>{{ i['答案'] }}</div>
                             {% endif %}
                         {% endfor %}
 

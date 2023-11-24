@@ -220,7 +220,7 @@ def chatContent():
 
 
 if __name__ == '__main__':
-    os.system('conda activate base && python setup.py install')  # && python setup.py install
+    # os.system('conda activate base && python setup.py install')  # && python setup.py install
     if not os.environ.get("WERKZEUG_RUN_MAIN"):
         webbrowser.open("http://127.0.0.1:666/")
         # get_toutiao(playf=True)
