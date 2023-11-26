@@ -223,5 +223,7 @@ if __name__ == '__main__':
     # os.system('conda activate base && python setup.py install')  # && python setup.py install
     if not os.environ.get("WERKZEUG_RUN_MAIN"):
         webbrowser.open("http://127.0.0.1:666/")
+        # webbrowser.open("http://[::1]666/")
         # get_toutiao(playf=True)
+    # app.run(host="::", debug=True, port=666)
     app.run(host="0.0.0.0", debug=True, port=666)

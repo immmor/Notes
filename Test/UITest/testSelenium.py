@@ -13,9 +13,9 @@ def test_notes():
     # broswer.find_element(By.ID, 'username').send_keys('wangdian') 
     # broswer.find_element(By.ID, 'passwordid').send_keys('wangdian123')
     # broswer.find_element(By.ID, 'submit').click()
-    time.sleep(3)
+    # time.sleep(3)
     print(broswer.title, broswer.get_cookie)
-    time.sleep(30)
+    # time.sleep(30)
     broswer.quit()
 
 

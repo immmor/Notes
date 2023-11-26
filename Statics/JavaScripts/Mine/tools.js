@@ -435,7 +435,7 @@ function comment() {
         });
     });
 }
-comment()
+// comment()
 
 function edit_ball() {
     const editBall = document.getElementById("container-floating");
