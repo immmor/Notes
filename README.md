@@ -72,4 +72,6 @@
 
 #### 使用说明
 
-- 直接python notes.py启动即可
+- 安装依赖包：`pip install -r requirements.txt`
+
+- 启动项目：`python notes.py`

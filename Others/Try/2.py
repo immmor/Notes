@@ -13,8 +13,11 @@ while True:
     text = pytesseract.image_to_string(screenshot, lang='chi_sim')
     # 输出识别结果
     print(text)
-    
+
     # 删除截图文件
     # screenshot_path = 'screenshot.png'  # 截图文件保存路径
     # if os.path.exists(screenshot_path):
     #     os.remove(screenshot_path)
+
+# mac训练模型
+
