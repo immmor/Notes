@@ -3,7 +3,8 @@ import cv2
 
 # 读取图像
 # image_folder = r'F:\\VSCode Files\\Work\\20231119RMB500Day10\\1\\ununhandle'  # 替换为你的图像文件夹路径
-image_folder = r'F:\VSCode Files\Work\20231119RMB500Day10\1\resized'
+# image_folder = r'F:\VSCode Files\Work\20231119RMB500Day10\1\resized'
+image_folder = '/Users/mrok/Documents/coder/funtext/Web/Notes/20231119RMB500Day10/1/resized'
 
 for filename in os.listdir(image_folder):
     image_path = os.path.join(image_folder, filename)

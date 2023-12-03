@@ -6,3 +6,4 @@ MP3Files/*
 .DS_Store
 *__pycache__
 key.py
+shape_predictor_68_face_landmarks.dat

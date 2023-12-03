@@ -67,4 +67,4 @@ def change_color(image_path='./myimage.jpg', output_path='.'):
 
 
 
-# change_color(image_path='0003.jpg', output_path='.')
+change_color(image_path='0008.jpg', output_path='.')
