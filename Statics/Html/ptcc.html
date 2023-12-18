@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>标点符号科技有限公司</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://www.w3schools.com/w3css/4/w3.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Raleway"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <link rel="icon" href="titleLogo.png" type="img/x-ico" />
+        <style>
+            body,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-family: "Raleway", sans-serif;
+            }
+
+            body,
+            html {
+                height: 100%;
+                line-height: 1.8;
+            }
+
+            /* Full height image header */
+            .bgimg-1 {
+                background-position: center;
+                background-size: cover;
+                background-image: url("https://www.w3schools.com/w3images/mac.jpg");
+                min-height: 100%;
+            }
+
+            .w3-bar .w3-button {
+                padding: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navbar (sit on top) -->
+        <div class="w3-top">
+            <div class="w3-bar w3-white w3-card" id="myNavbar">
+                <a href="#home" class="w3-bar-item w3-button w3-wide"
+                    >标点符号</a
+                >
+                <!-- Right-sided navbar links -->
+                <div class="w3-right w3-hide-small">
+                    <a href="#about" class="w3-bar-item w3-button">关于</a>
+                    <a href="#team" class="w3-bar-item w3-button"
+                        ><i class="fa fa-user"></i> 团队</a
+                    >
+                    <a href="#work" class="w3-bar-item w3-button"
+                        ><i class="fa fa-th"></i> 服务</a
+                    >
+                    <a href="#pricing" class="w3-bar-item w3-button"
+                        ><i class="fa fa-usd"></i> 价格</a
+                    >
+                    <a href="#contact" class="w3-bar-item w3-button"
+                        ><i class="fa fa-envelope"></i> 联系我们</a
+                    >
+                    <a
+                        href="https://immmor.github.io/ptc/ptce.html"
+                        class="w3-bar-item w3-button"
+                        >Eng</a
+                    >
+                </div>
+                <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+                <a
+                    href="javascript:void(0)"
+                    class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+                    onclick="w3_open()"
+                >
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Sidebar on small screens when clicking the menu icon -->
+        <nav
+            class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large"
+            style="display: none"
+            id="mySidebar"
+        >
+            <a
+                href="javascript:void(0)"
+                onclick="w3_close()"
+                class="w3-bar-item w3-button w3-large w3-padding-16"
+                >收起 ×</a
+            >
+            <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button"
+                >关于</a
+            >
+            <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button"
+                >团队</a
+            >
+            <a href="#work" onclick="w3_close()" class="w3-bar-item w3-button"
+                >服务</a
+            >
+            <a
+                href="#pricing"
+                onclick="w3_close()"
+                class="w3-bar-item w3-button"
+                >价格</a
+            >
+            <a
+                href="#contact"
+                onclick="w3_close()"
+                class="w3-bar-item w3-button"
+                >联系我们</a
+            >
+            <a
+                href="https://immmor.github.io/ptc/ptce.html"
+                onclick="w3_close()"
+                class="w3-bar-item w3-button"
+                >Eng</a
+            >
+        </nav>
+
+        <!-- Header with full-height image -->
+        <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+            <div
+                class="w3-display-left w3-text-white"
+                style="padding: 30px 43px 0px 43px"
+            >
+                <p id="date" style="font-color: white">Hi!</p>
+                <span class="w3-jumbo w3-hide-small">干点有用的事儿</span>
+                <!-- <span class="w3-xxlarge w3-hide-large w3-hide-medium">干点有用的事儿</span> -->
+                <span
+                    class="w3-hide-large w3-hide-medium"
+                    style="font-size: 41px"
+                    >干点有用的事儿</span
+                ><br />
+                <span class="w3-large">不要把时间浪费在无意义的项目上</span>
+                <p>
+                    <a
+                        href="#about"
+                        class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off"
+                        >查看更多你感兴趣的</a
+                    >
+                </p>
+            </div>
+            <!--
+  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  -->
+        </header>
+
+        <!-- About Section -->
+        <div class="w3-container" style="padding: 128px 16px" id="about">
+            <h3 class="w3-center" style="font-size: 40px">关 于 我 们</h3>
+            <!-- <p class="w3-center w3-large">Key features of our company</p> -->
+            <div class="w3-row-padding w3-center" style="margin-top: 64px">
+                <div class="w3-quarter">
+                    <i
+                        class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"
+                    ></i>
+                    <p class="w3-large">响应式</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore.
+                    </p>
+                </div>
+                <div class="w3-quarter">
+                    <i class="fa fa-heart w3-margin-bottom w3-jumbo"></i>
+                    <p class="w3-large">激情</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore.
+                    </p>
+                </div>
+                <div class="w3-quarter">
+                    <i class="fa fa-diamond w3-margin-bottom w3-jumbo"></i>
+                    <p class="w3-large">设计</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore.
+                    </p>
+                </div>
+                <div class="w3-quarter">
+                    <i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>
+                    <p class="w3-large">支持</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promo Section - "We know design" -->
+        <div class="w3-container w3-light-grey" style="padding: 128px 16px">
+            <div class="w3-row-padding">
+                <div class="w3-col m6">
+                    <h3>我们很懂设计</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod<br />tempor incididunt ut labore et
+                        dolore.
+                    </p>
+                    <p>
+                        <a href="#work" class="w3-button w3-black"
+                            ><i class="fa fa-th"> </i> 查看我们的作品</a
+                        >
+                    </p>
+                </div>
+                <div class="w3-col m6">
+                    <img
+                        class="w3-image w3-round-large"
+                        src="https://www.w3schools.com/w3images/phone_buildings.jpg"
+                        alt="Buildings"
+                        width="700"
+                        height="394"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="w3-container" style="padding: 128px 16px" id="team">
+            <h3 class="w3-center" style="font-size: 40px">我 们 的 团 队</h3>
+            <!-- <p class="w3-center w3-large">The ones who runs this company</p> -->
+            <div class="w3-row-padding w3-grayscale" style="margin-top: 64px">
+                <div class="w3-col l3 m6 w3-margin-bottom">
+                    <div class="w3-card">
+                        <img
+                            src="https://raw.githubusercontent.com/immmor/cv/main/1.jpg"
+                            alt="John"
+                            style="width: 100%"
+                        />
+                        <div class="w3-container">
+                            <h3>王 点</h3>
+                            <p class="w3-opacity">首席执行官 & 创始人</p>
+                            <p>
+                                加拿大英属哥伦比亚大学（世界排名前40）优秀毕业生。天使投资人。终身学习的真正实践者。
+                            </p>
+                            <!-- <p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> 联系我</button></p> -->
+                            <p>
+                                <a
+                                    href="#contact"
+                                    class="w3-button w3-light-grey w3-block"
+                                    onclick="addEmailCEO()"
+                                    ><i class="fa fa-envelope"></i> 联系我</a
+                                >
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col l3 m6 w3-margin-bottom">
+                    <div class="w3-card">
+                        <img
+                            src="https://raw.githubusercontent.com/immmor/cv/main/1.jpg"
+                            alt="Jane"
+                            style="width: 100%"
+                        />
+                        <div class="w3-container">
+                            <h3>Anja Doe</h3>
+                            <p class="w3-opacity">艺术指导</p>
+                            <p>
+                                Phasellus eget enim eu lectus faucibus
+                                vestibulum. Suspendisse sodales pellentesque
+                                elementum.
+                            </p>
+                            <p>
+                                <a
+                                    href="#contact"
+                                    class="w3-button w3-light-grey w3-block"
+                                    onclick="addEmailCAO()"
+                                    ><i class="fa fa-envelope"></i> 联系我</a
+                                >
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col l3 m6 w3-margin-bottom">
+                    <div class="w3-card">
+                        <img
+                            src="https://raw.githubusercontent.com/immmor/cv/main/1.jpg"
+                            alt="Mike"
+                            style="width: 100%"
+                        />
+                        <div class="w3-container">
+                            <h3>Mike Ross</h3>
+                            <p class="w3-opacity">网页设计</p>
+                            <p>
+                                Phasellus eget enim eu lectus faucibus
+                                vestibulum. Suspendisse sodales pellentesque
+                                elementum.
+                            </p>
+                            <p>
+                                <a
+                                    href="#contact"
+                                    class="w3-button w3-light-grey w3-block"
+                                    onclick="addEmailWeb()"
+                                    ><i class="fa fa-envelope"></i> 联系我</a
+                                >
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w3-col l3 m6 w3-margin-bottom">
+                    <div class="w3-card">
+                        <img
+                            src="https://raw.githubusercontent.com/immmor/cv/main/1.jpg"
+                            alt="Dan"
+                            style="width: 100%"
+                        />
+                        <div class="w3-container">
+                            <h3>Dan Star</h3>
+                            <p class="w3-opacity">设计大师</p>
+                            <p>
+                                Phasellus eget enim eu lectus faucibus
+                                vestibulum. Suspendisse sodales pellentesque
+                                elementum.
+                            </p>
+                            <p>
+                                <a
+                                    href="#contact"
+                                    class="w3-button w3-light-grey w3-block"
+                                    onclick="addEmailDesign()"
+                                    ><i class="fa fa-envelope"></i> 联系我</a
+                                >
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promo Section "Statistics" -->
+        <div class="w3-container w3-row w3-center w3-dark-grey w3-padding-64">
+            <div class="w3-quarter">
+                <span class="w3-xxlarge">14+</span>
+                <br />合作伙伴
+            </div>
+            <div class="w3-quarter">
+                <span class="w3-xxlarge">55+</span>
+                <br />项目完成
+            </div>
+            <div class="w3-quarter">
+                <span class="w3-xxlarge">89+</span>
+                <br />客户满意
+            </div>
+            <div class="w3-quarter">
+                <span class="w3-xxlarge">150+</span>
+                <br />会议
+            </div>
+        </div>
+
+        <!-- Work Section -->
+        <div class="w3-container" style="padding: 128px 16px" id="work">
+            <h3 class="w3-center" style="font-size: 40px">我 们 的 作 品</h3>
+            <!-- <p class="w3-center w3-large">What we've done for people</p> -->
+
+            <div class="w3-row-padding" style="margin-top: 64px">
+                <div class="w3-col l3 m6">
+                    <img
+                        src="https://www.w3schools.com/w3images/tech_mic.jpg"
+                        style="width: 100%"
+                        onclick="onClick(this)"
+                        class="w3-hover-opacity"
+                        alt="A microphone"
+                    />
+                </div>
+                <div class="w3-col l3 m6">
+                    <img
+                        src="https://www.w3schools.com/w3images/tech_phone.jpg"
+                        style="width: 100%"
+                        onclick="onClick(this)"
+                        class="w3-hover-opacity"
+                        alt="A phone"
+                    />
+                </div>
+                <div class="w3-col l3 m6">
+                    <img
+                        src="https://www.w3schools.com/w3images/tech_drone.jpg"
+                        style="width: 100%"
+                        onclick="onClick(this)"
+                        class="w3-hover-opacity"
+                        alt="A drone"
+                    />
+                </div>
+                <div class="w3-col l3 m6">
+                    <img
+                        src="https://www.w3schools.com/w3images/tech_sound.jpg"
+                        style="width: 100%"
+                        onclick="onClick(this)"
+                        class="w3-hover-opacity"
+                        alt="Soundbox"
+                    />
+                </div>
+            </div>
+
+            <div class="w3-row-padding w3-section">
+                <div class="w3-col l3 m6">
+                    <img
+                        src="https://www.w3schools.com/w3images/tech_tablet.jpg"
+                        style="width: 100%"
+                        onclick="onClick(this)"
+                        class="w3-hover-opacity"
+                        alt="A tablet"
+                    />
+                </div>
+                <div class="w3-col l3 m6">
+                    <img
+                        src="https://www.w3schools.com/w3images/tech_camera.jpg"
+                        style="width: 100%"
+                        onclick="onClick(this)"
+                        class="w3-hover-opacity"
+                        alt="A camera"
+                    />
+                </div>
+                <div class="w3-col l3 m6">
+                    <img
+                        src="https://www.w3schools.com/w3images/tech_typewriter.jpg"
+                        style="width: 100%"
+                        onclick="onClick(this)"
+                        class="w3-hover-opacity"
+                        alt="A typewriter"
+                    />
+                </div>
+                <div class="w3-col l3 m6">
+                    <img
+                        src="https://www.w3schools.com/w3images/tech_tableturner.jpg"
+                        style="width: 100%"
+                        onclick="onClick(this)"
+                        class="w3-hover-opacity"
+                        alt="A tableturner"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for full size images on click-->
+        <div
+            id="modal01"
+            class="w3-modal w3-black"
+            onclick="this.style.display='none'"
+        >
+            <span
+                class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright"
+                title="Close Modal Image"
+                >×</span
+            >
+            <div
+                class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64"
+            >
+                <img id="img01" class="w3-image" />
+                <p id="caption" class="w3-opacity w3-large"></p>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="w3-container w3-light-grey w3-padding-64">
+            <div class="w3-row-padding">
+                <div class="w3-col m6">
+                    <h3>我们的技术</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod<br />
+                        tempor incididunt ut labore et dolore.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod<br />
+                        tempor incididunt ut labore et dolore.
+                    </p>
+                </div>
+                <div class="w3-col m6">
+                    <p class="w3-wide">
+                        <i class="fa fa-camera w3-margin-right"></i>摄影
+                    </p>
+                    <div class="w3-grey">
+                        <div
+                            class="w3-container w3-dark-grey w3-center"
+                            style="width: 90%"
+                        >
+                            90%
+                        </div>
+                    </div>
+                    <p class="w3-wide">
+                        <i class="fa fa-desktop w3-margin-right"></i>网页设计
+                    </p>
+                    <div class="w3-grey">
+                        <div
+                            class="w3-container w3-dark-grey w3-center"
+                            style="width: 85%"
+                        >
+                            85%
+                        </div>
+                    </div>
+                    <p class="w3-wide">
+                        <i class="fa fa-photo w3-margin-right"></i>修图
+                    </p>
+                    <div class="w3-grey">
+                        <div
+                            class="w3-container w3-dark-grey w3-center"
+                            style="width: 75%"
+                        >
+                            75%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Section -->
+        <div
+            class="w3-container w3-center w3-dark-grey"
+            style="padding: 128px 16px"
+            id="pricing"
+        >
+            <h3 style="font-size: 40px">价 格</h3>
+            <!-- <p class="w3-large">Choose a pricing plan that fits your needs.</p> -->
+            <div class="w3-row-padding" style="margin-top: 64px">
+                <div class="w3-third w3-section">
+                    <ul class="w3-ul w3-white w3-hover-shadow">
+                        <li class="w3-black w3-xlarge w3-padding-32">
+                            普 通 版
+                        </li>
+                        <li class="w3-padding-16"><b>10GB</b> 存储空间</li>
+                        <li class="w3-padding-16"><b>10</b>封 邮件</li>
+                        <li class="w3-padding-16"><b>10</b>个 域名</li>
+                        <li class="w3-padding-16"><b>终身</b> 服务</li>
+                        <li class="w3-padding-16">
+                            <h2 class="w3-wide">$ 10</h2>
+                            <span class="w3-opacity">每月</span>
+                        </li>
+                        <li class="w3-light-grey w3-padding-24">
+                            <button class="w3-button w3-black w3-padding-large">
+                                注 册
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w3-third">
+                    <ul class="w3-ul w3-white w3-hover-shadow">
+                        <li class="w3-red w3-xlarge w3-padding-48">专 业 版</li>
+                        <li class="w3-padding-16"><b>25GB</b> 存储空间</li>
+                        <li class="w3-padding-16"><b>25</b>封 邮件</li>
+                        <li class="w3-padding-16"><b>25</b>个 域名</li>
+                        <li class="w3-padding-16"><b>终身</b> 服务</li>
+                        <li class="w3-padding-16">
+                            <h2 class="w3-wide">$ 25</h2>
+                            <span class="w3-opacity">每月</span>
+                        </li>
+                        <li class="w3-light-grey w3-padding-24">
+                            <button class="w3-button w3-black w3-padding-large">
+                                注 册
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="w3-third w3-section">
+                    <ul class="w3-ul w3-white w3-hover-shadow">
+                        <li class="w3-black w3-xlarge w3-padding-32">
+                            尊 享 版
+                        </li>
+                        <li class="w3-padding-16"><b>50GB</b> 存储空间</li>
+                        <li class="w3-padding-16"><b>50</b>封 邮件</li>
+                        <li class="w3-padding-16"><b>50</b>个 域名</li>
+                        <li class="w3-padding-16"><b>终身</b> 服务</li>
+                        <li class="w3-padding-16">
+                            <h2 class="w3-wide">$ 50</h2>
+                            <span class="w3-opacity">每月</span>
+                        </li>
+                        <li class="w3-light-grey w3-padding-24">
+                            <button class="w3-button w3-black w3-padding-large">
+                                注 册
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div
+            class="w3-container w3-light-grey"
+            style="padding: 128px 16px"
+            id="contact"
+        >
+            <h3 class="w3-center" style="font-size: 40px">联 系 我 们</h3>
+            <!-- <p class="w3-center w3-large">Lets get in touch. Send us a message:</p> -->
+            <div style="margin-top: 48px">
+                <p>
+                    <i
+                        class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"
+                    ></i>
+                    中国，北京
+                </p>
+                <p>
+                    <i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i>
+                    电话：+00 151515
+                </p>
+                <div>
+                    <i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right">
+                    </i>
+                    邮箱：
+                    <p style="display: inline" id="addEmail">
+                        punctuationltc@gmail.com
+                    </p>
+                </div>
+                <br />
+                <!-- <form action="/action_page.php" target="_blank"> -->
+                <form>
+                    <p>
+                        <input
+                            class="w3-input w3-border"
+                            type="text"
+                            placeholder="名字"
+                            required
+                            name="名字"
+                            id="hik"
+                        />
+                    </p>
+                    <p>
+                        <input
+                            class="w3-input w3-border"
+                            type="text"
+                            placeholder="邮箱"
+                            required
+                            name="邮箱"
+                        />
+                    </p>
+                    <p>
+                        <input
+                            class="w3-input w3-border"
+                            type="text"
+                            placeholder="主题"
+                            required
+                            name="主题"
+                        />
+                    </p>
+                    <p>
+                        <input
+                            class="w3-input w3-border"
+                            type="text"
+                            placeholder="内容"
+                            required
+                            name="内容"
+                        />
+                    </p>
+                    <p>
+                        <!-- 
+        <button class="w3-button w3-black" type="submit" onclick="skip()">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+        -->
+                        <input
+                            class="w3-button w3-black"
+                            type="button"
+                            onclick="skip()"
+                            value="发 送"
+                        />
+                    </p>
+                </form>
+                <!-- Image of location/map -->
+                <img
+                    src="https://www.w3schools.com/w3images/map.jpg"
+                    class="w3-image w3-greyscale"
+                    style="width: 100%; margin-top: 48px"
+                />
+            </div>
+        </div>
+
+        <!-- Footer 
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p> 
+-->
+        <footer class="w3-center w3-black w3-padding-16">
+            <!--
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>回到顶部</a>
+  -->
+            <!--
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  -->
+            <p>
+                本网站由「<a href="#" style="text-decoration: none"
+                    >标点符号科技有限公司</a
+                >」提供技术支持
+            </p>
+        </footer>
+
+        <script>
+            // Add Personal Email to Contact Senders
+            function addEmailCEO() {
+                var emailCEO = "ceo@ptc.com";
+                document.getElementById("addEmail").innerHTML = emailCEO;
+            }
+            function addEmailCAO() {
+                var emailCAO = "cao@ptc.com";
+                document.getElementById("addEmail").innerHTML = emailCAO;
+            }
+            function addEmailWeb() {
+                var emailWeb = "web@ptc.com";
+                document.getElementById("addEmail").innerHTML = emailWeb;
+            }
+            function addEmailDesign() {
+                var emailDesign = "design@ptc.com";
+                document.getElementById("addEmail").innerHTML = emailDesign;
+            }
+
+            // 问候语
+            (now = new Date()), (hour = now.getHours());
+            if (hour < 6) {
+                document.getElementById("date").innerHTML = "再睡会儿吧～";
+            } else if (hour < 9) {
+                document.getElementById("date").innerHTML =
+                    "早啊，今天天气怎么样？";
+            } else if (hour < 12) {
+                document.getElementById("date").innerHTML =
+                    "早上开始奋斗！内卷！";
+            } else if (hour < 14) {
+                document.getElementById("date").innerHTML = "中午吃点好的～";
+            } else if (hour < 17) {
+                document.getElementById("date").innerHTML = "优雅的午后时光";
+            } else if (hour < 19) {
+                document.getElementById("date").innerHTML = "快下班了！";
+            } else if (hour < 22) {
+                document.getElementById("date").innerHTML = "该睡了～";
+            } else {
+                document.getElementById("date").innerHTML =
+                    "还在熬夜？快去睡觉！";
+            }
+
+            // Modal Image Gallery
+            function onClick(element) {
+                document.getElementById("img01").src = element.src;
+                document.getElementById("modal01").style.display = "block";
+                var captionText = document.getElementById("caption");
+                captionText.innerHTML = element.alt;
+            }
+
+            // secret skip
+            function skip() {
+                var hik = document.getElementById("hik").value;
+                if (hik == "baidu") {
+                    window.open("https://www.baidu.com/");
+                } else if (hik == "qq") {
+                    window.open("https://www.qq.com/");
+                } else if (hik == "hack") {
+                    window.open("https://immmor.github.io/ptc/ptcEdit.html");
+                } else if (hik == "cvc") {
+                    window.open("https://immmor.github.io/cv/cvc.html");
+                } else if (hik == "cve") {
+                    window.open("https://immmor.github.io/cv/cve.html");
+                }
+            }
+
+            // Toggle between showing and hiding the sidebar when clicking the menu icon
+            var mySidebar = document.getElementById("mySidebar");
+
+            function w3_open() {
+                if (mySidebar.style.display === "block") {
+                    mySidebar.style.display = "none";
+                } else {
+                    mySidebar.style.display = "block";
+                }
+            }
+
+            // Close the sidebar with the close button
+            function w3_close() {
+                mySidebar.style.display = "none";
+            }
+        </script>
+    </body>
+</html>
