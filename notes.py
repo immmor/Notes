@@ -152,14 +152,14 @@ def pay():
             print(i['余额'])
             if str(payPassword) == str(i['支付密码']):
                 if i['余额'] < int(payPoints):
-                    result = 'pass fail'
+                    result = 'balance fail'
                 else:
                     i['余额'] -= int(payPoints)
                     print(i['余额'])
                     write_json_data(userRawData, jsonFileName='Statics/Others/userinfo.json')
                     result = 'success'
             else:
-                result = 'balance fail'
+                result = 'pass fail'
     return result
 
 
