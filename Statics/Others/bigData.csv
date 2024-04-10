@@ -1871,3 +1871,15 @@ time,title,url,idOrClass
 2023-12-29 17:27:03 测试宝典 http://127.0.0.1:666/interview class:card-header text-start collapsed
 2023-12-29 17:27:04 测试宝典 http://127.0.0.1:666/interview class:card-header text-start
 2023-12-29 17:27:05 测试宝典 http://127.0.0.1:666/interview class:card-header text-start
+2024-04-09 21:48:29 考研英语 http://127.0.0.1:666/eng class:rewrite
+2024-04-09 21:49:44 考研英语 http://127.0.0.1:666/eng class:translate
+2024-04-09 21:52:21 考研英语 http://127.0.0.1:666/eng class:rewrite
+2024-04-09 21:53:31 考研英语 http://127.0.0.1:666/eng id:generateEssay class:generateEssay
+2024-04-09 21:55:45 考研英语 http://127.0.0.1:666/eng class:seeMore
+2024-04-09 21:55:51 考研英语 http://127.0.0.1:666/eng class:rewrite
+2024-04-09 21:56:21 考研英语 http://127.0.0.1:666/eng id:logout class:logout
+2024-04-09 21:56:22 考研英语 http://127.0.0.1:666/eng id:logout class:logout
+2024-04-09 21:56:36 2023国科大人工智能在职考研 http://127.0.0.1:666/ai class:submitExam
+2024-04-09 21:57:05 2023国科大人工智能在职考研 http://127.0.0.1:666/ai id:logout class:logout
+2024-04-09 21:57:07 2023国科大人工智能在职考研 http://127.0.0.1:666/ai id:submit 
+2024-04-09 21:57:16 考研英语 http://127.0.0.1:666/eng class:translate
