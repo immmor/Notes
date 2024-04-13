@@ -108,6 +108,8 @@ def chatanywhere_ai(ask, stream=False):
         # 非流式响应
         completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": ask}])
         result = completion.choices[0].message.content
+        # k = result.split('```')[1].split('python')[1]
+        # print(k)
         print(result)
         return result
     else:
@@ -381,11 +383,14 @@ if __name__ == '__main__':
     # print(ipQuery("137.2.23.1"))
     # trans_youdao('fuck shit')
     # word_count("To fully reap the benefits of outdoor exercise, it's important to find activities that align with personal interests and fitness goals.")
-    content = get_json_data('Statics/Others/essayEnglish.json')
-    for i in content['essay']:
-        i['totalWordCount'] = 0
-        for j in i['content']:
-            num = int(word_count(j["paragraph"]))
-            j["wordCount"] = num
-            i['totalWordCount'] += num
-    write_json_data(content, 'Statics/Others/essayEnglish.json')
+    
+    chatanywhere_ai('帮我写一个Python程序，实现一个简单的计算器，可以进行加减乘除运算。直接给我代码')
+
+    # content = get_json_data('Statics/Others/essayEnglish.json')
+    # for i in content['essay']:
+    #     i['totalWordCount'] = 0
+    #     for j in i['content']:
+    #         num = int(word_count(j["paragraph"]))
+    #         j["wordCount"] = num
+    #         i['totalWordCount'] += num
+    # write_json_data(content, 'Statics/Others/essayEnglish.json')

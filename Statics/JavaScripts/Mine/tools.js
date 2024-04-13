@@ -264,6 +264,10 @@ function logout() {
     location.reload();
 }
 
+function register() {
+    alert('注册')
+}
+
 function setCookie(cname, cvalue, exdays){
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 60 * 60 * 1000));
@@ -440,3 +444,40 @@ function comment() {
 function edit_ball() {
     const editBall = document.getElementById("container-floating");
 }
+
+document.addEventListener('mouseup', function() {
+    var selectedText = window.getSelection().toString().trim();
+    if (selectedText !== '') {
+        // var range = window.getSelection().getRangeAt(0);
+        // var rect = range.getBoundingClientRect();
+        // alert('选中的单词是：' + selectedText);
+
+        // var highlight = document.createElement('div');
+        // highlight.className = 'highlight';
+        // highlight.style.width = '20px';
+        // highlight.style.height = '20px';
+        // highlight.style.position = 'absolute';
+        // highlight.style.pointerEvents = 'none';
+        // highlight.style.backgroundColor = 'red';
+        // highlight.style.top = (rect.top - 20) + 'px';
+        // highlight.style.left = rect.left + 'px';
+
+        // document.body.appendChild(highlight);
+
+        var mouseX = event.clientX;
+        var mouseY = event.clientY;
+        alert(mouseX + '|' + mouseY)
+
+        var highlight = document.createElement('div');
+        highlight.className = 'highlight';
+        highlight.style.width = '20px';
+        highlight.style.height = '20px';
+        highlight.style.position = 'absolute';
+        highlight.style.pointerEvents = 'none';
+        highlight.style.backgroundColor = 'red';
+        highlight.style.top = mouseY + 'px';
+        highlight.style.left = mouseX + 'px';
+
+        document.body.appendChild(highlight);
+    }
+});

@@ -160,12 +160,27 @@
         color: rgb(25, 198, 251);
     }
 
-    .translate {
+    .translate, .good, .bad {
         display: inline-block;
-        padding-right: 0;
+        padding-left: 2px;
         cursor: pointer;
         font-size: small;
         transition: color .5s;
+        transition: font-size .5s;
+    }
+
+    .good:hover {
+        color: rgb(218, 22, 48);
+        /* position: fixed; */
+        font-size: large;
+        /* color: ; */
+    }
+
+    .bad:hover {
+        color: rgb(125, 133, 113);
+        /* position: fixed; */
+        font-size: large;
+        /* color: ; */
     }
 
     .translate:hover {
@@ -530,6 +545,7 @@
                             for (var i = 0; i < translates.length; i++) {
                                 translates[i].style.pointerEvents = 'all';
                             }
+
                             var newTranslate = document.createElement('div');
                             newTranslate.classList.add('translate');
                             newTranslate.innerHTML = '译';
@@ -537,6 +553,22 @@
                                 trans(this);
                             };
                             newDiv.appendChild(newTranslate);   // essayParaDiv
+
+                            var goodDiv = document.createElement('div');
+                            goodDiv.classList.add('good');
+                            goodDiv.innerHTML = '好';
+                            goodDiv.onclick = function() {
+                                answer_good(this);
+                            };
+                            newDiv.appendChild(goodDiv);
+
+                            var badDiv = document.createElement('div');
+                            badDiv.classList.add('bad');
+                            badDiv.innerHTML = '差';
+                            badDiv.onclick = function() {
+                                answer_bad(this);
+                            };
+                            newDiv.appendChild(badDiv); 
                             
                             document.body.style.transition = "background-color 2s";
                             document.body.style.backgroundColor = "white";
@@ -609,6 +641,22 @@
                             obj.innerText = "已翻译";
                             obj.style.color = "rgb(114, 165, 32)";
 
+                            var goodDiv = document.createElement('div');
+                            goodDiv.classList.add('good');
+                            goodDiv.innerHTML = '好';
+                            goodDiv.onclick = function() {
+                                answer_good(this);
+                            };
+                            divTrans.appendChild(goodDiv);
+
+                            var badDiv = document.createElement('div');
+                            badDiv.classList.add('bad');
+                            badDiv.innerHTML = '差';
+                            badDiv.onclick = function() {
+                                answer_bad(this);
+                            };
+                            divTrans.appendChild(badDiv); 
+
                             // Set the transition property on the body
                             document.body.style.transition = "background-color 2s";
                             // Change the background color of the entire webpage
@@ -622,6 +670,15 @@
                 });
             }
         }
+    }
+
+    function answer_good(obj) {
+        alert('好')
+    }
+
+    function answer_bad(obj) {
+        // alert('差')
+        obj.parentNode.parentNode.removeChild(obj.parentNode)
     }
 </script>
 
