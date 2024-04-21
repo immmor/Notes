@@ -11,6 +11,11 @@ async fn eng() -> impl Responder {
     HttpResponse::Ok().body("English learning page")
 }
 
+#[get("/ai")]
+async fn ai() -> impl Responder {
+    HttpResponse::Ok().body("AI learning page")
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     std::env::set_var("RUST_LOG", "actix_web=info");
@@ -20,6 +25,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| App::new()
         .wrap(Logger::default())
         .service(index)
+        .service(ai)
         .service(eng))
     .bind("127.0.0.1:8000")?
     .run()

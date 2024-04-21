@@ -384,7 +384,19 @@ if __name__ == '__main__':
     # trans_youdao('fuck shit')
     # word_count("To fully reap the benefits of outdoor exercise, it's important to find activities that align with personal interests and fitness goals.")
     
-    chatanywhere_ai('帮我写一个Python程序，实现一个简单的计算器，可以进行加减乘除运算。直接给我代码')
+    kk = """
+        按照这个json格式再生成一个(词汇的难度不能很低，句子需要是定于从句，可以是很多句话。不要说除了json格式以外的内容):
+        {
+            "word": "weather",
+            "AmericanPronouciation": "[ˈweðər]",
+            "BritishPronouciation": "[ˈweðə(r)]",
+            "wordTrans": "天气",
+            "sentence": "The weather is nice today".
+            "sentenceTrans": "今天的天气不错。"
+        }
+    """
+    
+    chatanywhere_ai(kk)
 
     # content = get_json_data('Statics/Others/essayEnglish.json')
     # for i in content['essay']:
