@@ -8,6 +8,7 @@ bp = Blueprint('graduate english', __name__)
 
 @bp.route('/eng', methods=['GET'])
 def eng():
+    global g
     g = essayGenerator()
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     visitRawData = get_json_data('Statics/Others/visit.json')
@@ -61,7 +62,7 @@ def essay():
 })
 def ai_generate_essay():
     generateEssayPrompt = """
-        换一个title和content，并且计算每一个paragraph的字数输出为wordCount的值，按照这个json格式再生成一篇新的不少于300字的三段作文(不要说除了json格式以外的内容):
+        完全换一个title和content，并且计算每一个paragraph的字数输出为wordCount的值，按照这个json格式再生成一篇新的不少于300字的三段作文(title不能是换一种说法，需要完全换一个主题。不要说除了json格式以外的内容):
         {
             "whoCreated": "claudeAI",
             "title": "Balancing Study and Extracurricular Activities",
