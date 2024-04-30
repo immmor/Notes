@@ -448,25 +448,12 @@ function edit_ball() {
 document.addEventListener('mouseup', function() {
     var selectedText = window.getSelection().toString().trim();
     if (selectedText !== '') {
-        // var range = window.getSelection().getRangeAt(0);
-        // var rect = range.getBoundingClientRect();
-        // alert('选中的单词是：' + selectedText);
-
-        // var highlight = document.createElement('div');
-        // highlight.className = 'highlight';
-        // highlight.style.width = '20px';
-        // highlight.style.height = '20px';
-        // highlight.style.position = 'absolute';
-        // highlight.style.pointerEvents = 'none';
-        // highlight.style.backgroundColor = 'red';
-        // highlight.style.top = (rect.top - 20) + 'px';
-        // highlight.style.left = rect.left + 'px';
-
-        // document.body.appendChild(highlight);
-
         var mouseX = event.clientX;
-        var mouseY = event.clientY;
-        alert(mouseX + '|' + mouseY)
+        var mouseY = event.clientY + window.pageYOffset;
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        alert('鼠标点击位置：' + mouseX + '|' + mouseY)
+        alert('当前屏幕尺寸：' + screenWidth + '|' + screenHeight)
 
         var highlight = document.createElement('div');
         highlight.className = 'highlight';
