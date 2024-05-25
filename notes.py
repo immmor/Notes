@@ -97,7 +97,6 @@ def false_number():
     probRawData["考研题目"][int(questionNumber)]["错误次数"] = int(falseNumber)
     probRawData["考研题目"][int(questionNumber)]['最近错过'] = int(recentFalse)
     write_json_data(probRawData, jsonFileName='Statics/Others/gradProb.json')
-    # print(f'这道题答错{falseNumber}次了')
     return questionNumber
 
 
