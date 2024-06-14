@@ -1,9 +1,24 @@
-use actix_web::{get, App, HttpResponse, HttpServer, Responder, middleware::Logger};
+use actix_web::{get, App, HttpRequest, HttpResponse, HttpServer, Responder, middleware::Logger};
+use actix_files::NamedFile;
+use std::path::PathBuf;
 use env_logger;
 
 #[get("/")]
 async fn index() -> impl Responder {
     HttpResponse::Ok().body("Hello, world!")
+}
+
+// #[get("/mm")]
+// async fn mm() -> impl Responder {
+//     // 读取 HTML 文件
+//     let html_content = std::fs::read_to_string(r"F:\VSCode Files\Web\Notes\Backend\RustNotes\src\index.html").unwrap();
+//     html_content
+// }
+
+#[get("/mm")]
+async fn mm(req: HttpRequest) -> Result<NamedFile> {
+    let path: PathBuf = req.match_info().query(r"F:\VSCode Files\Web\Notes\Backend\RustNotes\src\index.html").parse().unwrap();
+    Ok(NamedFile::open(path)?)
 }
 
 #[get("/eng")]
@@ -25,6 +40,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| App::new()
         .wrap(Logger::default())
         .service(index)
+        .service(mm)
         .service(ai)
         .service(eng))
     .bind("127.0.0.1:8000")?
