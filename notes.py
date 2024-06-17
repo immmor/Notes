@@ -1,7 +1,7 @@
-import json, os, sys, copy, datetime, requests, webbrowser
-from flask import Flask, render_template, request, jsonify
+import os, datetime, webbrowser
+from flask import Flask, render_template, request
 from flasgger import Swagger, swag_from
-from tools import claude_ai, get_json_data, write_json_data, trans_youdao, get_csv, chatanywhere_ai
+from tools import get_json_data, write_json_data
 from Modules.wrapBlueprints import blueList
 
 # os.chdir(sys.path[0])  # 把现在的工作路径切换到当前文件夹
