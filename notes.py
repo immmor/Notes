@@ -1,4 +1,6 @@
-import os, datetime, webbrowser
+import os
+import datetime
+import webbrowser
 from flask import Flask, render_template, request
 from flasgger import Swagger, swag_from
 from tools import get_json_data, write_json_data
