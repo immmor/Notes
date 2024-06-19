@@ -204,8 +204,8 @@ def fan(showIP=False):
     #     'User-Agent': ua.chrome
     # }
     try:
-        response = requests.get('http://www.bing.com', proxies=proxies)
-        print(response.status_code, ' 可以连外网，但不一定是美国服务器')
+        # response = requests.get('http://www.google.com', proxies=proxies)
+        # print(response.status_code, ' 可以连外网，但不一定是美国服务器')
         if showIP:
             resp = requests.get('http://httpbin.org/ip', proxies=proxies)
             print(resp.json()['origin'])
@@ -384,19 +384,21 @@ if __name__ == '__main__':
     # trans_youdao('fuck shit')
     # word_count("To fully reap the benefits of outdoor exercise, it's important to find activities that align with personal interests and fitness goals.")
     
-    kk = """
-        按照这个json格式再生成一个(词汇的难度不能很低，句子需要是定于从句，可以是很多句话。不要说除了json格式以外的内容):
-        {
-            "word": "weather",
-            "AmericanPronouciation": "[ˈweðər]",
-            "BritishPronouciation": "[ˈweðə(r)]",
-            "wordTrans": "天气",
-            "sentence": "The weather is nice today".
-            "sentenceTrans": "今天的天气不错。"
-        }
-    """
+    # kk = """
+    #     按照这个json格式再生成一个(词汇的难度不能很低，句子需要是定于从句，可以是很多句话。不要说除了json格式以外的内容):
+    #     {
+    #         "word": "weather",
+    #         "AmericanPronouciation": "[ˈweðər]",
+    #         "BritishPronouciation": "[ˈweðə(r)]",
+    #         "wordTrans": "天气",
+    #         "sentence": "The weather is nice today".
+    #         "sentenceTrans": "今天的天气不错。"
+    #     }
+    # """
     
-    chatanywhere_ai(kk)
+    # chatanywhere_ai(kk)
+    fan(showIP=True)
+
 
     # content = get_json_data('Statics/Others/essayEnglish.json')
     # for i in content['essay']:
