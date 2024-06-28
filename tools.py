@@ -186,10 +186,10 @@ def trans_google(text, dest='zh-cn'):
 
 def trans_micro(transContent):
     from translate import Translator
-    translator=Translator(from_lang="chinese",to_lang="english")
-    translation = translator.translate("你吃了吗？")
-    print(translation)
-    translator2=Translator(from_lang="english",to_lang="chinese")
+    # translator = Translator(from_lang="chinese",to_lang="english")
+    # translation = translator.translate("你吃了吗？")
+    # print(translation)
+    translator2 = Translator(from_lang="eng", to_lang="chinese")
     translation = translator2.translate(transContent)
     print(translation)
 
@@ -398,7 +398,8 @@ if __name__ == '__main__':
     
     # chatanywhere_ai(kk)
     fan(showIP=True)
-
+    # trans_micro('sentence')
+    # trans_youdao('fuck')
 
     # content = get_json_data('Statics/Others/essayEnglish.json')
     # for i in content['essay']:

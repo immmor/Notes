@@ -455,16 +455,16 @@ document.addEventListener('mouseup', function() {
         alert('鼠标点击位置：' + mouseX + '|' + mouseY)
         alert('当前屏幕尺寸：' + screenWidth + '|' + screenHeight)
 
-        var highlight = document.createElement('div');
-        highlight.className = 'highlight';
-        highlight.style.width = '20px';
-        highlight.style.height = '20px';
-        highlight.style.position = 'absolute';
-        highlight.style.pointerEvents = 'none';
-        highlight.style.backgroundColor = 'red';
-        highlight.style.top = mouseY + 'px';
-        highlight.style.left = mouseX + 'px';
-
-        document.body.appendChild(highlight);
+        // 在点击位置画一个红方块
+        // var highlight = document.createElement('div');
+        // highlight.className = 'highlight';
+        // highlight.style.width = '20px';
+        // highlight.style.height = '20px';
+        // highlight.style.position = 'absolute';
+        // highlight.style.pointerEvents = 'none';
+        // highlight.style.backgroundColor = 'red';
+        // highlight.style.top = mouseY + 'px';
+        // highlight.style.left = mouseX + 'px';
+        // document.body.appendChild(highlight);
     }
 });

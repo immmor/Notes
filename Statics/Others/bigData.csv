@@ -2706,3 +2706,40 @@ time,title,url,idOrClass
 2024-06-17 07:34:29 考研英语 http://127.0.0.1:666/eng id:generateEssay class:generateEssay
 2024-06-17 07:51:08 考研英语 http://127.0.0.1:666/eng id:notes class:notes
 2024-06-17 07:52:08 考研英语 http://127.0.0.1:666/eng id:notes class:notes
+2024-06-28 07:21:05 考研英语 http://127.0.0.1:666/eng id:logout class:logout
+2024-06-28 07:21:08 考研英语 http://127.0.0.1:666/eng id:submit 
+2024-06-28 07:21:06 考研英语 http://127.0.0.1:666/eng id:logout class:logout
+2024-06-28 07:21:16 考研英语 http://127.0.0.1:666/eng class:translate
+2024-06-28 07:21:33 考研英语 http://127.0.0.1:666/eng class:seeMore
+2024-06-28 07:21:39 考研英语 http://127.0.0.1:666/eng id:generateEssay class:generateEssay
+2024-06-28 07:23:44 考研英语 http://127.0.0.1:666/eng class:seeMore
+2024-06-28 07:23:47 考研英语 http://127.0.0.1:666/eng class:seeMore
+2024-06-28 07:29:52 考研英语 http://127.0.0.1:666/eng class:translate
+2024-06-28 07:30:06 考研英语 http://127.0.0.1:666/eng class:seeMore
+2024-06-28 07:30:08 考研英语 http://127.0.0.1:666/eng class:seeMore
+2024-06-28 07:30:11 考研英语 http://127.0.0.1:666/eng class:seeMore
+2024-06-28 07:30:12 考研英语 http://127.0.0.1:666/eng class:wordCount
+2024-06-28 07:30:30 考研英语 http://127.0.0.1:666/eng id:generateEssay class:generateEssay
+2024-06-28 07:32:12 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:32:15 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:45:25 考研英语 http://127.0.0.1:666/eng class:rewrite
+2024-06-28 07:50:52 考研英语 http://127.0.0.1:666/eng class:good
+2024-06-28 07:50:53 考研英语 http://127.0.0.1:666/eng class:bad
+2024-06-28 07:51:06 考研英语 http://127.0.0.1:666/eng class:rewrite
+2024-06-28 07:51:22 考研英语 http://127.0.0.1:666/eng class:translate
+2024-06-28 07:52:27 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:52:29 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:52:30 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:52:33 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:52:37 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:52:39 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:52:42 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:52:43 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:53:19 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:53:22 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:53:28 考研英语 http://127.0.0.1:666/eng class:essayTitle
+2024-06-28 07:53:29 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:53:31 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 07:54:28 考研英语 http://127.0.0.1:666/eng id:notes class:notes
+2024-06-28 08:13:29 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-06-28 08:13:34 考研英语 http://127.0.0.1:666/eng class:rewrite
