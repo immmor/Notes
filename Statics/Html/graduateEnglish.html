@@ -245,6 +245,11 @@
         animation-duration: 6s;
         animation-iteration-count: infinite;
     }
+
+    .colorChangeForNoContent {
+        animation-name: colorChange;
+        animation-duration: 3s;
+    }
 </style>
 
 <body>
@@ -259,7 +264,8 @@
     <div class="generateEssay" id="generateEssay" onclick="aiGenerateEssay(this)">生成</div>
     <div class="notes" id="notes">
     </div>
-    <div class="seeMore" onclick="getEssay()">Load More Essay</div>
+    <div class="seeMore" id="seeMore" onclick="getEssay()">Load More Essay</div>
+
     <!-- <div class="comment">评论
         <button class="closeComment">关闭</button>
     </div> -->
@@ -431,7 +437,11 @@
             reset: reset
         }).then(function(data) {
             if (data == '已没有内容') {
-                alert('已没有内容');
+                // alert('已没有内容');
+                var obj = document.getElementById('seeMore');
+                obj.innerHTML = 'No More Content';
+                obj.classList.add('colorChangeForNoContent');
+                obj.style.cursor = 'default';
             } else {
                 var notes = document.getElementById('notes');
 
@@ -680,6 +690,13 @@
         // alert('差')
         obj.parentNode.parentNode.removeChild(obj.parentNode)
     }
+
+    window.addEventListener('scroll', function() {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            // 滚动条已经到达底部
+            getEssay();
+        }
+    });
 </script>
 
 </html>
