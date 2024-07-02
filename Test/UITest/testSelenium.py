@@ -29,5 +29,5 @@ def test_baidu():
 
 
 if __name__ == "__main__":
-    # test_baidu()
-    test_notes()
+    test_baidu()
+    # test_notes()
