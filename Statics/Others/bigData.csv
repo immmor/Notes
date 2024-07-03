@@ -2832,3 +2832,12 @@ time,title,url,idOrClass
 2024-06-29 09:48:56 考研英语 http://127.0.0.1:666/eng class:wordCount
 2024-06-29 09:49:38 考研英语 http://127.0.0.1:666/eng class:translate
 2024-06-29 09:49:58 考研英语 http://127.0.0.1:666/eng class:rewrite
+2024-07-04 07:04:33 考研英语 http://127.0.0.1:666/eng id:submit 
+2024-07-04 07:05:09 考研英语 http://127.0.0.1:666/eng id:generateEssay class:generateEssay
+2024-07-04 07:05:39 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-07-04 07:05:41 考研英语 http://127.0.0.1:666/eng class:essayPara
+2024-07-04 07:18:30 考研英语 http://127.0.0.1:666/eng class:rewrite
+2024-07-04 07:20:17 考研英语 http://127.0.0.1:666/eng id:notes class:notes
+2024-07-04 07:22:03 考研英语 http://127.0.0.1:666/eng id:notes class:notes
+2024-07-04 07:24:08 考研英语 http://127.0.0.1:666/eng id:notes class:notes
+2024-07-04 07:24:13 考研英语 http://127.0.0.1:666/eng id:generateEssay class:generateEssay
