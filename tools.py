@@ -144,19 +144,22 @@ def ai(ask):
             print(f"函数 {func.__name__} 报错: {str(e)}")
 
 
-def trans_youdao(transContent: str):
-    # 不可用 not available
+def trans_youdao(transContent: str, le="en"):
+    """
+    有道查词接口 [[可用]]
+    Args:
+        transContent (str): 翻译内容
+        le (str, optional): 翻译语言. Defaults to "en".
+    Returns:
+        wordExplain: 翻译结果
+    """
     import requests
-    data = {
-        'doctype': 'json', 
-        'type': 'auto',
-        'i': transContent
-    }
-    r = requests.get("https://dict.youdao.com/webtranslate",params=data)
-    # result = r.json()['translateResult'][0][0]['tgt']
-    result = r.json()
-    print(result)
-    return result
+    resp = requests.get(f'https://dict.youdao.com/suggest?num=5&ver=3.0&doctype=json&cache=false&le={le}&q={transContent}')
+    rawResult = resp.json()
+    # print(rawResult)
+    wordExplain = rawResult['data']['entries'][0]['explain']
+    print(wordExplain)
+    return wordExplain
 
 
 def trans_baidu(transContent: str):
@@ -381,7 +384,7 @@ if __name__ == '__main__':
     # print(claude_ai(prompt))
     # ai('今天北京天气怎么样')
     # print(ipQuery("137.2.23.1"))
-    # trans_youdao('fuck shit')
+    trans_youdao('reap')
     # word_count("To fully reap the benefits of outdoor exercise, it's important to find activities that align with personal interests and fitness goals.")
     
     # kk = """
@@ -397,7 +400,7 @@ if __name__ == '__main__':
     # """
     
     # chatanywhere_ai(kk)
-    fan(showIP=True)
+    # fan(showIP=True)
     # trans_micro('sentence')
     # trans_youdao('fuck')
 

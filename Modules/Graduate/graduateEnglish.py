@@ -125,3 +125,11 @@ def trans():
             else:
                 content += con + '。'
         return content
+    
+
+@bp.route('/transWord', methods=['POST', 'GET'])  # AI translate
+def trans_word():
+    selectedText = request.form['selectedText']
+    print(selectedText)
+    result = trans_youdao(selectedText)
+    return result
