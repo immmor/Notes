@@ -144,7 +144,7 @@ def ai(ask):
             print(f"函数 {func.__name__} 报错: {str(e)}")
 
 
-def trans_youdao(transContent: str, le="en"):
+def trans_youdao(transContent: str, le: str="en"):
     """
     有道查词接口 [[可用]]
     Args:
@@ -153,6 +153,21 @@ def trans_youdao(transContent: str, le="en"):
     Returns:
         wordExplain: 翻译结果
     """
+    # from sqlalchemy import create_engine, Column, String, Integer
+    # from sqlalchemy.orm import sessionmaker
+    # from sqlalchemy.ext.declarative import declarative_base
+
+    # # 创建数据库引擎
+    # engine = create_engine('sqlite:///dictionary.db')
+
+    # # 创建会话
+    # Session = sessionmaker(bind=engine)
+    # session = Session()
+
+    # # 查询词汇
+    # words = session.query(Dictionary)
+    # for word in words:
+    #     print(word)
     import requests
     resp = requests.get(f'https://dict.youdao.com/suggest?num=5&ver=3.0&doctype=json&cache=false&le={le}&q={transContent}')
     rawResult = resp.json()

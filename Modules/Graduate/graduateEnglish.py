@@ -129,7 +129,44 @@ def trans():
 
 @bp.route('/transWord', methods=['POST', 'GET'])  # AI translate
 def trans_word():
+    from sqlalchemy import create_engine, Column, String, Integer
+    from sqlalchemy.orm import sessionmaker
+    from sqlalchemy.ext.declarative import declarative_base
+
+    # 创建数据库引擎
+    engine = create_engine('sqlite:///Database/dictionary.db')
+
+    # 创建会话
+    Session = sessionmaker(bind=engine)
+    session = Session()
+
+    # 创建基类
+    Base = declarative_base()
+
+    # 定义词典模型
+    class Dictionary(Base):
+        __tablename__ = 'dictionary'
+
+        id = Column(Integer, primary_key=True)
+        original_word = Column(String)
+        translation = Column(String)
+
+        def __repr__(self):
+            return f"<Dictionary(original_word='{self.original_word}', translation='{self.translation}')>"
+
+    # 创建数据库表
+    Base.metadata.create_all(engine)
+
+    # 添加词汇
     selectedText = request.form['selectedText']
     print(selectedText)
     result = trans_youdao(selectedText)
+    session.add(Dictionary(original_word=selectedText, translation=result))
+    session.commit()
+
+    # 查询词汇
+    # words = session.query(Dictionary).all()
+    # for word in words:
+    #     print(word)
+    
     return result
