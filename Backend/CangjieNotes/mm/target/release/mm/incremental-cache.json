@@ -1,0 +1,13 @@
+{
+  "packageInformation": {
+    "mm/default": {
+      "moduleName": "mm",
+      "fileNameHash": "1019449269767078157",
+      "timeStamp": 1720866987,
+      "buildFlag": true,
+      "exeName": "main"
+    }
+  },
+  "jsonHash": "4006438813744492190",
+  "moduleName": "mm"
+}

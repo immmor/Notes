@@ -1,0 +1,22 @@
+{
+  "resolves": [
+    {
+      "moduleName": "mm",
+      "modulePath": ".",
+      "packagePath": "/Users/mrok/Documents/coder/funtext/Web/Notes/Backend/CangjieNotes/mm/src",
+      "fullName": "mm/default",
+      "isMacroPackage": false,
+      "output-type": "executable",
+      "compile-option": "",
+      "native-compile-option": "",
+      "customized-option": {},
+      "link-option": "",
+      "native-link-option": "",
+      "requires": [],
+      "c_libs": {},
+      "isTestPkg": false
+    }
+  ],
+  "binDeps": {},
+  "crossBinDeps": {}
+}
