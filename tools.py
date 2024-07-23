@@ -293,6 +293,16 @@ def ipQuery(ip):
     return "{}-{}-{}".format(country, province, city)
 
 
+def getIP(ip):
+    import requests
+    url = 'https://tool.lu/ip/ajax.html'
+    headers = {
+        'ip': ip
+    }
+    resp = requests.post(url, data=headers)
+    print(resp.text)
+
+
 def get_toutiao(playf=False):
     import requests, datetime, concurrent.futures
     from playsound import playsound 
@@ -399,7 +409,8 @@ if __name__ == '__main__':
     # print(claude_ai(prompt))
     # ai('今天北京天气怎么样')
     # print(ipQuery("137.2.23.1"))
-    trans_youdao('reap')
+    # trans_youdao('reap')
+    getIP('154.40.44.149')
     # word_count("To fully reap the benefits of outdoor exercise, it's important to find activities that align with personal interests and fitness goals.")
     
     # kk = """
