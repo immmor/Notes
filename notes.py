@@ -3,6 +3,8 @@ import datetime
 import webbrowser
 from flask import Flask, render_template, request
 from flasgger import Swagger, swag_from
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from tools import get_json_data, write_json_data
 from Modules.wrapBlueprints import blueList
 
@@ -10,6 +12,11 @@ from Modules.wrapBlueprints import blueList
 app = Flask(__name__, template_folder='./', static_folder='Statics')
 for i in blueList:
     app.register_blueprint(i)
+limiter = Limiter(
+    # app,
+    key_func=get_remote_address,
+    default_limits=["1 per day", "1 per hour"]
+)
 Swagger(app)
 
 
@@ -23,11 +30,13 @@ Swagger(app)
         }
     }
 })
+@limiter.limit("1/minute", key_func='127.0.0.1')  # 没起作用啊
 def hello():
     return render_template('Statics/Html/hello.html')
 
 
 @app.route('/login', methods=['POST', 'GET'])
+@limiter.limit("5 per minute")
 def login():
     username = request.form['username']
     password = request.form['password']
@@ -50,6 +59,4 @@ def login():
 if __name__ == '__main__':
     if not os.environ.get("WERKZEUG_RUN_MAIN"):
         webbrowser.open("http://127.0.0.1:666/")
-        # webbrowser.open("http://[::1]666/")
-        # get_toutiao(playf=True)
     app.run(host="0.0.0.0", debug=True, port=666)

@@ -1,12 +1,21 @@
 import json, os, sys, copy, datetime, requests, webbrowser
-from tools import claude_ai, get_json_data, write_json_data, trans_youdao, get_csv, chatanywhere_ai, word_count
+from tools import claude_ai, get_json_data, write_json_data
 from flask import Blueprint, render_template, request, jsonify
 from flasgger import swag_from
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+# from notes import limiter
 
 bp = Blueprint('graduate ai', __name__)
+limiter = Limiter(
+    # bp,
+    key_func=get_remote_address,
+    default_limits=["200 per day", "50 per hour"]
+)
 
 
 @bp.route('/ai', methods=['GET'])
+@limiter.limit("1 per minute")   # TODO
 @swag_from({
     'tags': ['Notes for AI'],
     'description': 'Returns details of a user', 
