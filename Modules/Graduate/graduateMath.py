@@ -3,12 +3,12 @@ from tools import claude_ai, get_json_data, write_json_data, trans_youdao, get_c
 from flask import Blueprint, render_template, request, jsonify
 from flasgger import swag_from
 
-bp = Blueprint('graduate ai', __name__)
+bp = Blueprint('graduate math', __name__)
 
 
-@bp.route('/ai', methods=['GET'])
+@bp.route('/math', methods=['GET'])
 @swag_from({
-    'tags': ['Notes for AI'],
+    'tags': ['Notes for MATH'],
     'description': 'Returns details of a user', 
     'responses': {
         '200': {
@@ -16,15 +16,12 @@ bp = Blueprint('graduate ai', __name__)
         }
     }
 })
-def ai():
-    # redirect
+def math():
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(now)
     visitRawData = get_json_data('Statics/Others/visit.json')
     # print(visitRawData)
-    visitRawData['人工智能'][1]['访问时间'].append(now)
-    visitRawData['人工智能'][0] = len(visitRawData['人工智能'][1]['访问时间'])
+    visitRawData['数学'][1]['访问时间'].append(now)
+    visitRawData['数学'][0] = len(visitRawData['数学'][1]['访问时间'])
     write_json_data(visitRawData, jsonFileName='Statics/Others/visit.json')
     # print(visitRawData)
-	# 传递的是读取的文件的字符串
-    return render_template('Statics/Html/graduateAI.html')
+    return render_template('Statics/Html/graduateMath.html')

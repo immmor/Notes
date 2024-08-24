@@ -22,3 +22,8 @@ def resume_python_cvc():
 @bp.route('/resume/pythoncve', methods=['GET'])
 def resume_python_cve():
     return render_template('Statics/Html/pythoncve.html')
+
+
+@bp.route('/派森', methods=['GET'])
+def python_full_stack():
+    return render_template('Statics/Html/pythonFullStack.html')
