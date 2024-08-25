@@ -4,12 +4,27 @@ import (
 	"bytes"
 	"fmt"
 	"os/exec"
+	"runtime"
 )
 
 func main() {
 	// 执行 Python 脚本
-	cmd := exec.Command("/Users/mrok/anaconda3/bin/python", "/Users/mrok/Documents/coder/funtext/Web/Notes/notes.py")
+	var cmd *exec.Cmd
 
+	switch runtime.GOOS {
+	case "darwin":
+		fmt.Println("This is a Mac system.")
+		dir := "/Users/mrok/Documents/coder/funtext/Web/Notes/"
+		cmd = exec.Command("/Users/mrok/anaconda3/bin/python",
+			"/Users/mrok/Documents/coder/funtext/Web/Notes/notes.py")
+		cmd.Dir = dir
+	case "windows":
+		fmt.Println("This is a Windows system.")
+		dir := "f:/VSCode Files/Web/Notes/"
+		cmd = exec.Command("F:/anaconda3/python.exe",
+			"f:/VSCode Files/Web/Notes/notes.py")
+		cmd.Dir = dir
+	}
 	// 捕获输出
 	var output bytes.Buffer
 	cmd.Stdout = &output

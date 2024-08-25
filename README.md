@@ -75,3 +75,7 @@
 - 安装依赖包：`pip install -r requirements.txt`
 
 - 启动项目：`python notes.py`
+
+## 当前的问题
+
+- flask_limiter没法在其他blueprint文件中使用

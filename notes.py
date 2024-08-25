@@ -22,7 +22,7 @@ Swagger(app)
 
 
 @app.route('/', methods=['GET'])
-@limiter.limit("2/minute;100/day")
+@limiter.limit("20/minute;100/day")
 @swag_from({
     'tags': ['index'],
     'description': 'Returns details of a user', 
