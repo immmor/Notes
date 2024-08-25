@@ -1,19 +1,37 @@
-import arxiv
+import os
+import webbrowser
+from flask import Flask
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
-# search = arxiv.Search(
-#     query = "ai",
-#     max_results = 10,
-#     sort_by = arxiv.SortCriterion.SubmittedDate
-# )
+app = Flask(__name__)
+limiter = Limiter(
+    # app,
+    key_func=get_remote_address,
+    app=app,
+    default_limits=["200 per day", "50 per hour"]
+)
+@app.route("/slow")
+@limiter.limit("1 per day")
+def slow():
+    return ":("
 
-# for result in search.results():
-#     print(result.title)
+@app.route("/medium")
+@limiter.limit("1/second", override_defaults=False)
+def medium():
+    return ":|"
+
+@app.route("/fast")
+def fast():
+    return ":)"
+
+@app.route("/ping")
+@limiter.exempt
+def ping():
+    return "PONG"
 
 
-paper = next(arxiv.Search(id_list=["1605.08386v1"]).results())
-# Download the PDF to the PWD with a default filename.
-paper.download_pdf()
-# Download the PDF to the PWD with a custom filename.
-paper.download_pdf(filename="downloaded-paper.pdf")
-# Download the PDF to a specified directory with a custom filename.
-paper.download_pdf(dirpath=".", filename="downloaded-paper.pdf")
+if __name__ == '__main__':
+    if not os.environ.get("WERKZEUG_RUN_MAIN"):
+        webbrowser.open("http://127.0.0.1:666/")
+    app.run(host="0.0.0.0", debug=True, port=666)

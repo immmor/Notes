@@ -10,17 +10,19 @@ from Modules.wrapBlueprints import blueList
 
 # os.chdir(sys.path[0])  # 把现在的工作路径切换到当前文件夹
 app = Flask(__name__, template_folder='./', static_folder='Statics')
+
+limiter = Limiter(
+    key_func=get_remote_address,
+    app=app,
+    # default_limits=["1 per day", "1 per hour"]
+)
 for i in blueList:
     app.register_blueprint(i)
-limiter = Limiter(
-    # app,
-    key_func=get_remote_address,
-    default_limits=["1 per day", "1 per hour"]
-)
 Swagger(app)
 
 
 @app.route('/', methods=['GET'])
+@limiter.limit("2/minute;100/day")
 @swag_from({
     'tags': ['index'],
     'description': 'Returns details of a user', 
@@ -30,13 +32,12 @@ Swagger(app)
         }
     }
 })
-@limiter.limit("1/minute", key_func='127.0.0.1')  # 没起作用啊
 def hello():
     return render_template('Statics/Html/hello.html')
 
 
 @app.route('/login', methods=['POST', 'GET'])
-@limiter.limit("5 per minute")
+@limiter.limit("2/minute;100/day")
 def login():
     username = request.form['username']
     password = request.form['password']
