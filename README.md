@@ -79,3 +79,5 @@
 ## 当前的问题
 
 - flask_limiter没法在其他blueprint文件中使用
+
+- 英语考研界面的加载更多功能有时候没法用(name 'g' is not defined)
