@@ -3,6 +3,8 @@ import datetime
 import webbrowser
 from flask import Flask, render_template, request
 from flasgger import Swagger, swag_from
+from flask_socketio import SocketIO, emit
+from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from tools import get_json_data, write_json_data
@@ -10,16 +12,21 @@ from Modules.wrapBlueprints import blueList
 
 # os.chdir(sys.path[0])  # 把现在的工作路径切换到当前文件夹
 app = Flask(__name__, template_folder='./', static_folder='Statics')
-
-limiter = Limiter(
-    key_func=get_remote_address,
-    app=app,
+app.config['SECRET_KEY'] = 'secret!'
+CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
+limiter = Limiter(key_func=get_remote_address, app=app,
     # default_limits=["1 per day", "1 per hour"]
 )
+
 for i in blueList:
     app.register_blueprint(i)
 Swagger(app)
 
+# with app.app_context():
+#     client = app.test_client()
+#     response = client.get('/ai')
+#     print(response.status_code)
 
 @app.route('/', methods=['GET'])
 @limiter.limit("20/minute;100/day")
@@ -34,6 +41,16 @@ Swagger(app)
 })
 def hello():
     return render_template('Statics/Html/hello.html')
+
+
+@app.route('/chat')
+def chat():
+    return render_template('Statics/Html/chat.html')
+
+
+@socketio.on('message')
+def handle_message(message):
+    emit('message', message, broadcast=True, include_self=False)
 
 
 @app.route('/login', methods=['POST', 'GET'])
@@ -60,4 +77,5 @@ def login():
 if __name__ == '__main__':
     if not os.environ.get("WERKZEUG_RUN_MAIN"):
         webbrowser.open("http://127.0.0.1:666/")
-    app.run(host="0.0.0.0", debug=True, port=666)
+    # app.run(host="0.0.0.0", debug=True, port=666)
+    socketio.run(app, debug=True, host="0.0.0.0", port=666)

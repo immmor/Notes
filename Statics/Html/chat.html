@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天室</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        #messages { list-style-type: none; padding: 0; height: 400px; overflow-y: auto; border: 1px solid #ccc; }
+        #messages li { padding: 8px; border-bottom: 1px solid #eee; }
+        #input { width: calc(100% - 80px); padding: 10px; margin-top: 20px; }
+        #send { width: 70px; padding: 10px; margin-top: 20px; }
+        .sent { text-align: right; background-color: #e6f3ff; }
+        .received { text-align: left; background-color: #f0f0f0; }
+    </style>
+    <script src="{{url_for('static', filename ='JavaScripts/Others/socketio.js')}}"></script>
+</head>
+<body>
+    <h1>聊天室</h1>
+    <ul id="messages"></ul>
+    <input id="input" type="text" placeholder="输入消息..." autocomplete="off" />
+    <button id="send">发送</button>
+    
+    <script>
+        const socket = io();
+        const messages = document.getElementById('messages');
+        const input = document.getElementById('input');
+        const sendButton = document.getElementById('send');
+
+        function addMessage(msg, isSent) {
+            const li = document.createElement('li');
+            li.textContent = msg;
+            li.className = isSent ? 'sent' : 'received';
+            messages.appendChild(li);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        socket.on('message', function(msg) {
+            addMessage(msg, false);
+        });
+
+        function sendMessage() {
+            if (input.value) {
+                socket.emit('message', input.value);
+                addMessage(input.value, true);
+                input.value = '';
+            }
+        }
+
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        sendButton.addEventListener('click', sendMessage);
+    </script>
+</body>
+</html>

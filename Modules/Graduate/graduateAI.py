@@ -20,6 +20,9 @@ limiter = Limiter(
     app=current_app,
     # default_limits=["200 per day", "50 per hour"]
 )
+# with current_app.app_context():
+#     limiter = current_app.extensions.get('flask_limiter')
+# limiter = current_app.extensions.get['limiter']
 
 
 @bp.route('/ai', methods=['GET'])

@@ -4,18 +4,18 @@ from flask import Blueprint, render_template, request
 bp = Blueprint('try api', __name__)
 
 
-@bp.route('/chat', methods=['POST', 'GET'])
-def chat():
-    inputContent = request.form['inputContent']
-    chatRawData = get_json_data('Statics/Others/chat.json')
-    chatRawData['聊天内容'].append(inputContent)
-    write_json_data(chatRawData, jsonFileName='Statics/Others/chat.json')
-    return inputContent
+# @bp.route('/chat', methods=['POST', 'GET'])
+# def chat():
+#     inputContent = request.form['inputContent']
+#     chatRawData = get_json_data('Statics/Others/chat.json')
+#     chatRawData['聊天内容'].append(inputContent)
+#     write_json_data(chatRawData, jsonFileName='Statics/Others/chat.json')
+#     return inputContent
 
 
-@bp.route('/chatContent', methods=['POST', 'GET'])
-def chatContent():
-    return render_template('chat.html')
+# @bp.route('/chatContent', methods=['POST', 'GET'])
+# def chatContent():
+#     return render_template('chat.html')
 
 
 @bp.route('/graph', methods=['POST', 'GET'])
