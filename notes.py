@@ -15,7 +15,9 @@ app = Flask(__name__, template_folder='./', static_folder='Statics')
 app.config['SECRET_KEY'] = 'secret!'
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
-limiter = Limiter(key_func=get_remote_address, app=app,
+limiter = Limiter(
+    key_func=get_remote_address, 
+    app=app,
     # default_limits=["1 per day", "1 per hour"]
 )
 
