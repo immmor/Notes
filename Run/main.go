@@ -20,9 +20,9 @@ func main() {
 		cmd.Dir = dir
 	case "windows":
 		fmt.Println("This is a Windows system.")
-		dir := "f:/VSCode Files/Web/Notes/"
+		dir := "F:/VSCodeFiles/Web/Notes/"
 		cmd = exec.Command("F:/anaconda3/python.exe",
-			"f:/VSCode Files/Web/Notes/notes.py")
+			"F:/VSCodeFiles/Web/Notes/notes.py")
 		cmd.Dir = dir
 	}
 	// 捕获输出
