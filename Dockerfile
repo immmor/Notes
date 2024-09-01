@@ -1,4 +1,4 @@
-FROM python:3.12-slim-bookworm
+FROM robd003/python3.10 
 
 WORKDIR /app
 
