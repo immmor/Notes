@@ -81,4 +81,4 @@ if __name__ == '__main__':
     if not os.environ.get("WERKZEUG_RUN_MAIN"):
         webbrowser.open("http://127.0.0.1:666/")
     # app.run(host="0.0.0.0", debug=True, port=666)
-    socketio.run(app, debug=True, host="0.0.0.0", port=666)
+    socketio.run(app, debug=True, host="0.0.0.0", port=666, allow_unsafe_werkzeug=True)
