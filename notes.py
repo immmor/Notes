@@ -8,6 +8,30 @@ from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from celery import Celery
+# %NVIDIA%  %CANJIE%  %IVIFOUD%  %SASHOME%
+# F:\MATLAB\R2023b   %MATLAB%
+# F:\anaconda3   %CONDA%
+# ------ %SAFE%
+# F:\CangjieSDK-Win-Beta\runtime\lib\windows_x86_64_llvm
+# F:\CangjieSDK-Win-Beta\bin
+# F:\CangjieSDK-Win-Beta\tools\bin
+# F:\CangjieSDK-Win-Beta\debugger\bin
+# F:\Java\jdk-19\bin
+# F:\Java\jdk-17.0.8\bin
+# F:\Redis\
+# F:\Lua\5.1
+# F:\Lua\5.1\clibs
+# F:\bun-windows-x64-baseline-profile
+# F:\zig
+# F:\LLVM\bin
+# F:\Containerd\bin
+# F:\scala3-3.4.2\bin
+# F:\go1.20.4.windows-386\go\bin
+# F:\go1.20.4.windows-386\goproject\bin
+# F:\anaconda3      1111
+# F:\anaconda3\Scripts     1111
+# F:\Git\cmd
+# F:\Git\bin
 from tools import get_json_data, write_json_data
 from Modules.wrapBlueprints import blueList
 
