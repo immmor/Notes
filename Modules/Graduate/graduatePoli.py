@@ -6,7 +6,7 @@ from flasgger import swag_from
 bp = Blueprint('graduate poli', __name__)
 
 
-@bp.route('/poli', methods=['GET'])
+@bp.route('/grad/poli', methods=['GET'])
 @swag_from({
     'tags': ['Notes for Politics'],
     'description': 'Returns details of a user', 

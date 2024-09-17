@@ -10,7 +10,7 @@ bp = Blueprint('graduate english', __name__)
 index_mapping = {}
 sorted_essays = []
 
-@bp.route('/eng', methods=['GET'])
+@bp.route('/grad/eng', methods=['GET'])
 @limiter.limit("5 per minute")
 def eng():
     global g

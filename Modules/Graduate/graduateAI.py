@@ -19,7 +19,7 @@ limiter = Limiter(
 # limiter = current_app.extensions.get['limiter']
 
 
-@bp.route('/ai', methods=['GET'])
+@bp.route('/grad/ai', methods=['GET'])
 @limiter.limit("1/minute")   # TODO
 @swag_from({
     'tags': ['Notes for AI'],
