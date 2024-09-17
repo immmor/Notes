@@ -1,29 +1,23 @@
-import sys
-from PyQt6.QtWidgets import QApplication, QWidget, QMessageBox, QPushButton
+from musicpy import *
 
-class DemoWindow(QWidget):
-    def __init__(self):
-        super().__init__()
-        # self.init_ui()
-        self.setGeometry(100, 100, 300, 200)
-        self.setWindowTitle('PyQt6 Demo')
-        button = QPushButton('显示消息框', self)
-        button.setGeometry(100, 80, 100, 30)
-        button.clicked.connect(self.show_message_box)
-
-    # def init_ui(self):
-    #     self.setGeometry(100, 100, 300, 200)
-    #     self.setWindowTitle('PyQt6 Demo')
-    #     button = QPushButton('显示消息框', self)
-    #     button.setGeometry(100, 80, 100, 30)
-    #     button.clicked.connect(self.show_message_box)
-
-    def show_message_box(self):
-        QMessageBox.information(self, '消息', "Hello, How's life there!")
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    window = DemoWindow()
-    window.show()
-    sys.exit(app.exec())
+guitar = (
+(C('Cmaj7') @ 1) @ [1,2,3,4,1,2,3,2] |
+(C('Fmaj7',3) ^ 2) @ [1,2,3,4,1,2,3,2] |
+(C('G7sus',3) ^ 2) @ [1,2,3,4,1,2,3,2] |
+C('Am11',3) @ [1,2,4,6,1,4,6,4] |
+(C('Cmaj7') @ 1) @ [1,2,3,4,1,2,3,2] |
+C('Fadd9',3).up(2,1) @ [1,2,3,4,1,2,3,2] |
+(C('G7sus',3) ^ 2) @ [1,2,3,4,1,2,3,2] |
+C('Am11',3) @ [1,2,4,6,1,4,6,4]) % (1/2,1/8)
+bass1 = chord('D2[.8;.], E2[.8;.], D2[.8;.], E2[1;.], F2[1;.], G2[1;.], A1[.2;.], A2[.8;.], G2[.8;.], E2[.8;.], D2[.8;.]')
+bass2 = (chord('E2')*8 + chord('F1')*8 + chord('G1')*8 + chord('A1,A1,E2,A1,A2,A1,G2,D2')) % (1/8,1/8) * 4
+bass = bass1 | bass2
+string1 = chord('B5[1;.],C6[1;.],D6[.2;.],E6[.2;.],\
+F6[.2;.],E6[.2;.],C6[1;.],B5[.2;.],C6[.2;.],G5[1;.],\
+F5[.2;.],E5[.2;.],C5[1;.],D5[.4;.],E5[.4;.],F5[.4;.],\
+E5[.4;.],D5[.2;.],G5[.2;.],E5[1;.]')
+result = piece(tracks=[guitar * 3, bass, string1],
+               instruments=[28, 34, 49],
+               bpm=135,
+               start_times=[0, 4-3/8, 12])
+play(result)
