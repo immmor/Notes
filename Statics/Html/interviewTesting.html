@@ -384,8 +384,8 @@
 
                         {% for i in interviewTestData %}
                             {% if i['模块']=='WEB功能测试' %}
-                                {{ i['问题'] }}
-                                {{ i['答案'] }}
+                                <div style="font-size: large; margin-left: 10px; margin-right: 10px;"><b>{{ i['问题'] }}</b></div>
+                                <div style="margin-left: 10px; margin-right: 10px;">{{ i['答案'] }}</div>
                             {% endif %}
                         {% endfor %}
 

@@ -50,8 +50,22 @@
         transition: background-color .5s;
     }
 
+    .search {
+        position: fixed;
+        right: 80px;
+        top: 160px;
+        border: 1px solid;
+        padding: 1px;
+        cursor: pointer;
+        transition: background-color .5s;
+    }
+
     .generateEssay:hover {
         background-color: rgb(78, 226, 33); 
+    }
+
+    .search:hover {
+        background-color: rgb(142, 151, 139); 
     }
     
     .examTitle {
@@ -223,7 +237,19 @@
         .generateEssay {
             position: fixed;
             right: 1px;
-            top: 50px;
+            top: 30px;
+            border: 1px solid;
+            padding: 1px;
+            /* background-color: rgb(78, 226, 33); */
+            cursor: pointer;
+            transition: background-color .5s;
+            /* display: none; */
+        }
+
+        .search {
+            position: fixed;
+            right: 1px;
+            top: 59px;
             border: 1px solid;
             padding: 1px;
             /* background-color: rgb(78, 226, 33); */
@@ -265,6 +291,8 @@
     <div class="notes" id="notes">
     </div>
     <div class="seeMore" id="seeMore" onclick="getEssay()">Load More Essay</div>
+    <div class="search" id="search" onclick="search()">搜索</div>
+
 
     <!-- <div class="comment">评论
         <button class="closeComment">关闭</button>
@@ -370,7 +398,7 @@
                         document.body.style.backgroundColor = "rgb(88, 237, 19)";
                         obj.classList.add('colorChange');
 
-                        $.get('/aiGenerateEssay', (result) => {
+                        $.get('/eng/aiGenerateEssay', (result) => {
                             // alert(result)
                             var data = JSON.parse(result);
                             var notes = document.getElementById('notes');
@@ -407,10 +435,23 @@
                             }
 
                             essayTotalWordCount = data['totalWordCount']
-                            var essayTotalWordCountDiv = document.createElement('div');
-                            essayTotalWordCountDiv.innerHTML = 'Word Count: ' + essayTotalWordCount;
-                            essayTotalWordCountDiv.classList.add('wordCount');
-                            notes.appendChild(essayTotalWordCountDiv);
+                            // var essayTotalWordCountDiv = document.createElement('div');
+                            // essayTotalWordCountDiv.innerHTML = 'Word Count: ' + essayTotalWordCount;
+                            // essayTotalWordCountDiv.classList.add('wordCount');
+                            // notes.appendChild(essayTotalWordCountDiv);
+
+                            // essayClickedCount = data['clicked']
+                            // var essayClickedCountDiv = document.createElement('div');
+                            // essayClickedCountDiv.innerHTML = 'Clicked: ' + essayClickedCount;
+                            // essayClickedCountDiv.classList.add('wordCount');
+                            // notes.appendChild(essayClickedCountDiv);
+
+                            essayTotalWordCount = data['totalWordCount'];
+                            essayClickedCount = data['clicked'];
+                            var essayInfoDiv = document.createElement('div');
+                            essayInfoDiv.innerHTML = 'Word Count: ' + essayTotalWordCount + ' | Clicked: ' + essayClickedCount;
+                            essayInfoDiv.classList.add('wordCount');
+                            notes.appendChild(essayInfoDiv);
 
                             document.body.style.transition = "background-color 2s";
                             document.body.style.backgroundColor = "white";
@@ -432,8 +473,9 @@
         reset = 'no';
     };
 
+    var globalEssayData = [];
     function getEssay() {
-        $.post('/essay', {
+        $.post('/eng/essay', {
             reset: reset
         }).then(function(data) {
             if (data == '已没有内容') {
@@ -443,6 +485,7 @@
                 obj.classList.add('colorChangeForNoContent');
                 obj.style.cursor = 'default';
             } else {
+                globalEssayData = globalEssayData.concat(data);
                 var notes = document.getElementById('notes');
 
                 for (let i = 0; i < data.length; i++) {
@@ -457,6 +500,14 @@
                         var essayParaDiv = document.createElement('div');
                         essayParaDiv.innerHTML = essayContent[j]['paragraph'];
                         essayParaDiv.classList.add('essayPara');
+
+                        // Add data attribute for essay index
+                        essayParaDiv.setAttribute('data-essay-index', i);
+                        // Add click event listener
+                        essayParaDiv.addEventListener('dblclick', function() {
+                            incrementClickCount(this.getAttribute('data-essay-index'));
+                        });
+
                         essayTitleDiv.insertAdjacentElement('afterend', essayParaDiv);
 
                         var newRewrite = document.createElement('div');
@@ -478,16 +529,109 @@
                         essayParaDiv.appendChild(newTranslate);
                     }
 
-                    essayTotalWordCount = data[i]['totalWordCount']
-                    var essayTotalWordCountDiv = document.createElement('div');
-                    essayTotalWordCountDiv.innerHTML = 'Word Count: ' + essayTotalWordCount;
-                    essayTotalWordCountDiv.classList.add('wordCount');
-                    notes.appendChild(essayTotalWordCountDiv);
+                    essayTotalWordCount = data[i]['totalWordCount'];
+                    essayClickedCount = data[i]['clicked'];
+                    var essayInfoDiv = document.createElement('div');
+                    essayInfoDiv.innerHTML = 'Word Count: ' + essayTotalWordCount + ' | Clicked: ' + essayClickedCount;
+                    essayInfoDiv.classList.add('wordCount');
+                    notes.appendChild(essayInfoDiv);
                 }
             }
         });
     }
     getEssay()
+
+    function search() {
+        var existingContainer = document.getElementById('searchContainer');
+        
+        if (existingContainer) {
+            // If the search container already exists, remove it
+            document.body.removeChild(existingContainer);
+            return;
+        }
+
+        var searchContainer = document.createElement('div');
+        searchContainer.id = 'searchContainer';
+        searchContainer.style.position = 'fixed';
+        searchContainer.style.right = '10px';
+        searchContainer.style.top = '190px';
+        searchContainer.style.zIndex = '1000';
+        searchContainer.style.backgroundColor = 'white';
+        searchContainer.style.padding = '10px';
+        searchContainer.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+        searchContainer.style.width = '220px'; // Set a fixed width
+
+        var searchInput = document.createElement('input');
+        searchInput.type = 'text';
+        searchInput.placeholder = 'Search essays...';
+        searchInput.style.width = '93%';
+        searchInput.style.padding = '5px';
+
+        var resultsContainer = document.createElement('div');
+        resultsContainer.id = 'searchResults';
+        resultsContainer.style.maxHeight = '300px'; // Set a max height
+        resultsContainer.style.overflowY = 'auto';
+        resultsContainer.style.width = '100%';
+
+        searchInput.addEventListener('input', function() {
+            var searchTerm = this.value.toLowerCase();
+            var filteredEssays = globalEssayData.filter(function(essay) {
+                return essay.title.toLowerCase().includes(searchTerm) ||
+                       essay.content.some(para => para.paragraph.toLowerCase().includes(searchTerm));
+            });
+            displaySearchResults(filteredEssays, resultsContainer);
+        });
+
+        searchContainer.appendChild(searchInput);
+        searchContainer.appendChild(resultsContainer);
+        document.body.appendChild(searchContainer);
+
+        // Set focus to the search input immediately after creating it
+        setTimeout(function() {
+            searchInput.focus();
+        }, 0);
+    }
+
+    function displaySearchResults(results, container) {
+        container.innerHTML = '';
+        if (results.length === 0) {
+            container.innerHTML = '<div style="padding: 5px;">No results found</div>';
+        } else {
+            results.forEach(function(essay, index) {
+                var essayDiv = document.createElement('div');
+                essayDiv.textContent = essay.title;
+                essayDiv.style.padding = '5px';
+                essayDiv.style.cursor = 'pointer';
+                essayDiv.style.borderBottom = '1px solid #eee';
+                essayDiv.addEventListener('click', function() {
+                    // Find the corresponding essay element in the main content
+                    var essayElements = document.getElementsByClassName('essayTitle');
+                    for (var i = 0; i < essayElements.length; i++) {
+                        if (essayElements[i].textContent === essay.title) {
+                            // Scroll to the essay
+                            essayElements[i].scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            
+                            // Highlight the essay title temporarily
+                            var originalColor = essayElements[i].style.backgroundColor;
+                            essayElements[i].style.color = 'purple';
+                            setTimeout(function() {
+                                essayElements[i].style.color = originalColor;
+                            }, 2000); // Remove highlight after 2 seconds
+                            
+                            // Close the search container
+                            var searchContainer = document.getElementById('searchContainer');
+                            if (searchContainer) {
+                                document.body.removeChild(searchContainer);
+                            }
+                            
+                            break;
+                        }
+                    }
+                });
+                container.appendChild(essayDiv);
+            });
+        }
+    }
 
     // document.addEventListener('mousemove', function(event) {
     //     let mouseX = event.clientX;
@@ -497,6 +641,15 @@
     //         document.querySelector('.comment').style.left = '0';
     //     }
     // });
+
+
+    function incrementClickCount(essayIndex) {
+        $.post('/eng/clicked', {
+            essayIndex: essayIndex
+        }).then(function(response) {
+            console.log('Click count incremented for essay at index:', essayIndex);
+        });
+    }
 
 
     function rewrite(obj) {
@@ -537,7 +690,7 @@
                             rewrites[i].style.pointerEvents = 'none';
                         }
 
-                        $.post('/rewrite', {
+                        $.post('/eng/rewrite', {
                             rewriteContent: finalEssayPara
                         }).then(function(response) {
                             obj.classList.remove('colorChange');
@@ -631,7 +784,7 @@
                         var essayPara = obj.parentNode.innerText
 
                         // 发送post请求，获取翻译结果
-                        $.post('/trans', {
+                        $.post('/eng/trans', {
                             transContent: essayPara
                         }).then(function(response) {
                             obj.classList.remove('colorChange');
@@ -704,7 +857,7 @@
             // 获取当前选中的单词
             let selectedText = window.getSelection().toString();
             // alert(selectedText);
-            $.post('/transWord', {
+            $.post('/eng/transWord', {
                 selectedText: selectedText
             }).then(function(data) {
                 alert(data);

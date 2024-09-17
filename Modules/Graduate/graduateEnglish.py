@@ -1,12 +1,17 @@
 import json, os, sys, copy, datetime, requests, webbrowser
 from tools import claude_ai, get_json_data, write_json_data, trans_youdao, get_csv, chatanywhere_ai, word_count
+from initiation import limiter
 from flask import Blueprint, render_template, request, jsonify
 from flasgger import swag_from
 
 bp = Blueprint('graduate english', __name__)
 
+# 全局变量来存储索引映射和排序后的文章列表
+index_mapping = {}
+sorted_essays = []
 
 @bp.route('/eng', methods=['GET'])
+@limiter.limit("5 per minute")
 def eng():
     global g
     g = essayGenerator()
@@ -19,16 +24,21 @@ def eng():
 
 
 def essayGenerator():
+    global essay, index_mapping, sorted_essays
     essayEnglish = get_json_data('Statics/Others/essayEnglish.json')
     essay = essayEnglish['essay']
+    # 根据 clicked 值排序
+    sorted_essays = sorted(enumerate(essay), key=lambda x: x[1].get('clicked', 0), reverse=True)
+    # 创建索引映射
+    index_mapping = {new_index: original_index for new_index, (original_index, _) in enumerate(sorted_essays)}
+    
     a = 0
-    while a + 3 <= len(essay) - 2:
-        yield essay[a], essay[a+1], essay[a+2]
+    while a < len(sorted_essays):
+        yield [item[1] for item in sorted_essays[a:a+3]]
         a += 3
-    yield essay[a:]
 
 
-@bp.route('/essay', methods=['GET', 'POST'])
+@bp.route('/eng/essay', methods=['GET', 'POST'])
 def essay():
     global g
     reset = request.form['reset']
@@ -36,13 +46,28 @@ def essay():
     if reset == 'yes':
         g = essayGenerator()
     try:
-        k = list(next(g))
+        k = next(g)
         return jsonify(k)
     except StopIteration:
         return '已没有内容'
 
 
-@bp.route('/aiGenerateEssay', methods=['GET', 'POST'])
+@bp.route('/eng/clicked', methods=['POST'])
+def click_count():
+    sorted_index = int(request.form['essayIndex'])
+    original_index = index_mapping.get(sorted_index)
+    
+    if original_index is not None:
+        essay_data = get_json_data('Statics/Others/essayEnglish.json')
+        if 0 <= original_index < len(essay_data['essay']):
+            essay_data['essay'][original_index]['clicked'] += 1
+            write_json_data(essay_data, 'Statics/Others/essayEnglish.json')
+            return 'Success'
+    
+    return 'Invalid essay index', 400
+
+
+@bp.route('/eng/aiGenerateEssay', methods=['GET', 'POST'])
 @swag_from({
     'tags': ['AI Generate Essay'],
     'summary': 'AI Generate Essay',
@@ -80,7 +105,8 @@ def ai_generate_essay():
                     "wordCount": 117
                 }
             ],
-            "totalWordCount": 259
+            "totalWordCount": 259,
+            "clicked": 0
         }
     """
     print(generateEssayPrompt)
@@ -100,7 +126,7 @@ def ai_generate_essay():
     return result
 
 
-@bp.route('/rewrite', methods=['POST', 'GET'])
+@bp.route('/eng/rewrite', methods=['POST', 'GET'])
 def rewrite():
     rewriteContent = request.form['rewriteContent']
     content = chatanywhere_ai('用英语高级词汇换一种说法重写一遍（不要换行，不要空格，不要说别的）: ' + rewriteContent)
@@ -108,7 +134,7 @@ def rewrite():
     return content
 
 
-@bp.route('/trans', methods=['POST', 'GET'])  # AI translate
+@bp.route('/eng/trans', methods=['POST', 'GET'])  # AI translate
 def trans():
     transContent = request.form['transContent']
     print(transContent)
@@ -127,7 +153,7 @@ def trans():
         return content
     
 
-@bp.route('/transWord', methods=['POST', 'GET'])  # AI translate
+@bp.route('/eng/transWord', methods=['POST', 'GET'])  # AI translate
 def trans_word():
     from sqlalchemy import create_engine, Column, String, Integer
     from sqlalchemy.orm import sessionmaker
@@ -170,3 +196,13 @@ def trans_word():
     #     print(word)
     
     return result
+
+
+@bp.route('/eng/recommand', methods=['POST', 'GET'])  # AI translate
+def essay_recommand():
+    None
+
+
+if __name__ == '__main__':
+    essayEnglish = get_json_data('Statics/Others/essayEnglish.json')
+    print(essayEnglish)

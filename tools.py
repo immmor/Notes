@@ -410,7 +410,7 @@ if __name__ == '__main__':
     # ai('今天北京天气怎么样')
     # print(ipQuery("137.2.23.1"))
     # trans_youdao('reap')
-    getIP('154.40.44.149')
+    # getIP('154.40.44.149')
     # word_count("To fully reap the benefits of outdoor exercise, it's important to find activities that align with personal interests and fitness goals.")
     
     # kk = """
@@ -438,3 +438,13 @@ if __name__ == '__main__':
     #         j["wordCount"] = num
     #         i['totalWordCount'] += num
     # write_json_data(content, 'Statics/Others/essayEnglish.json')
+
+    essayEnglish = get_json_data('Statics/Others/essayEnglish.json')
+    print(essayEnglish['essay'])
+    for i in essayEnglish['essay']:
+        # 给每个essay添加一个clicked字段，初始值为0
+        i['clicked'] = 0
+    write_json_data(essayEnglish, 'Statics/Others/essayEnglish.json')
+    print(essayEnglish['essay'][0])
+
+

@@ -1,59 +1,16 @@
 import os
 import datetime
 import webbrowser
-from flask import Flask, render_template, request
-from flasgger import Swagger, swag_from
-from flask_socketio import SocketIO, emit
-from flask_cors import CORS
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
-from celery import Celery
-# %NVIDIA%  %CANJIE%  %IVIFOUD%  %SASHOME%
-# F:\MATLAB\R2023b   %MATLAB%
-# F:\anaconda3   %CONDA%
-# ------ %SAFE%
-# F:\CangjieSDK-Win-Beta\runtime\lib\windows_x86_64_llvm
-# F:\CangjieSDK-Win-Beta\bin
-# F:\CangjieSDK-Win-Beta\tools\bin
-# F:\CangjieSDK-Win-Beta\debugger\bin
-# F:\Java\jdk-19\bin
-# F:\Java\jdk-17.0.8\bin
-# F:\Redis\
-# F:\Lua\5.1
-# F:\Lua\5.1\clibs
-# F:\bun-windows-x64-baseline-profile
-# F:\zig
-# F:\LLVM\bin
-# F:\Containerd\bin
-# F:\scala3-3.4.2\bin
-# F:\go1.20.4.windows-386\go\bin
-# F:\go1.20.4.windows-386\goproject\bin
-# F:\anaconda3      1111
-# F:\anaconda3\Scripts     1111
-# F:\Git\cmd
-# F:\Git\bin
+from flask import render_template, request
+from flasgger import swag_from
+from initiation import app, limiter, socketio
+from flask_socketio import emit
 from tools import get_json_data, write_json_data
 from Modules.wrapBlueprints import blueList
 
-# os.chdir(sys.path[0])  # 把现在的工作路径切换到当前文件夹
-app = Flask(__name__, template_folder='./', static_folder='Statics')
-app.config['SECRET_KEY'] = 'secret!'
-CORS(app)
-socketio = SocketIO(app, cors_allowed_origins="*")
-limiter = Limiter(
-    key_func=get_remote_address, 
-    app=app,
-    # default_limits=["1 per day", "1 per hour"]
-)
-
 for i in blueList:
     app.register_blueprint(i)
-Swagger(app)
 
-# with app.app_context():
-#     client = app.test_client()
-#     response = client.get('/ai')
-#     print(response.status_code)
 
 @app.route('/', methods=['GET'])
 @limiter.limit("20/minute;100/day")
@@ -81,7 +38,7 @@ def handle_message(message):
 
 
 @app.route('/login', methods=['POST', 'GET'])
-@limiter.limit("2/minute;100/day")
+# @limiter.limit("2/minute;5/hour;10/day")
 def login():
     username = request.form['username']
     password = request.form['password']
@@ -104,5 +61,4 @@ def login():
 if __name__ == '__main__':
     if not os.environ.get("WERKZEUG_RUN_MAIN"):
         webbrowser.open("http://127.0.0.1:666/")
-    # app.run(host="0.0.0.0", debug=True, port=666)
     socketio.run(app, debug=True, host="0.0.0.0", port=666, allow_unsafe_werkzeug=True)

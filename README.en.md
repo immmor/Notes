@@ -2,7 +2,7 @@
 
 #### Description
 
-考研笔记
+Graduate Notes
 
 #### Software Architecture
 
