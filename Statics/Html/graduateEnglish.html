@@ -501,9 +501,8 @@
                         essayParaDiv.innerHTML = essayContent[j]['paragraph'];
                         essayParaDiv.classList.add('essayPara');
 
-                        // Add data attribute for essay index
-                        essayParaDiv.setAttribute('data-essay-index', i);
-                        // Add click event listener
+                        // Add data attribute for essay index based on globalEssayData
+                        essayParaDiv.setAttribute('data-essay-index', globalEssayData.length - 1); // Use the correct index
                         essayParaDiv.addEventListener('dblclick', function() {
                             incrementClickCount(this.getAttribute('data-essay-index'));
                         });

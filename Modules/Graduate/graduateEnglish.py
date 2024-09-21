@@ -47,6 +47,9 @@ def essay():
         g = essayGenerator()
     try:
         k = next(g)
+        # 更新 index_mapping 以包含所有已加载的��章
+        global index_mapping
+        index_mapping = {new_index: original_index for new_index, (original_index, _) in enumerate(sorted_essays)}
         return jsonify(k)
     except StopIteration:
         return '已没有内容'
