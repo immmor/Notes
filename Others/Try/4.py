@@ -1,6 +1,14 @@
-from .app import limiter, app
+from gradio_client import Client
 
-@app.route('/protected', methods=['GET'])
-@limiter.limit("10 per minute")
-def protected_view():
-    return "This is a protected view"
+client = Client("black-forest-labs/FLUX.1-dev")
+result = client.predict(
+		prompt="dogs drinking water",
+		seed=0,
+		randomize_seed=True,
+		width=1024,
+		height=1024,
+		guidance_scale=3.5,
+		num_inference_steps=28,
+		api_name="/infer"
+)
+print(result)
