@@ -224,10 +224,11 @@ function loginin() {
     document.getElementById("login").classList.add("log");
     document.getElementById("login").classList.add("login");
     document.getElementById("login").innerHTML = '<div class="login-box"><h2>登  录</h2><form><div class="user-box"><input type="text" id="username"><label>用户名</label></div><div class="user-box"><input type="password" id="passwordid"><label>密码</label></div><div class="register" id="registerInLogin" onclick="register()">新用户注册</div><a id="submit"><span></span><span></span><span></span><span></span>提 交</a></form></div>'
-    let cookieKeys = document.cookie.match(/[^ =;]+(?=\=)/g); 
+    // let cookieKeys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    let hasUserInfo = document.cookie.includes('userInfo'); 
     // alert(cookieKeys)
     // let hasUserInfo = cookieKeys.indexOf('userInfo')
-    if (!cookieKeys) {
+    if (!hasUserInfo) {
         document.getElementById('logout').style.display = 'none';
         document.getElementById('login').style.display = 'block';
         $('#submit').click(function() { //点击按钮
